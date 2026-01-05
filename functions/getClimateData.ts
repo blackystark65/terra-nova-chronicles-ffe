@@ -86,11 +86,14 @@ async function fetchGlobalWeather(apiKey) {
 
   const weatherPromises = cities.map(async (city) => {
     try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=metric`
-      );
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${apiKey}&units=metric`;
+      const response = await fetch(url);
       
-      if (!response.ok) throw new Error('Weather API error');
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Weather API error for ${city.name}:`, response.status, errorText);
+        throw new Error(`Weather API error: ${response.status}`);
+      }
       
       const data = await response.json();
       return {
@@ -100,6 +103,7 @@ async function fetchGlobalWeather(apiKey) {
         conditions: data.weather[0].description
       };
     } catch (error) {
+      console.error(`Error fetching weather for ${city.name}:`, error.message);
       return { city: city.name, temp: 15, humidity: 50, conditions: 'unknown' };
     }
   });
