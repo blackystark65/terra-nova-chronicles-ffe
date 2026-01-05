@@ -93,8 +93,15 @@ export default function ClimatePage() {
 
   return (
     <div className="min-h-screen relative">
-      {/* Fond avec effet atmosphérique */}
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900" />
+      {/* Image de fond avec la Terre depuis l'espace */}
+      <div 
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/9c65505a5_blue-wave-crashes-african-coastline-sunset-generated-by-ai.jpg)',
+        }}
+      />
+      {/* Overlay gradient pour lisibilité */}
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-950/70 via-blue-950/60 to-slate-900/70" />
       
       {/* Effet nuages animés */}
       <div className="fixed inset-0 pointer-events-none">
