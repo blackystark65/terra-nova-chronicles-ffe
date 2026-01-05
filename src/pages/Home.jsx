@@ -105,13 +105,15 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="mb-6">
+              className="max-w-3xl mx-auto mb-6">
 
-              <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/9e8d7687f_BandeauTerraNovaChronicles.png"
-                alt="Terra Nova Chronicles"
-                className="max-w-full md:max-w-3xl lg:max-w-4xl h-auto mx-auto drop-shadow-2xl"
-              />
+              <div className="px-8 py-6 rounded-3xl bg-white/5 backdrop-blur-xl border border-emerald-400/20">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/9e8d7687f_BandeauTerraNovaChronicles.png"
+                  alt="Terra Nova Chronicles"
+                  className="w-full h-auto"
+                />
+              </div>
             </motion.div>
 
             {/* Description avec membrane translucide */}
