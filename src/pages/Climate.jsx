@@ -97,7 +97,7 @@ export default function ClimatePage() {
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/9c65505a5_blue-wave-crashes-african-coastline-sunset-generated-by-ai.jpg)',
+          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/78976de35_blue-wave-crashes-african-coastline-sunset-generated-by-ai.jpg)',
         }}
       />
       {/* Overlay gradient pour lisibilité */}

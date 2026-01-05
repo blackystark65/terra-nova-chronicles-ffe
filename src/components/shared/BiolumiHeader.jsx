@@ -58,7 +58,7 @@ export default function BiolumiHeader({ currentPage }) {
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/9e8d7687f_BandeauTerraNovaChronicles.png"
                   alt="Terra Nova Chronicles"
-                  className="h-16 md:h-20 w-auto"
+                  className="h-20 md:h-24 w-auto"
                 />
               </div>
             </motion.div>
