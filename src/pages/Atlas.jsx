@@ -109,10 +109,34 @@ export default function AtlasPage() {
   const [hoveredBiome, setHoveredBiome] = useState(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-emerald-950 to-teal-950">
+    <div className="min-h-screen relative">
+      {/* Image de fond avec les couches de la Terre */}
+      <div 
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/085ed7580_earths-hemisphere-detailed-view-image-photo-planet-earth-space.jpg)',
+        }}
+      />
+      {/* Overlay gradient pour meilleure lisibilité */}
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-950/70 via-emerald-950/60 to-teal-950/70" />
+      
+      {/* Tornade verte lumineuse animée */}
+      <motion.div
+        className="fixed inset-0 opacity-30 pointer-events-none"
+        animate={{
+          background: [
+            'radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.4) 0%, transparent 50%)',
+            'radial-gradient(circle at 80% 50%, rgba(20, 184, 166, 0.4) 0%, transparent 50%)',
+            'radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.4) 0%, transparent 50%)',
+            'radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.4) 0%, transparent 50%)',
+          ],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+      />
+
       <BiolumiHeader currentPage="Atlas" />
 
-      <main className="pt-24 px-4 pb-12">
+      <main className="relative z-10 pt-24 px-4 pb-12">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
@@ -134,14 +158,23 @@ export default function AtlasPage() {
             </p>
           </motion.div>
 
-          {/* Carte interactive stylisée */}
+          {/* Carte interactive avec la planète */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="relative aspect-video rounded-3xl overflow-hidden bg-gradient-to-br from-blue-900/20 to-green-900/20 border border-emerald-400/20 backdrop-blur-xl mb-8"
+            className="relative aspect-video rounded-3xl overflow-hidden border border-emerald-400/20 backdrop-blur-xl mb-8"
           >
-            {/* Représentation stylisée de la Terre */}
+            {/* Image de la planète avec continents en relief */}
             <div className="absolute inset-0">
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/1fba6efa7_earths-surface-features-details-image-photo-planet-earth-space.png"
+                alt="Carte de la Terre"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
+            {/* Effet tornade néon par-dessus */}
+            <div className="absolute inset-0 pointer-events-none">
               <motion.div
                 className="absolute inset-0 opacity-20"
                 style={{

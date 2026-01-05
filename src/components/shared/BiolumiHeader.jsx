@@ -23,7 +23,7 @@ export default function BiolumiHeader({ currentPage }) {
       
       <nav className="relative max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo Terra Nova */}
+          {/* Logo Terra Nova avec planète tournante */}
           <Link to={createPageUrl('Home')}>
             <motion.div
               className="flex items-center gap-3 group cursor-pointer"
@@ -32,18 +32,20 @@ export default function BiolumiHeader({ currentPage }) {
               <motion.div
                 animate={{
                   rotate: [0, 360],
-                  scale: [1, 1.1, 1]
                 }}
                 transition={{
-                  duration: 20,
+                  duration: 40,
                   repeat: Infinity,
                   ease: "linear"
                 }}
-                className="relative">
+                className="relative w-12 h-12 rounded-full overflow-hidden shadow-lg shadow-emerald-500/50">
 
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/50">
-                  <Globe className="w-7 h-7 text-white" />
-                </div>
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/af6a6b206_green-earth-globe-with-continents-oceans.png"
+                  alt="Planète Terre"
+                  className="w-full h-full object-cover"
+                />
+                
                 {/* Anneau bioluminescent */}
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-cyan-400/50"
@@ -53,10 +55,11 @@ export default function BiolumiHeader({ currentPage }) {
               </motion.div>
               
               <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-300 via-emerald-300 to-teal-300 bg-clip-text text-transparent">
-                  Terra Nova
-                </h1>
-                <p className="text-xs text-emerald-300/70">CHRONICLES</p>
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/9e8d7687f_BandeauTerraNovaChronicles.png"
+                  alt="Terra Nova Chronicles"
+                  className="h-10 w-auto"
+                />
               </div>
             </motion.div>
           </Link>
