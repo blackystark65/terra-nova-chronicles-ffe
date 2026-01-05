@@ -7,7 +7,16 @@ import { Globe, Compass, BookOpen, Flame, Leaf, Droplets, Wind, Mountain } from 
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-emerald-950 to-teal-950 overflow-hidden relative">
+    <div className="min-h-screen overflow-hidden relative">
+      {/* Image de fond avec overlay */}
+      <div 
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/ac268d400_fonddecranTerraNovaChronicles.jpg)',
+        }}
+      />
+      {/* Overlay gradient pour meilleure lisibilité */}
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-950/60 via-emerald-950/50 to-teal-950/60" />
       {/* Particules flottantes biomimétiques */}
       <div className="fixed inset-0 pointer-events-none">
         {[...Array(30)].map((_, i) =>
@@ -63,8 +72,12 @@ export default function HomePage() {
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}>
 
-                <div className="w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-emerald-400 via-teal-400 to-cyan-400 flex items-center justify-center shadow-2xl shadow-emerald-500/50">
-                  <Globe className="w-16 h-16 md:w-24 md:h-24 text-white" />
+                <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden shadow-2xl shadow-emerald-500/50">
+                  <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/af6a6b206_green-earth-globe-with-continents-oceans.png"
+                    alt="Planète Terre"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 
                 {/* Anneaux orbitaux bioluminescents */}
@@ -87,24 +100,18 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
 
-            {/* Titre avec effet typographique organique */}
+            {/* Bandeau Terra Nova Chronicles */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}>
+              transition={{ delay: 0.3 }}
+              className="mb-6">
 
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-4">
-                <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent inline-block">
-                  Terra Nova
-                </span>
-              </h1>
-              <motion.p className="text-2xl md:text-3xl font-bold text-emerald-400/80 mb-6"
-
-              animate={{ opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 3, repeat: Infinity }}>CHRONICLES
-
-
-              </motion.p>
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/9e8d7687f_BandeauTerraNovaChronicles.png"
+                alt="Terra Nova Chronicles"
+                className="max-w-full md:max-w-3xl lg:max-w-4xl h-auto mx-auto drop-shadow-2xl"
+              />
             </motion.div>
 
             {/* Description avec membrane translucide */}
