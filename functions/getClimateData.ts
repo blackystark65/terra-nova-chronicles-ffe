@@ -9,7 +9,7 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const OPENWEATHER_API_KEY = Deno.env.get('OPENWEATHER_API_KEY');
+    const OPENWEATHER_API_KEY = Deno.env.get('OPENWEATHER_API_KEY') || '607cd3c3641e984304ded2836a7cb8bb';
 
     // Récupérer les données de plusieurs sources
     const [weatherData, co2Data, temperatureData] = await Promise.all([
