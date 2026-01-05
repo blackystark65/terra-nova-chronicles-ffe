@@ -35,46 +35,16 @@ export default function ClimatePage() {
   const fetchClimateData = async () => {
     try {
       setLoading(true);
-      const response = await base44.integrations.Core.InvokeLLM({
-        prompt: `Donne-moi les données climatiques actuelles et récentes en JSON :
-        - Température moyenne globale actuelle (°C)
-        - Niveau de CO2 actuel (ppm)
-        - Événements climatiques majeurs récents (3 derniers mois)
-        - Fonte des glaces arctiques (%)
-        - Niveau des océans (mm augmentation depuis 1993)
-        Réponds uniquement en JSON structuré.`,
-        add_context_from_internet: true,
-        response_json_schema: {
-          type: "object",
-          properties: {
-            global_temp: { type: "number" },
-            co2_level: { type: "number" },
-            arctic_ice_loss: { type: "number" },
-            sea_level_rise: { type: "number" },
-            recent_events: {
-              type: "array",
-              items: {
-                type: "object",
-                properties: {
-                  event: { type: "string" },
-                  location: { type: "string" },
-                  date: { type: "string" }
-                }
-              }
-            }
-          }
-        }
-      });
-
-      setClimateData(response);
+      const { data } = await base44.functions.invoke('getClimateData', {});
+      setClimateData(data);
     } catch (error) {
       console.error('Erreur lors de la récupération des données:', error);
       // Données de secours
       setClimateData({
         global_temp: 15.3,
         co2_level: 424,
-        arctic_ice_loss: 13,
-        sea_level_rise: 102,
+        arctic_ice_loss: 13.2,
+        sea_level_rise: 102.5,
         recent_events: [
           { event: "Canicule extrême", location: "Europe du Sud", date: "Été 2025" },
           { event: "Fonte record des glaciers", location: "Groenland", date: "Septembre 2025" },
@@ -290,7 +260,11 @@ export default function ClimatePage() {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.1 * i }}
-                      className="p-4 rounded-2xl bg-red-500/10 border border-red-400/30"
+                      className={`p-4 rounded-2xl border ${
+                        event.severity === 'critical' 
+                          ? 'bg-red-500/10 border-red-400/30' 
+                          : 'bg-orange-500/10 border-orange-400/30'
+                      }`}
                     >
                       <p className="font-semibold text-red-200 mb-2">{event.event}</p>
                       <p className="text-sm text-red-300/70 mb-1">📍 {event.location}</p>
@@ -299,6 +273,36 @@ export default function ClimatePage() {
                   ))}
                 </div>
               </motion.div>
+
+              {/* Températures mondiales en temps réel */}
+              {climateData?.cities_data && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-6 p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10"
+                >
+                  <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <Thermometer className="w-7 h-7 text-orange-400" />
+                    Températures Mondiales Actuelles
+                  </h3>
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {climateData.cities_data.map((city, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.05 * i }}
+                        className="p-4 rounded-2xl bg-gradient-to-br from-blue-500/10 to-orange-500/10 border border-blue-400/20"
+                      >
+                        <p className="text-sm text-blue-200/70 mb-1">{city.city}</p>
+                        <p className="text-2xl font-bold text-white">{Math.round(city.temp)}°C</p>
+                        <p className="text-xs text-blue-300/60 capitalize">{city.conditions}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
 
               {/* Points d'action */}
               <motion.div
