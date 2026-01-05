@@ -40,11 +40,11 @@ const MissionCard = ({ mission, profile, onStart }) => {
       !canStart ? 'opacity-60' : ''}
       `}>
 
-      {/* Image de fond du biome */}
-      {mission.biome && biomeImages[mission.biome] && (
+      {/* Image de fond personnalisée ou par défaut du biome */}
+      {(mission.image_url || (mission.biome && biomeImages[mission.biome])) && (
         <div 
           className="absolute inset-0 opacity-20 bg-cover bg-center"
-          style={{ backgroundImage: `url(${biomeImages[mission.biome]})` }}
+          style={{ backgroundImage: `url(${mission.image_url || biomeImages[mission.biome]})` }}
         />
       )}
 
