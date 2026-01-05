@@ -17,11 +17,22 @@ const MissionCard = ({ mission, profile, onStart }) => {
     expert: 'from-red-500 to-purple-600'
   };
 
+  const biomeImages = {
+    ocean: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/4580f876f_7f03a035cf0bdb398a87030b35c5cd2e-1038x576.jpg',
+    rainforest: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/d99e55cb0_environment-evergreen-forest-940-1-940x6001.jpg',
+    savanna: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/abaf3de69_pexels-pixabay-68550.jpg',
+    arctic: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/5ea2a6e26_2728.jpg',
+    temperate_forest: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/42dbefbc6_34362.jpg',
+    wetlands: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/8e52d10ca_beautiful-natural-view-landscape.jpg',
+    mountains: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/8e52d10ca_beautiful-natural-view-landscape.jpg',
+    desert: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/8e52d10ca_beautiful-natural-view-landscape.jpg'
+  };
+
   return (
     <motion.div
       whileHover={canStart ? { scale: 1.02, y: -5 } : {}}
       className={`
-        relative p-6 rounded-2xl backdrop-blur-xl border
+        relative p-6 rounded-2xl backdrop-blur-xl border overflow-hidden
         ${isCompleted ?
       'bg-emerald-900/20 border-emerald-400/30' :
       'bg-white/5 border-emerald-400/20 hover:border-emerald-400/40'}
@@ -29,37 +40,50 @@ const MissionCard = ({ mission, profile, onStart }) => {
       !canStart ? 'opacity-60' : ''}
       `}>
 
+      {/* Image de fond du biome */}
+      {mission.biome && biomeImages[mission.biome] && (
+        <div 
+          className="absolute inset-0 opacity-20 bg-cover bg-center"
+          style={{ backgroundImage: `url(${biomeImages[mission.biome]})` }}
+        />
+      )}
+
+      {/* Overlay pour lisibilité */}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/60 to-transparent" />
+
       {isCompleted &&
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-4 right-4 z-10">
           <CheckCircle className="w-8 h-8 text-emerald-400" />
         </div>
       }
 
-      <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${difficultyColors[mission.difficulty]} text-white mb-3`}>
-        {mission.difficulty}
-      </div>
-
-      <h3 className="text-xl font-bold text-emerald-300 mb-2">{mission.title}</h3>
-      <p className="text-emerald-200/70 mb-4">{mission.description}</p>
-
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-sm text-emerald-400">
-          <Star className="w-4 h-4" />
-          <span>+{mission.xp_reward} XP</span>
+      <div className="relative z-10">
+        <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${difficultyColors[mission.difficulty]} text-white mb-3`}>
+          {mission.difficulty}
         </div>
 
-        <Button
-          onClick={() => canStart && onStart(mission)}
-          disabled={!canStart}
-          className={`
-            ${isCompleted ?
-          'bg-emerald-600 hover:bg-emerald-700' :
-          'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600'}
-          `
-          }>
+        <h3 className="text-xl font-bold text-emerald-300 mb-2">{mission.title}</h3>
+        <p className="text-emerald-200/70 mb-4">{mission.description}</p>
 
-          {isCompleted ? 'Terminé' : 'Commencer'}
-        </Button>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 text-sm text-emerald-400">
+            <Star className="w-4 h-4" />
+            <span>+{mission.xp_reward} XP</span>
+          </div>
+
+          <Button
+            onClick={() => canStart && onStart(mission)}
+            disabled={!canStart}
+            className={`
+              ${isCompleted ?
+            'bg-emerald-600 hover:bg-emerald-700' :
+            'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600'}
+            `
+            }>
+
+            {isCompleted ? 'Terminé' : 'Commencer'}
+          </Button>
+        </div>
       </div>
     </motion.div>);
 
