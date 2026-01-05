@@ -18,7 +18,7 @@ const MissionCard = ({ mission, profile, onStart }) => {
   };
 
   const biomeImages = {
-    ocean: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/4580f876f_7f03a035cf0bdb398a87030b35c5cd2e-1038x576.jpg',
+    ocean: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/8e52d10ca_beautiful-natural-view-landscape.jpg',
     rainforest: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/d99e55cb0_environment-evergreen-forest-940-1-940x6001.jpg',
     savanna: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/abaf3de69_pexels-pixabay-68550.jpg',
     arctic: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/5ea2a6e26_2728.jpg',
