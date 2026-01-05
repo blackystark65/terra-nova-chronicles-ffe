@@ -5,6 +5,7 @@ import Climate from './pages/Climate';
 import Home from './pages/Home';
 import Missions from './pages/Missions';
 import Profile from './pages/Profile';
+import Encyclopedia from './pages/Encyclopedia';
 
 
 export const PAGES = {
@@ -15,6 +16,7 @@ export const PAGES = {
     "Home": Home,
     "Missions": Missions,
     "Profile": Profile,
+    "Encyclopedia": Encyclopedia,
 }
 
 export const pagesConfig = {
