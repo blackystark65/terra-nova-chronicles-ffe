@@ -19,16 +19,21 @@ const themes = [
     color: 'from-green-600 to-emerald-700',
     description: 'Poumons de la Terre, écosystèmes complexes',
     content: {
-      intro: "Les forêts couvrent 31% de la surface terrestre et abritent 80% de la biodiversité terrestre.",
+      intro: "La forêt n'est pas un décor, mais un système vital, une 'ville du vivant' où chaque organisme a une fonction. Elle fonctionne par coopération, pas par compétition. Les forêts couvrent 31% de la surface terrestre et abritent 80% de la biodiversité terrestre.",
       facts: [
-        "Les forêts tropicales produisent 40% de l'oxygène mondial",
-        "Un arbre mature peut absorber jusqu'à 22kg de CO2 par an",
-        "La déforestation détruit 10 millions d'hectares par an"
+        "Les arbres absorbent le CO₂, produisent de l'oxygène via la photosynthèse et régulent le climat",
+        "Chaque année, 7 à 15 tonnes de feuilles par hectare tombent et forment l'humus, base de la fertilité",
+        "Le mycélium (champignons) crée une symbiose avec les racines et permet la communication entre arbres",
+        "Les décomposeurs (vers, insectes, bactéries) transforment la matière morte en nutriments : la mort nourrit la vie",
+        "La forêt produit des phytoncides, ions négatifs et terpènes bénéfiques pour la santé humaine",
+        "Un sol forestier vivant stocke le carbone, régule l'eau et protège contre l'érosion"
       ],
       actions: [
-        "Soutenir les initiatives de reforestation",
-        "Consommer du bois certifié FSC",
-        "Réduire l'usage du papier"
+        "Protéger les forêts existantes contre la pollution et les déchets",
+        "Replanter des essences locales adaptées, pas des monocultures de résineux",
+        "Éduquer les jeunes générations au rôle vital des forêts",
+        "Participer à l'achat et la protection collective des forêts",
+        "Respecter les cycles naturels et la biodiversité forestière"
       ]
     }
   },
@@ -39,16 +44,22 @@ const themes = [
     color: 'from-lime-600 to-green-700',
     description: 'Agriculture respectueuse de la nature',
     content: {
-      intro: "L'agroécologie combine les savoirs traditionnels et les sciences pour une agriculture durable.",
+      intro: "L'agroécologie est une agriculture qui respecte simultanément la nature (sols, eau, biodiversité), les animaux, les êtres humains, et qui redistribue équitablement les surplus. Elle réconcilie production alimentaire, biodiversité, santé des sols et bien-être des agriculteurs.",
       facts: [
-        "30% des émissions de gaz à effet de serre viennent de l'agriculture intensive",
-        "L'agroécologie peut augmenter les rendements de 79% en moyenne",
-        "Elle préserve la biodiversité et la qualité des sols"
+        "Un sol vivant nourrit les plantes : abandon du labour, couverture végétale permanente, rôle central des vers de terre",
+        "Le semis direct sous couvert améliore la fertilité, stocke le carbone et réduit l'érosion",
+        "La biodiversité cultivée (ex: Milpa - maïs, haricots, courges) rend le système résilient",
+        "Le pâturage tournant dynamique fertilise naturellement les sols et assure l'autonomie fourragère",
+        "Les animaux (chevaux, ânes) remplacent le tracteur, réduisant le compactage des sols",
+        "L'agroforesterie et les haies protègent la faune, régulent le climat local et préviennent l'érosion",
+        "L'agriculture est le principal consommateur d'eau douce : l'agroécologie la protège"
       ],
       actions: [
-        "Privilégier les produits bio et locaux",
-        "Composter ses déchets organiques",
-        "Créer un potager en permaculture"
+        "Soutenir les fermes agroécologiques locales",
+        "Créer un jardin en semis direct sous couvert",
+        "Pratiquer les associations de cultures bénéfiques",
+        "Protéger et planter des haies indigènes",
+        "Favoriser l'autonomie alimentaire et énergétique locale"
       ]
     }
   },
@@ -59,16 +70,25 @@ const themes = [
     color: 'from-blue-600 to-cyan-700',
     description: 'Or bleu, ressource vitale',
     content: {
-      intro: "L'eau douce ne représente que 2,5% de l'eau sur Terre, et seulement 1% est accessible.",
+      intro: "L'eau est l'élément fondateur de toute forme de vie sur Terre. Elle n'est pas seulement une ressource utilitaire, mais un système global, dynamique et fragile, qui relie les montagnes, les sols, les rivières, les océans, l'atmosphère et les êtres vivants. Sans eau, il n'y a ni sol vivant, ni forêt, ni agriculture, ni humanité.",
       facts: [
-        "2 milliards de personnes n'ont pas accès à l'eau potable",
-        "L'agriculture utilise 70% de l'eau douce mondiale",
-        "Les océans absorbent 30% du CO2 atmosphérique"
+        "Toute vie connue dépend de l'eau : le corps humain en est composé majoritairement",
+        "Le cycle de l'eau est fermé : la quantité totale ne change pas, mais sa qualité peut se dégrader",
+        "L'eau circule entre océans, atmosphère, nuages, sols, nappes phréatiques et rivières",
+        "Les sols vivants riches en humus permettent l'infiltration et le stockage, les sols dégradés causent ruissellement et inondations",
+        "Seulement 2,5% de l'eau terrestre est douce, et 1% est accessible et potable",
+        "Les zones humides sont les 'reins de la planète' : elles abritent la biodiversité, filtrent l'eau et amortissent les crues",
+        "L'eau régule le climat en transportant la chaleur et en influençant les précipitations",
+        "L'agriculture utilise 70% de l'eau douce : l'agroécologie la protège avec des sols couverts et des haies",
+        "Pollution : plastiques, pesticides, engrais, rejets industriels - polluer l'eau, c'est polluer tout le vivant"
       ],
       actions: [
-        "Réduire sa consommation d'eau quotidienne",
+        "Réduire le gaspillage d'eau au quotidien",
+        "Protéger les sources et restaurer les zones humides",
         "Installer des récupérateurs d'eau de pluie",
-        "Éviter la pollution des cours d'eau"
+        "Soutenir une agriculture respectueuse de l'eau",
+        "Ne jamais polluer les cours d'eau",
+        "Sensibiliser dès l'enfance : l'eau appartient à tous les êtres vivants"
       ]
     }
   },
