@@ -6,6 +6,7 @@ import Encyclopedia from './pages/Encyclopedia';
 import Home from './pages/Home';
 import Missions from './pages/Missions';
 import Profile from './pages/Profile';
+import Quiz from './pages/Quiz';
 
 
 export const PAGES = {
@@ -17,6 +18,7 @@ export const PAGES = {
     "Home": Home,
     "Missions": Missions,
     "Profile": Profile,
+    "Quiz": Quiz,
 }
 
 export const pagesConfig = {
