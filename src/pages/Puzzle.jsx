@@ -28,19 +28,19 @@ const PUZZLES = [
   {
     id: 'animals',
     name: 'Animaux Sauvages',
-    image: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=800',
+    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/d99e55cb0_environment-evergreen-forest-940-1-940x6001.jpg',
     color: 'from-orange-500 to-yellow-500'
   },
   {
     id: 'agriculture',
     name: 'Agriculture',
-    image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800',
+    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/42dbefbc6_34362.jpg',
     color: 'from-green-500 to-lime-500'
   },
   {
     id: 'recycling',
     name: 'Recyclage',
-    image: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800',
+    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/8e52d10ca_beautiful-natural-view-landscape.jpg',
     color: 'from-teal-500 to-cyan-500'
   }
 ];
