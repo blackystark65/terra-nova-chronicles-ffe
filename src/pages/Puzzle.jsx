@@ -4,8 +4,8 @@ import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { Trophy, Star, RotateCcw, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-// Configuration du puzzle (8x8 = 64 pièces)
-const GRID_SIZE = 8;
+// Configuration du puzzle (4x4 = 16 pièces)
+const GRID_SIZE = 4;
 const TOTAL_PIECES = GRID_SIZE * GRID_SIZE;
 
 // Niveaux de difficulté
@@ -337,7 +337,7 @@ export default function PuzzlePage() {
                       </div>
                     )}
                     
-                    <div className="grid grid-cols-8 gap-0.5 h-full relative z-10">
+                    <div className="grid grid-cols-4 gap-1 h-full relative z-10">
                       {board.map((piece, index) => (
                         <motion.div
                           key={index}
@@ -380,7 +380,7 @@ export default function PuzzlePage() {
                     Pièces Disponibles ({pieces.length})
                   </h2>
                   <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-2 border-4 border-purple-400/30 min-h-[500px] max-h-[600px] overflow-y-auto">
-                    <div className="grid grid-cols-8 gap-1">
+                    <div className="grid grid-cols-4 gap-1">
                       {pieces.map((piece) => (
                         <motion.div
                           key={piece.id}
