@@ -312,40 +312,44 @@ export default function PuzzlePage() {
                   </p>
                 </div>
               </div>
+            </>
           ) : null}
 
-              {/* Message de victoire */}
-              <AnimatePresence>
-                {isComplete && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          {/* Message de victoire */}
+          <AnimatePresence>
+            {isComplete && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+              >
+                <div className="bg-white rounded-3xl p-12 text-center shadow-2xl max-w-md">
+                  <Trophy className="w-32 h-32 text-yellow-400 mx-auto mb-6" />
+                  <h2 className="text-4xl font-black text-emerald-600 mb-4">
+                    Bravo ! 🎉
+                  </h2>
+                  <p className="text-xl text-gray-700 mb-6">
+                    Tu as reconstitué le puzzle !
+                  </p>
+                  <p className="text-3xl font-bold text-emerald-600 mb-8">
+                    Score parfait : {TOTAL_PIECES}/{TOTAL_PIECES}
+                  </p>
+                  <Button
+                    onClick={resetGame}
+                    className="px-8 py-6 text-xl bg-gradient-to-r from-blue-500 to-purple-500"
                   >
-                    <div className="bg-white rounded-3xl p-12 text-center shadow-2xl max-w-md">
-                      <Trophy className="w-32 h-32 text-yellow-400 mx-auto mb-6" />
-                      <h2 className="text-4xl font-black text-emerald-600 mb-4">
-                        Bravo ! 🎉
-                      </h2>
-                      <p className="text-xl text-gray-700 mb-6">
-                        Tu as reconstitué la planète Terre !
-                      </p>
-                      <p className="text-3xl font-bold text-emerald-600 mb-8">
-                        Score parfait : {TOTAL_PIECES}/{TOTAL_PIECES}
-                      </p>
-                      <Button
-                        onClick={resetGame}
-                        className="px-8 py-6 text-xl bg-gradient-to-r from-blue-500 to-purple-500"
-                      >
-                        Rejouer
-                      </Button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </>
-          )}
+                    Rejouer
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </main>
+    </div>
+  );
+}
         </div>
       </main>
     </div>
