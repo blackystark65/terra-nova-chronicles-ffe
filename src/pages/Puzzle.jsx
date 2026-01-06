@@ -350,8 +350,3 @@ export default function PuzzlePage() {
     </div>
   );
 }
-        </div>
-      </main>
-    </div>
-  );
-}
