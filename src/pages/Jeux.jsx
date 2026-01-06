@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
-import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { base44 } from '@/api/base44Client';
+import { useQuery } from '@tanstack/react-query';
 import { Trophy, Star, XCircle, CheckCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-
-// Base de données de 52 animaux avec photos réelles
-const animalsData = [
   // Animaux éteints (17 cartes)
   { id: 'extinct-1', name: 'Dodo', category: 'extinct', image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400', biome: 'islands' },
   { id: 'extinct-2', name: 'Mammouth', category: 'extinct', image: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=400', biome: 'arctic' },
@@ -64,9 +62,6 @@ const animalsData = [
   { id: 'saved-14', name: 'Koala', category: 'saved', image: 'https://images.unsplash.com/photo-1459262838948-3e2de6c1ec80?w=400', biome: 'temperate' },
   { id: 'saved-15', name: 'Cheval de Przewalski', category: 'saved', image: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=400', biome: 'savanna' },
   { id: 'saved-16', name: 'Cerf du Père David', category: 'saved', image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400', biome: 'wetlands' },
-  { id: 'saved-17', name: 'Panda Roux', category: 'saved', image: 'https://images.unsplash.com/photo-1544986581-efac024faf62?w=400', biome: 'temperate' },
-];
-
 const categoryLabels = {
   extinct: 'Éteints',
   endangered: 'En Danger',
@@ -92,13 +87,18 @@ export default function JeuxPage() {
   const [feedback, setFeedback] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
 
+  const { data: animalsData = [], isLoading } = useQuery({
+    queryKey: ['animalCards'],
+    queryFn: () => base44.entities.AnimalCard.list()
+  });
+
   useEffect(() => {
-    if (gameStarted) {
+    if (gameStarted && animalsData.length > 0) {
       const shuffled = [...animalsData].sort(() => Math.random() - 0.5);
       setDeck(shuffled);
       setCurrentCard(shuffled[0]);
     }
-  }, [gameStarted]);
+  }, [gameStarted, animalsData]);
 
   const checkAnswer = (selectedCategory) => {
     if (!currentCard) return;
@@ -175,7 +175,11 @@ export default function JeuxPage() {
 
       <main className="relative z-10 pt-24 px-4 pb-12">
         <div className="max-w-7xl mx-auto">
-          {!gameStarted ? (
+          {isLoading ? (
+            <div className="text-center py-20">
+              <div className="text-2xl text-emerald-300">Chargement des cartes...</div>
+            </div>
+          ) : !gameStarted ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -186,7 +190,10 @@ export default function JeuxPage() {
                 Jeu des Cartes Animaux
               </h1>
               <p className="text-xl text-emerald-300 mb-8 max-w-2xl mx-auto">
-                Classe 52 animaux dans les bonnes catégories et trouve leurs noms !
+                Classe {animalsData.length} animaux dans les bonnes catégories et trouve leurs noms !
+              </p>
+              <p className="text-sm text-emerald-400 mb-8">
+                💡 Pour modifier les cartes, allez dans le Dashboard → Data → AnimalCard
               </p>
               <div className="space-y-4 mb-8">
                 <div className="flex items-center justify-center gap-3 text-emerald-200">
@@ -303,7 +310,7 @@ export default function JeuxPage() {
                     Jeu Terminé !
                   </h2>
                   <p className="text-3xl text-white mb-8">
-                    Score Final: {score} / 104 points
+                    Score Final: {score} / {animalsData.length * 2} points
                   </p>
                   <Button
                     onClick={resetGame}
