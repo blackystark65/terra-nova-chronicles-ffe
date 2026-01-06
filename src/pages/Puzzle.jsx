@@ -8,6 +8,15 @@ import { Button } from '@/components/ui/button';
 const GRID_SIZE = 8;
 const TOTAL_PIECES = GRID_SIZE * GRID_SIZE;
 
+// Niveaux de difficulté
+const DIFFICULTY_LEVELS = [
+  { id: 'facile', name: 'Facile', opacity: 0.9 },
+  { id: 'intermediaire', name: 'Intermédiaire', opacity: 0.75 },
+  { id: 'moyen', name: 'Moyen', opacity: 0.5 },
+  { id: 'difficile', name: 'Difficile', opacity: 0.25 },
+  { id: 'tres-difficile', name: 'Très Difficile', opacity: 0 }
+];
+
 // Différents puzzles disponibles
 const PUZZLES = [
   {
@@ -45,6 +54,8 @@ export default function PuzzlePage() {
   const [isComplete, setIsComplete] = useState(false);
   const [selectedPuzzle, setSelectedPuzzle] = useState(null);
   const [puzzleSelection, setPuzzleSelection] = useState(true);
+  const [difficulty, setDifficulty] = useState(null);
+  const [showDifficultySelection, setShowDifficultySelection] = useState(false);
 
   useEffect(() => {
     if (gameStarted && selectedPuzzle) {
@@ -140,11 +151,19 @@ export default function PuzzlePage() {
     setIsComplete(false);
     setPuzzleSelection(true);
     setSelectedPuzzle(null);
+    setDifficulty(null);
+    setShowDifficultySelection(false);
   };
 
   const startPuzzle = (puzzle) => {
     setSelectedPuzzle(puzzle);
     setPuzzleSelection(false);
+    setShowDifficultySelection(true);
+  };
+
+  const startGameWithDifficulty = (difficultyLevel) => {
+    setDifficulty(difficultyLevel);
+    setShowDifficultySelection(false);
     setGameStarted(true);
   };
 
@@ -206,6 +225,59 @@ export default function PuzzlePage() {
                 ))}
               </div>
             </motion.div>
+          ) : showDifficultySelection ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-20"
+            >
+              <h2 className="text-4xl font-black mb-4 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
+                Choisis ton niveau de difficulté
+              </h2>
+              <p className="text-xl text-blue-300 mb-8 max-w-2xl mx-auto">
+                Plus c'est difficile, moins tu vois la photo de référence !
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-8">
+                {DIFFICULTY_LEVELS.map((level) => (
+                  <motion.div
+                    key={level.id}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => startGameWithDifficulty(level)}
+                    className="cursor-pointer"
+                  >
+                    <div className="relative rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl bg-gradient-to-br from-purple-500 to-blue-600 p-6">
+                      <h3 className="text-2xl font-bold text-white mb-3">{level.name}</h3>
+                      <div className="relative h-32 rounded-xl overflow-hidden mb-3">
+                        <img 
+                          src={selectedPuzzle.image} 
+                          alt="Aperçu"
+                          className="w-full h-full object-cover"
+                          style={{ opacity: level.opacity }}
+                        />
+                        {level.opacity === 0 && (
+                          <div className="absolute inset-0 bg-black flex items-center justify-center">
+                            <span className="text-white text-lg font-bold">❓</span>
+                          </div>
+                        )}
+                      </div>
+                      <p className="text-white/80 text-sm">
+                        Photo visible à {Math.round(level.opacity * 100)}%
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <Button
+                onClick={() => setShowDifficultySelection(false)}
+                variant="outline"
+                className="border-blue-400 text-blue-300"
+              >
+                ← Retour aux puzzles
+              </Button>
+            </motion.div>
           ) : !isComplete ? (
             <>
               {/* Score */}
@@ -221,6 +293,9 @@ export default function PuzzlePage() {
                   </div>
                   <div className="bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border border-purple-400/30">
                     <span className="text-lg font-bold text-white">{selectedPuzzle?.name}</span>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border border-yellow-400/30">
+                    <span className="text-lg font-bold text-yellow-300">{difficulty?.name}</span>
                   </div>
                 </div>
                 <Button
@@ -242,7 +317,21 @@ export default function PuzzlePage() {
                     className="relative bg-white/10 backdrop-blur-xl rounded-3xl p-2 border-4 border-blue-400/30"
                     style={{ aspectRatio: '1' }}
                   >
-                    <div className="grid grid-cols-8 gap-0.5 h-full">
+                    {/* Photo de référence en fond */}
+                    {difficulty && difficulty.opacity > 0 && (
+                      <div 
+                        className="absolute inset-2 rounded-2xl overflow-hidden pointer-events-none"
+                        style={{ opacity: difficulty.opacity }}
+                      >
+                        <img 
+                          src={selectedPuzzle.image} 
+                          alt="Référence"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    
+                    <div className="grid grid-cols-8 gap-0.5 h-full relative z-10">
                       {board.map((piece, index) => (
                         <motion.div
                           key={index}
