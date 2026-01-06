@@ -9,6 +9,8 @@ export default function BiolumiHeader({ currentPage }) {
   { name: 'Atlas', icon: Globe, path: 'Atlas' },
   { name: 'Encyclopédie', icon: BookOpen, path: 'Encyclopedia' },
   { name: 'Quiz', icon: Trophy, path: 'Quiz' },
+  { name: 'Jeux', icon: Flame, path: 'Jeux' },
+  { name: 'Puzzle', icon: Trophy, path: 'Puzzle' },
   { name: 'Missions', icon: Flame, path: 'Missions' },
   { name: 'Climat', icon: Leaf, path: 'Climate' },
   { name: 'Profil', icon: User, path: 'Profile' }];

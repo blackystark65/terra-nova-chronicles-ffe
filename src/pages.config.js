@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Missions from './pages/Missions';
 import Profile from './pages/Profile';
 import Quiz from './pages/Quiz';
+import Jeux from './pages/Jeux';
+import Puzzle from './pages/Puzzle';
 
 
 export const PAGES = {
@@ -19,6 +21,8 @@ export const PAGES = {
     "Missions": Missions,
     "Profile": Profile,
     "Quiz": Quiz,
+    "Jeux": Jeux,
+    "Puzzle": Puzzle,
 }
 
 export const pagesConfig = {
