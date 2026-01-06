@@ -236,10 +236,37 @@ export default function QuizPage() {
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/349c14a99_digital-screen-with-environment-day.jpg)',
+          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/970771c57_save-earth-planet-world-concept.jpg)',
         }}
       />
       <div className="fixed inset-0 bg-gradient-to-br from-slate-950/70 via-emerald-950/60 to-teal-950/70" />
+      
+      {/* Bulles bioluminescentes flottantes */}
+      <div className="fixed inset-0 pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-gradient-to-br from-emerald-400/30 to-cyan-400/20 blur-xl"
+            style={{
+              width: `${Math.random() * 150 + 50}px`,
+              height: `${Math.random() * 150 + 50}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, Math.random() * 20 - 10, 0],
+              scale: [1, 1.1, 1],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{
+              duration: 4 + i * 0.5,
+              repeat: Infinity,
+              delay: i * 0.3,
+            }}
+          />
+        ))}
+      </div>
       
       <BiolumiHeader currentPage="Quiz" />
 
