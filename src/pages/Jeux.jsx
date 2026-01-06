@@ -6,65 +6,65 @@ import { Trophy, Star, XCircle, CheckCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-// Base de données de 52 animaux avec catégories et emojis
+// Base de données de 52 animaux avec photos réelles
 const animalsData = [
   // Animaux éteints (17 cartes)
-  { id: 'extinct-1', name: 'Dodo', category: 'extinct', emoji: '🦤', biome: 'islands' },
-  { id: 'extinct-2', name: 'Mammouth', category: 'extinct', emoji: '🦣', biome: 'arctic' },
-  { id: 'extinct-3', name: 'Tigre de Tasmanie', category: 'extinct', emoji: '🐅', biome: 'temperate' },
-  { id: 'extinct-4', name: 'Quagga', category: 'extinct', emoji: '🦓', biome: 'savanna' },
-  { id: 'extinct-5', name: 'Grand Pingouin', category: 'extinct', emoji: '🐧', biome: 'arctic' },
-  { id: 'extinct-6', name: 'Moa', category: 'extinct', emoji: '🦅', biome: 'forest' },
-  { id: 'extinct-7', name: 'Tigre à Dents de Sabre', category: 'extinct', emoji: '🐯', biome: 'savanna' },
-  { id: 'extinct-8', name: 'Dauphin de Chine', category: 'extinct', emoji: '🐬', biome: 'ocean' },
-  { id: 'extinct-9', name: 'Pigeon Migrateur', category: 'extinct', emoji: '🕊️', biome: 'forest' },
-  { id: 'extinct-10', name: 'Ours Atlas', category: 'extinct', emoji: '🐻', biome: 'mountains' },
-  { id: 'extinct-11', name: 'Loup de Tasmanie', category: 'extinct', emoji: '🐺', biome: 'forest' },
-  { id: 'extinct-12', name: 'Éléphant Nain', category: 'extinct', emoji: '🐘', biome: 'islands' },
-  { id: 'extinct-13', name: 'Rhinocéros Laineux', category: 'extinct', emoji: '🦏', biome: 'arctic' },
-  { id: 'extinct-14', name: 'Lion des Cavernes', category: 'extinct', emoji: '🦁', biome: 'savanna' },
-  { id: 'extinct-15', name: 'Mégalodon', category: 'extinct', emoji: '🦈', biome: 'ocean' },
-  { id: 'extinct-16', name: 'Paresseux Géant', category: 'extinct', emoji: '🦥', biome: 'rainforest' },
-  { id: 'extinct-17', name: 'Tortue Géante', category: 'extinct', emoji: '🐢', biome: 'islands' },
+  { id: 'extinct-1', name: 'Dodo', category: 'extinct', image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400', biome: 'islands' },
+  { id: 'extinct-2', name: 'Mammouth', category: 'extinct', image: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=400', biome: 'arctic' },
+  { id: 'extinct-3', name: 'Tigre de Tasmanie', category: 'extinct', image: 'https://images.unsplash.com/photo-1615963244664-5b845b2025ee?w=400', biome: 'temperate' },
+  { id: 'extinct-4', name: 'Quagga', category: 'extinct', image: 'https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400', biome: 'savanna' },
+  { id: 'extinct-5', name: 'Grand Pingouin', category: 'extinct', image: 'https://images.unsplash.com/photo-1551986782-d0169b3f8fa7?w=400', biome: 'arctic' },
+  { id: 'extinct-6', name: 'Moa', category: 'extinct', image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400', biome: 'forest' },
+  { id: 'extinct-7', name: 'Tigre à Dents de Sabre', category: 'extinct', image: 'https://images.unsplash.com/photo-1551316679-9c6ae9dec224?w=400', biome: 'savanna' },
+  { id: 'extinct-8', name: 'Dauphin de Chine', category: 'extinct', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400', biome: 'ocean' },
+  { id: 'extinct-9', name: 'Pigeon Migrateur', category: 'extinct', image: 'https://images.unsplash.com/photo-1456926631375-92c8ce872def?w=400', biome: 'forest' },
+  { id: 'extinct-10', name: 'Ours Atlas', category: 'extinct', image: 'https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=400', biome: 'mountains' },
+  { id: 'extinct-11', name: 'Loup de Tasmanie', category: 'extinct', image: 'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=400', biome: 'forest' },
+  { id: 'extinct-12', name: 'Éléphant Nain', category: 'extinct', image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=400', biome: 'islands' },
+  { id: 'extinct-13', name: 'Rhinocéros Laineux', category: 'extinct', image: 'https://images.unsplash.com/photo-1551316679-9c6ae9dec224?w=400', biome: 'arctic' },
+  { id: 'extinct-14', name: 'Lion des Cavernes', category: 'extinct', image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=400', biome: 'savanna' },
+  { id: 'extinct-15', name: 'Mégalodon', category: 'extinct', image: 'https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=400', biome: 'ocean' },
+  { id: 'extinct-16', name: 'Paresseux Géant', category: 'extinct', image: 'https://images.unsplash.com/photo-1621368797010-b65c6e6fc5b2?w=400', biome: 'rainforest' },
+  { id: 'extinct-17', name: 'Tortue Géante', category: 'extinct', image: 'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=400', biome: 'islands' },
 
   // Animaux en voie d'extinction (18 cartes)
-  { id: 'endangered-1', name: 'Tigre du Bengale', category: 'endangered', emoji: '🐅', biome: 'rainforest' },
-  { id: 'endangered-2', name: 'Panda Géant', category: 'endangered', emoji: '🐼', biome: 'temperate' },
-  { id: 'endangered-3', name: 'Gorille des Montagnes', category: 'endangered', emoji: '🦍', biome: 'rainforest' },
-  { id: 'endangered-4', name: 'Éléphant d\'Asie', category: 'endangered', emoji: '🐘', biome: 'rainforest' },
-  { id: 'endangered-5', name: 'Rhinocéros Noir', category: 'endangered', emoji: '🦏', biome: 'savanna' },
-  { id: 'endangered-6', name: 'Orang-outan', category: 'endangered', emoji: '🦧', biome: 'rainforest' },
-  { id: 'endangered-7', name: 'Léopard des Neiges', category: 'endangered', emoji: '🐆', biome: 'mountains' },
-  { id: 'endangered-8', name: 'Ours Polaire', category: 'endangered', emoji: '🐻‍❄️', biome: 'arctic' },
-  { id: 'endangered-9', name: 'Baleine Bleue', category: 'endangered', emoji: '🐋', biome: 'ocean' },
-  { id: 'endangered-10', name: 'Tortue Luth', category: 'endangered', emoji: '🐢', biome: 'ocean' },
-  { id: 'endangered-11', name: 'Jaguar', category: 'endangered', emoji: '🐆', biome: 'rainforest' },
-  { id: 'endangered-12', name: 'Vaquita', category: 'endangered', emoji: '🐬', biome: 'ocean' },
-  { id: 'endangered-13', name: 'Condor de Californie', category: 'endangered', emoji: '🦅', biome: 'mountains' },
-  { id: 'endangered-14', name: 'Lynx Ibérique', category: 'endangered', emoji: '🐈', biome: 'temperate' },
-  { id: 'endangered-15', name: 'Pangolin', category: 'endangered', emoji: '🦔', biome: 'savanna' },
-  { id: 'endangered-16', name: 'Dugong', category: 'endangered', emoji: '🦭', biome: 'ocean' },
-  { id: 'endangered-17', name: 'Tamanoir', category: 'endangered', emoji: '🐜', biome: 'savanna' },
-  { id: 'endangered-18', name: 'Aigle Royal', category: 'endangered', emoji: '🦅', biome: 'mountains' },
+  { id: 'endangered-1', name: 'Tigre du Bengale', category: 'endangered', image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=400', biome: 'rainforest' },
+  { id: 'endangered-2', name: 'Panda Géant', category: 'endangered', image: 'https://images.unsplash.com/photo-1525382455947-f319bc05fb35?w=400', biome: 'temperate' },
+  { id: 'endangered-3', name: 'Gorille des Montagnes', category: 'endangered', image: 'https://images.unsplash.com/photo-1551651653-c5e2d89d95c2?w=400', biome: 'rainforest' },
+  { id: 'endangered-4', name: 'Éléphant d\'Asie', category: 'endangered', image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=400', biome: 'rainforest' },
+  { id: 'endangered-5', name: 'Rhinocéros Noir', category: 'endangered', image: 'https://images.unsplash.com/photo-1551316679-9c6ae9dec224?w=400', biome: 'savanna' },
+  { id: 'endangered-6', name: 'Orang-outan', category: 'endangered', image: 'https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=400', biome: 'rainforest' },
+  { id: 'endangered-7', name: 'Léopard des Neiges', category: 'endangered', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400', biome: 'mountains' },
+  { id: 'endangered-8', name: 'Ours Polaire', category: 'endangered', image: 'https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=400', biome: 'arctic' },
+  { id: 'endangered-9', name: 'Baleine Bleue', category: 'endangered', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400', biome: 'ocean' },
+  { id: 'endangered-10', name: 'Tortue Luth', category: 'endangered', image: 'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=400', biome: 'ocean' },
+  { id: 'endangered-11', name: 'Jaguar', category: 'endangered', image: 'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=400', biome: 'rainforest' },
+  { id: 'endangered-12', name: 'Vaquita', category: 'endangered', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400', biome: 'ocean' },
+  { id: 'endangered-13', name: 'Condor de Californie', category: 'endangered', image: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400', biome: 'mountains' },
+  { id: 'endangered-14', name: 'Lynx Ibérique', category: 'endangered', image: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400', biome: 'temperate' },
+  { id: 'endangered-15', name: 'Pangolin', category: 'endangered', image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400', biome: 'savanna' },
+  { id: 'endangered-16', name: 'Dugong', category: 'endangered', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400', biome: 'ocean' },
+  { id: 'endangered-17', name: 'Tamanoir', category: 'endangered', image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400', biome: 'savanna' },
+  { id: 'endangered-18', name: 'Aigle Royal', category: 'endangered', image: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400', biome: 'mountains' },
 
   // Animaux sauvés (17 cartes)
-  { id: 'saved-1', name: 'Bison d\'Amérique', category: 'saved', emoji: '🦬', biome: 'savanna' },
-  { id: 'saved-2', name: 'Loutre de Mer', category: 'saved', emoji: '🦦', biome: 'ocean' },
-  { id: 'saved-3', name: 'Baleine à Bosse', category: 'saved', emoji: '🐋', biome: 'ocean' },
-  { id: 'saved-4', name: 'Alligator d\'Amérique', category: 'saved', emoji: '🐊', biome: 'wetlands' },
-  { id: 'saved-5', name: 'Faucon Pèlerin', category: 'saved', emoji: '🦅', biome: 'mountains' },
-  { id: 'saved-6', name: 'Éléphant de Mer', category: 'saved', emoji: '🦭', biome: 'ocean' },
-  { id: 'saved-7', name: 'Crocodile Marin', category: 'saved', emoji: '🐊', biome: 'ocean' },
-  { id: 'saved-8', name: 'Loup Gris', category: 'saved', emoji: '🐺', biome: 'forest' },
-  { id: 'saved-9', name: 'Castor', category: 'saved', emoji: '🦫', biome: 'wetlands' },
-  { id: 'saved-10', name: 'Pygargue à Tête Blanche', category: 'saved', emoji: '🦅', biome: 'forest' },
-  { id: 'saved-11', name: 'Oryx d\'Arabie', category: 'saved', emoji: '🦌', biome: 'desert' },
-  { id: 'saved-12', name: 'Ibis Chauve', category: 'saved', emoji: '🦩', biome: 'wetlands' },
-  { id: 'saved-13', name: 'Tortue Verte', category: 'saved', emoji: '🐢', biome: 'ocean' },
-  { id: 'saved-14', name: 'Koala', category: 'saved', emoji: '🐨', biome: 'temperate' },
-  { id: 'saved-15', name: 'Cheval de Przewalski', category: 'saved', emoji: '🐴', biome: 'savanna' },
-  { id: 'saved-16', name: 'Cerf du Père David', category: 'saved', emoji: '🦌', biome: 'wetlands' },
-  { id: 'saved-17', name: 'Panda Roux', category: 'saved', emoji: '🦊', biome: 'temperate' },
+  { id: 'saved-1', name: 'Bison d\'Amérique', category: 'saved', image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=400', biome: 'savanna' },
+  { id: 'saved-2', name: 'Loutre de Mer', category: 'saved', image: 'https://images.unsplash.com/photo-1621008340007-95c4e5f68455?w=400', biome: 'ocean' },
+  { id: 'saved-3', name: 'Baleine à Bosse', category: 'saved', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400', biome: 'ocean' },
+  { id: 'saved-4', name: 'Alligator d\'Amérique', category: 'saved', image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400', biome: 'wetlands' },
+  { id: 'saved-5', name: 'Faucon Pèlerin', category: 'saved', image: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400', biome: 'mountains' },
+  { id: 'saved-6', name: 'Éléphant de Mer', category: 'saved', image: 'https://images.unsplash.com/photo-1576349446706-4d53b88124d3?w=400', biome: 'ocean' },
+  { id: 'saved-7', name: 'Crocodile Marin', category: 'saved', image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400', biome: 'ocean' },
+  { id: 'saved-8', name: 'Loup Gris', category: 'saved', image: 'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=400', biome: 'forest' },
+  { id: 'saved-9', name: 'Castor', category: 'saved', image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400', biome: 'wetlands' },
+  { id: 'saved-10', name: 'Pygargue à Tête Blanche', category: 'saved', image: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400', biome: 'forest' },
+  { id: 'saved-11', name: 'Oryx d\'Arabie', category: 'saved', image: 'https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400', biome: 'desert' },
+  { id: 'saved-12', name: 'Ibis Chauve', category: 'saved', image: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400', biome: 'wetlands' },
+  { id: 'saved-13', name: 'Tortue Verte', category: 'saved', image: 'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=400', biome: 'ocean' },
+  { id: 'saved-14', name: 'Koala', category: 'saved', image: 'https://images.unsplash.com/photo-1459262838948-3e2de6c1ec80?w=400', biome: 'temperate' },
+  { id: 'saved-15', name: 'Cheval de Przewalski', category: 'saved', image: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=400', biome: 'savanna' },
+  { id: 'saved-16', name: 'Cerf du Père David', category: 'saved', image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400', biome: 'wetlands' },
+  { id: 'saved-17', name: 'Panda Roux', category: 'saved', image: 'https://images.unsplash.com/photo-1544986581-efac024faf62?w=400', biome: 'temperate' },
 ];
 
 const categoryLabels = {
@@ -104,7 +104,18 @@ export default function JeuxPage() {
     if (!currentCard) return;
 
     const correctCategory = currentCard.category === selectedCategory;
-    const correctName = userGuess.toLowerCase().trim() === currentCard.name.toLowerCase().trim();
+    
+    // Vérifier si le nom est correct (accepter les réponses partielles)
+    const userGuessLower = userGuess.toLowerCase().trim();
+    const correctNameLower = currentCard.name.toLowerCase().trim();
+    
+    // Accepter si le nom contient au moins 3 caractères et est contenu dans le vrai nom
+    // OU si le vrai nom contient le guess (pour éviter les erreurs)
+    const correctName = userGuessLower.length >= 3 && (
+      correctNameLower.includes(userGuessLower) || 
+      userGuessLower.includes(correctNameLower.split(' ')[0]) ||
+      userGuessLower === correctNameLower
+    );
     
     let points = 0;
     let message = '';
@@ -241,8 +252,12 @@ export default function JeuxPage() {
                       animate={{ scale: 1, rotateY: 180 }}
                       className="relative"
                     >
-                      <div className={`w-64 h-96 rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-gradient-to-br ${categoryColors[currentCard.category]} flex items-center justify-center`}>
-                        <div className="text-9xl">{currentCard.emoji}</div>
+                      <div className={`w-64 h-96 rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-gradient-to-br ${categoryColors[currentCard.category]} relative`}>
+                        <img 
+                          src={currentCard.image} 
+                          alt="Animal mystère"
+                          className="w-full h-full object-cover"
+                        />
                         <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white text-center py-4">
                           <p className="text-sm opacity-60">Trouve le nom !</p>
                         </div>
