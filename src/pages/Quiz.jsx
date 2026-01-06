@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
-import { BookOpen, CheckCircle, XCircle, Trophy, Leaf, TreeDeciduous, Droplets, Sprout } from 'lucide-react';
+import { BookOpen, CheckCircle, XCircle, Trophy, Leaf, TreeDeciduous, Droplets, Sprout, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const categoryIcons = {
