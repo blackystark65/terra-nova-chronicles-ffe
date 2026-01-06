@@ -4,12 +4,37 @@ import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { Trophy, Star, RotateCcw, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-// Image de la planète à utiliser pour le puzzle
-const PLANET_IMAGE = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/af6a6b206_green-earth-globe-with-continents-oceans.png';
-
-// Configuration du puzzle (4x4 = 16 pièces)
-const GRID_SIZE = 4;
+// Configuration du puzzle (8x8 = 64 pièces)
+const GRID_SIZE = 8;
 const TOTAL_PIECES = GRID_SIZE * GRID_SIZE;
+
+// Différents puzzles disponibles
+const PUZZLES = [
+  {
+    id: 'planet',
+    name: 'Planète Terre',
+    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/af6a6b206_green-earth-globe-with-continents-oceans.png',
+    color: 'from-blue-500 to-green-500'
+  },
+  {
+    id: 'animals',
+    name: 'Animaux Sauvages',
+    image: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=800',
+    color: 'from-orange-500 to-yellow-500'
+  },
+  {
+    id: 'agriculture',
+    name: 'Agriculture',
+    image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800',
+    color: 'from-green-500 to-lime-500'
+  },
+  {
+    id: 'recycling',
+    name: 'Recyclage',
+    image: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800',
+    color: 'from-teal-500 to-cyan-500'
+  }
+];
 
 export default function PuzzlePage() {
   const [pieces, setPieces] = useState([]);
@@ -18,12 +43,14 @@ export default function PuzzlePage() {
   const [gameStarted, setGameStarted] = useState(false);
   const [draggedPiece, setDraggedPiece] = useState(null);
   const [isComplete, setIsComplete] = useState(false);
+  const [selectedPuzzle, setSelectedPuzzle] = useState(null);
+  const [puzzleSelection, setPuzzleSelection] = useState(true);
 
   useEffect(() => {
-    if (gameStarted) {
+    if (gameStarted && selectedPuzzle) {
       initializePuzzle();
     }
-  }, [gameStarted]);
+  }, [gameStarted, selectedPuzzle]);
 
   const initializePuzzle = () => {
     // Créer les pièces du puzzle
@@ -111,6 +138,14 @@ export default function PuzzlePage() {
     setBoard([]);
     setScore(0);
     setIsComplete(false);
+    setPuzzleSelection(true);
+    setSelectedPuzzle(null);
+  };
+
+  const startPuzzle = (puzzle) => {
+    setSelectedPuzzle(puzzle);
+    setPuzzleSelection(false);
+    setGameStarted(true);
   };
 
   return (
@@ -127,7 +162,7 @@ export default function PuzzlePage() {
 
       <main className="relative z-10 pt-24 px-4 pb-12">
         <div className="max-w-7xl mx-auto">
-          {!gameStarted ? (
+          {puzzleSelection ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -135,39 +170,65 @@ export default function PuzzlePage() {
             >
               <Trophy className="w-24 h-24 text-blue-400 mx-auto mb-6" />
               <h1 className="text-5xl font-black mb-4 bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
-                Puzzle de la Planète
+                Puzzles Écologiques
               </h1>
               <p className="text-xl text-blue-300 mb-8 max-w-2xl mx-auto">
-                Reconstitue l'image de notre Terre en plaçant toutes les pièces au bon endroit !
+                Choisis un puzzle et reconstitue l'image en plaçant toutes les pièces au bon endroit !
               </p>
               <div className="mb-8">
                 <p className="text-lg text-blue-200">
-                  🧩 {TOTAL_PIECES} pièces à assembler • 1 point par pièce bien placée
+                  🧩 {TOTAL_PIECES} pièces par puzzle • 1 point par pièce bien placée
                 </p>
               </div>
-              <Button
-                onClick={() => setGameStarted(true)}
-                className="px-8 py-6 text-xl bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
-              >
-                Commencer le Puzzle
-              </Button>
+
+              <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                {PUZZLES.map((puzzle) => (
+                  <motion.div
+                    key={puzzle.id}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => startPuzzle(puzzle)}
+                    className="cursor-pointer"
+                  >
+                    <div className={`relative rounded-3xl overflow-hidden border-4 border-white/20 shadow-2xl bg-gradient-to-br ${puzzle.color}`}>
+                      <img 
+                        src={puzzle.image} 
+                        alt={puzzle.name}
+                        className="w-full h-64 object-cover opacity-80"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 className="text-2xl font-bold text-white mb-2">{puzzle.name}</h3>
+                        <p className="text-white/80">{TOTAL_PIECES} pièces</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
-          ) : (
+          ) : !isComplete ? (
             <>
               {/* Score */}
               <div className="flex justify-between items-center mb-8">
-                <div className="flex items-center gap-4 bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border border-blue-400/30">
-                  <Star className="w-6 h-6 text-yellow-400" />
-                  <span className="text-2xl font-bold text-white">
-                    Score: {score} / {TOTAL_PIECES}
-                  </span>
+                <div className="flex items-center gap-4">
+                  <div className="bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border border-blue-400/30">
+                    <div className="flex items-center gap-2">
+                      <Star className="w-6 h-6 text-yellow-400" />
+                      <span className="text-2xl font-bold text-white">
+                        {score} / {TOTAL_PIECES}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border border-purple-400/30">
+                    <span className="text-lg font-bold text-white">{selectedPuzzle?.name}</span>
+                  </div>
                 </div>
                 <Button
                   onClick={resetGame}
                   className="flex items-center gap-2 bg-white/10 border border-blue-400"
                 >
                   <RotateCcw className="w-5 h-5" />
-                  Recommencer
+                  Changer de Puzzle
                 </Button>
               </div>
 
@@ -178,17 +239,17 @@ export default function PuzzlePage() {
                     Plateau de Puzzle
                   </h2>
                   <div 
-                    className="relative bg-white/10 backdrop-blur-xl rounded-3xl p-4 border-4 border-blue-400/30"
+                    className="relative bg-white/10 backdrop-blur-xl rounded-3xl p-2 border-4 border-blue-400/30"
                     style={{ aspectRatio: '1' }}
                   >
-                    <div className="grid grid-cols-4 gap-1 h-full">
+                    <div className="grid grid-cols-8 gap-0.5 h-full">
                       {board.map((piece, index) => (
                         <motion.div
                           key={index}
                           onDragOver={(e) => e.preventDefault()}
                           onDrop={() => handleDrop(index)}
                           onClick={() => piece && handleRemovePiece(index)}
-                          className={`relative border-2 rounded-lg overflow-hidden cursor-pointer transition-all ${
+                          className={`relative border rounded overflow-hidden cursor-pointer transition-all ${
                             piece 
                               ? piece.correctPosition === index
                                 ? 'border-green-400 bg-green-500/20'
@@ -201,15 +262,15 @@ export default function PuzzlePage() {
                             <div
                               className="w-full h-full"
                               style={{
-                                backgroundImage: `url(${PLANET_IMAGE})`,
+                                backgroundImage: `url(${selectedPuzzle.image})`,
                                 backgroundSize: `${GRID_SIZE * 100}%`,
                                 backgroundPosition: `${(piece.col / (GRID_SIZE - 1)) * 100}% ${(piece.row / (GRID_SIZE - 1)) * 100}%`,
                               }}
                             />
                           )}
                           {piece && piece.correctPosition === index && (
-                            <div className="absolute top-1 right-1">
-                              <CheckCircle className="w-4 h-4 text-green-400" />
+                            <div className="absolute top-0 right-0">
+                              <CheckCircle className="w-3 h-3 text-green-400" />
                             </div>
                           )}
                         </motion.div>
@@ -223,21 +284,21 @@ export default function PuzzlePage() {
                   <h2 className="text-2xl font-bold text-blue-300 text-center">
                     Pièces Disponibles ({pieces.length})
                   </h2>
-                  <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-4 border-4 border-purple-400/30 min-h-[500px]">
-                    <div className="grid grid-cols-4 gap-2">
+                  <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-2 border-4 border-purple-400/30 min-h-[500px] max-h-[600px] overflow-y-auto">
+                    <div className="grid grid-cols-8 gap-1">
                       {pieces.map((piece) => (
                         <motion.div
                           key={piece.id}
                           draggable
                           onDragStart={() => handleDragStart(piece)}
-                          className="relative aspect-square border-2 border-purple-400 rounded-lg overflow-hidden cursor-move hover:border-purple-300 transition-all"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          className="relative aspect-square border border-purple-400 rounded overflow-hidden cursor-move hover:border-purple-300 transition-all"
+                          whileHover={{ scale: 1.15, rotate: 5, zIndex: 10 }}
                           whileTap={{ scale: 0.95 }}
                         >
                           <div
                             className="w-full h-full"
                             style={{
-                              backgroundImage: `url(${PLANET_IMAGE})`,
+                              backgroundImage: `url(${selectedPuzzle.image})`,
                               backgroundSize: `${GRID_SIZE * 100}%`,
                               backgroundPosition: `${(piece.col / (GRID_SIZE - 1)) * 100}% ${(piece.row / (GRID_SIZE - 1)) * 100}%`,
                             }}
@@ -246,11 +307,12 @@ export default function PuzzlePage() {
                       ))}
                     </div>
                   </div>
-                  <p className="text-center text-blue-200 text-sm">
-                    Glisse-dépose les pièces sur le plateau
+                  <p className="text-center text-blue-200 text-sm mt-2">
+                    💡 Glisse-dépose ou clique sur les pièces
                   </p>
                 </div>
               </div>
+          ) : null}
 
               {/* Message de victoire */}
               <AnimatePresence>
