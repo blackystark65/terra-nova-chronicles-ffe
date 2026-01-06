@@ -97,18 +97,26 @@ const themes = [
     name: 'Climat',
     icon: Leaf,
     color: 'from-teal-600 to-emerald-700',
-    description: 'Urgence climatique mondiale',
+    description: 'Régulateur vital de la planète',
     content: {
-      intro: "Le réchauffement climatique menace l'équilibre de tous les écosystèmes terrestres.",
+      intro: "Le climat correspond à l'ensemble des conditions atmosphériques moyennes (température, précipitations, vents) observées sur une longue période. Il constitue un pilier fondamental du fonctionnement de la planète, car il conditionne la vie, les paysages, les écosystèmes et les activités humaines. Le climat résulte d'un équilibre naturel complexe entre l'énergie solaire, l'atmosphère, les océans, les sols, les forêts et les êtres vivants.",
       facts: [
-        "La température mondiale a augmenté de 1,1°C depuis l'ère préindustrielle",
-        "Les 8 dernières années sont les plus chaudes jamais enregistrées",
-        "Le niveau des mers monte de 3,4mm par an"
+        "☀️ L'énergie solaire : Le Soleil est la source principale d'énergie de la Terre. Une partie est réfléchie, une autre absorbée, maintenant une température compatible avec la vie",
+        "🌡️ L'effet de serre naturel : Les gaz à effet de serre (vapeur d'eau, CO₂, méthane) retiennent la chaleur et empêchent la Terre de devenir trop froide. Sans cet effet, la planète serait inhabitable",
+        "⚠️ Le dérèglement climatique : L'activité humaine augmente excessivement la concentration de gaz à effet de serre, provoquant un réchauffement global rapide",
+        "🌊 Le rôle des océans : Les océans absorbent plus de 90% de l'excès de chaleur. Ils régulent le climat mondial grâce aux courants marins, mais subissent acidification, réchauffement et élévation du niveau",
+        "🌳 Le rôle des forêts : Véritables régulateurs climatiques qui stockent le carbone, influencent les précipitations, rafraîchissent l'air et protègent les sols",
+        "💧 Le cycle de l'eau et le climat : Le climat influence le cycle de l'eau. En retour, l'eau régule la température de la planète. Le dérèglement intensifie sécheresses et inondations",
+        "❄️ Les glaces : Les glaciers et calottes polaires réfléchissent la lumière solaire (effet albédo). Leur fonte accélère le réchauffement et la montée des mers",
+        "🌱 Le rôle des sols : Les sols vivants stockent du carbone et de l'eau. Des sols dégradés libèrent du CO₂ et aggravent le dérèglement"
       ],
       actions: [
-        "Réduire son empreinte carbone",
-        "Utiliser les transports en commun",
-        "Adopter une alimentation bas-carbone"
+        "Réduction des émissions de gaz à effet de serre",
+        "Protection des forêts et des océans",
+        "Transition énergétique vers les renouvelables",
+        "Agroécologie et sols vivants",
+        "Sobriété et justice climatique",
+        "Éducation et coopération internationale"
       ]
     }
   },
