@@ -320,13 +320,19 @@ export default function PuzzlePage() {
                     {/* Photo de référence en fond */}
                     {difficulty && difficulty.opacity > 0 && (
                       <div 
-                        className="absolute inset-2 rounded-2xl overflow-hidden pointer-events-none"
-                        style={{ opacity: difficulty.opacity }}
+                        className="absolute rounded-2xl overflow-hidden pointer-events-none"
+                        style={{ 
+                          opacity: difficulty.opacity,
+                          inset: '0.5rem',
+                        }}
                       >
-                        <img 
-                          src={selectedPuzzle.image} 
-                          alt="Référence"
-                          className="w-full h-full object-cover"
+                        <div
+                          className="w-full h-full"
+                          style={{
+                            backgroundImage: `url(${selectedPuzzle.image})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                          }}
                         />
                       </div>
                     )}
@@ -353,7 +359,7 @@ export default function PuzzlePage() {
                               style={{
                                 backgroundImage: `url(${selectedPuzzle.image})`,
                                 backgroundSize: `${GRID_SIZE * 100}%`,
-                                backgroundPosition: `${(piece.col / (GRID_SIZE - 1)) * 100}% ${(piece.row / (GRID_SIZE - 1)) * 100}%`,
+                                backgroundPosition: `${(piece.col * 100) / (GRID_SIZE - 1)}% ${(piece.row * 100) / (GRID_SIZE - 1)}%`,
                               }}
                             />
                           )}
@@ -389,7 +395,7 @@ export default function PuzzlePage() {
                             style={{
                               backgroundImage: `url(${selectedPuzzle.image})`,
                               backgroundSize: `${GRID_SIZE * 100}%`,
-                              backgroundPosition: `${(piece.col / (GRID_SIZE - 1)) * 100}% ${(piece.row / (GRID_SIZE - 1)) * 100}%`,
+                              backgroundPosition: `${(piece.col * 100) / (GRID_SIZE - 1)}% ${(piece.row * 100) / (GRID_SIZE - 1)}%`,
                             }}
                           />
                         </motion.div>
