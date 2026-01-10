@@ -11,6 +11,7 @@ const HOTEL_ZONES = [
   { id: 'reception', name: 'Réception', emoji: '🏨', position: { x: 78, y: 50 }, color: 'from-blue-500 to-purple-500', page: 'RecyclageReception' },
   { id: 'rooms', name: 'Chambres', emoji: '🛏️', position: { x: 50, y: 20 }, color: 'from-purple-500 to-pink-500', page: 'RecyclageRooms' },
   { id: 'pool', name: 'Piscine', emoji: '🏊', position: { x: 45, y: 55 }, color: 'from-cyan-500 to-blue-500', page: 'RecyclagePool' },
+  { id: 'plage', name: 'Plage', emoji: '🏖️', position: { x: 50, y: 85 }, color: 'from-yellow-400 to-orange-500', page: 'RecyclagePlage' },
   { id: 'marina', name: 'Marina', emoji: '⛵', position: { x: 8, y: 50 }, color: 'from-blue-600 to-cyan-600', page: 'RecyclageMarina' },
   { id: 'parking', name: 'Parking', emoji: '🚗', position: { x: 85, y: 35 }, color: 'from-gray-600 to-slate-700', page: 'RecyclageParking' },
   { id: 'decheterie', name: 'Déchetterie', emoji: '🏭', position: { x: 90, y: 65 }, color: 'from-green-600 to-emerald-600', page: 'RecyclageDecheterie' },

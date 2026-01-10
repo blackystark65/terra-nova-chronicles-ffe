@@ -33,7 +33,7 @@ export default function RecyclageDecheterie() {
 
   useEffect(() => {
     // Aggregate all bins from all zones
-    const zones = ['Kitchen', 'Restaurant', 'Reception', 'Rooms', 'Pool', 'Marina', 'Parking'];
+    const zones = ['Kitchen', 'Restaurant', 'Reception', 'Rooms', 'Pool', 'Plage Privée', 'Marina', 'Parking'];
     const aggregated = { paper: 0, plastic: 0, glass: 0, organic: 0, metal: 0, general: 0 };
     
     zones.forEach(zone => {
@@ -58,7 +58,7 @@ export default function RecyclageDecheterie() {
   };
 
   const handleResetGame = () => {
-    const zones = ['Kitchen', 'Restaurant', 'Reception', 'Rooms', 'Pool', 'Marina', 'Parking'];
+    const zones = ['Kitchen', 'Restaurant', 'Reception', 'Rooms', 'Pool', 'Plage Privée', 'Marina', 'Parking'];
     zones.forEach(zone => {
       localStorage.removeItem(`recyclage_${zone}`);
     });
@@ -72,10 +72,10 @@ export default function RecyclageDecheterie() {
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/349c14a99_digital-screen-with-environment-day.jpg)',
+          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/8164e7ea3_decheterie.png)',
         }}
       />
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-950/90 via-green-950/85 to-emerald-950/90" />
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-950/85 via-green-950/80 to-emerald-950/85" />
       
       <BiolumiHeader currentPage="Recyclage" />
 

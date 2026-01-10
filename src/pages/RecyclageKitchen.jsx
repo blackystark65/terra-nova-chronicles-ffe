@@ -17,6 +17,7 @@ export default function RecyclageKitchen() {
       zoneEmoji="👨‍🍳"
       zoneColor="from-orange-500 to-red-500"
       wastes={wastes}
+      backgroundImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/42f687342_cuisine.png"
     />
   );
 }

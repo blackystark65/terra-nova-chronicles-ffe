@@ -16,6 +16,7 @@ export default function RecyclageMarina() {
       zoneEmoji="⛵"
       zoneColor="from-blue-600 to-cyan-600"
       wastes={wastes}
+      backgroundImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/5fd2b43f1_marina.png"
     />
   );
 }

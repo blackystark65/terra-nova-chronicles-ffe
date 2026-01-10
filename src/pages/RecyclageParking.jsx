@@ -16,6 +16,7 @@ export default function RecyclageParking() {
       zoneEmoji="🚗"
       zoneColor="from-gray-600 to-slate-700"
       wastes={wastes}
+      backgroundImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/f0e3832ad_parking.png"
     />
   );
 }

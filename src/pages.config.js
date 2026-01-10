@@ -21,6 +21,7 @@ import RecyclagePool from './pages/RecyclagePool';
 import RecyclageMarina from './pages/RecyclageMarina';
 import RecyclageParking from './pages/RecyclageParking';
 import RecyclageDecheterie from './pages/RecyclageDecheterie';
+import RecyclagePlage from './pages/RecyclagePlage';
 
 
 export const PAGES = {
@@ -47,6 +48,7 @@ export const PAGES = {
     "RecyclageMarina": RecyclageMarina,
     "RecyclageParking": RecyclageParking,
     "RecyclageDecheterie": RecyclageDecheterie,
+    "RecyclagePlage": RecyclagePlage,
 }
 
 export const pagesConfig = {

@@ -16,6 +16,7 @@ export default function RecyclagePool() {
       zoneEmoji="🏊"
       zoneColor="from-cyan-500 to-blue-500"
       wastes={wastes}
+      backgroundImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/720931344_piscine.png"
     />
   );
 }
