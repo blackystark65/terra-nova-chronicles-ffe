@@ -2,11 +2,22 @@ import React from 'react';
 import WasteCollectionZone from '@/components/recyclage/WasteCollectionZone';
 
 const wastes = [
-  { name: 'Bouteilles crème solaire', emoji: '🧴', bin: 'plastic', recycled: 'Tuyaux d\'arrosage' },
-  { name: 'Canettes', emoji: '🥫', bin: 'metal', recycled: 'Cadres de vélo' },
-  { name: 'Serviettes usées', emoji: '🧺', bin: 'general', recycled: 'Isolation thermique' },
-  { name: 'Bouteilles eau', emoji: '💧', bin: 'plastic', recycled: 'Fibres textiles' },
-  { name: 'Gobelets', emoji: '🥤', bin: 'plastic', recycled: 'Pots de fleurs' },
+  { name: 'Tube crème solaire', emoji: '🧴', bin: 'plastic', recycled: 'Plastique recyclé' },
+  { name: 'Bouteille eau', emoji: '💧', bin: 'plastic', recycled: 'Nouvelles bouteilles' },
+  { name: 'Lunettes plastique', emoji: '🕶️', bin: 'plastic', recycled: 'Plastique' },
+  { name: 'Bouée gonflable', emoji: '🏊', bin: 'plastic', recycled: 'Plastique recyclé' },
+  { name: 'Sac étanche', emoji: '🎒', bin: 'plastic', recycled: 'Plastique' },
+  { name: 'Gobelet plastique', emoji: '🥤', bin: 'plastic', recycled: 'Gobelets neufs' },
+  { name: 'Canette boisson', emoji: '🥤', bin: 'metal', recycled: 'Canettes neuves' },
+  { name: 'Capsule bouteille', emoji: '🔘', bin: 'metal', recycled: 'Métal recyclé' },
+  { name: 'Canette soda', emoji: '🥫', bin: 'metal', recycled: 'Aluminium' },
+  { name: 'Serviette papier', emoji: '🧻', bin: 'paper', recycled: 'Papier recyclé' },
+  { name: 'Magazine plage', emoji: '📖', bin: 'paper', recycled: 'Papier neuf' },
+  { name: 'Journal', emoji: '📰', bin: 'paper', recycled: 'Papier' },
+  { name: 'Bouteille verre', emoji: '🍾', bin: 'glass', recycled: 'Verre recyclé' },
+  { name: 'Paille plastique', emoji: '🥤', bin: 'general', recycled: 'Incinération' },
+  { name: 'Emballage snack', emoji: '🍿', bin: 'general', recycled: 'Incinération' },
+  { name: 'Chewing-gum', emoji: '🍬', bin: 'general', recycled: 'Incinération' },
 ];
 
 export default function RecyclagePool() {

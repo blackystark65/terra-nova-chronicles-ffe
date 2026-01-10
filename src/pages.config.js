@@ -16,6 +16,7 @@ import Recyclage from './pages/Recyclage';
 import RecyclageDecheterie from './pages/RecyclageDecheterie';
 import RecyclageGame from './pages/RecyclageGame';
 import RecyclageKitchen from './pages/RecyclageKitchen';
+import RecyclageLeaderboard from './pages/RecyclageLeaderboard';
 import RecyclageMarina from './pages/RecyclageMarina';
 import RecyclageParking from './pages/RecyclageParking';
 import RecyclagePlage from './pages/RecyclagePlage';
@@ -24,9 +25,8 @@ import RecyclageReception from './pages/RecyclageReception';
 import RecyclageRestaurant from './pages/RecyclageRestaurant';
 import RecyclageRoleSelection from './pages/RecyclageRoleSelection';
 import RecyclageRooms from './pages/RecyclageRooms';
-import RecyclageShop from './pages/RecyclageShop';
 import RecyclageSchedule from './pages/RecyclageSchedule';
-import RecyclageLeaderboard from './pages/RecyclageLeaderboard';
+import RecyclageShop from './pages/RecyclageShop';
 
 
 export const PAGES = {
@@ -48,6 +48,7 @@ export const PAGES = {
     "RecyclageDecheterie": RecyclageDecheterie,
     "RecyclageGame": RecyclageGame,
     "RecyclageKitchen": RecyclageKitchen,
+    "RecyclageLeaderboard": RecyclageLeaderboard,
     "RecyclageMarina": RecyclageMarina,
     "RecyclageParking": RecyclageParking,
     "RecyclagePlage": RecyclagePlage,
@@ -56,9 +57,8 @@ export const PAGES = {
     "RecyclageRestaurant": RecyclageRestaurant,
     "RecyclageRoleSelection": RecyclageRoleSelection,
     "RecyclageRooms": RecyclageRooms,
-    "RecyclageShop": RecyclageShop,
     "RecyclageSchedule": RecyclageSchedule,
-    "RecyclageLeaderboard": RecyclageLeaderboard,
+    "RecyclageShop": RecyclageShop,
 }
 
 export const pagesConfig = {
