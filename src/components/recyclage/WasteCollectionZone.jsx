@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { base44 } from '@/api/base44Client';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { ArrowLeft, CheckCircle, Trash2, Recycle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -28,9 +29,24 @@ export default function WasteCollectionZone({
   });
   const [feedback, setFeedback] = useState(null);
   const [selectedWaste, setSelectedWaste] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(null);
+  const [sessionId, setSessionId] = useState(null);
+  const [slotIndex, setSlotIndex] = useState(null);
+  const [score, setScore] = useState(0);
 
-  // Load saved progress
+  // Check URL params for timer
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const duration = params.get('duration');
+    const session = params.get('session_id');
+    const slot = params.get('slot');
+    
+    if (duration) {
+      setTimeLeft(parseInt(duration));
+      setSessionId(session);
+      setSlotIndex(slot);
+    }
+    
     const saved = localStorage.getItem(`recyclage_${zoneName}`);
     if (saved) {
       const data = JSON.parse(saved);
@@ -38,6 +54,42 @@ export default function WasteCollectionZone({
       setBins(data.bins || { paper: [], plastic: [], glass: [], organic: [], metal: [], general: [] });
     }
   }, [zoneName]);
+  
+  // Timer countdown
+  useEffect(() => {
+    if (timeLeft === null || timeLeft <= 0) return;
+    
+    const interval = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          completeActivity();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    
+    return () => clearInterval(interval);
+  }, [timeLeft]);
+  
+  const completeActivity = async () => {
+    if (!sessionId) return;
+    
+    try {
+      const session = await base44.entities.GameSession.filter({ id: sessionId });
+      if (session.length > 0) {
+        await base44.entities.GameSession.update(sessionId, {
+          total_score: (session[0].total_score || 0) + score,
+          wastes_sorted_today: (session[0].wastes_sorted_today || 0) + getTotalBinItems(),
+          current_time_slot: parseInt(slotIndex) + 1,
+        });
+      }
+      
+      window.location.href = createPageUrl('RecyclageSchedule');
+    } catch (error) {
+      console.error('Error completing activity');
+    }
+  };
 
   // Save progress
   useEffect(() => {
@@ -61,8 +113,10 @@ export default function WasteCollectionZone({
       setCollectedWastes(collectedWastes.filter(w => w !== waste));
       setFeedback({ type: 'success', message: `✅ Bien trié dans ${BIN_TYPES[binType].name} !` });
       setSelectedWaste(null);
+      setScore(prev => prev + 10);
     } else {
       setFeedback({ type: 'error', message: `❌ Mauvaise poubelle ! Essaie ${BIN_TYPES[waste.bin].name}` });
+      setScore(prev => Math.max(0, prev - 5));
     }
     setTimeout(() => setFeedback(null), 2000);
   };
@@ -87,13 +141,29 @@ export default function WasteCollectionZone({
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
-            <Link to={createPageUrl('Recyclage')}>
+            <Link to={timeLeft ? createPageUrl('RecyclageSchedule') : createPageUrl('Recyclage')}>
               <Button variant="outline" className="border-emerald-400 text-emerald-300">
                 <ArrowLeft className="w-5 h-5 mr-2" />
-                Retour au Plan
+                {timeLeft ? 'Abandonner' : 'Retour au Plan'}
               </Button>
             </Link>
             <div className="flex gap-4">
+              {timeLeft !== null && (
+                <div className={`bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border-2 ${
+                  timeLeft < 30 ? 'border-red-400 animate-pulse' : 'border-yellow-400'
+                }`}>
+                  <span className={timeLeft < 30 ? 'text-red-300 font-bold' : 'text-yellow-300'}>
+                    ⏱️ {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                  </span>
+                </div>
+              )}
+              {timeLeft !== null && (
+                <div className="bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border border-purple-400/30">
+                  <span className="text-purple-300 font-bold">
+                    ⭐ {score} points
+                  </span>
+                </div>
+              )}
               <div className="bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border border-emerald-400/30">
                 <span className="text-emerald-300">
                   <Trash2 className="w-5 h-5 inline mr-2" />

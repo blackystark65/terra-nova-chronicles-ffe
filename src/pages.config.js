@@ -13,18 +13,20 @@ import Profile from './pages/Profile';
 import Puzzle from './pages/Puzzle';
 import Quiz from './pages/Quiz';
 import Recyclage from './pages/Recyclage';
+import RecyclageDecheterie from './pages/RecyclageDecheterie';
+import RecyclageGame from './pages/RecyclageGame';
 import RecyclageKitchen from './pages/RecyclageKitchen';
-import RecyclageRestaurant from './pages/RecyclageRestaurant';
-import RecyclageReception from './pages/RecyclageReception';
-import RecyclageRooms from './pages/RecyclageRooms';
-import RecyclagePool from './pages/RecyclagePool';
 import RecyclageMarina from './pages/RecyclageMarina';
 import RecyclageParking from './pages/RecyclageParking';
-import RecyclageDecheterie from './pages/RecyclageDecheterie';
 import RecyclagePlage from './pages/RecyclagePlage';
-import RecyclageGame from './pages/RecyclageGame';
+import RecyclagePool from './pages/RecyclagePool';
+import RecyclageReception from './pages/RecyclageReception';
+import RecyclageRestaurant from './pages/RecyclageRestaurant';
 import RecyclageRoleSelection from './pages/RecyclageRoleSelection';
+import RecyclageRooms from './pages/RecyclageRooms';
 import RecyclageShop from './pages/RecyclageShop';
+import RecyclageSchedule from './pages/RecyclageSchedule';
+import RecyclageLeaderboard from './pages/RecyclageLeaderboard';
 
 
 export const PAGES = {
@@ -43,18 +45,20 @@ export const PAGES = {
     "Puzzle": Puzzle,
     "Quiz": Quiz,
     "Recyclage": Recyclage,
+    "RecyclageDecheterie": RecyclageDecheterie,
+    "RecyclageGame": RecyclageGame,
     "RecyclageKitchen": RecyclageKitchen,
-    "RecyclageRestaurant": RecyclageRestaurant,
-    "RecyclageReception": RecyclageReception,
-    "RecyclageRooms": RecyclageRooms,
-    "RecyclagePool": RecyclagePool,
     "RecyclageMarina": RecyclageMarina,
     "RecyclageParking": RecyclageParking,
-    "RecyclageDecheterie": RecyclageDecheterie,
     "RecyclagePlage": RecyclagePlage,
-    "RecyclageGame": RecyclageGame,
+    "RecyclagePool": RecyclagePool,
+    "RecyclageReception": RecyclageReception,
+    "RecyclageRestaurant": RecyclageRestaurant,
     "RecyclageRoleSelection": RecyclageRoleSelection,
+    "RecyclageRooms": RecyclageRooms,
     "RecyclageShop": RecyclageShop,
+    "RecyclageSchedule": RecyclageSchedule,
+    "RecyclageLeaderboard": RecyclageLeaderboard,
 }
 
 export const pagesConfig = {
