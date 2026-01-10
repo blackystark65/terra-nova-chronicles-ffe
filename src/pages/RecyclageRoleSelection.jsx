@@ -80,7 +80,13 @@ export default function RecyclageRoleSelection() {
 
   return (
     <div className="min-h-screen relative">
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-950/95 via-emerald-950/90 to-teal-950/95" />
+      <div 
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/17ce4623e_PlanHotelTerraaNova.png)',
+        }}
+      />
+      <div className="fixed inset-0 bg-slate-950/40" />
       <BiolumiHeader currentPage="Recyclage" />
       
       <main className="relative z-10 pt-24 px-4 pb-12">
@@ -92,7 +98,7 @@ export default function RecyclageRoleSelection() {
           >
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 mb-6">
               <User className="w-6 h-6 text-emerald-400" />
-              <span className="text-emerald-300 font-semibold">Bienvenue {user?.full_name || 'Joueur'}</span>
+              <span className="text-emerald-300 font-semibold">Bienvenue {user?.display_name || user?.full_name || 'Joueur'}</span>
             </div>
             
             <h1 className="text-5xl font-black mb-6 bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
