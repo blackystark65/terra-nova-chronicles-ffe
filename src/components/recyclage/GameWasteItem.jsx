@@ -12,7 +12,7 @@ export default function GameWasteItem({ waste, onSort, isUrgent }) {
     <motion.div
       initial={{ scale: 0, rotate: -180 }}
       animate={{ 
-        scale: isDragging ? 1.2 : 1, 
+        scale: isSelected ? 1.15 : 1, 
         rotate: 0,
         y: urgencyLevel === 'critical' ? [0, -5, 0] : 0
       }}
@@ -20,20 +20,12 @@ export default function GameWasteItem({ waste, onSort, isUrgent }) {
         type: "spring",
         y: { duration: 0.5, repeat: urgencyLevel === 'critical' ? Infinity : 0 }
       }}
-      drag
-      dragSnapToOrigin
-      dragElastic={0.1}
-      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-      onDragStart={() => setIsDragging(true)}
-      onDragEnd={(e, info) => {
-        setIsDragging(false);
-        // Detect drop on bin (will be handled by parent)
-      }}
-      style={{ zIndex: isDragging ? 9999 : 1 }}
+      whileHover={{ scale: 1.05 }}
       className={`
-        relative cursor-grab active:cursor-grabbing
-        bg-white rounded-2xl p-4 shadow-lg border-4
-        ${urgencyLevel === 'critical' ? 'border-red-500 animate-pulse' : 
+        relative cursor-pointer
+        bg-white rounded-2xl p-4 shadow-lg border-4 transition-all
+        ${isSelected ? 'border-cyan-500 shadow-2xl shadow-cyan-500/50' :
+          urgencyLevel === 'critical' ? 'border-red-500 animate-pulse' : 
           urgencyLevel === 'warning' ? 'border-orange-400' : 
           'border-emerald-400/30'}
       `}
@@ -46,6 +38,11 @@ export default function GameWasteItem({ waste, onSort, isUrgent }) {
       
       <div className="text-5xl mb-2 text-center">{waste.emoji}</div>
       <div className="text-sm font-bold text-gray-800 text-center">{waste.name}</div>
+      {isSelected && (
+        <div className="absolute -top-2 -right-2 bg-cyan-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold animate-pulse">
+          ✓
+        </div>
+      )}
       
       {urgencyLevel !== 'normal' && (
         <div className="flex items-center justify-center gap-1 mt-2 text-xs text-red-600">

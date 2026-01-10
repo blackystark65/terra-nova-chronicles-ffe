@@ -65,6 +65,7 @@ export default function RecyclageGame() {
   const [showTutorial, setShowTutorial] = useState(true);
   const [user, setUser] = useState(null);
   const [playerRole, setPlayerRole] = useState(null);
+  const [selectedWaste, setSelectedWaste] = useState(null);
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -151,6 +152,7 @@ export default function RecyclageGame() {
           [binType]: Math.min(100, (prev.bin_levels[binType] || 0) + 10)
         }
       }));
+      setSelectedWaste(null);
     } else {
       // Wrong sort
       setMistakes(prev => prev + 1);
@@ -310,10 +312,14 @@ export default function RecyclageGame() {
                 <div className="grid grid-cols-2 gap-3 max-h-[600px] overflow-y-auto relative">
                   <AnimatePresence>
                     {gameState?.pending_wastes?.map(waste => (
-                      <div key={waste.id} className="relative">
+                      <div 
+                        key={waste.id} 
+                        className="relative cursor-pointer"
+                        onClick={() => setSelectedWaste(waste)}
+                      >
                         <GameWasteItem
                           waste={waste}
-                          onSort={(binType) => handleSortWaste(waste, binType)}
+                          isSelected={selectedWaste?.id === waste.id}
                         />
                       </div>
                     ))}
@@ -340,26 +346,18 @@ export default function RecyclageGame() {
                     <div
                       key={key}
                       onClick={() => {
-                        // Select first pending waste and sort it
-                        if (gameState?.pending_wastes?.length > 0) {
-                          handleSortWaste(gameState.pending_wastes[0], key);
-                        }
-                        // Or empty if full
-                        if (gameState?.bin_levels?.[key] >= 100) {
+                        if (selectedWaste) {
+                          handleSortWaste(selectedWaste, key);
+                        } else if (gameState?.bin_levels?.[key] >= 100) {
                           handleEmptyBin(key);
                         }
                       }}
-                      className="relative"
+                      className="relative cursor-pointer"
                     >
                       <BinWithLevel
                         binType={key}
                         binInfo={bin}
                         level={gameState?.bin_levels?.[key] || 0}
-                        onDrop={(binType) => {
-                          if (gameState?.pending_wastes?.length > 0) {
-                            handleSortWaste(gameState.pending_wastes[0], binType);
-                          }
-                        }}
                         canEmpty={true}
                       />
                     </div>
