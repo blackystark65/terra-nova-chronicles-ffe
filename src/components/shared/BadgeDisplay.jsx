@@ -9,6 +9,10 @@ const badgeIcons = {
   biodiversity_expert: { icon: Bug, color: 'from-purple-400 to-pink-500', name: 'Expert Biodiversité' },
   climate_warrior: { icon: Leaf, color: 'from-teal-400 to-emerald-500', name: 'Guerrier du Climat' },
   mountain_explorer: { icon: Mountain, color: 'from-slate-400 to-gray-500', name: 'Explorateur des Sommets' },
+  recycling_beginner: { icon: Leaf, color: 'from-green-400 to-emerald-500', name: 'Recycleur Débutant' },
+  recycling_expert: { icon: Star, color: 'from-emerald-400 to-teal-500', name: 'Expert du Tri' },
+  perfect_sorter: { icon: Award, color: 'from-yellow-400 to-orange-500', name: 'Tri Parfait' },
+  eco_warrior: { icon: Shield, color: 'from-purple-400 to-pink-500', name: 'Guerrier Éco' },
 };
 
 export default function BadgeDisplay({ badge, size = 'md', showName = false, locked = false }) {
