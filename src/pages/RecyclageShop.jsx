@@ -17,7 +17,7 @@ export default function RecyclageShop() {
       zoneEmoji="🛍️"
       zoneColor="from-pink-500 to-purple-500"
       wastes={wastes}
-      backgroundImage="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200"
+      backgroundImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/940aecd07_Boutique.png"
     />
   );
 }
