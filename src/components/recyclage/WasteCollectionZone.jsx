@@ -10,9 +10,9 @@ const BIN_TYPES = {
   paper: { name: 'Papier', emoji: '📄', color: 'bg-blue-500', info: 'Journaux, cartons, magazines' },
   plastic: { name: 'Plastique', emoji: '🧴', color: 'bg-yellow-500', info: 'Bouteilles, emballages' },
   glass: { name: 'Verre', emoji: '🍾', color: 'bg-green-500', info: 'Bouteilles, bocaux' },
-  organic: { name: 'Organique', emoji: '🥕', color: 'bg-amber-600', info: 'Restes alimentaires' },
+  organic: { name: 'Organique', emoji: '🥕', color: 'bg-amber-700', info: 'Déchets alimentaires et jardin' },
   metal: { name: 'Métal', emoji: '🥫', color: 'bg-gray-500', info: 'Canettes, conserves' },
-  general: { name: 'Tout-venant', emoji: '🗑️', color: 'bg-slate-700', info: 'Autres déchets' },
+  general: { name: 'Incinérable', emoji: '🗑️', color: 'bg-black', info: 'Déchets non recyclables' },
 };
 
 export default function WasteCollectionZone({ 

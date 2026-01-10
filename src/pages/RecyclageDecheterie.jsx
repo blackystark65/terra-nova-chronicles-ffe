@@ -10,9 +10,9 @@ const BIN_TYPES = {
   paper: { name: 'Papier', emoji: '📄', color: 'bg-blue-500', recycled: 'Nouveau papier, cartons, cahiers' },
   plastic: { name: 'Plastique', emoji: '🧴', color: 'bg-yellow-500', recycled: 'Vêtements, meubles, tuyaux' },
   glass: { name: 'Verre', emoji: '🍾', color: 'bg-green-500', recycled: 'Nouvelles bouteilles, vaisselle' },
-  organic: { name: 'Organique', emoji: '🥕', color: 'bg-amber-600', recycled: 'Compost, biogaz, engrais' },
+  organic: { name: 'Organique', emoji: '🥕', color: 'bg-amber-700', recycled: 'Compost, biogaz, engrais' },
   metal: { name: 'Métal', emoji: '🥫', color: 'bg-gray-500', recycled: 'Vélos, pièces auto, canettes' },
-  general: { name: 'Tout-venant', emoji: '🗑️', color: 'bg-slate-700', recycled: 'Valorisation énergétique' },
+  general: { name: 'Incinérable', emoji: '🗑️', color: 'bg-black', recycled: 'Valorisation énergétique' },
 };
 
 const RECYCLING_CENTERS = [
