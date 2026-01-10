@@ -58,7 +58,7 @@ export default function RecyclageRoleSelection() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playerRole'] });
-      navigate(createPageUrl('RecyclageGame'));
+      window.location.href = createPageUrl('RecyclageSchedule');
     }
   });
 
