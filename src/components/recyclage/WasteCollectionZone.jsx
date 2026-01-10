@@ -46,14 +46,19 @@ export default function WasteCollectionZone({
       setSessionId(session);
       setSlotIndex(slot);
     }
-    
-    const saved = localStorage.getItem(`recyclage_${zoneName}`);
-    if (saved) {
-      const data = JSON.parse(saved);
-      setCollectedWastes(data.collectedWastes || []);
-      setBins(data.bins || { paper: [], plastic: [], glass: [], organic: [], metal: [], general: [] });
-    }
   }, [zoneName]);
+  
+  // Generate wastes continuously during timer
+  useEffect(() => {
+    if (timeLeft === null || timeLeft <= 0) return;
+    
+    const interval = setInterval(() => {
+      const randomWaste = wastes[Math.floor(Math.random() * wastes.length)];
+      setCollectedWastes(prev => [...prev, { ...randomWaste, id: Date.now() + Math.random() }]);
+    }, 3000); // New waste every 3 seconds
+    
+    return () => clearInterval(interval);
+  }, [timeLeft, wastes]);
   
   // Timer countdown
   useEffect(() => {
@@ -97,8 +102,12 @@ export default function WasteCollectionZone({
   }, [collectedWastes, bins, zoneName]);
 
   const handleCollectWaste = (waste) => {
-    if (!collectedWastes.find(w => w.name === waste.name)) {
-      setCollectedWastes([...collectedWastes, waste]);
+    // Remove only this specific waste instance
+    const wasteIndex = collectedWastes.findIndex(w => w.id === waste.id || (w.name === waste.name && !w.id));
+    if (wasteIndex !== -1) {
+      const newWastes = [...collectedWastes];
+      newWastes.splice(wasteIndex, 1);
+      setCollectedWastes(newWastes);
       setFeedback({ type: 'collect', message: `${waste.emoji} ${waste.name} collecté !` });
       setTimeout(() => setFeedback(null), 2000);
     }
@@ -195,36 +204,38 @@ export default function WasteCollectionZone({
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8">
-            {/* Wastes to collect */}
+            {/* Wastes appearing continuously */}
             <div className="space-y-4">
               <h2 className="text-2xl font-bold text-emerald-300 mb-4">
-                Déchets à collecter
+                Déchets qui apparaissent
               </h2>
-              <div className="grid grid-cols-2 gap-4">
-                {wastes.map((waste, i) => {
-                  const isCollected = collectedWastes.find(w => w.name === waste.name);
-                  const isSorted = Object.values(bins).flat().find(w => w.name === waste.name);
-                  return (
-                    <motion.button
-                      key={i}
-                      whileHover={!isCollected && !isSorted ? { scale: 1.05 } : {}}
-                      whileTap={!isCollected && !isSorted ? { scale: 0.95 } : {}}
-                      onClick={() => !isCollected && !isSorted && handleCollectWaste(waste)}
-                      disabled={isCollected || isSorted}
-                      className={`p-6 rounded-2xl transition-all ${
-                        isSorted ? 'bg-green-500/30 border-2 border-green-400' :
-                        isCollected ? 'bg-blue-500/30 border-2 border-blue-400' :
-                        'bg-white/10 hover:bg-white/20 border-2 border-white/20'
+              {collectedWastes.length === 0 ? (
+                <div className="text-center py-12 text-emerald-400/50">
+                  Les déchets vont apparaître...
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-4 max-h-[500px] overflow-y-auto">
+                  {collectedWastes.map((waste, i) => (
+                    <motion.div
+                      key={waste.id || i}
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      className={`p-6 rounded-2xl cursor-pointer transition-all ${
+                        selectedWaste?.id === waste.id ? 
+                        'bg-cyan-500/50 border-4 border-cyan-300' : 
+                        'bg-white/20 hover:bg-white/30 border-2 border-white/20'
                       }`}
+                      onClick={() => setSelectedWaste(waste)}
                     >
                       <div className="text-5xl mb-2">{waste.emoji}</div>
                       <div className="text-sm font-semibold text-white">{waste.name}</div>
-                      {isSorted && <div className="text-xs text-green-300 mt-2">✓ Trié</div>}
-                      {isCollected && !isSorted && <div className="text-xs text-blue-300 mt-2">→ À trier</div>}
-                    </motion.button>
-                  );
-                })}
-              </div>
+                      {selectedWaste?.id === waste.id && (
+                        <div className="text-xs text-cyan-300 mt-2">→ Clique sur une poubelle</div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Bins */}
@@ -252,28 +263,14 @@ export default function WasteCollectionZone({
                 ))}
               </div>
 
-              {/* Collected wastes to sort */}
-              {collectedWastes.length > 0 && (
-                <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-4 border border-emerald-400/30">
-                  <h3 className="text-sm font-bold text-emerald-300 mb-3">
-                    Clique sur un déchet puis sur une poubelle:
+              {selectedWaste && (
+                <div className="bg-cyan-500/20 backdrop-blur-xl rounded-2xl p-4 border-2 border-cyan-400">
+                  <h3 className="text-lg font-bold text-cyan-300 mb-2 text-center">
+                    Déchet sélectionné: {selectedWaste.emoji} {selectedWaste.name}
                   </h3>
-                  <div className="grid grid-cols-3 gap-2">
-                    {collectedWastes.map((waste, i) => (
-                      <motion.button
-                        key={i}
-                        whileHover={{ scale: 1.1 }}
-                        onClick={() => setSelectedWaste(waste)}
-                        className={`p-3 rounded-xl transition-all ${
-                          selectedWaste === waste ? 
-                          'bg-emerald-500/50 border-2 border-emerald-300' : 
-                          'bg-white/20 hover:bg-white/30 border-2 border-white/20'
-                        }`}
-                      >
-                        <div className="text-3xl">{waste.emoji}</div>
-                      </motion.button>
-                    ))}
-                  </div>
+                  <p className="text-sm text-cyan-200 text-center">
+                    Clique sur la bonne poubelle !
+                  </p>
                 </div>
               )}
 
