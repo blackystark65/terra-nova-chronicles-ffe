@@ -2,8 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Clock, AlertTriangle } from 'lucide-react';
 
-export default function GameWasteItem({ waste, onSort, isUrgent }) {
-  const [isDragging, setIsDragging] = React.useState(false);
+export default function GameWasteItem({ waste, isSelected }) {
   
   const timeElapsed = Date.now() - new Date(waste.timestamp).getTime();
   const urgencyLevel = timeElapsed > 30000 ? 'critical' : timeElapsed > 15000 ? 'warning' : 'normal';
