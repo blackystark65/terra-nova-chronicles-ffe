@@ -29,7 +29,7 @@ export default function RecyclagePage() {
           backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/17ce4623e_PlanHotelTerraaNova.png)',
         }}
       />
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-950/70 via-emerald-950/60 to-teal-950/70" />
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-950/30 via-emerald-950/20 to-teal-950/30" />
       
       <BiolumiHeader currentPage="Recyclage" />
 

@@ -102,7 +102,13 @@ export default function RecyclageSchedule() {
 
   return (
     <div className="min-h-screen relative">
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-950/95 via-emerald-950/90 to-teal-950/95" />
+      <div 
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/17ce4623e_PlanHotelTerraaNova.png)',
+        }}
+      />
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-950/40 via-emerald-950/30 to-teal-950/40" />
       <BiolumiHeader currentPage="Recyclage" />
       
       <main className="relative z-10 pt-24 px-4 pb-12">
