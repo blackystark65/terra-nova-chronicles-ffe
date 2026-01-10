@@ -22,11 +22,14 @@ export default function GameWasteItem({ waste, onSort, isUrgent }) {
       }}
       drag
       dragSnapToOrigin
+      dragElastic={0.1}
+      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
       onDragStart={() => setIsDragging(true)}
       onDragEnd={(e, info) => {
         setIsDragging(false);
         // Detect drop on bin (will be handled by parent)
       }}
+      style={{ zIndex: isDragging ? 9999 : 1 }}
       className={`
         relative cursor-grab active:cursor-grabbing
         bg-white rounded-2xl p-4 shadow-lg border-4

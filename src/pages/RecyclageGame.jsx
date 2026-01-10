@@ -307,12 +307,10 @@ export default function RecyclageGame() {
                   Déchets à trier ({gameState?.pending_wastes?.length || 0})
                 </h3>
                 
-                <div className="grid grid-cols-2 gap-3 max-h-[600px] overflow-y-auto">
+                <div className="grid grid-cols-2 gap-3 max-h-[600px] overflow-y-auto relative">
                   <AnimatePresence>
                     {gameState?.pending_wastes?.map(waste => (
-                      <div key={waste.id} onDragEnd={(e) => {
-                        // Simple drag detection - in real game would use coordinates
-                      }}>
+                      <div key={waste.id} className="relative">
                         <GameWasteItem
                           waste={waste}
                           onSort={(binType) => handleSortWaste(waste, binType)}
@@ -337,7 +335,7 @@ export default function RecyclageGame() {
                   Poubelles de tri
                 </h3>
                 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-4 relative z-10">
                   {Object.entries(BIN_TYPES).map(([key, bin]) => (
                     <div
                       key={key}
@@ -351,6 +349,7 @@ export default function RecyclageGame() {
                           handleEmptyBin(key);
                         }
                       }}
+                      className="relative"
                     >
                       <BinWithLevel
                         binType={key}
