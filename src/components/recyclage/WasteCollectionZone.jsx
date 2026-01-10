@@ -48,17 +48,15 @@ export default function WasteCollectionZone({
     }
   }, [zoneName]);
   
-  // Generate wastes continuously during timer
+  // Generate wastes continuously (always, both in timed and free mode)
   useEffect(() => {
-    if (timeLeft === null || timeLeft <= 0) return;
-    
     const interval = setInterval(() => {
       const randomWaste = wastes[Math.floor(Math.random() * wastes.length)];
       setCollectedWastes(prev => [...prev, { ...randomWaste, id: Date.now() + Math.random() }]);
     }, 3000); // New waste every 3 seconds
     
     return () => clearInterval(interval);
-  }, [timeLeft, wastes]);
+  }, [wastes]);
   
   // Timer countdown
   useEffect(() => {
