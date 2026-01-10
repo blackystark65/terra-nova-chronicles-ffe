@@ -201,15 +201,25 @@ export default function JeuxPage() {
                   <div className="flex flex-col items-center gap-6">
                     <motion.div
                       initial={{ scale: 0 }}
-                      animate={{ scale: 1, rotateY: 180 }}
+                      animate={{ scale: 1 }}
                       className="relative"
                     >
                       <div className={`w-64 h-96 rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-gradient-to-br ${categoryColors[currentCard.category]} relative`}>
-                        <img 
-                          src={currentCard.image} 
-                          alt="Animal mystère"
-                          className="w-full h-full object-cover"
-                        />
+                        {currentCard.image ? (
+                          <img 
+                            src={currentCard.image} 
+                            alt={currentCard.name}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              console.error('Image failed to load:', currentCard.image);
+                              e.target.style.display = 'none';
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-white text-6xl">
+                            🐾
+                          </div>
+                        )}
                         <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white text-center py-4">
                           <p className="text-sm opacity-60">Trouve le nom !</p>
                         </div>
