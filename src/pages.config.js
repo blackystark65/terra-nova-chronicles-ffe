@@ -13,6 +13,14 @@ import Profile from './pages/Profile';
 import Puzzle from './pages/Puzzle';
 import Quiz from './pages/Quiz';
 import Recyclage from './pages/Recyclage';
+import RecyclageKitchen from './pages/RecyclageKitchen';
+import RecyclageRestaurant from './pages/RecyclageRestaurant';
+import RecyclageReception from './pages/RecyclageReception';
+import RecyclageRooms from './pages/RecyclageRooms';
+import RecyclagePool from './pages/RecyclagePool';
+import RecyclageMarina from './pages/RecyclageMarina';
+import RecyclageParking from './pages/RecyclageParking';
+import RecyclageDecheterie from './pages/RecyclageDecheterie';
 
 
 export const PAGES = {
@@ -31,6 +39,14 @@ export const PAGES = {
     "Puzzle": Puzzle,
     "Quiz": Quiz,
     "Recyclage": Recyclage,
+    "RecyclageKitchen": RecyclageKitchen,
+    "RecyclageRestaurant": RecyclageRestaurant,
+    "RecyclageReception": RecyclageReception,
+    "RecyclageRooms": RecyclageRooms,
+    "RecyclagePool": RecyclagePool,
+    "RecyclageMarina": RecyclageMarina,
+    "RecyclageParking": RecyclageParking,
+    "RecyclageDecheterie": RecyclageDecheterie,
 }
 
 export const pagesConfig = {
