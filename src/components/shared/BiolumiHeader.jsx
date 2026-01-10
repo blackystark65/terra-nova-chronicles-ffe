@@ -25,12 +25,12 @@ export default function BiolumiHeader({ currentPage }) {
       {/* Bioluminescence subtile */}
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-emerald-500/10 to-teal-500/10 animate-pulse" />
       
-      <nav className="relative max-w-7xl mx-auto px-4 py-4">
+      <nav className="relative max-w-7xl mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           {/* Logo Terra Nova avec planète tournante */}
           <Link to={createPageUrl('Home')}>
             <motion.div
-              className="flex items-center gap-3 group cursor-pointer"
+              className="flex items-center gap-2 group cursor-pointer"
               whileHover={{ scale: 1.05 }}>
 
               <motion.div
@@ -42,14 +42,14 @@ export default function BiolumiHeader({ currentPage }) {
                   repeat: Infinity,
                   ease: "linear"
                 }}
-                className="relative w-12 h-12 rounded-full overflow-hidden shadow-lg shadow-emerald-500/50">
+                className="relative w-8 h-8 rounded-full overflow-hidden shadow-lg shadow-emerald-500/50">
 
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/af6a6b206_green-earth-globe-with-continents-oceans.png"
                   alt="Planète Terre"
                   className="w-full h-full object-cover"
                 />
-                
+
                 {/* Anneau bioluminescent */}
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-cyan-400/50"
@@ -57,12 +57,12 @@ export default function BiolumiHeader({ currentPage }) {
                   transition={{ duration: 2, repeat: Infinity }} />
 
               </motion.div>
-              
+
               <div>
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/9e8d7687f_BandeauTerraNovaChronicles.png"
                   alt="Terra Nova Chronicles"
-                  className="h-20 md:h-24 w-auto"
+                  className="h-10 w-auto"
                 />
               </div>
             </motion.div>
@@ -80,7 +80,7 @@ export default function BiolumiHeader({ currentPage }) {
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     className={`
-                      relative px-4 py-2 rounded-xl
+                      relative px-3 py-1.5 rounded-xl
                       transition-all duration-300
                       ${isActive ?
                     'bg-gradient-to-r from-emerald-500/30 to-teal-500/30 shadow-lg shadow-emerald-500/20' :
@@ -98,9 +98,9 @@ export default function BiolumiHeader({ currentPage }) {
 
                     }
                     
-                    <div className="relative flex items-center gap-2">
-                      <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-300' : 'text-emerald-400/70'}`} />
-                      <span className={`text-sm font-medium ${isActive ? 'text-emerald-200' : 'text-emerald-300/70'}`}>
+                    <div className="relative flex items-center gap-1.5">
+                      <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-300' : 'text-emerald-400/70'}`} />
+                      <span className={`text-xs font-medium ${isActive ? 'text-emerald-200' : 'text-emerald-300/70'}`}>
                         {item.name}
                       </span>
                     </div>
