@@ -6,14 +6,15 @@ import { Globe, Leaf, BookOpen, Trophy, User, Flame } from 'lucide-react';
 
 export default function BiolumiHeader({ currentPage }) {
   const navItems = [
-  { name: 'Atlas', icon: Globe, path: 'Atlas' },
-  { name: 'Encyclopédie', icon: BookOpen, path: 'Encyclopedia' },
-  { name: 'Quiz', icon: Trophy, path: 'Quiz' },
-  { name: 'Jeux', icon: Flame, path: 'Jeux' },
-  { name: 'Puzzle', icon: Trophy, path: 'Puzzle' },
-  { name: 'Missions', icon: Flame, path: 'Missions' },
-  { name: 'Climat', icon: Leaf, path: 'Climate' },
-  { name: 'Profil', icon: User, path: 'Profile' }];
+    { name: 'Atlas', icon: Globe, path: 'Atlas' },
+    { name: 'Encyclopédie', icon: BookOpen, path: 'Encyclopedia' },
+    { name: 'Quiz', icon: Trophy, path: 'Quiz' },
+    { name: 'Jeux', icon: Flame, path: 'Jeux' },
+    { name: 'Puzzle', icon: Trophy, path: 'Puzzle' },
+    { name: 'Recyclage', icon: Leaf, path: 'Recyclage' },
+    { name: 'Missions', icon: Flame, path: 'Missions' },
+    { name: 'Climat', icon: Leaf, path: 'Climate' },
+    { name: 'Profil', icon: User, path: 'Profile' }];
 
 
   return (
