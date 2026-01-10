@@ -63,7 +63,26 @@ export default function RecyclageGame() {
   const [showTruck, setShowTruck] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
   const [showTutorial, setShowTutorial] = useState(true);
+  const [user, setUser] = useState(null);
+  const [playerRole, setPlayerRole] = useState(null);
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const fetchUserAndRole = async () => {
+      try {
+        const currentUser = await base44.auth.me();
+        setUser(currentUser);
+        
+        const roles = await base44.entities.PlayerRole.filter({ created_by: currentUser.email });
+        if (roles.length > 0) {
+          setPlayerRole(roles[0]);
+        }
+      } catch (error) {
+        console.error('Error fetching user data');
+      }
+    };
+    fetchUserAndRole();
+  }, []);
 
   // Generate waste periodically
   useEffect(() => {
@@ -192,7 +211,9 @@ export default function RecyclageGame() {
             >
               <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 mb-6">
                 <Trophy className="w-6 h-6 text-emerald-400" />
-                <span className="text-emerald-300 font-semibold">Jeu de Gestion du Recyclage</span>
+                <span className="text-emerald-300 font-semibold">
+                  {playerRole ? `${playerRole.role_name} - Gestion du Recyclage` : 'Jeu de Gestion du Recyclage'}
+                </span>
               </div>
               
               <h1 className="text-5xl font-black mb-6 bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">

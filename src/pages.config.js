@@ -23,6 +23,8 @@ import RecyclageParking from './pages/RecyclageParking';
 import RecyclageDecheterie from './pages/RecyclageDecheterie';
 import RecyclagePlage from './pages/RecyclagePlage';
 import RecyclageGame from './pages/RecyclageGame';
+import RecyclageRoleSelection from './pages/RecyclageRoleSelection';
+import RecyclageShop from './pages/RecyclageShop';
 
 
 export const PAGES = {
@@ -51,6 +53,8 @@ export const PAGES = {
     "RecyclageDecheterie": RecyclageDecheterie,
     "RecyclagePlage": RecyclagePlage,
     "RecyclageGame": RecyclageGame,
+    "RecyclageRoleSelection": RecyclageRoleSelection,
+    "RecyclageShop": RecyclageShop,
 }
 
 export const pagesConfig = {
