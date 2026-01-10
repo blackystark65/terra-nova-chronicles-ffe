@@ -133,7 +133,7 @@ export default function ProfilePage() {
 
   const handleSaveName = () => {
     if (newName.trim()) {
-      updateUserMutation.mutate({ full_name: newName.trim() });
+      updateUserMutation.mutate({ display_name: newName.trim() });
     }
   };
 
@@ -241,11 +241,11 @@ export default function ProfilePage() {
                 ) : (
                   <div className="flex items-center gap-2 mb-4">
                     <h1 className="text-3xl font-bold text-emerald-300">
-                      {user?.full_name || 'Éco-Sentinelle'}
+                      {user?.display_name || user?.full_name || 'Éco-Sentinelle'}
                     </h1>
                     <button
                       onClick={() => {
-                        setNewName(user?.full_name || '');
+                        setNewName(user?.display_name || user?.full_name || '');
                         setIsEditingName(true);
                       }}
                       className="text-emerald-400 hover:text-emerald-300"
