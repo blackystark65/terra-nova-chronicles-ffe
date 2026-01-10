@@ -11,7 +11,7 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Quiz', icon: Trophy, path: 'Quiz' },
     { name: 'Jeux', icon: Flame, path: 'Jeux' },
     { name: 'Puzzle', icon: Trophy, path: 'Puzzle' },
-    { name: 'Recyclage', icon: Leaf, path: 'Recyclage' },
+    { name: 'Recyclage', icon: Leaf, path: 'RecyclageGame' },
     { name: 'Missions', icon: Flame, path: 'Missions' },
     { name: 'Climat', icon: Leaf, path: 'Climate' },
     { name: 'Profil', icon: User, path: 'Profile' }];

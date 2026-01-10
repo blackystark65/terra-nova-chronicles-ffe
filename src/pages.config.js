@@ -22,6 +22,7 @@ import RecyclageMarina from './pages/RecyclageMarina';
 import RecyclageParking from './pages/RecyclageParking';
 import RecyclageDecheterie from './pages/RecyclageDecheterie';
 import RecyclagePlage from './pages/RecyclagePlage';
+import RecyclageGame from './pages/RecyclageGame';
 
 
 export const PAGES = {
@@ -49,6 +50,7 @@ export const PAGES = {
     "RecyclageParking": RecyclageParking,
     "RecyclageDecheterie": RecyclageDecheterie,
     "RecyclagePlage": RecyclagePlage,
+    "RecyclageGame": RecyclageGame,
 }
 
 export const pagesConfig = {
