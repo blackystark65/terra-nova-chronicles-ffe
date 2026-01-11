@@ -122,21 +122,34 @@ const themes = [
   },
   {
     id: 'recyclage',
-    name: 'Recyclage',
+    name: 'Tri Sélectif & Recyclage Suisse',
     icon: Recycle,
     color: 'from-emerald-600 to-teal-700',
-    description: 'Économie circulaire et zéro déchet',
+    description: 'Normes OLED et économie circulaire',
     content: {
-      intro: "Le recyclage permet de réduire les déchets et de préserver les ressources naturelles.",
+      intro: "La Suisse applique des normes strictes de tri sélectif conformes à la Loi fédérale sur la protection de l'environnement (LPE) et l'Ordonnance sur les déchets (OLED). Le système suisse comprend 9 types de poubelles avec des destinations et valorisations spécifiques pour chaque flux de déchets.",
       facts: [
-        "Seulement 9% du plastique mondial est recyclé",
-        "Recycler 1 tonne de papier sauve 17 arbres",
-        "Le compostage peut réduire les déchets de 30%"
+        "📄 Papier/Carton (Bleu) → Papeteries suisses → Nouveaux papiers, cartons et emballages",
+        "♻️ Plastiques/PET (Jaune) → Centre Plastiques → T-shirts, sacs, porte-monnaies, fibres textiles. Exemple : filets de pêche et cordages de marina recyclés en vêtements",
+        "🍾 Verre (Vert) → Verreries suisses → Nouvelles bouteilles et bocaux (tri par couleur)",
+        "🥕 Biodéchets (Marron) → Méthanisation/compostage → Biogaz pour chauffage, compost, engrais naturel",
+        "🥫 Aluminium (Rouge) → Fonderie IGORA → Aluminium secondaire, vélos, canettes, pièces automobiles",
+        "🛢️ Huiles alimentaires → Filière biodiesel agréée → Biodiesel pour véhicules et chauffage (plus d'incinération)",
+        "🔋 Piles/Batteries → Centres cantonaux agréés → Récupération métaux précieux, neutralisation sécurisée",
+        "💡 Ampoules/Néons → Centres agréés → Récupération verre et métaux, neutralisation mercure",
+        "🗑️ Incinérables (Noir) → Valorisation énergétique → Électricité et chauffage urbain",
+        "La Suisse vise un taux de recyclage supérieur à 50% et suit les référentiels ISO 14001, Swisstainable et Clef Verte",
+        "Le tri sélectif est OBLIGATOIRE en Suisse : l'éducation commence dès l'enfance"
       ],
       actions: [
-        "Trier correctement ses déchets",
-        "Privilégier les produits réutilisables",
-        "Composter les déchets organiques"
+        "Trier selon les 9 catégories suisses (papier, plastique, verre, organique, aluminium, huiles, piles, ampoules, incinérable)",
+        "Apporter les cordages et filets usés au recyclage (deviennent des vêtements)",
+        "Collecter les huiles de friture pour le biodiesel (ne plus les jeter)",
+        "Rapporter piles et ampoules aux points de collecte spécialisés",
+        "Séparer le verre par couleur (blanc, brun, vert)",
+        "Composter tous les biodéchets pour produire biogaz et engrais",
+        "Soutenir l'économie circulaire locale et les filières de valorisation suisses",
+        "Éduquer les jeunes générations aux normes OLED dès le plus jeune âge"
       ]
     }
   },
