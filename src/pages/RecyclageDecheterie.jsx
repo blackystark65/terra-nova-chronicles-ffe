@@ -6,27 +6,14 @@ import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { ArrowLeft, Truck, Factory, Recycle, Trash2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const BIN_TYPES = {
-  paper: { name: 'Papier', emoji: '📄', color: 'bg-blue-500', recycled: 'Nouveau papier, cartons, cahiers' },
-  plastic: { name: 'Plastique', emoji: '🧴', color: 'bg-yellow-500', recycled: 'Vêtements, meubles, tuyaux' },
-  glass: { name: 'Verre', emoji: '🍾', color: 'bg-green-500', recycled: 'Nouvelles bouteilles, vaisselle' },
-  organic: { name: 'Organique', emoji: '🥕', color: 'bg-amber-700', recycled: 'Compost, biogaz, engrais' },
-  metal: { name: 'Métal', emoji: '🥫', color: 'bg-gray-500', recycled: 'Vélos, pièces auto, canettes' },
-  general: { name: 'Incinérable', emoji: '🗑️', color: 'bg-black', recycled: 'Valorisation énergétique' },
-};
+import { SWISS_BIN_TYPES, SPECIAL_WASTE_CENTERS } from '@/components/recyclage/SwissWasteData';
 
-const RECYCLING_CENTERS = [
-  { name: 'Centre Papier-Carton', type: 'paper', icon: '📄', location: 'Zone industrielle Nord' },
-  { name: 'Usine Plastiques', type: 'plastic', icon: '♻️', location: 'Parc éco-industriel' },
-  { name: 'Verrerie de recyclage', type: 'glass', icon: '🏭', location: 'Zone artisanale Sud' },
-  { name: 'Centre de compostage', type: 'organic', icon: '🌱', location: 'Ferme bio régionale' },
-  { name: 'Fonderie métaux', type: 'metal', icon: '🔥', location: 'Zone industrielle Est' },
-  { name: 'Incinérateur valorisation', type: 'general', icon: '⚡', location: 'Centre énergétique' },
-];
+const BIN_TYPES = SWISS_BIN_TYPES;
+const RECYCLING_CENTERS = SPECIAL_WASTE_CENTERS;
 
 export default function RecyclageDecheterie() {
   const [totalBins, setTotalBins] = useState({
-    paper: 0, plastic: 0, glass: 0, organic: 0, metal: 0, general: 0
+    paper: 0, plastic: 0, glass: 0, organic: 0, aluminum: 0, oils: 0, batteries: 0, bulbs: 0, general: 0
   });
   const [showTransport, setShowTransport] = useState(false);
   const [selectedCenter, setSelectedCenter] = useState(null);
@@ -34,7 +21,7 @@ export default function RecyclageDecheterie() {
   useEffect(() => {
     // Aggregate all bins from all zones
     const zones = ['Kitchen', 'Restaurant', 'Reception', 'Rooms', 'Pool', 'Plage Privée', 'Marina', 'Parking'];
-    const aggregated = { paper: 0, plastic: 0, glass: 0, organic: 0, metal: 0, general: 0 };
+    const aggregated = { paper: 0, plastic: 0, glass: 0, organic: 0, aluminum: 0, oils: 0, batteries: 0, bulbs: 0, general: 0 };
     
     zones.forEach(zone => {
       const saved = localStorage.getItem(`recyclage_${zone}`);
@@ -62,7 +49,7 @@ export default function RecyclageDecheterie() {
     zones.forEach(zone => {
       localStorage.removeItem(`recyclage_${zone}`);
     });
-    setTotalBins({ paper: 0, plastic: 0, glass: 0, organic: 0, metal: 0, general: 0 });
+    setTotalBins({ paper: 0, plastic: 0, glass: 0, organic: 0, aluminum: 0, oils: 0, batteries: 0, bulbs: 0, general: 0 });
     setShowTransport(false);
     setSelectedCenter(null);
   };
@@ -109,7 +96,7 @@ export default function RecyclageDecheterie() {
               </motion.div>
 
               {/* Bins summary */}
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
                 {Object.entries(BIN_TYPES).map(([key, bin]) => (
                   <motion.div
                     key={key}
@@ -201,7 +188,8 @@ export default function RecyclageDecheterie() {
                       </div>
                       <div className="bg-white/20 rounded-xl p-3">
                         <p className="text-2xl font-black">{count} déchets</p>
-                        <p className="text-xs opacity-80 mt-1">Cliquer pour voir détails</p>
+                        <p className="text-xs opacity-80 mt-1">{center.location}</p>
+                        <p className="text-xs opacity-60 mt-1">Cliquer pour détails</p>
                       </div>
                     </motion.button>
                   );
@@ -245,10 +233,12 @@ export default function RecyclageDecheterie() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-2xl p-6 border-2 border-green-400/30">
+                <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-2xl p-6 border-2 border-green-400/30 mb-4">
                   <Sparkles className="w-12 h-12 text-yellow-400 mb-4" />
-                  <h4 className="text-xl font-bold text-white mb-3">Produits créés:</h4>
-                  <p className="text-lg text-emerald-200">{BIN_TYPES[selectedCenter.type].recycled}</p>
+                  <h4 className="text-xl font-bold text-white mb-3">Processus de recyclage:</h4>
+                  <p className="text-sm text-emerald-300 mb-2">{selectedCenter.description}</p>
+                  <h5 className="text-lg font-bold text-white mt-4 mb-2">Produits créés:</h5>
+                  <p className="text-lg text-emerald-200">{selectedCenter.products}</p>
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 gap-4">

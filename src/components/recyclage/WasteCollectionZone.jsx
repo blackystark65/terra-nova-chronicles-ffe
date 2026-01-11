@@ -7,14 +7,9 @@ import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { ArrowLeft, CheckCircle, Trash2, Recycle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const BIN_TYPES = {
-  paper: { name: 'Papier', emoji: '📄', color: 'bg-blue-500', info: 'Journaux, cartons, magazines' },
-  plastic: { name: 'Plastique', emoji: '🧴', color: 'bg-yellow-500', info: 'Bouteilles, emballages' },
-  glass: { name: 'Verre', emoji: '🍾', color: 'bg-green-500', info: 'Bouteilles, bocaux' },
-  organic: { name: 'Organique', emoji: '🥕', color: 'bg-amber-700', info: 'Déchets alimentaires et jardin' },
-  metal: { name: 'Métal', emoji: '🥫', color: 'bg-gray-500', info: 'Canettes, conserves' },
-  general: { name: 'Incinérable', emoji: '🗑️', color: 'bg-black', info: 'Déchets non recyclables' },
-};
+import { SWISS_BIN_TYPES } from './SwissWasteData';
+
+const BIN_TYPES = SWISS_BIN_TYPES;
 
 export default function WasteCollectionZone({ 
   zoneName, 
@@ -25,7 +20,7 @@ export default function WasteCollectionZone({
 }) {
   const [collectedWastes, setCollectedWastes] = useState([]);
   const [bins, setBins] = useState({
-    paper: [], plastic: [], glass: [], organic: [], metal: [], general: []
+    paper: [], plastic: [], glass: [], organic: [], aluminum: [], oils: [], batteries: [], bulbs: [], general: []
   });
   const [feedback, setFeedback] = useState(null);
   const [selectedWaste, setSelectedWaste] = useState(null);
@@ -239,9 +234,9 @@ export default function WasteCollectionZone({
             {/* Bins */}
             <div className="space-y-4">
               <h2 className="text-2xl font-bold text-emerald-300 mb-4">
-                Poubelles de tri
+                Poubelles de tri sélectif (normes suisses)
               </h2>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-3">
                 {Object.entries(BIN_TYPES).map(([key, bin]) => (
                   <motion.div
                     key={key}

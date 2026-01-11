@@ -1,23 +1,17 @@
 import React from 'react';
 import WasteCollectionZone from '@/components/recyclage/WasteCollectionZone';
+import { SWISS_WASTE_ITEMS } from '@/components/recyclage/SwissWasteData';
 
-const wastes = [
-  { name: 'Bouteilles plastique', emoji: '🍼', bin: 'plastic', recycled: 'Bateaux recyclés' },
-  { name: 'Canettes boissons', emoji: '🥫', bin: 'metal', recycled: 'Trottinettes' },
-  { name: 'Papiers mouchoirs', emoji: '🧻', bin: 'organic', recycled: 'Compost' },
-  { name: 'Bouteilles verre', emoji: '🍾', bin: 'glass', recycled: 'Vaisselle en verre' },
-  { name: 'Emballages snacks', emoji: '🍿', bin: 'plastic', recycled: 'Sacs plastique' },
-  { name: 'Gobelets', emoji: '🥤', bin: 'plastic', recycled: 'Mobilier plage' },
-];
+const wastes = SWISS_WASTE_ITEMS.beach;
 
 export default function RecyclagePlage() {
   return (
-    <WasteCollectionZone
+    <WasteCollectionZone 
       zoneName="Plage Privée"
       zoneEmoji="🏖️"
       zoneColor="from-yellow-400 to-orange-500"
       wastes={wastes}
-      backgroundImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/4af8e88fb_plage.png"
+      backgroundImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/349c14a99_digital-screen-with-environment-day.jpg"
     />
   );
 }
