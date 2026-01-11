@@ -175,7 +175,7 @@ export default function ProfilePage() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8 p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-emerald-400/20"
           >
-            <div className="flex items-start gap-6">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
               {/* Photo de profil */}
               <div className="relative">
                 <motion.div
@@ -200,7 +200,7 @@ export default function ProfilePage() {
                   )}
                 </motion.div>
                 
-                <label className="absolute bottom-0 right-0 bg-emerald-500 rounded-full p-2 cursor-pointer hover:bg-emerald-600 transition-colors">
+                <label className="absolute bottom-0 right-0 bg-emerald-500 rounded-full p-2 cursor-pointer hover:bg-emerald-600 transition-colors touch-manipulation">
                   <Camera className="w-4 h-4 text-white" />
                   <input 
                     type="file" 
@@ -212,35 +212,37 @@ export default function ProfilePage() {
                 </label>
               </div>
 
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 {/* Nom éditable */}
                 {isEditingName ? (
-                  <div className="flex items-center gap-2 mb-4">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mb-4">
                     <Input
                       value={newName}
                       onChange={(e) => setNewName(e.target.value)}
                       placeholder="Votre nom"
-                      className="bg-white/10 border-emerald-400/30 text-white"
+                      className="bg-white/10 border-emerald-400/30 text-white flex-1"
                     />
-                    <Button
-                      onClick={handleSaveName}
-                      size="icon"
-                      className="bg-emerald-500 hover:bg-emerald-600"
-                    >
-                      <Save className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      onClick={() => setIsEditingName(false)}
-                      size="icon"
-                      variant="outline"
-                      className="border-emerald-400/30"
-                    >
-                      <X className="w-4 h-4" />
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={handleSaveName}
+                        size="icon"
+                        className="bg-emerald-500 hover:bg-emerald-600 flex-1 sm:flex-none touch-manipulation"
+                      >
+                        <Save className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        onClick={() => setIsEditingName(false)}
+                        size="icon"
+                        variant="outline"
+                        className="border-emerald-400/30 flex-1 sm:flex-none touch-manipulation"
+                      >
+                        <X className="w-4 h-4" />
+                      </Button>
+                    </div>
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2 mb-4">
-                    <h1 className="text-3xl font-bold text-emerald-300">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
+                    <h1 className="text-2xl md:text-3xl font-bold text-emerald-300 text-center md:text-left">
                       {user?.display_name || user?.full_name || 'Éco-Sentinelle'}
                     </h1>
                     <button
@@ -248,7 +250,7 @@ export default function ProfilePage() {
                         setNewName(user?.display_name || user?.full_name || '');
                         setIsEditingName(true);
                       }}
-                      className="text-emerald-400 hover:text-emerald-300"
+                      className="text-emerald-400 hover:text-emerald-300 touch-manipulation p-2"
                     >
                       <Edit2 className="w-5 h-5" />
                     </button>
