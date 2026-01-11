@@ -200,16 +200,27 @@ export default function ProfilePage() {
                   )}
                 </motion.div>
                 
-                <label className="absolute bottom-0 right-0 bg-emerald-500 rounded-full p-2 cursor-pointer hover:bg-emerald-600 transition-colors touch-manipulation">
-                  <Camera className="w-4 h-4 text-white" />
+                <label 
+                  htmlFor="profile-picture-upload" 
+                  className="absolute bottom-0 right-0 bg-emerald-500 rounded-full p-3 cursor-pointer hover:bg-emerald-600 transition-colors active:scale-95 shadow-lg z-10"
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
+                >
+                  <Camera className="w-5 h-5 text-white" />
                   <input 
+                    id="profile-picture-upload"
                     type="file" 
                     accept="image/*" 
                     onChange={handleImageUpload}
                     className="hidden"
                     disabled={uploadingImage}
+                    capture="environment"
                   />
                 </label>
+                {uploadingImage && (
+                  <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center">
+                    <div className="text-white text-xs">📤</div>
+                  </div>
+                )}
               </div>
 
               <div className="flex-1 w-full">
@@ -220,23 +231,25 @@ export default function ProfilePage() {
                       value={newName}
                       onChange={(e) => setNewName(e.target.value)}
                       placeholder="Votre nom"
-                      className="bg-white/10 border-emerald-400/30 text-white flex-1"
+                      className="bg-white/10 border-emerald-400/30 text-white flex-1 min-h-[44px] text-base"
+                      autoFocus
                     />
                     <div className="flex gap-2">
                       <Button
                         onClick={handleSaveName}
-                        size="icon"
-                        className="bg-emerald-500 hover:bg-emerald-600 flex-1 sm:flex-none touch-manipulation"
+                        disabled={updateUserMutation.isPending}
+                        className="bg-emerald-500 hover:bg-emerald-600 flex-1 sm:flex-none active:scale-95 min-h-[44px]"
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
                       >
-                        <Save className="w-4 h-4" />
+                        {updateUserMutation.isPending ? '💾' : <Save className="w-5 h-5" />}
                       </Button>
                       <Button
                         onClick={() => setIsEditingName(false)}
-                        size="icon"
                         variant="outline"
-                        className="border-emerald-400/30 flex-1 sm:flex-none touch-manipulation"
+                        className="border-emerald-400/30 text-emerald-300 flex-1 sm:flex-none active:scale-95 min-h-[44px]"
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
                       >
-                        <X className="w-4 h-4" />
+                        <X className="w-5 h-5" />
                       </Button>
                     </div>
                   </div>
@@ -245,15 +258,18 @@ export default function ProfilePage() {
                     <h1 className="text-2xl md:text-3xl font-bold text-emerald-300 text-center md:text-left">
                       {user?.display_name || user?.full_name || 'Éco-Sentinelle'}
                     </h1>
-                    <button
+                    <Button
                       onClick={() => {
                         setNewName(user?.display_name || user?.full_name || '');
                         setIsEditingName(true);
                       }}
-                      className="text-emerald-400 hover:text-emerald-300 touch-manipulation p-2"
+                      size="icon"
+                      variant="ghost"
+                      className="text-emerald-400 hover:text-emerald-300 hover:bg-emerald-400/10 active:scale-95"
+                      style={{ WebkitTapHighlightColor: 'transparent' }}
                     >
                       <Edit2 className="w-5 h-5" />
-                    </button>
+                    </Button>
                   </div>
                 )}
                 
