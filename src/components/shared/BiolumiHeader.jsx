@@ -42,7 +42,7 @@ export default function BiolumiHeader({ currentPage }) {
                   repeat: Infinity,
                   ease: "linear"
                 }}
-                className="relative w-8 h-8 rounded-full overflow-hidden shadow-lg shadow-emerald-500/50">
+                className="relative w-12 h-12 rounded-full overflow-hidden shadow-lg shadow-emerald-500/50">
 
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/af6a6b206_green-earth-globe-with-continents-oceans.png"
