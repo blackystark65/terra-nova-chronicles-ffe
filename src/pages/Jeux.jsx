@@ -50,16 +50,19 @@ export default function JeuxPage() {
 
     const correctCategory = currentCard.category === selectedCategory;
     
-    // Vérifier si le nom est correct (accepter les réponses partielles)
+    // Vérifier si le nom est correct (accepter français ET anglais)
     const userGuessLower = userGuess.toLowerCase().trim();
-    const correctNameLower = currentCard.name.toLowerCase().trim();
+    const correctNameFrLower = currentCard.name.toLowerCase().trim();
+    const correctNameEnLower = currentCard.name_en?.toLowerCase().trim() || '';
     
-    // Accepter si le nom contient au moins 3 caractères et est contenu dans le vrai nom
-    // OU si le vrai nom contient le guess (pour éviter les erreurs)
+    // Accepter si le nom contient au moins 3 caractères et correspond au nom français OU anglais
     const correctName = userGuessLower.length >= 3 && (
-      correctNameLower.includes(userGuessLower) || 
-      userGuessLower.includes(correctNameLower.split(' ')[0]) ||
-      userGuessLower === correctNameLower
+      correctNameFrLower.includes(userGuessLower) || 
+      userGuessLower.includes(correctNameFrLower.split(' ')[0]) ||
+      userGuessLower === correctNameFrLower ||
+      correctNameEnLower.includes(userGuessLower) ||
+      userGuessLower.includes(correctNameEnLower.split(' ')[0]) ||
+      userGuessLower === correctNameEnLower
     );
     
     let points = 0;
@@ -229,7 +232,7 @@ export default function JeuxPage() {
                     <div className="w-full space-y-3">
                       <Input
                         type="text"
-                        placeholder="Nom de l'animal..."
+                        placeholder="Nom de l'animal (français ou anglais)..."
                         value={userGuess}
                         onChange={(e) => setUserGuess(e.target.value)}
                         className="w-full py-6 text-lg border-2 border-emerald-400 bg-white/90"
@@ -307,6 +310,9 @@ export default function JeuxPage() {
                       <p className="text-2xl font-bold text-center mb-2">{feedback.message}</p>
                       <p className="text-lg text-center text-gray-600">
                         Réponse correcte: <span className="font-bold text-emerald-600">{feedback.correctName}</span>
+                        {currentCard?.name_en && (
+                          <span className="text-sm text-gray-500"> ({currentCard.name_en})</span>
+                        )}
                       </p>
                       <p className="text-lg text-center text-gray-600">
                         Catégorie: <span className="font-bold text-emerald-600">{feedback.correctCategory}</span>
