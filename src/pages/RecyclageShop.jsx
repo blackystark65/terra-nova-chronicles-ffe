@@ -1,14 +1,8 @@
 import React from 'react';
 import WasteCollectionZone from '@/components/recyclage/WasteCollectionZone';
+import { SWISS_WASTE_ITEMS } from '@/components/recyclage/SwissWasteData';
 
-const wastes = [
-  { name: 'Sacs plastique', emoji: '🛍️', bin: 'plastic', recycled: 'Nouveaux sacs' },
-  { name: 'Boîtes carton', emoji: '📦', bin: 'paper', recycled: 'Emballages recyclés' },
-  { name: 'Bouteilles eau', emoji: '💧', bin: 'plastic', recycled: 'Nouvelles bouteilles' },
-  { name: 'Canettes soda', emoji: '🥫', bin: 'metal', recycled: 'Aluminium recyclé' },
-  { name: 'Emballages snacks', emoji: '🍿', bin: 'plastic', recycled: 'Plastique recyclé' },
-  { name: 'Reçus papier', emoji: '🧾', bin: 'paper', recycled: 'Papier recyclé' },
-];
+const wastes = SWISS_WASTE_ITEMS.shop;
 
 export default function RecyclageShop() {
   return (

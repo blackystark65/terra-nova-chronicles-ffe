@@ -1,27 +1,8 @@
 import React from 'react';
 import WasteCollectionZone from '@/components/recyclage/WasteCollectionZone';
+import { SWISS_WASTE_ITEMS } from '@/components/recyclage/SwissWasteData';
 
-const wastes = [
-  { name: 'Assiette en carton', emoji: '🍽️', bin: 'paper', recycled: 'Carton recyclé' },
-  { name: 'Serviette en papier', emoji: '🧻', bin: 'paper', recycled: 'Papier recyclé' },
-  { name: 'Menu papier', emoji: '📋', bin: 'paper', recycled: 'Papier neuf' },
-  { name: 'Boîte pizza', emoji: '📦', bin: 'paper', recycled: 'Carton' },
-  { name: 'Sachet thé', emoji: '🍵', bin: 'organic', recycled: 'Compost' },
-  { name: 'Restes alimentaires', emoji: '🥗', bin: 'organic', recycled: 'Compost' },
-  { name: 'Épluchures fruits', emoji: '🍎', bin: 'organic', recycled: 'Compost' },
-  { name: 'Pain rassis', emoji: '🥖', bin: 'organic', recycled: 'Compost' },
-  { name: 'Noyau avocat', emoji: '🥑', bin: 'organic', recycled: 'Compost' },
-  { name: 'Canette soda', emoji: '🥤', bin: 'metal', recycled: 'Nouvelles canettes' },
-  { name: 'Capsule bouteille', emoji: '🔘', bin: 'metal', recycled: 'Métal recyclé' },
-  { name: 'Couverts plastique', emoji: '🍴', bin: 'plastic', recycled: 'Plastique recyclé' },
-  { name: 'Gobelet plastique', emoji: '🥤', bin: 'plastic', recycled: 'Nouveaux gobelets' },
-  { name: 'Paille plastique', emoji: '🥤', bin: 'plastic', recycled: 'Plastique' },
-  { name: 'Bouteille en verre', emoji: '🍾', bin: 'glass', recycled: 'Nouveau verre' },
-  { name: 'Pot en verre', emoji: '🫙', bin: 'glass', recycled: 'Verre recyclé' },
-  { name: 'Verre à boire', emoji: '🥃', bin: 'glass', recycled: 'Nouveau verre' },
-  { name: 'Emballage sale', emoji: '🗑️', bin: 'general', recycled: 'Incinération' },
-  { name: 'Mouchoir usagé', emoji: '🧻', bin: 'general', recycled: 'Incinération' },
-];
+const wastes = SWISS_WASTE_ITEMS.restaurant;
 
 export default function RecyclageRestaurant() {
   return (
