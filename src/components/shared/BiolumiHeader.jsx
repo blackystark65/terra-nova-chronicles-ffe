@@ -25,7 +25,7 @@ export default function BiolumiHeader({ currentPage }) {
       {/* Bioluminescence subtile */}
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-emerald-500/10 to-teal-500/10 animate-pulse" />
       
-      <nav className="relative max-w-7xl mx-auto px-4 py-2">
+      <nav className="relative max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo Terra Nova avec planète tournante */}
           <Link to={createPageUrl('Home')}>
@@ -62,7 +62,7 @@ export default function BiolumiHeader({ currentPage }) {
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/9e8d7687f_BandeauTerraNovaChronicles.png"
                   alt="Terra Nova Chronicles"
-                  className="h-10 w-auto"
+                  className="h-12 w-auto"
                 />
               </div>
             </motion.div>
@@ -80,7 +80,7 @@ export default function BiolumiHeader({ currentPage }) {
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     className={`
-                      relative px-3 py-1.5 rounded-xl
+                      relative px-4 py-2.5 rounded-xl
                       transition-all duration-300
                       ${isActive ?
                     'bg-gradient-to-r from-emerald-500/30 to-teal-500/30 shadow-lg shadow-emerald-500/20' :
@@ -98,9 +98,9 @@ export default function BiolumiHeader({ currentPage }) {
 
                     }
                     
-                    <div className="relative flex items-center gap-1.5">
-                      <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-300' : 'text-emerald-400/70'}`} />
-                      <span className={`text-xs font-medium ${isActive ? 'text-emerald-200' : 'text-emerald-300/70'}`}>
+                    <div className="relative flex items-center gap-2">
+                      <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-300' : 'text-emerald-400/70'}`} />
+                      <span className={`text-sm font-medium ${isActive ? 'text-emerald-200' : 'text-emerald-300/70'}`}>
                         {item.name}
                       </span>
                     </div>
