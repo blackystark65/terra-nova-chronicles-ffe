@@ -1,10 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { Globe, Leaf, BookOpen, Trophy, User, Flame } from 'lucide-react';
+import { Globe, Leaf, BookOpen, Trophy, User, Flame, X } from 'lucide-react';
 
 export default function BiolumiHeader({ currentPage }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
   const navItems = [
     { name: 'Atlas', icon: Globe, path: 'Atlas' },
     { name: 'Encyclopédie', icon: BookOpen, path: 'Encyclopedia' },
@@ -122,15 +124,22 @@ export default function BiolumiHeader({ currentPage }) {
             })}
           </div>
 
-          {/* Mobile menu - version simplifiée */}
+          {/* Mobile menu button */}
           <div className="md:hidden">
             <motion.button
               whileTap={{ scale: 0.9 }}
-              className="p-2 rounded-xl bg-white/10 backdrop-blur-sm">
-
-              <div className="w-6 h-0.5 bg-emerald-300 mb-1" />
-              <div className="w-6 h-0.5 bg-emerald-300 mb-1" />
-              <div className="w-6 h-0.5 bg-emerald-300" />
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-xl bg-white/10 backdrop-blur-sm"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6 text-emerald-300" />
+              ) : (
+                <>
+                  <div className="w-6 h-0.5 bg-emerald-300 mb-1" />
+                  <div className="w-6 h-0.5 bg-emerald-300 mb-1" />
+                  <div className="w-6 h-0.5 bg-emerald-300" />
+                </>
+              )}
             </motion.button>
           </div>
         </div>
@@ -140,8 +149,52 @@ export default function BiolumiHeader({ currentPage }) {
       <motion.div
         className="h-px bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent"
         animate={{ opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 3, repeat: Infinity }} />
+        transition={{ duration: 3, repeat: Infinity }}
+      />
 
-    </header>);
+      {/* Mobile menu dropdown */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden overflow-hidden"
+          >
+            <div className="px-4 py-4 space-y-2 bg-emerald-950/95 backdrop-blur-xl">
+              {navItems.map((item) => {
+                const isActive = currentPage === item.path;
+                const Icon = item.icon;
+
+                return (
+                  <Link 
+                    key={item.path} 
+                    to={createPageUrl(item.path)}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <motion.div
+                      whileTap={{ scale: 0.95 }}
+                      className={`
+                        flex items-center gap-3 px-4 py-3 rounded-xl
+                        transition-all duration-300
+                        ${isActive ?
+                          'bg-gradient-to-r from-emerald-500/30 to-teal-500/30 shadow-lg' :
+                          'bg-white/5 hover:bg-white/10'
+                        }
+                      `}
+                    >
+                      <Icon className={`w-5 h-5 ${isActive ? 'text-emerald-300' : 'text-emerald-400/70'}`} />
+                      <span className={`text-base font-medium ${isActive ? 'text-emerald-200' : 'text-emerald-300/70'}`}>
+                        {item.name}
+                      </span>
+                    </motion.div>
+                  </Link>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      </header>);
 
 }
