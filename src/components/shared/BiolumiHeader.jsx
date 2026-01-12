@@ -14,6 +14,7 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Jeux', icon: Flame, path: 'Jeux' },
     { name: 'Puzzle', icon: Trophy, path: 'Puzzle' },
     { name: 'Recyclage', icon: Leaf, path: 'RecyclageRoleSelection' },
+    { name: 'Micro-ferme', icon: Leaf, path: 'MicroFerme' },
     { name: 'Missions', icon: Flame, path: 'Missions' },
     { name: 'Climat', icon: Leaf, path: 'Climate' },
     { name: 'Profil', icon: User, path: 'Profile' }];
