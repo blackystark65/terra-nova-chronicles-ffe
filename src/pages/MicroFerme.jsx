@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 
 export default function MicroFerme() {
   const zones = [
+    { id: 'centre_formation', x: '30%', y: '35%' }, // Centre de Formation (dessus ferme péda, droite parking)
     { id: 'milpa', x: '85%', y: '22%' }, // Champs Milpa/Bocage (haut droite)
     { id: 'permaculture', x: '85%', y: '75%' }, // Permaculture (bas droite)
     { id: 'pepiniere', x: '52%', y: '20%' }, // Pépinière/Serre (haut centre)

@@ -25,6 +25,14 @@ export const ZONES_FERME = {
     actions: ['semer', 'repiquer', 'arroser', 'surveiller'],
     plantes_principales: ['Semis', 'Plantons', 'Jeunes plants']
   },
+  centre_formation: {
+    name: 'Centre de Formation',
+    emoji: '🎓',
+    description: 'Inscription et formation des élèves',
+    color: 'from-indigo-500 to-purple-600',
+    actions: ['inscrire', 'former', 'choisir_poste', 'rejoindre_classe'],
+    plantes_principales: []
+  },
   jouale: {
     name: 'Jouale',
     emoji: '🍇',
@@ -172,6 +180,7 @@ export const SCHEDULES_FERME = {
 };
 
 export const ZONE_PAGES = {
+  centre_formation: 'FermeCentreFormation',
   milpa: 'FermeMilpa',
   permaculture: 'FermePermaculture',
   pepiniere: 'FermePepiniere',
