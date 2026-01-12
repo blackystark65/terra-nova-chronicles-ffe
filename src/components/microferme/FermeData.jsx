@@ -17,6 +17,14 @@ export const ZONES_FERME = {
     actions: ['designer', 'planter', 'observer', 'recolter'],
     plantes_principales: ['Légumes perpétuels', 'Aromatiques', 'Fleurs']
   },
+  pepiniere: {
+    name: 'Pépinière / Serre',
+    emoji: '🌱',
+    description: 'Serre pour semis et plantons',
+    color: 'from-cyan-500 to-blue-500',
+    actions: ['semer', 'repiquer', 'arroser', 'surveiller'],
+    plantes_principales: ['Semis', 'Plantons', 'Jeunes plants']
+  },
   jouale: {
     name: 'Jouale',
     emoji: '🍇',
@@ -166,6 +174,7 @@ export const SCHEDULES_FERME = {
 export const ZONE_PAGES = {
   milpa: 'FermeMilpa',
   permaculture: 'FermePermaculture',
+  pepiniere: 'FermePepiniere',
   jouale: 'FermeJouale',
   bocage: 'FermeBocage',
   foret_jardin: 'FermeForetJardin',

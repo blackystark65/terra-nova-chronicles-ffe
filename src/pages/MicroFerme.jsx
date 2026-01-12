@@ -11,6 +11,7 @@ export default function MicroFerme() {
   const zones = [
     { id: 'milpa', x: '85%', y: '22%' }, // Champs Milpa/Bocage (haut droite)
     { id: 'permaculture', x: '85%', y: '75%' }, // Permaculture (bas droite)
+    { id: 'pepiniere', x: '52%', y: '20%' }, // Pépinière/Serre (haut centre)
     { id: 'jouale', x: '85%', y: '55%' }, // Agroforesterie (droite centre)
     { id: 'bocage', x: '85%', y: '22%' }, // Champs en bocage (haut droite)
     { id: 'foret_jardin', x: '73%', y: '25%' }, // Forêt-jardin (haut droite)
