@@ -9,7 +9,8 @@ import { Button } from '@/components/ui/button';
 
 export default function MicroFerme() {
   const zones = [
-    { id: 'milpa', x: '85%', y: '75%' }, // Permaculture (bas droite)
+    { id: 'milpa', x: '85%', y: '22%' }, // Champs Milpa/Bocage (haut droite)
+    { id: 'permaculture', x: '85%', y: '75%' }, // Permaculture (bas droite)
     { id: 'jouale', x: '85%', y: '55%' }, // Agroforesterie (droite centre)
     { id: 'bocage', x: '85%', y: '22%' }, // Champs en bocage (haut droite)
     { id: 'foret_jardin', x: '73%', y: '25%' }, // Forêt-jardin (haut droite)
