@@ -9,14 +9,14 @@ import { Button } from '@/components/ui/button';
 
 export default function MicroFerme() {
   const zones = [
-    { id: 'milpa', x: '25%', y: '30%' },
-    { id: 'jouale', x: '55%', y: '35%' },
-    { id: 'bocage', x: '75%', y: '45%' },
-    { id: 'foret_jardin', x: '20%', y: '60%' },
-    { id: 'boulangerie', x: '45%', y: '65%' },
-    { id: 'epicerie', x: '65%', y: '70%' },
-    { id: 'ferme_pedagogique', x: '35%', y: '80%' },
-    { id: 'compost', x: '80%', y: '75%' }
+    { id: 'milpa', x: '85%', y: '75%' }, // Permaculture (bas droite)
+    { id: 'jouale', x: '85%', y: '55%' }, // Agroforesterie (droite centre)
+    { id: 'bocage', x: '85%', y: '22%' }, // Champs en bocage (haut droite)
+    { id: 'foret_jardin', x: '73%', y: '25%' }, // Forêt-jardin (haut droite)
+    { id: 'boulangerie', x: '15%', y: '75%' }, // Boulangerie (bas gauche)
+    { id: 'epicerie', x: '30%', y: '65%' }, // Épicerie (centre gauche)
+    { id: 'ferme_pedagogique', x: '52%', y: '62%' }, // Ferme pédagogique (centre)
+    { id: 'compost', x: '78%', y: '62%' } // Compost (droite centre)
   ];
 
   return (
@@ -25,10 +25,10 @@ export default function MicroFerme() {
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600)',
+          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/82112f183_Micro-fermeTerraNova.png)',
         }}
       />
-      <div className="fixed inset-0 bg-gradient-to-br from-green-950/85 via-emerald-950/80 to-teal-950/85" />
+      <div className="fixed inset-0 bg-slate-950/20" />
       
       <BiolumiHeader currentPage="MicroFerme" />
 
@@ -66,7 +66,14 @@ export default function MicroFerme() {
               Plan de la Ferme
             </h2>
             
-            <div className="relative w-full h-[600px] bg-green-900/20 rounded-2xl overflow-hidden">
+            <div className="relative w-full h-[700px] rounded-2xl overflow-hidden">
+              {/* Image de la ferme */}
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/82112f183_Micro-fermeTerraNova.png"
+                alt="Plan de la Micro-Ferme Terra Nova"
+                className="w-full h-full object-contain"
+              />
+              
               {/* Zones cliquables */}
               {zones.map((zone) => {
                 const zoneData = ZONES_FERME[zone.id];
@@ -81,21 +88,22 @@ export default function MicroFerme() {
                   >
                     <Link to={createPageUrl('FermeRoleSelection')}>
                       <motion.div
-                        whileHover={{ scale: 1.1 }}
+                        whileHover={{ scale: 1.15 }}
                         whileTap={{ scale: 0.95 }}
-                        className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${zoneData.color} 
-                          flex items-center justify-center cursor-pointer shadow-xl
-                          border-4 border-white/30 transition-all`}
+                        className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${zoneData.color} 
+                          flex items-center justify-center cursor-pointer shadow-2xl
+                          border-3 border-white/60 transition-all backdrop-blur-sm`}
                       >
-                        <span className="text-5xl">{zoneData.emoji}</span>
+                        <span className="text-4xl">{zoneData.emoji}</span>
                       </motion.div>
                     </Link>
                     
                     {/* Tooltip */}
                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 
-                      opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                      <div className="bg-slate-900/95 text-white px-4 py-2 rounded-xl text-sm whitespace-nowrap shadow-xl">
-                        {zoneData.name}
+                      opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                      <div className="bg-slate-900/95 text-white px-4 py-2 rounded-xl text-sm whitespace-nowrap shadow-xl border border-emerald-400/50">
+                        <div className="font-bold">{zoneData.name}</div>
+                        <div className="text-xs text-emerald-300">{zoneData.description}</div>
                       </div>
                     </div>
                   </motion.div>
