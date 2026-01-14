@@ -7,14 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Globe, Compass, BookOpen, Flame, Leaf, Droplets, Wind, Mountain, LogOut } from 'lucide-react';
 
 export default function HomePage() {
-  const handleLogout = async () => {
-    try {
-      await base44.auth.logout();
-      base44.auth.redirectToLogin();
-    } catch (error) {
-      console.error('Logout error:', error);
-      base44.auth.redirectToLogin();
-    }
+  const handleLogout = () => {
+    base44.auth.logout();
   };
 
   return (
