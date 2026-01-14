@@ -22,6 +22,9 @@ export default function BiolumiHeader({ currentPage }) {
 
   const handleLogout = () => {
     base44.auth.logout();
+    setTimeout(() => {
+      window.location.href = window.location.origin;
+    }, 100);
   };
 
 

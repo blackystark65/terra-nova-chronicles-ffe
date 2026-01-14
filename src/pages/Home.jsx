@@ -9,6 +9,9 @@ import { Globe, Compass, BookOpen, Flame, Leaf, Droplets, Wind, Mountain, LogOut
 export default function HomePage() {
   const handleLogout = () => {
     base44.auth.logout();
+    setTimeout(() => {
+      window.location.href = window.location.origin;
+    }, 100);
   };
 
   return (
