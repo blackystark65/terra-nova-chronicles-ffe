@@ -200,7 +200,7 @@ export default function PuzzlePage() {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto px-2">
                 {PUZZLES.map((puzzle) => (
                   <motion.div
                     key={puzzle.id}
@@ -209,16 +209,16 @@ export default function PuzzlePage() {
                     onClick={() => startPuzzle(puzzle)}
                     className="cursor-pointer"
                   >
-                    <div className={`relative rounded-3xl overflow-hidden border-4 border-white/20 shadow-2xl bg-gradient-to-br ${puzzle.color}`}>
+                    <div className={`relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 sm:border-4 border-white/20 shadow-2xl bg-gradient-to-br ${puzzle.color}`}>
                       <img 
                         src={puzzle.image} 
                         alt={puzzle.name}
-                        className="w-full h-64 object-cover opacity-80"
+                        className="w-full h-40 sm:h-64 object-cover opacity-80"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 className="text-2xl font-bold text-white mb-2">{puzzle.name}</h3>
-                        <p className="text-white/80">{TOTAL_PIECES} pièces</p>
+                      <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6">
+                        <h3 className="text-lg sm:text-2xl font-bold text-white mb-1 sm:mb-2">{puzzle.name}</h3>
+                        <p className="text-sm sm:text-base text-white/80">{TOTAL_PIECES} pièces</p>
                       </div>
                     </div>
                   </motion.div>
@@ -238,7 +238,7 @@ export default function PuzzlePage() {
                 Plus c'est difficile, moins tu vois la photo de référence !
               </p>
               
-              <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 max-w-5xl mx-auto mb-8 px-2">
                 {DIFFICULTY_LEVELS.map((level) => (
                   <motion.div
                     key={level.id}
@@ -247,9 +247,9 @@ export default function PuzzlePage() {
                     onClick={() => startGameWithDifficulty(level)}
                     className="cursor-pointer"
                   >
-                    <div className="relative rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl bg-gradient-to-br from-purple-500 to-blue-600 p-6">
-                      <h3 className="text-2xl font-bold text-white mb-3">{level.name}</h3>
-                      <div className="relative h-32 rounded-xl overflow-hidden mb-3">
+                    <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border-2 sm:border-4 border-white/20 shadow-2xl bg-gradient-to-br from-purple-500 to-blue-600 p-3 sm:p-6">
+                      <h3 className="text-lg sm:text-2xl font-bold text-white mb-2 sm:mb-3">{level.name}</h3>
+                      <div className="relative h-24 sm:h-32 rounded-lg sm:rounded-xl overflow-hidden mb-2 sm:mb-3">
                         <img 
                           src={selectedPuzzle.image} 
                           alt="Aperçu"
@@ -258,11 +258,11 @@ export default function PuzzlePage() {
                         />
                         {level.opacity === 0 && (
                           <div className="absolute inset-0 bg-black flex items-center justify-center">
-                            <span className="text-white text-lg font-bold">❓</span>
+                            <span className="text-white text-base sm:text-lg font-bold">❓</span>
                           </div>
                         )}
                       </div>
-                      <p className="text-white/80 text-sm">
+                      <p className="text-white/80 text-xs sm:text-sm">
                         Photo visible à {Math.round(level.opacity * 100)}%
                       </p>
                     </div>
@@ -307,14 +307,14 @@ export default function PuzzlePage() {
                 </Button>
               </div>
 
-              <div className="grid lg:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
                 {/* Plateau de puzzle */}
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-blue-300 text-center">
+                <div className="space-y-2 sm:space-y-4">
+                  <h2 className="text-lg sm:text-2xl font-bold text-blue-300 text-center">
                     Plateau de Puzzle
                   </h2>
                   <div 
-                    className="relative bg-white/10 backdrop-blur-xl rounded-3xl p-2 border-4 border-blue-400/30"
+                    className="relative bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-1 sm:p-2 border-2 sm:border-4 border-blue-400/30"
                     style={{ aspectRatio: '1' }}
                   >
                     {/* Photo de référence en fond */}
@@ -375,18 +375,28 @@ export default function PuzzlePage() {
                 </div>
 
                 {/* Zone des pièces disponibles */}
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-blue-300 text-center">
+                <div className="space-y-2 sm:space-y-4">
+                  <h2 className="text-lg sm:text-2xl font-bold text-blue-300 text-center">
                     Pièces Disponibles ({pieces.length})
                   </h2>
-                  <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-2 border-4 border-purple-400/30 min-h-[500px] max-h-[600px] overflow-y-auto">
+                  <div className="bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-1 sm:p-2 border-2 sm:border-4 border-purple-400/30 min-h-[300px] sm:min-h-[500px] max-h-[400px] sm:max-h-[600px] overflow-y-auto">
                     <div className="grid grid-cols-4 gap-1">
                       {pieces.map((piece) => (
                         <motion.div
                           key={piece.id}
                           draggable
                           onDragStart={() => handleDragStart(piece)}
-                          className="relative aspect-square border border-purple-400 rounded overflow-hidden cursor-move hover:border-purple-300 transition-all"
+                          onTouchStart={() => handleDragStart(piece)}
+                          onClick={() => {
+                            if (draggedPiece?.id === piece.id) {
+                              setDraggedPiece(null);
+                            } else {
+                              handleDragStart(piece);
+                            }
+                          }}
+                          className={`relative aspect-square border rounded overflow-hidden cursor-pointer touch-manipulation transition-all ${
+                            draggedPiece?.id === piece.id ? 'border-yellow-400 border-2' : 'border-purple-400'
+                          }`}
                           whileHover={{ scale: 1.15, rotate: 5, zIndex: 10 }}
                           whileTap={{ scale: 0.95 }}
                         >
@@ -402,8 +412,8 @@ export default function PuzzlePage() {
                       ))}
                     </div>
                   </div>
-                  <p className="text-center text-blue-200 text-sm mt-2">
-                    💡 Glisse-dépose ou clique sur les pièces
+                  <p className="text-center text-blue-200 text-xs sm:text-sm mt-2 px-2">
+                    💡 Mobile: Sélectionne puis tape sur le plateau • PC: Glisse-dépose
                   </p>
                 </div>
               </div>

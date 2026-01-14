@@ -139,43 +139,43 @@ export default function WasteCollectionZone({
       
       <BiolumiHeader currentPage="Recyclage" />
 
-      <main className="relative z-10 pt-24 px-4 pb-12">
+      <main className="relative z-10 pt-16 sm:pt-24 px-2 sm:px-4 pb-8 sm:pb-12">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-8">
             <Link to={timeLeft ? createPageUrl('RecyclageSchedule') : createPageUrl('Recyclage')}>
-              <Button variant="outline" className="border-emerald-400 text-emerald-300">
-                <ArrowLeft className="w-5 h-5 mr-2" />
-                {timeLeft ? 'Abandonner' : 'Retour au Plan'}
+              <Button variant="outline" className="border-emerald-400 text-emerald-300 text-sm sm:text-base">
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                {timeLeft ? 'Abandonner' : 'Retour'}
               </Button>
             </Link>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-2 sm:gap-4">
               {timeLeft !== null && (
-                <div className={`bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border-2 ${
+                <div className={`bg-white/10 backdrop-blur-xl px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl border-2 ${
                   timeLeft < 30 ? 'border-red-400 animate-pulse' : 'border-yellow-400'
                 }`}>
-                  <span className={timeLeft < 30 ? 'text-red-300 font-bold' : 'text-yellow-300'}>
+                  <span className={`text-sm sm:text-base ${timeLeft < 30 ? 'text-red-300 font-bold' : 'text-yellow-300'}`}>
                     ⏱️ {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
                   </span>
                 </div>
               )}
               {timeLeft !== null && (
-                <div className="bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border border-purple-400/30">
-                  <span className="text-purple-300 font-bold">
-                    ⭐ {score} points
+                <div className="bg-white/10 backdrop-blur-xl px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-purple-400/30">
+                  <span className="text-purple-300 font-bold text-sm sm:text-base">
+                    ⭐ {score}
                   </span>
                 </div>
               )}
-              <div className="bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border border-emerald-400/30">
-                <span className="text-emerald-300">
-                  <Trash2 className="w-5 h-5 inline mr-2" />
-                  Collectés: {collectedWastes.length}
+              <div className="bg-white/10 backdrop-blur-xl px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-emerald-400/30">
+                <span className="text-emerald-300 text-sm sm:text-base">
+                  <Trash2 className="w-4 h-4 sm:w-5 sm:h-5 inline mr-1 sm:mr-2" />
+                  {collectedWastes.length}
                 </span>
               </div>
-              <div className="bg-white/10 backdrop-blur-xl px-6 py-3 rounded-2xl border border-green-400/30">
-                <span className="text-green-300">
-                  <CheckCircle className="w-5 h-5 inline mr-2" />
-                  Triés: {getTotalBinItems()}
+              <div className="bg-white/10 backdrop-blur-xl px-3 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-green-400/30">
+                <span className="text-green-300 text-sm sm:text-base">
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 inline mr-1 sm:mr-2" />
+                  {getTotalBinItems()}
                 </span>
               </div>
             </div>
@@ -196,18 +196,18 @@ export default function WasteCollectionZone({
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
             {/* Wastes appearing continuously */}
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-emerald-300 mb-4">
+            <div className="space-y-2 sm:space-y-4">
+              <h2 className="text-lg sm:text-2xl font-bold text-emerald-300 mb-2 sm:mb-4">
                 Déchets qui apparaissent
               </h2>
               {collectedWastes.length === 0 ? (
-                <div className="text-center py-12 text-emerald-400/50">
+                <div className="text-center py-8 sm:py-12 text-emerald-400/50 text-sm sm:text-base">
                   Les déchets vont apparaître...
                 </div>
               ) : (
-                <div className="grid grid-cols-2 gap-4 max-h-[500px] overflow-y-auto">
+                <div className="grid grid-cols-2 gap-2 sm:gap-4 max-h-[300px] sm:max-h-[500px] overflow-y-auto">
                   {collectedWastes.map((waste, i) => (
                     <motion.div
                       key={waste.id || i}
@@ -232,11 +232,11 @@ export default function WasteCollectionZone({
             </div>
 
             {/* Bins */}
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-emerald-300 mb-4">
-                Poubelles de tri sélectif (normes suisses)
+            <div className="space-y-2 sm:space-y-4">
+              <h2 className="text-lg sm:text-2xl font-bold text-emerald-300 mb-2 sm:mb-4">
+                Poubelles de tri sélectif
               </h2>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {Object.entries(BIN_TYPES).map(([key, bin]) => (
                   <motion.div
                     key={key}

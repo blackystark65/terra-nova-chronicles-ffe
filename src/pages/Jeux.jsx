@@ -185,29 +185,29 @@ export default function JeuxPage() {
               </div>
 
               {currentCard ? (
-                <div className="grid grid-cols-3 gap-8 mb-12">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12 px-2">
                   {/* Panier Gauche - Éteints */}
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     onClick={() => checkAnswer('extinct')}
-                    className="cursor-pointer"
+                    className="cursor-pointer order-1 sm:order-1"
                   >
-                    <div className={`h-64 rounded-3xl bg-gradient-to-br ${categoryColors.extinct} border-4 border-white/20 flex flex-col items-center justify-center p-6 shadow-2xl`}>
-                      <XCircle className="w-16 h-16 text-white mb-4" />
-                      <h3 className="text-2xl font-bold text-white text-center">
+                    <div className={`h-32 sm:h-64 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${categoryColors.extinct} border-2 sm:border-4 border-white/20 flex flex-col items-center justify-center p-3 sm:p-6 shadow-2xl`}>
+                      <XCircle className="w-8 h-8 sm:w-16 sm:h-16 text-white mb-2 sm:mb-4" />
+                      <h3 className="text-base sm:text-2xl font-bold text-white text-center">
                         {categoryLabels.extinct}
                       </h3>
                     </div>
                   </motion.div>
 
                   {/* Paquet de cartes au centre */}
-                  <div className="flex flex-col items-center gap-6">
+                  <div className="flex flex-col items-center gap-3 sm:gap-6 order-3 sm:order-2">
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       className="relative"
                     >
-                      <div className={`w-64 h-96 rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-gradient-to-br ${categoryColors[currentCard.category]} relative`}>
+                      <div className={`w-48 h-72 sm:w-64 sm:h-96 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 sm:border-8 border-white bg-gradient-to-br ${categoryColors[currentCard.category]} relative`}>
                         {currentCard.image ? (
                           <img 
                             src={currentCard.image} 
@@ -229,15 +229,15 @@ export default function JeuxPage() {
                       </div>
                     </motion.div>
 
-                    <div className="w-full space-y-3">
+                    <div className="w-full max-w-sm space-y-2 sm:space-y-3 px-2">
                       <Input
                         type="text"
-                        placeholder="Nom de l'animal (français ou anglais)..."
+                        placeholder="Nom de l'animal..."
                         value={userGuess}
                         onChange={(e) => setUserGuess(e.target.value)}
-                        className="w-full py-6 text-lg border-2 border-emerald-400 bg-white/90"
+                        className="w-full py-4 sm:py-6 text-base sm:text-lg border-2 border-emerald-400 bg-white/90"
                       />
-                      <p className="text-emerald-300 text-center text-sm">
+                      <p className="text-emerald-300 text-center text-xs sm:text-sm">
                         Clique sur un panier pour valider
                       </p>
                     </div>
@@ -247,11 +247,11 @@ export default function JeuxPage() {
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     onClick={() => checkAnswer('saved')}
-                    className="cursor-pointer"
+                    className="cursor-pointer order-2 sm:order-3"
                   >
-                    <div className={`h-64 rounded-3xl bg-gradient-to-br ${categoryColors.saved} border-4 border-white/20 flex flex-col items-center justify-center p-6 shadow-2xl`}>
-                      <CheckCircle className="w-16 h-16 text-white mb-4" />
-                      <h3 className="text-2xl font-bold text-white text-center">
+                    <div className={`h-32 sm:h-64 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${categoryColors.saved} border-2 sm:border-4 border-white/20 flex flex-col items-center justify-center p-3 sm:p-6 shadow-2xl`}>
+                      <CheckCircle className="w-8 h-8 sm:w-16 sm:h-16 text-white mb-2 sm:mb-4" />
+                      <h3 className="text-base sm:text-2xl font-bold text-white text-center">
                         {categoryLabels.saved}
                       </h3>
                     </div>
@@ -281,15 +281,15 @@ export default function JeuxPage() {
 
               {/* Panier Bas - En Danger */}
               {currentCard && (
-                <div className="flex justify-center">
+                <div className="flex justify-center px-2">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     onClick={() => checkAnswer('endangered')}
-                    className="cursor-pointer w-96"
+                    className="cursor-pointer w-full max-w-sm sm:w-96"
                   >
-                    <div className={`h-64 rounded-3xl bg-gradient-to-br ${categoryColors.endangered} border-4 border-white/20 flex flex-col items-center justify-center p-6 shadow-2xl`}>
-                      <Trophy className="w-16 h-16 text-white mb-4" />
-                      <h3 className="text-2xl font-bold text-white text-center">
+                    <div className={`h-32 sm:h-64 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${categoryColors.endangered} border-2 sm:border-4 border-white/20 flex flex-col items-center justify-center p-3 sm:p-6 shadow-2xl`}>
+                      <Trophy className="w-8 h-8 sm:w-16 sm:h-16 text-white mb-2 sm:mb-4" />
+                      <h3 className="text-base sm:text-2xl font-bold text-white text-center">
                         {categoryLabels.endangered}
                       </h3>
                     </div>
