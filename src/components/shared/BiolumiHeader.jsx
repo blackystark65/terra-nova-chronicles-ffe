@@ -20,8 +20,12 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Climat', icon: Leaf, path: 'Climate' },
     { name: 'Profil', icon: User, path: 'Profile' }];
 
-  const handleLogout = () => {
-    base44.auth.logout();
+  const handleLogout = async () => {
+    try {
+      await base44.auth.logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
 
