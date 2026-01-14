@@ -21,10 +21,7 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Profil', icon: User, path: 'Profile' }];
 
   const handleLogout = () => {
-    base44.auth.logout();
-    setTimeout(() => {
-      window.location.href = window.location.origin;
-    }, 100);
+    base44.auth.redirectToLogin();
   };
 
 
