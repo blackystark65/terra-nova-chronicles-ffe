@@ -58,7 +58,7 @@ export default function RecyclagePage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="relative rounded-3xl overflow-hidden border-4 border-emerald-400/30 shadow-2xl mb-8"
+            className="relative rounded-3xl overflow-hidden border-4 border-emerald-400/30 shadow-2xl mb-8 max-w-4xl mx-auto"
           >
             <img 
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/17ce4623e_PlanHotelTerraaNova.png"
@@ -81,7 +81,7 @@ export default function RecyclagePage() {
                   whileHover={{ scale: 1.3 }}
                 >
                   <motion.div
-                    className={`absolute inset-0 w-16 h-16 rounded-full bg-gradient-to-br ${zone.color} opacity-40`}
+                    className={`absolute inset-0 w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br ${zone.color} opacity-40`}
                     animate={{
                       scale: [1, 1.3, 1],
                       opacity: [0.4, 0, 0.4],
@@ -89,8 +89,8 @@ export default function RecyclagePage() {
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                   
-                  <div className={`relative w-16 h-16 rounded-full bg-gradient-to-br ${zone.color} flex items-center justify-center shadow-lg border-2 border-white/50`}>
-                    <span className="text-3xl">{zone.emoji}</span>
+                  <div className={`relative w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br ${zone.color} flex items-center justify-center shadow-lg border-2 border-white/50`}>
+                    <span className="text-xl sm:text-2xl md:text-3xl">{zone.emoji}</span>
                   </div>
 
                   {hoveredZone === zone.id && (
