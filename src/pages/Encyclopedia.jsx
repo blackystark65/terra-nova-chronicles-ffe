@@ -598,21 +598,21 @@ export default function EncyclopediaPage() {
               </div>
 
               {/* Input */}
-              <div className="p-6 border-t-4 border-emerald-200 bg-white">
-                <div className="flex gap-3">
+              <div className="p-4 sm:p-6 border-t-4 border-emerald-200 bg-white">
+                <div className="flex gap-2 sm:gap-3">
                   <Input
                     type="text"
                     placeholder="Pose ta question à Bryan..."
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                    onKeyPress={(e) => e.key === 'Enter' && !isLoading && inputMessage.trim() && handleSendMessage()}
                     disabled={isLoading}
-                    className="flex-1 py-6 text-lg border-2 border-emerald-300 rounded-xl"
+                    className="flex-1 py-4 sm:py-6 text-base sm:text-lg border-2 border-emerald-300 rounded-xl touch-manipulation"
                   />
                   <Button
                     onClick={handleSendMessage}
                     disabled={isLoading || !inputMessage.trim()}
-                    className="px-8 py-6 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 rounded-xl"
+                    className="px-4 sm:px-8 py-4 sm:py-6 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 rounded-xl touch-manipulation min-w-[60px] sm:min-w-auto"
                   >
                     <Send className="w-5 h-5" />
                   </Button>

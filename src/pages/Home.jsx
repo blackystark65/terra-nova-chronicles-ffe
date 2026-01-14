@@ -2,10 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
-import { Globe, Compass, BookOpen, Flame, Leaf, Droplets, Wind, Mountain } from 'lucide-react';
+import { Globe, Compass, BookOpen, Flame, Leaf, Droplets, Wind, Mountain, LogOut } from 'lucide-react';
 
 export default function HomePage() {
+  const handleLogout = () => {
+    base44.auth.logout();
+  };
+
   return (
     <div className="min-h-screen overflow-hidden relative">
       {/* Image de fond avec overlay */}
@@ -57,6 +62,21 @@ export default function HomePage() {
 
 
       <div className="relative z-10 min-h-screen flex flex-col">
+        {/* Bouton déconnexion - Toujours visible */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="fixed top-4 right-4 z-50"
+        >
+          <Button
+            onClick={handleLogout}
+            className="flex items-center gap-2 bg-red-500/20 hover:bg-red-500/30 backdrop-blur-xl border border-red-400/30 text-red-300 hover:text-red-200 rounded-xl px-4 py-2 shadow-lg"
+          >
+            <LogOut className="w-4 h-4" />
+            <span className="hidden sm:inline">Déconnexion</span>
+          </Button>
+        </motion.div>
+
         {/* Hero Section */}
         <section className="flex-1 flex items-center justify-center px-4 py-20">
           <div className="max-w-6xl mx-auto text-center">

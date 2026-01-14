@@ -5,7 +5,6 @@ import BiomeOcean from './pages/BiomeOcean';
 import BiomeRainforest from './pages/BiomeRainforest';
 import BiomeSavanna from './pages/BiomeSavanna';
 import Climate from './pages/Climate';
-import Encyclopedia from './pages/Encyclopedia';
 import FermeCentreFormation from './pages/FermeCentreFormation';
 import FermeRoleSelection from './pages/FermeRoleSelection';
 import Home from './pages/Home';
@@ -30,6 +29,7 @@ import RecyclageRoleSelection from './pages/RecyclageRoleSelection';
 import RecyclageRooms from './pages/RecyclageRooms';
 import RecyclageSchedule from './pages/RecyclageSchedule';
 import RecyclageShop from './pages/RecyclageShop';
+import Encyclopedia from './pages/Encyclopedia';
 
 
 export const PAGES = {
@@ -40,7 +40,6 @@ export const PAGES = {
     "BiomeRainforest": BiomeRainforest,
     "BiomeSavanna": BiomeSavanna,
     "Climate": Climate,
-    "Encyclopedia": Encyclopedia,
     "FermeCentreFormation": FermeCentreFormation,
     "FermeRoleSelection": FermeRoleSelection,
     "Home": Home,
@@ -65,6 +64,7 @@ export const PAGES = {
     "RecyclageRooms": RecyclageRooms,
     "RecyclageSchedule": RecyclageSchedule,
     "RecyclageShop": RecyclageShop,
+    "Encyclopedia": Encyclopedia,
 }
 
 export const pagesConfig = {
