@@ -185,16 +185,16 @@ export default function JeuxPage() {
               </div>
 
               {currentCard ? (
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12 px-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-12 px-2">
                   {/* Panier Gauche - Éteints */}
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     onClick={() => checkAnswer('extinct')}
                     className="cursor-pointer order-1 sm:order-1"
                   >
-                    <div className={`h-32 sm:h-64 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${categoryColors.extinct} border-2 sm:border-4 border-white/20 flex flex-col items-center justify-center p-3 sm:p-6 shadow-2xl`}>
-                      <XCircle className="w-8 h-8 sm:w-16 sm:h-16 text-white mb-2 sm:mb-4" />
-                      <h3 className="text-base sm:text-2xl font-bold text-white text-center">
+                    <div className={`h-24 sm:h-64 rounded-xl sm:rounded-3xl bg-gradient-to-br ${categoryColors.extinct} border-2 sm:border-4 border-white/20 flex flex-col items-center justify-center p-2 sm:p-6 shadow-2xl`}>
+                      <XCircle className="w-6 h-6 sm:w-16 sm:h-16 text-white mb-1 sm:mb-4" />
+                      <h3 className="text-sm sm:text-2xl font-bold text-white text-center">
                         {categoryLabels.extinct}
                       </h3>
                     </div>
@@ -207,7 +207,7 @@ export default function JeuxPage() {
                       animate={{ scale: 1 }}
                       className="relative"
                     >
-                      <div className={`w-48 h-72 sm:w-64 sm:h-96 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 sm:border-8 border-white bg-gradient-to-br ${categoryColors[currentCard.category]} relative`}>
+                      <div className={`w-32 h-48 sm:w-64 sm:h-96 rounded-xl sm:rounded-3xl overflow-hidden shadow-2xl border-3 sm:border-8 border-white bg-gradient-to-br ${categoryColors[currentCard.category]} relative`}>
                         {currentCard.image ? (
                           <img 
                             src={currentCard.image} 
@@ -219,17 +219,17 @@ export default function JeuxPage() {
                             }}
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center text-white text-6xl">
+                          <div className="w-full h-full flex items-center justify-center text-white text-4xl sm:text-6xl">
                             🐾
                           </div>
                         )}
-                        <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white text-center py-4">
-                          <p className="text-sm opacity-60">Trouve le nom !</p>
+                        <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white text-center py-2 sm:py-4">
+                          <p className="text-xs sm:text-sm opacity-60">Trouve le nom !</p>
                         </div>
                       </div>
                     </motion.div>
 
-                    <div className="w-full max-w-sm space-y-2 sm:space-y-3 px-2">
+                    <div className="w-full space-y-2 sm:space-y-3 px-2">
                       <Input
                         type="text"
                         placeholder="Nom de l'animal..."
@@ -249,9 +249,9 @@ export default function JeuxPage() {
                     onClick={() => checkAnswer('saved')}
                     className="cursor-pointer order-2 sm:order-3"
                   >
-                    <div className={`h-32 sm:h-64 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${categoryColors.saved} border-2 sm:border-4 border-white/20 flex flex-col items-center justify-center p-3 sm:p-6 shadow-2xl`}>
-                      <CheckCircle className="w-8 h-8 sm:w-16 sm:h-16 text-white mb-2 sm:mb-4" />
-                      <h3 className="text-base sm:text-2xl font-bold text-white text-center">
+                    <div className={`h-24 sm:h-64 rounded-xl sm:rounded-3xl bg-gradient-to-br ${categoryColors.saved} border-2 sm:border-4 border-white/20 flex flex-col items-center justify-center p-2 sm:p-6 shadow-2xl`}>
+                      <CheckCircle className="w-6 h-6 sm:w-16 sm:h-16 text-white mb-1 sm:mb-4" />
+                      <h3 className="text-sm sm:text-2xl font-bold text-white text-center">
                         {categoryLabels.saved}
                       </h3>
                     </div>
@@ -287,9 +287,9 @@ export default function JeuxPage() {
                     onClick={() => checkAnswer('endangered')}
                     className="cursor-pointer w-full max-w-sm sm:w-96"
                   >
-                    <div className={`h-32 sm:h-64 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${categoryColors.endangered} border-2 sm:border-4 border-white/20 flex flex-col items-center justify-center p-3 sm:p-6 shadow-2xl`}>
-                      <Trophy className="w-8 h-8 sm:w-16 sm:h-16 text-white mb-2 sm:mb-4" />
-                      <h3 className="text-base sm:text-2xl font-bold text-white text-center">
+                    <div className={`h-24 sm:h-64 rounded-xl sm:rounded-3xl bg-gradient-to-br ${categoryColors.endangered} border-2 sm:border-4 border-white/20 flex flex-col items-center justify-center p-2 sm:p-6 shadow-2xl`}>
+                      <Trophy className="w-6 h-6 sm:w-16 sm:h-16 text-white mb-1 sm:mb-4" />
+                      <h3 className="text-sm sm:text-2xl font-bold text-white text-center">
                         {categoryLabels.endangered}
                       </h3>
                     </div>
