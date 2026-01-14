@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { Globe, Leaf, BookOpen, Trophy, User, Flame, X } from 'lucide-react';
+import { base44 } from '@/api/base44Client';
+import { Globe, Leaf, BookOpen, Trophy, User, Flame, X, LogOut } from 'lucide-react';
 
 export default function BiolumiHeader({ currentPage }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,6 +19,10 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Missions', icon: Flame, path: 'Missions' },
     { name: 'Climat', icon: Leaf, path: 'Climate' },
     { name: 'Profil', icon: User, path: 'Profile' }];
+
+  const handleLogout = () => {
+    base44.auth.logout();
+  };
 
 
   return (
@@ -125,6 +130,17 @@ export default function BiolumiHeader({ currentPage }) {
             })}
           </div>
 
+          {/* Logout button (desktop) */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleLogout}
+            className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/20 hover:bg-red-500/30 border border-red-400/30 transition-all"
+          >
+            <LogOut className="w-4 h-4 text-red-300" />
+            <span className="text-sm font-medium text-red-300">Déconnexion</span>
+          </motion.button>
+
           {/* Mobile menu button */}
           <div className="md:hidden">
             <motion.button
@@ -190,12 +206,22 @@ export default function BiolumiHeader({ currentPage }) {
                       </span>
                     </motion.div>
                   </Link>
-                );
-              })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  );
+                  })}
+
+                  {/* Logout button in mobile menu */}
+                  <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleLogout}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-red-500/20 hover:bg-red-500/30 border border-red-400/30 transition-all w-full"
+                  >
+                  <LogOut className="w-5 h-5 text-red-300" />
+                  <span className="text-base font-medium text-red-300">Déconnexion</span>
+                  </motion.button>
+                  </div>
+                  </motion.div>
+                  )}
+                  </AnimatePresence>
       </header>);
 
 }
