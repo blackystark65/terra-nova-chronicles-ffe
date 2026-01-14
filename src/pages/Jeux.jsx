@@ -304,20 +304,20 @@ export default function JeuxPage() {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -50 }}
-                    className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
+                    className="fixed bottom-4 sm:bottom-8 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-50 flex justify-center"
                   >
-                    <div className="bg-white rounded-3xl p-6 shadow-2xl border-4 border-emerald-400 min-w-96">
-                      <p className="text-2xl font-bold text-center mb-2">{feedback.message}</p>
-                      <p className="text-lg text-center text-gray-600">
+                    <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl border-3 sm:border-4 border-emerald-400 w-full max-w-md sm:min-w-96">
+                      <p className="text-lg sm:text-2xl font-bold text-center mb-2">{feedback.message}</p>
+                      <p className="text-sm sm:text-lg text-center text-gray-600">
                         Réponse correcte: <span className="font-bold text-emerald-600">{feedback.correctName}</span>
                         {currentCard?.name_en && (
-                          <span className="text-sm text-gray-500"> ({currentCard.name_en})</span>
+                          <span className="text-xs sm:text-sm text-gray-500"> ({currentCard.name_en})</span>
                         )}
                       </p>
-                      <p className="text-lg text-center text-gray-600">
+                      <p className="text-sm sm:text-lg text-center text-gray-600">
                         Catégorie: <span className="font-bold text-emerald-600">{feedback.correctCategory}</span>
                       </p>
-                      <p className="text-xl text-center mt-3 font-bold text-emerald-600">
+                      <p className="text-lg sm:text-xl text-center mt-3 font-bold text-emerald-600">
                         +{feedback.points} point{feedback.points > 1 ? 's' : ''}
                       </p>
                     </div>
