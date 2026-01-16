@@ -284,7 +284,7 @@ export default function FermeBoulangerie() {
         <BiolumiHeader currentPage="MicroFerme" />
 
         <main className="pt-20 px-4 pb-12">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <Link to={createPageUrl('MicroFerme')}>
               <Button variant="outline" className="mb-4 border-orange-400 text-orange-300">
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -296,41 +296,36 @@ export default function FermeBoulangerie() {
               🥖 Boulangerie - Fournée {currentBatch}
             </h1>
 
-            <div className="space-y-6">
-            {/* Barre de progression principale */}
-            {currentStage !== 'idle' && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="mt-4 bg-gradient-to-r from-orange-900/50 to-red-900/50 rounded-xl p-6 border-2 border-orange-400/50 shadow-2xl"
-              >
-                <div className="text-orange-200 text-lg font-bold mb-4 text-center flex items-center justify-center gap-2">
-                  {currentStage === 'proofing' && '🍞 Les pains lèvent...'}
-                  {currentStage === 'heating' && '🔥 Le four chauffe...'}
-                  {currentStage === 'baking' && '🥖 Les pains cuisent...'}
+            {/* Barre de progression principale - TOUJOURS VISIBLE */}
+            <div className="mb-6 bg-gradient-to-r from-orange-900/50 to-red-900/50 rounded-xl p-6 border-2 border-orange-400/50 shadow-2xl">
+              <div className="text-orange-200 text-lg font-bold mb-4 text-center">
+                {currentStage === 'idle' && '⏸️ En attente'}
+                {currentStage === 'proofing' && '🍞 Les pains lèvent...'}
+                {currentStage === 'heating' && '🔥 Le four chauffe...'}
+                {currentStage === 'baking' && '🥖 Les pains cuisent...'}
+              </div>
+              <div className="w-full h-12 bg-gray-900 rounded-full overflow-hidden relative border-2 border-orange-500">
+                <motion.div
+                  className={`h-full rounded-full transition-all ${
+                    currentStage === 'idle' ? 'bg-gray-600' :
+                    currentStage === 'proofing' ? 'bg-gradient-to-r from-green-500 via-green-400 to-emerald-300' :
+                    currentStage === 'heating' ? 'bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400' :
+                    'bg-gradient-to-r from-orange-600 via-yellow-500 to-yellow-300'
+                  }`}
+                  style={{ width: `${stageProgress}%` }}
+                  animate={currentStage !== 'idle' ? { boxShadow: `0 0 20px ${
+                    currentStage === 'proofing' ? 'rgb(34, 197, 94)' :
+                    currentStage === 'heating' ? 'rgb(239, 68, 68)' :
+                    'rgb(249, 115, 22)'
+                  }` } : {}}
+                />
+                <div className="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold drop-shadow-lg">
+                  {Math.round(stageProgress)}%
                 </div>
-                <div className="w-full h-12 bg-gray-900 rounded-full overflow-hidden relative border-2 border-orange-500">
-                  <motion.div
-                    className={`h-full rounded-full transition-all ${
-                      currentStage === 'proofing' ? 'bg-gradient-to-r from-green-500 via-green-400 to-emerald-300' :
-                      currentStage === 'heating' ? 'bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400' :
-                      'bg-gradient-to-r from-orange-600 via-yellow-500 to-yellow-300'
-                    }`}
-                    style={{ width: `${stageProgress}%` }}
-                    animate={{ boxShadow: `0 0 20px ${
-                      currentStage === 'proofing' ? 'rgb(34, 197, 94)' :
-                      currentStage === 'heating' ? 'rgb(239, 68, 68)' :
-                      'rgb(249, 115, 22)'
-                    }` }}
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold drop-shadow-lg">
-                    {Math.round(stageProgress)}%
-                  </div>
-                </div>
-              </motion.div>
-            )}
+              </div>
+            </div>
 
-            <div className="grid lg:grid-cols-5 gap-4">
+            <div className="grid lg:grid-cols-4 gap-4">
               {/* Paquets de cartes - Farines */}
               <div className="lg:col-span-1 space-y-2">
                 <h3 className="text-sm font-bold text-orange-300 text-center">Farines</h3>
@@ -426,7 +421,7 @@ export default function FermeBoulangerie() {
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className={`bg-white/10 backdrop-blur-xl rounded-lg p-3 border-2 min-h-[300px] flex items-center justify-center ${
+                      className={`bg-white/10 backdrop-blur-xl rounded-lg p-4 border-2 min-h-[250px] flex items-center justify-center ${
                         snapshot.isDraggingOver ? 'border-orange-400 bg-orange-500/10' : 'border-orange-400/30'
                       }`}
                     >
@@ -479,136 +474,103 @@ export default function FermeBoulangerie() {
 
               {/* Bois pour le four */}
               <div className="lg:col-span-1 space-y-2">
-                <h3 className="text-sm font-bold text-orange-300 text-center">Bois (x2)</h3>
-                <Droppable droppableId="deck-wood" isDropDisabled={true}>
-                  {(provided) => (
-                    <div ref={provided.innerRef} {...provided.droppableProps}>
-                      <Draggable draggableId="wood-0" index={0}>
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className={`aspect-square rounded-lg bg-gradient-to-br from-orange-800 to-red-900 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
-                            style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
-                          >
-                            <span className="text-3xl">🪵</span>
-                            <div className="text-white font-bold text-[8px]">Bois</div>
-                            <div className="absolute top-1 right-1 bg-black/50 px-1 rounded text-white text-[8px]">80</div>
-                          </div>
-                        )}
-                      </Draggable>
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
+              <h3 className="text-sm font-bold text-orange-300 text-center">Bois (40)</h3>
+              <Draggable draggableId="wood-0" index={0}>
+               {(provided, snapshot) => (
+                 <div
+                   ref={provided.innerRef}
+                   {...provided.draggableProps}
+                   {...provided.dragHandleProps}
+                   className={`aspect-square rounded-lg bg-gradient-to-br from-orange-800 to-red-900 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
+                   style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                 >
+                   <span className="text-2xl">🪵</span>
+                   <div className="text-white font-bold text-[7px]">Bois</div>
+                 </div>
+               )}
+              </Draggable>
               </div>
 
               {/* Four */}
               <div className="lg:col-span-1 space-y-2">
                 <h3 className="text-sm font-bold text-orange-300 text-center">🔥 Four (20)</h3>
-                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30 min-h-[300px]">
-                  <Droppable droppableId="oven-container" type="oven">
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.droppableProps}
-                        className={`grid grid-cols-5 gap-1 min-h-[280px] ${snapshot.isDraggingOver ? 'bg-orange-500/20' : ''}`}
-                      >
-                        {ovenSlots.map((slot, index) => (
+                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30">
+                  <div className="grid grid-cols-5 gap-1 min-h-[250px]">
+                    {ovenSlots.map((slot, index) => (
+                      <Droppable key={index} droppableId={`oven-${index}`} type="oven">
+                        {(provided, snapshot) => (
                           <div
-                            key={index}
-                            className={`aspect-square rounded border flex items-center justify-center transition-all ${
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                            className={`aspect-square rounded border flex items-center justify-center transition-all relative ${
                               slot
                                 ? slot.type === 'wood'
                                   ? 'bg-red-900/50 border-red-500'
                                   : 'bg-orange-600/40 border-orange-400'
+                                : snapshot.isDraggingOver
+                                ? 'bg-orange-500/30 border-orange-400'
                                 : 'bg-white/5 border-white/20'
                             }`}
                           >
                             {slot && (
-                              <span className="text-lg">{slot.type === 'wood' ? '🪵' : '🥖'}</span>
+                              <span className="text-base">{slot.type === 'wood' ? '🪵' : '🥖'}</span>
                             )}
-                            <Droppable droppableId={`oven-${index}`} type="oven">
-                              {(innerProvided, innerSnapshot) => (
-                                <div
-                                  ref={innerProvided.innerRef}
-                                  {...innerProvided.droppableProps}
-                                  className="w-full h-full flex items-center justify-center"
-                                >
-                                  {innerProvided.placeholder}
-                                </div>
-                              )}
-                            </Droppable>
+                            {provided.placeholder}
                           </div>
-                        ))}
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
+                        )}
+                      </Droppable>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            </div>
-
-            {/* Table de pousse - DIRECTEMENT APRÈS */}
-            <div className="space-y-2">
-              <h2 className="text-xl font-bold text-orange-300 text-center">
-                📍 Table de Pousse ({batchRange.start + 1}-{batchRange.end})
-              </h2>
-              <div className="bg-white/5 backdrop-blur-xl rounded-lg p-3 border border-orange-400/30">
-                <Droppable droppableId="proofing-container" type="proofing">
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.droppableProps}
-                      className={`grid grid-cols-10 gap-1 ${snapshot.isDraggingOver ? 'bg-orange-500/20 p-2 rounded' : ''}`}
-                    >
-                      {proofingTable.map((slot, index) => {
-                        const inCurrentBatch = index >= batchRange.start && index < batchRange.end;
-                        return inCurrentBatch ? (
-                          <Droppable key={index} droppableId={`proofing-${index}`} type="proofing">
-                            {(innerProvided, innerSnapshot) => (
-                              <div
-                                ref={innerProvided.innerRef}
-                                {...innerProvided.droppableProps}
-                                className={`aspect-square rounded border flex items-center justify-center transition-all ${
-                                  slot
-                                    ? 'bg-green-500/30 border-green-400'
-                                    : innerSnapshot.isDraggingOver
-                                    ? 'bg-orange-500/30 border-orange-400'
-                                    : 'bg-white/5 border-white/20'
-                                }`}
-                              >
-                                {slot && <span className="text-lg">🍞</span>}
-                                <div className="text-white/30 text-[8px]">{index + 1}</div>
-                                {innerProvided.placeholder}
-                              </div>
-                            )}
-                          </Droppable>
-                        ) : (
-                          <div key={index} className="aspect-square rounded border border-gray-500/30 bg-gray-800/20 flex items-center justify-center text-gray-500/30 text-[8px]">
-                            {index + 1}
-                          </div>
-                        );
-                      })}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
               </div>
 
-              {/* Bouton pour passer à la 2ème fournée */}
-              {currentStage === 'idle' && currentBatch === 1 && proofingTable.some(p => p) && (
-                <Button
-                  onClick={startSecondBatch}
-                  className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
-                >
-                  🔄 Préparer la 2ème fournée (20 pains)
-                </Button>
-              )}
-            </div>
+              {/* Table de pousse - Directement sous */}
+              <div className="space-y-2 mt-4">
+
+             <h2 className="text-lg font-bold text-orange-300 text-center">
+               📍 Table de Pousse ({batchRange.start + 1}-{batchRange.end})
+             </h2>
+             <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30">
+               <div className="grid grid-cols-20 gap-0.5">
+                 {proofingTable.map((slot, index) => {
+                   const inCurrentBatch = index >= batchRange.start && index < batchRange.end;
+                   return inCurrentBatch ? (
+                     <Droppable key={index} droppableId={`proofing-${index}`} type="proofing">
+                       {(provided, snapshot) => (
+                         <div
+                           ref={provided.innerRef}
+                           {...provided.droppableProps}
+                           className={`h-8 w-8 rounded border flex items-center justify-center text-xs transition-all ${
+                             slot
+                               ? 'bg-green-500/30 border-green-400'
+                               : snapshot.isDraggingOver
+                               ? 'bg-orange-500/30 border-orange-400'
+                               : 'bg-white/5 border-white/20'
+                           }`}
+                         >
+                           {slot && <span>🍞</span>}
+                           {provided.placeholder}
+                         </div>
+                       )}
+                     </Droppable>
+                   ) : (
+                     <div key={index} className="h-8 w-8 rounded border border-gray-500/30 bg-gray-800/20" />
+                   );
+                 })}
+               </div>
+             </div>
+
+               {/* Bouton pour passer à la 2ème fournée */}
+               {currentStage === 'idle' && currentBatch === 1 && proofingTable.some(p => p) && (
+                 <Button
+                   onClick={startSecondBatch}
+                   className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
+                 >
+                   🔄 Préparer la 2ème fournée (20 pains)
+                 </Button>
+               )}
+             </div>
 
             {/* Compteur final */}
             <div className="mt-6 text-center">
