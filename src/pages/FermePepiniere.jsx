@@ -26,7 +26,7 @@ export default function FermePepiniere() {
     const [cardType, cardId] = draggableId.split('-');
 
     // Glisser vers la table de rempotage
-    if (destination.droppableId === 'workstation') {
+    if (destination.droppableId === 'workstation' && cardType !== 'completepot') {
       if (cardType === 'pot' && workStation.length === 0) {
         setWorkStation([{ type: 'pot', emoji: '🪴', name: 'Pot' }]);
         setFeedback({ type: 'success', message: '✅ Pot ajouté !' });
@@ -48,8 +48,8 @@ export default function FermePepiniere() {
       setTimeout(() => setFeedback(null), 1500);
     }
 
-    // Glisser vers la serre
-    if (destination.droppableId.startsWith('serre-') && workStation.length === 4) {
+    // Glisser la pile complète vers la serre
+    if (cardType === 'completepot' && destination.droppableId.startsWith('serre-')) {
       const slotIndex = parseInt(destination.droppableId.split('-')[1]);
       if (!completedPots.find(p => p.slotIndex === slotIndex)) {
         const newPot = {
@@ -200,6 +200,30 @@ export default function FermePepiniere() {
                     >
                       {workStation.length === 0 ? (
                         <div className="text-center text-cyan-400/50 text-sm">Glisse le pot ici</div>
+                      ) : workStation.length === 4 ? (
+                        <Draggable draggableId="completepot-ready" index={0}>
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              className={`relative w-32 cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-50' : ''}`}
+                            >
+                              {workStation.map((layer, i) => (
+                                <motion.div
+                                  key={i}
+                                  initial={{ y: -50, opacity: 0 }}
+                                  animate={{ y: i * 12, opacity: 1 }}
+                                  className="absolute top-0 left-0 w-full aspect-square rounded-lg bg-gradient-to-br from-white/20 to-white/10 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center"
+                                  style={{ zIndex: i }}
+                                >
+                                  <span className="text-3xl">{layer.emoji}</span>
+                                  <div className="text-white text-[10px] mt-1">{layer.name}</div>
+                                </motion.div>
+                              ))}
+                            </div>
+                          )}
+                        </Draggable>
                       ) : (
                         <div className="relative w-32">
                           {workStation.map((layer, i) => (
