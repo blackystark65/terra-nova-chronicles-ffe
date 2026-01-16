@@ -171,6 +171,7 @@ export default function FermeBoulangerie() {
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
     if (!destination) return;
+    if (source.droppableId === destination.droppableId && source.index === destination.index) return;
 
     const [cardType, cardId] = draggableId.split('-');
 
@@ -482,7 +483,7 @@ export default function FermeBoulangerie() {
                     {proofingTable.slice(batchRange.start, batchRange.end).map((slot, idx) => {
                       const index = batchRange.start + idx;
                       return (
-                        <Droppable key={`drop-${index}`} droppableId={`proofing-${index}`} type="proofing">
+                        <Droppable key={`drop-${index}`} droppableId={`proofing-${index}`}>
                           {(provided, snapshot) => (
                             <div
                               ref={provided.innerRef}
@@ -544,7 +545,7 @@ export default function FermeBoulangerie() {
                 </Droppable>
 
                 <h3 className="text-sm font-bold text-orange-300 text-center mt-2">🔥 Four (20)</h3>
-                <Droppable droppableId="oven-container" type="oven">
+                <Droppable droppableId="oven-container">
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
