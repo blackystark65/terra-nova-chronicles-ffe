@@ -53,11 +53,13 @@ export default function FermeCentreFormation() {
   const handleRegister = () => {
     if (!selectedRole || !classCode.trim()) return;
     
-    const roleData = ROLES_FERME[selectedRole];
+    const roleData = ROLES_FERME.find(r => r.id === selectedRole);
+    if (!roleData) return;
+    
     createRoleMutation.mutate({
       role: selectedRole,
       role_name: roleData.name,
-      zone_principale: roleData.zone,
+      zone_principale: roleData.zones[0],
       total_actions: 0,
       is_active: true,
     });
