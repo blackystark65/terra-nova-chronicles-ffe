@@ -571,12 +571,11 @@ export default function FermeBoulangerie() {
                    onClick={startSecondBatch}
                    className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
                  >
-                   🔄 Préparer la 2ème fournée (20 pains)
+                   🔄 Préparer la 2ème fournée
                  </Button>
                )}
-             </div>
 
-            {/* Compteur final */}
+               {/* Compteur final */}
             <div className="mt-6 text-center">
               <div className="inline-block bg-white/10 backdrop-blur-xl rounded-lg p-4 border border-orange-400/30">
                 <div className="text-orange-300 font-bold text-lg">
