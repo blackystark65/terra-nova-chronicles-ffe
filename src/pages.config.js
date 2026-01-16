@@ -7,6 +7,7 @@ import BiomeSavanna from './pages/BiomeSavanna';
 import Climate from './pages/Climate';
 import Encyclopedia from './pages/Encyclopedia';
 import FermeCentreFormation from './pages/FermeCentreFormation';
+import FermePepiniere from './pages/FermePepiniere';
 import FermeRoleSelection from './pages/FermeRoleSelection';
 import Home from './pages/Home';
 import Jeux from './pages/Jeux';
@@ -30,7 +31,6 @@ import RecyclageRoleSelection from './pages/RecyclageRoleSelection';
 import RecyclageRooms from './pages/RecyclageRooms';
 import RecyclageSchedule from './pages/RecyclageSchedule';
 import RecyclageShop from './pages/RecyclageShop';
-import FermePepiniere from './pages/FermePepiniere';
 
 
 export const PAGES = {
@@ -43,6 +43,7 @@ export const PAGES = {
     "Climate": Climate,
     "Encyclopedia": Encyclopedia,
     "FermeCentreFormation": FermeCentreFormation,
+    "FermePepiniere": FermePepiniere,
     "FermeRoleSelection": FermeRoleSelection,
     "Home": Home,
     "Jeux": Jeux,
@@ -66,7 +67,6 @@ export const PAGES = {
     "RecyclageRooms": RecyclageRooms,
     "RecyclageSchedule": RecyclageSchedule,
     "RecyclageShop": RecyclageShop,
-    "FermePepiniere": FermePepiniere,
 }
 
 export const pagesConfig = {

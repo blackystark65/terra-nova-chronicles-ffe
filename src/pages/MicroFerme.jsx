@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
-import { ZONES_FERME } from '@/components/microferme/FermeData';
+import { ZONES_FERME, ZONE_PAGES } from '@/components/microferme/FermeData';
 import { ArrowRight, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -80,8 +80,8 @@ export default function MicroFerme() {
               {/* Zones cliquables */}
               {zones.map((zone) => {
                 const zoneData = ZONES_FERME[zone.id];
-                // Lien spécial pour le centre de formation
-                const pageLink = zone.id === 'centre_formation' ? 'FermeCentreFormation' : 'FermeRoleSelection';
+                // Utilise ZONE_PAGES pour avoir la bonne page pour chaque zone
+                const pageLink = ZONE_PAGES[zone.id] || 'FermeRoleSelection';
                 
                 return (
                   <motion.div
