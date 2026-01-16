@@ -34,6 +34,8 @@ export default function FermeBoulangerie() {
   const [completedLoaves, setCompletedLoaves] = useState(0);
   const [boulangeriStateId, setBoulangeriStateId] = useState(null);
   const [roleFermeId, setRoleFermeId] = useState(null);
+  const [selectedWood, setSelectedWood] = useState(false);
+  const [selectedIngredient, setSelectedIngredient] = useState(null);
 
   const queryClient = useQueryClient();
 
@@ -284,6 +286,50 @@ export default function FermeBoulangerie() {
 
   const batchRange = getBatchRange();
 
+  const handlePlaceWoodInOven = (ovenIndex) => {
+    if (!selectedWood || currentStage !== 'heating' || woodCardsPlaced >= 20) return;
+    
+    if (!ovenSlots[ovenIndex]) {
+      const newOven = [...ovenSlots];
+      newOven[ovenIndex] = { type: 'wood' };
+      setOvenSlots(newOven);
+      setWoodCardsPlaced(woodCardsPlaced + 1);
+      setSelectedWood(false);
+      
+      if (woodCardsPlaced + 1 === 20) {
+        setFeedback({ type: 'success', message: '🔥 Four en chauffe !' });
+      } else {
+        setFeedback({ type: 'success', message: `🪵 Bois placé (${woodCardsPlaced + 1}/20)` });
+      }
+      setTimeout(() => setFeedback(null), 1000);
+    }
+  };
+
+  const handlePlaceBreadInProofing = (slotIndex) => {
+    if (!selectedIngredient || workStation.length !== 4 || currentStage !== 'idle') return;
+    
+    const batchStart = currentBatch === 1 ? 0 : 20;
+    if (slotIndex < batchStart || slotIndex >= batchStart + 20) return;
+    
+    if (!proofingTable[slotIndex]) {
+      const newTable = [...proofingTable];
+      newTable[slotIndex] = { id: Date.now(), flour: workStation[0].flourId };
+      setProofingTable(newTable);
+      setWorkStation([]);
+      setSelectedIngredient(null);
+      
+      const filledSlots = newTable.filter((_, i) => i >= batchStart && i < batchStart + 20 && newTable[i]).length;
+      if (filledSlots === 20) {
+        setCurrentStage('proofing');
+        setStageProgress(0);
+        setFeedback({ type: 'success', message: '🍞 20 pains mis à lever !' });
+      } else {
+        setFeedback({ type: 'success', message: `📍 Pain placé (${filledSlots}/20)` });
+      }
+      setTimeout(() => setFeedback(null), 1500);
+    }
+  };
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="min-h-screen bg-gradient-to-br from-amber-950 via-orange-950 to-red-950">
@@ -523,57 +569,49 @@ export default function FermeBoulangerie() {
               {/* COL 4: Bois + Four */}
               <div className="space-y-2">
                 <h3 className="text-sm font-bold text-orange-300 text-center">Bois</h3>
-                <Droppable droppableId="deck-wood" isDropDisabled={true}>
-                  {(provided) => (
-                    <div ref={provided.innerRef} {...provided.droppableProps} className="flex justify-center">
-                      <Draggable draggableId="wood-0" index={0}>
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className={`h-14 w-14 rounded-lg bg-gradient-to-br from-orange-800 to-red-900 border-2 border-white/30 shadow-lg flex items-center justify-center cursor-grab active:cursor-grabbing text-lg ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
-                            style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
-                          >
-                            🪵
-                          </div>
-                        )}
-                      </Draggable>
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
+                <button
+                  onClick={() => {
+                    if (currentStage === 'heating') {
+                      setSelectedWood(!selectedWood);
+                    }
+                  }}
+                  disabled={currentStage !== 'heating' || woodCardsPlaced >= 20}
+                  className={`w-full h-14 rounded-lg flex items-center justify-center text-lg cursor-pointer border-2 transition-all ${
+                    selectedWood
+                      ? 'bg-gradient-to-br from-orange-600 to-red-700 border-yellow-300 shadow-lg shadow-orange-500'
+                      : currentStage === 'heating' && woodCardsPlaced < 20
+                      ? 'bg-gradient-to-br from-orange-800 to-red-900 border-white/30 hover:border-white/50'
+                      : 'bg-gradient-to-br from-orange-800 to-red-900 border-white/20 opacity-50 cursor-not-allowed'
+                  }`}
+                >
+                  🪵
+                </button>
 
                 <h3 className="text-sm font-bold text-orange-300 text-center mt-2">🔥 Four (20)</h3>
-                <Droppable droppableId="oven-container">
-                  {(provided) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.droppableProps}
-                      className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30 min-h-[100px]"
-                    >
-                      <div className="grid grid-cols-5 gap-1">
-                        {ovenSlots.map((slot, index) => (
-                          <div
-                            key={index}
-                            className={`h-10 w-10 rounded border flex items-center justify-center transition-all text-sm ${
-                              slot
-                                ? slot.type === 'wood'
-                                  ? 'bg-red-900/50 border-red-500'
-                                  : 'bg-orange-600/40 border-orange-400'
-                                : 'bg-white/5 border-white/20'
-                            }`}
-                          >
-                            {slot && (
-                              <span className="text-xs">{slot.type === 'wood' ? '🪵' : '🥖'}</span>
-                            )}
-                          </div>
-                        ))}
-                        {provided.placeholder}
-                      </div>
-                    </div>
-                  )}
-                </Droppable>
+                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30 min-h-[100px]">
+                  <div className="grid grid-cols-5 gap-1">
+                    {ovenSlots.map((slot, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handlePlaceWoodInOven(index)}
+                        disabled={!slot && !selectedWood}
+                        className={`h-10 w-10 rounded border flex items-center justify-center transition-all text-sm cursor-pointer ${
+                          slot
+                            ? slot.type === 'wood'
+                              ? 'bg-red-900/50 border-red-500'
+                              : 'bg-orange-600/40 border-orange-400'
+                            : selectedWood
+                            ? 'bg-orange-500/40 border-orange-400 hover:bg-orange-500/60'
+                            : 'bg-white/5 border-white/20 cursor-not-allowed'
+                        }`}
+                      >
+                        {slot && (
+                          <span className="text-xs">{slot.type === 'wood' ? '🪵' : '🥖'}</span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
               </div>
 
