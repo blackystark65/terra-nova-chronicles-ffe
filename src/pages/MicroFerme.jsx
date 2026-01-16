@@ -80,9 +80,7 @@ export default function MicroFerme() {
               {/* Zones cliquables */}
               {zones.map((zone) => {
                 const zoneData = ZONES_FERME[zone.id];
-                // Utilise ZONE_PAGES pour avoir la bonne page pour chaque zone
-                const pageLink = ZONE_PAGES[zone.id] || 'FermeRoleSelection';
-                
+
                 return (
                   <motion.div
                     key={zone.id}
@@ -92,7 +90,7 @@ export default function MicroFerme() {
                     className="absolute group"
                     style={{ left: zone.x, top: zone.y, transform: 'translate(-50%, -50%)' }}
                   >
-                    <Link to={createPageUrl(pageLink)}>
+                    <Link to={createPageUrl('FermeCentreFormation')}>
                       <motion.div
                         whileHover={{ scale: 1.15 }}
                         whileTap={{ scale: 0.95 }}
@@ -103,13 +101,14 @@ export default function MicroFerme() {
                         <span className="text-2xl sm:text-3xl md:text-4xl">{zoneData.emoji}</span>
                       </motion.div>
                     </Link>
-                    
+
                     {/* Tooltip */}
                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 sm:mb-3 
                       opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                       <div className="bg-slate-900/95 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm whitespace-nowrap shadow-xl border border-emerald-400/50">
                         <div className="font-bold">{zoneData.name}</div>
                         <div className="text-xs text-emerald-300 hidden sm:block">{zoneData.description}</div>
+                        <div className="text-[10px] text-yellow-300 mt-1">👉 Clique pour t'inscrire</div>
                       </div>
                     </div>
                   </motion.div>

@@ -14,10 +14,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function FermeCentreFormation() {
   const queryClient = useQueryClient();
+  const [selectedCategory, setSelectedCategory] = useState(null); // Juniors, Cadets, Seniors
   const [selectedClasse, setSelectedClasse] = useState(null);
   const [selectedRole, setSelectedRole] = useState(null);
   const [isRegistered, setIsRegistered] = useState(false);
   const [viewMode, setViewMode] = useState('inscription'); // 'inscription' ou 'formation'
+
+  const categories = [
+    { id: 'juniors', name: 'Juniors', description: 'Élémentaire & Collège', emoji: '🎒', color: 'from-blue-500 to-cyan-600' },
+    { id: 'cadets', name: 'Cadets', description: 'Lycée', emoji: '🎓', color: 'from-purple-500 to-pink-600' },
+    { id: 'seniors', name: 'Seniors', description: 'Université', emoji: '🎯', color: 'from-orange-500 to-red-600' }
+  ];
 
   const { data: user } = useQuery({
     queryKey: ['user'],
@@ -83,7 +90,19 @@ export default function FermeCentreFormation() {
   };
 
   const handleContinueToFarm = () => {
-    window.location.href = createPageUrl('FermeSchedule');
+    // Redirection vers la page spécifique du poste
+    const rolePageMap = {
+      'horticulteur': 'FermePepiniere',
+      'maraicher': 'FermeMilpa',
+      'arboriste': 'FermeJouale',
+      'boulanger': 'FermeBoulangerie',
+      'eleveur': 'FermePedagogique',
+      'epicier': 'FermeEpicerie',
+      'jardinier_foret': 'FermeForetJardin'
+    };
+    
+    const targetPage = rolePageMap[selectedRole] || 'MicroFerme';
+    window.location.href = createPageUrl(targetPage);
   };
 
   const handleUnregister = () => {
@@ -127,6 +146,38 @@ export default function FermeCentreFormation() {
                 </div>
 
                 <div className="space-y-6">
+                  {/* Choix de la catégorie */}
+                  <div className="bg-white/5 p-6 rounded-2xl border border-indigo-400/20">
+                    <label className="flex items-center gap-2 text-indigo-300 font-semibold mb-4">
+                      <GraduationCap className="w-5 h-5" />
+                      Choisis ta catégorie
+                    </label>
+                    <div className="grid md:grid-cols-3 gap-3">
+                      {categories.map((category) => (
+                        <motion.div
+                          key={category.id}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => setSelectedCategory(category.id)}
+                          className={`p-4 rounded-xl cursor-pointer transition-all ${
+                            selectedCategory === category.id
+                              ? 'bg-gradient-to-br from-indigo-500 to-purple-600 border-2 border-indigo-300'
+                              : 'bg-white/10 border border-indigo-400/20 hover:bg-white/20'
+                          }`}
+                        >
+                          <div className="text-center">
+                            <span className="text-4xl mb-2 block">{category.emoji}</span>
+                            <div className="text-white font-bold">{category.name}</div>
+                            <div className="text-xs text-indigo-200/70">{category.description}</div>
+                          </div>
+                          {selectedCategory === category.id && (
+                            <CheckCircle className="w-5 h-5 text-white mx-auto mt-2" />
+                          )}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+
                   {/* Choix de la classe */}
                   <div className="bg-white/5 p-6 rounded-2xl border border-indigo-400/20">
                     <label className="flex items-center gap-2 text-indigo-300 font-semibold mb-4">
@@ -207,7 +258,7 @@ export default function FermeCentreFormation() {
 
                   <Button
                     onClick={handleRegister}
-                    disabled={!selectedRole || !selectedClasse || createRoleMutation.isPending}
+                    disabled={!selectedRole || !selectedClasse || !selectedCategory || createRoleMutation.isPending}
                     className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 py-6 text-lg"
                   >
                     {createRoleMutation.isPending ? '⏳ Inscription en cours...' : '✅ S\'inscrire et accéder à la formation'}
@@ -334,7 +385,7 @@ export default function FermeCentreFormation() {
                     onClick={handleContinueToFarm}
                     className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 py-6 px-8 text-lg"
                   >
-                    🚀 Commencer mon travail à la ferme
+                    🚀 Commencer
                   </Button>
                   <Button
                     onClick={handleUnregister}
