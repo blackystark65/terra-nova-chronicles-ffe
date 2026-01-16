@@ -289,28 +289,28 @@ export default function FermeCentreFormation() {
 
                 {/* Onglets des postes */}
                 <Tabs defaultValue={selectedRole || 'maraicher'} className="w-full">
-                  <TabsList className="grid grid-cols-2 lg:grid-cols-3 gap-2 bg-white/5 p-4 rounded-xl mb-12">
+                  <TabsList className="grid grid-cols-2 lg:grid-cols-4 gap-2 bg-white/5 p-4 rounded-xl mb-16 flex-wrap">
                     {ROLES_FERME.map((role) => (
-                      <TabsTrigger
-                        key={role.id}
-                        value={role.id}
-                        className="flex items-center gap-2 data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-500 data-[state=active]:to-green-600 text-xs sm:text-sm"
-                      >
-                        <span className="text-lg sm:text-xl">{role.emoji}</span>
-                        <span className="hidden sm:inline">{role.name}</span>
-                      </TabsTrigger>
-                    ))}
+                        <TabsTrigger
+                          key={role.id}
+                          value={role.id}
+                          className="flex flex-col items-center gap-1 data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-500 data-[state=active]:to-green-600 text-xs p-2 rounded-lg"
+                        >
+                          <span className="text-lg sm:text-2xl">{role.emoji}</span>
+                          <span className="text-xs font-semibold leading-tight text-center">{role.name}</span>
+                        </TabsTrigger>
+                      ))}
                   </TabsList>
 
                   {ROLES_FERME.map((role) => {
                     const roleDesc = ROLE_DESCRIPTIONS[role.id];
                     return (
-                      <TabsContent key={role.id} value={role.id} className="space-y-6">
+                      <TabsContent key={role.id} value={role.id} className="space-y-6 pt-8">
                         {/* Carte de présentation du poste */}
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="p-6 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-green-600/20 border border-emerald-400/30"
+                          className="p-6 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-green-600/20 border border-emerald-400/30 mt-8"
                         >
                           <div className="flex items-start gap-4 mb-4">
                             <div className="text-6xl">{roleDesc.emoji}</div>
