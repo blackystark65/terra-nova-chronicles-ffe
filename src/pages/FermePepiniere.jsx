@@ -246,13 +246,13 @@ export default function FermePepiniere() {
                 </Droppable>
               </div>
 
-              {/* Serre */}
+              {/* Serre - Grande carte verticale */}
               <div className="lg:col-span-2 space-y-2">
-                <h2 className="text-lg font-bold text-cyan-300">
+                <h2 className="text-lg font-bold text-cyan-300 text-center">
                   🏡 Serre ({completedPots.length}/{graines.length})
                 </h2>
-                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-3 border border-cyan-400/30 max-h-[500px] overflow-y-auto">
-                  <div className="grid grid-cols-6 gap-2">
+                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-cyan-400/30 relative z-10">
+                  <div className="grid grid-cols-7 gap-1">
                     {Array.from({ length: graines.length }).map((_, index) => {
                       const pot = completedPots.find(p => p.slotIndex === index);
                       return (
@@ -261,21 +261,20 @@ export default function FermePepiniere() {
                             <div
                               ref={provided.innerRef}
                               {...provided.droppableProps}
-                              className={`aspect-square rounded-lg border-2 flex items-center justify-center transition-all ${
+                              className={`aspect-square rounded border flex items-center justify-center transition-all relative z-20 ${
                                 pot
-                                  ? 'bg-green-500/20 border-green-400/50'
+                                  ? 'bg-green-500/30 border-green-400'
                                   : snapshot.isDraggingOver
-                                  ? 'bg-cyan-500/20 border-cyan-400'
-                                  : 'bg-white/5 border-white/10'
+                                  ? 'bg-cyan-500/30 border-cyan-400'
+                                  : 'bg-white/5 border-white/20'
                               }`}
                             >
                               {pot ? (
                                 <div className="text-center">
-                                  <div className="text-xl">{pot.graine.emoji || '🌱'}</div>
-                                  <div className="text-[7px] text-white mt-0.5 line-clamp-1">{pot.graine.nom}</div>
+                                  <div className="text-lg">{pot.graine.emoji || '🌱'}</div>
                                 </div>
                               ) : (
-                                <div className="text-white/20 text-[10px]">{index + 1}</div>
+                                <div className="text-white/30 text-[8px]">{index + 1}</div>
                               )}
                               {provided.placeholder}
                             </div>
