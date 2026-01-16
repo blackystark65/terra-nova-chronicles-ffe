@@ -476,9 +476,9 @@ export default function FermeBoulangerie() {
                   )}
                 </Droppable>
 
-                <h3 className="text-sm font-bold text-orange-300 text-center mt-2">📍 Pousse</h3>
-                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-1 border border-orange-400/30">
-                  <div className="grid grid-cols-10 gap-0.5">
+                <h3 className="text-sm font-bold text-orange-300 text-center mt-2">📍 Pousse (20)</h3>
+                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30 min-h-[120px]">
+                  <div className="grid grid-cols-5 gap-1">
                     {proofingTable.slice(batchRange.start, batchRange.end).map((slot, idx) => {
                       const index = batchRange.start + idx;
                       return (
@@ -487,7 +487,7 @@ export default function FermeBoulangerie() {
                             <div
                               ref={provided.innerRef}
                               {...provided.droppableProps}
-                              className={`h-6 w-6 rounded border flex items-center justify-center text-[10px] transition-all ${
+                              className={`h-10 w-10 rounded border flex items-center justify-center text-sm transition-all ${
                                 slot
                                   ? 'bg-green-500/30 border-green-400'
                                   : snapshot.isDraggingOver
@@ -508,7 +508,6 @@ export default function FermeBoulangerie() {
 
               {/* COL 4: Bois + Four */}
               <div className="space-y-2">
-                <h3 className="text-sm font-bold text-orange-300 text-center">Bois (40)</h3>
                 <Droppable droppableId="deck-wood" isDropDisabled={true}>
                   {(provided) => (
                     <div ref={provided.innerRef} {...provided.droppableProps}>
@@ -518,11 +517,10 @@ export default function FermeBoulangerie() {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`aspect-square rounded-lg bg-gradient-to-br from-orange-800 to-red-900 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
+                            className={`h-16 w-16 rounded-lg bg-gradient-to-br from-orange-800 to-red-900 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
                             style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
                           >
-                            <span className="text-2xl">🪵</span>
-                            <div className="text-white font-bold text-[7px]">Bois</div>
+                            <span className="text-lg">🪵</span>
                           </div>
                         )}
                       </Draggable>
@@ -531,19 +529,19 @@ export default function FermeBoulangerie() {
                   )}
                 </Droppable>
 
-                <h3 className="text-sm font-bold text-orange-300 text-center mt-2">🔥 Four</h3>
+                <h3 className="text-sm font-bold text-orange-300 text-center mt-2">🔥 Four (20)</h3>
                 <Droppable droppableId="oven-container" type="oven">
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className="bg-white/5 backdrop-blur-xl rounded-lg p-1 border border-orange-400/30"
+                      className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30 min-h-[100px]"
                     >
-                      <div className="grid grid-cols-5 gap-0.5">
+                      <div className="grid grid-cols-5 gap-1">
                         {ovenSlots.map((slot, index) => (
                           <div
                             key={index}
-                            className={`h-8 w-8 rounded border flex items-center justify-center transition-all text-sm ${
+                            className={`h-10 w-10 rounded border flex items-center justify-center transition-all text-sm ${
                               slot
                                 ? slot.type === 'wood'
                                   ? 'bg-red-900/50 border-red-500'
@@ -552,7 +550,7 @@ export default function FermeBoulangerie() {
                             }`}
                           >
                             {slot && (
-                              <span>{slot.type === 'wood' ? '🪵' : '🥖'}</span>
+                              <span className="text-xs">{slot.type === 'wood' ? '🪵' : '🥖'}</span>
                             )}
                           </div>
                         ))}
