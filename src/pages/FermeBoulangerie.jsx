@@ -138,9 +138,12 @@ export default function FermeBoulangerie() {
             setFeedback({ type: 'success', message: '✅ Pousse terminée ! Mets le bois dans le four' });
             return 0;
           } else if (currentStage === 'heating' && woodCardsPlaced === 20) {
+            // Vider le bois et démarrer la cuisson
+            const newOven = ovenSlots.map(slot => null);
+            setOvenSlots(newOven);
             setCurrentStage('baking');
             setWoodCardsPlaced(0);
-            setFeedback({ type: 'success', message: '🔥 Four préchauffé ! Mets les pains' });
+            setFeedback({ type: 'success', message: '🔥 Four préchauffé ! Clique sur la table de pousse' });
             return 0;
           } else if (currentStage === 'baking') {
             // Pains cuits
@@ -305,28 +308,33 @@ export default function FermeBoulangerie() {
     }
   };
 
-  const handlePlaceBreadInProofing = (slotIndex) => {
-    if (!selectedIngredient || workStation.length !== 4 || currentStage !== 'idle') return;
+  const handlePlaceAllBreadInOven = () => {
+    if (currentStage !== 'baking') return;
     
     const batchStart = currentBatch === 1 ? 0 : 20;
-    if (slotIndex < batchStart || slotIndex >= batchStart + 20) return;
+    const breadsToMove = proofingTable.slice(batchStart, batchStart + 20);
     
-    if (!proofingTable[slotIndex]) {
-      const newTable = [...proofingTable];
-      newTable[slotIndex] = { id: Date.now(), flour: workStation[0].flourId };
-      setProofingTable(newTable);
-      setWorkStation([]);
-      setSelectedIngredient(null);
+    if (breadsToMove.some(b => b)) {
+      const newProofing = [...proofingTable];
+      const newOven = [...ovenSlots];
       
-      const filledSlots = newTable.filter((_, i) => i >= batchStart && i < batchStart + 20 && newTable[i]).length;
-      if (filledSlots === 20) {
-        setCurrentStage('proofing');
-        setStageProgress(0);
-        setFeedback({ type: 'success', message: '🍞 20 pains mis à lever !' });
-      } else {
-        setFeedback({ type: 'success', message: `📍 Pain placé (${filledSlots}/20)` });
+      // Placer tous les pains du proofing dans le four
+      let ovenIndex = 0;
+      for (let i = batchStart; i < batchStart + 20; i++) {
+        if (proofingTable[i]) {
+          newProofing[i] = null;
+          if (ovenIndex < 20) {
+            newOven[ovenIndex] = { type: 'bread', flour: proofingTable[i].flour };
+            ovenIndex++;
+          }
+        }
       }
-      setTimeout(() => setFeedback(null), 1500);
+      
+      setProofingTable(newProofing);
+      setOvenSlots(newOven);
+      setStageProgress(0);
+      setFeedback({ type: 'success', message: '🥖 20 pains en cuisson !' });
+      setTimeout(() => setFeedback(null), 1000);
     }
   };
 
@@ -524,46 +532,36 @@ export default function FermeBoulangerie() {
                 </Droppable>
 
                 <h3 className="text-sm font-bold text-orange-300 text-center mt-2">📍 Pousse (20)</h3>
-                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30 min-h-[120px]">
-                  <div className="grid grid-cols-5 gap-1">
+                <button
+                  onClick={handlePlaceAllBreadInOven}
+                  disabled={currentStage !== 'baking' || !proofingTable.slice(batchRange.start, batchRange.end).some(s => s)}
+                  className={`w-full bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30 min-h-[120px] transition-all ${
+                    currentStage === 'baking' && proofingTable.slice(batchRange.start, batchRange.end).some(s => s)
+                      ? 'hover:bg-orange-500/20 hover:border-orange-400 cursor-pointer'
+                      : 'cursor-not-allowed opacity-60'
+                  }`}
+                >
+                  <div className="grid grid-cols-5 gap-1 pointer-events-none">
                     {proofingTable.slice(batchRange.start, batchRange.end).map((slot, idx) => {
                       const index = batchRange.start + idx;
                       return (
-                        <Droppable key={`drop-${index}`} droppableId={`proofing-${index}`}>
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.droppableProps}
-                              className={`h-10 w-10 rounded border flex items-center justify-center text-sm transition-all ${
-                                snapshot.isDraggingOver
-                                  ? 'bg-orange-500/40 border-orange-400'
-                                  : slot
-                                  ? 'bg-green-500/30 border-green-400'
-                                  : 'bg-white/5 border-white/20'
-                              }`}
-                            >
-                              {slot && (
-                                <Draggable draggableId={`proofed-${index}`} index={idx}>
-                                  {(provided, snapshot) => (
-                                    <span
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                      className={`cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-50' : ''}`}
-                                    >
-                                      🍞
-                                    </span>
-                                  )}
-                                </Draggable>
-                              )}
-                              {provided.placeholder}
-                            </div>
-                          )}
-                        </Droppable>
+                        <div
+                          key={index}
+                          className={`h-10 w-10 rounded border flex items-center justify-center text-sm transition-all ${
+                            slot
+                              ? 'bg-green-500/30 border-green-400'
+                              : 'bg-white/5 border-white/20'
+                          }`}
+                        >
+                          {slot && <span>🍞</span>}
+                        </div>
                       );
                     })}
                   </div>
-                </div>
+                  {currentStage === 'baking' && proofingTable.slice(batchRange.start, batchRange.end).some(s => s) && (
+                    <div className="text-xs text-orange-300 mt-2 font-bold">👉 Clique pour mettre les pains au four</div>
+                  )}
+                </button>
               </div>
 
               {/* COL 4: Bois + Four */}
