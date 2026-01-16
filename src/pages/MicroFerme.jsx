@@ -80,6 +80,9 @@ export default function MicroFerme() {
               {/* Zones cliquables */}
               {zones.map((zone) => {
                 const zoneData = ZONES_FERME[zone.id];
+                // Lien spécial pour le centre de formation
+                const pageLink = zone.id === 'centre_formation' ? 'FermeCentreFormation' : 'FermeRoleSelection';
+                
                 return (
                   <motion.div
                     key={zone.id}
@@ -89,7 +92,7 @@ export default function MicroFerme() {
                     className="absolute group"
                     style={{ left: zone.x, top: zone.y, transform: 'translate(-50%, -50%)' }}
                   >
-                    <Link to={createPageUrl('FermeRoleSelection')}>
+                    <Link to={createPageUrl(pageLink)}>
                       <motion.div
                         whileHover={{ scale: 1.15 }}
                         whileTap={{ scale: 0.95 }}
