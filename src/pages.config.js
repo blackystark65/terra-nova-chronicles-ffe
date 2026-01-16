@@ -30,6 +30,7 @@ import RecyclageRoleSelection from './pages/RecyclageRoleSelection';
 import RecyclageRooms from './pages/RecyclageRooms';
 import RecyclageSchedule from './pages/RecyclageSchedule';
 import RecyclageShop from './pages/RecyclageShop';
+import FermePepiniere from './pages/FermePepiniere';
 
 
 export const PAGES = {
@@ -65,6 +66,7 @@ export const PAGES = {
     "RecyclageRooms": RecyclageRooms,
     "RecyclageSchedule": RecyclageSchedule,
     "RecyclageShop": RecyclageShop,
+    "FermePepiniere": FermePepiniere,
 }
 
 export const pagesConfig = {
