@@ -222,40 +222,45 @@ export default function FermeBoulangerie() {
     }
 
     // Ajouter le bois au four
-    if (cardType === 'wood' && destination.droppableId.startsWith('oven-')) {
-      const slotIndex = parseInt(destination.droppableId.split('-')[1]);
-      if (!ovenSlots[slotIndex] && currentStage === 'heating' && woodCardsPlaced < 20) {
-        const newOven = [...ovenSlots];
-        newOven[slotIndex] = { type: 'wood' };
-        setOvenSlots(newOven);
-        setWoodCardsPlaced(woodCardsPlaced + 1);
-        
-        if (woodCardsPlaced + 1 === 20) {
-          setFeedback({ type: 'success', message: '🔥 Four en chauffe !' });
-        } else {
-          setFeedback({ type: 'success', message: `🪵 Bois placé (${woodCardsPlaced + 1}/20)` });
+    if (cardType === 'wood' && destination.droppableId === 'oven-container') {
+      if (currentStage === 'heating' && woodCardsPlaced < 20) {
+        // Trouver le premier emplacement vide
+        const emptySlot = ovenSlots.findIndex(slot => !slot);
+        if (emptySlot !== -1) {
+          const newOven = [...ovenSlots];
+          newOven[emptySlot] = { type: 'wood' };
+          setOvenSlots(newOven);
+          setWoodCardsPlaced(woodCardsPlaced + 1);
+          
+          if (woodCardsPlaced + 1 === 20) {
+            setFeedback({ type: 'success', message: '🔥 Four en chauffe !' });
+          } else {
+            setFeedback({ type: 'success', message: `🪵 Bois placé (${woodCardsPlaced + 1}/20)` });
+          }
         }
       }
       setTimeout(() => setFeedback(null), 1000);
     }
 
     // Ajouter les pains au four
-    if (cardType === 'proofed' && destination.droppableId.startsWith('oven-')) {
-      const slotIndex = parseInt(destination.droppableId.split('-')[1]);
-      const batchStart = currentBatch === 1 ? 0 : 20;
-      
-      if (!ovenSlots[slotIndex] && currentStage === 'baking') {
+    if (cardType === 'proofed' && destination.droppableId === 'oven-container') {
+      if (currentStage === 'baking') {
         const proofedIndex = parseInt(source.droppableId.split('-')[1]);
         const newProofing = [...proofingTable];
         const bread = newProofing[proofedIndex];
-        newProofing[proofedIndex] = null;
-        setProofingTable(newProofing);
+        if (bread) {
+          newProofing[proofedIndex] = null;
+          setProofingTable(newProofing);
 
-        const newOven = [...ovenSlots];
-        newOven[slotIndex] = { type: 'bread', flour: bread.flour };
-        setOvenSlots(newOven);
-        
-        setFeedback({ type: 'success', message: '🥖 Pain en cuisson !' });
+          // Trouver le premier emplacement vide (après le bois)
+          const emptySlot = ovenSlots.findIndex((slot, idx) => !slot && idx < 20);
+          if (emptySlot !== -1) {
+            const newOven = [...ovenSlots];
+            newOven[emptySlot] = { type: 'bread', flour: bread.flour };
+            setOvenSlots(newOven);
+            setFeedback({ type: 'success', message: '🥖 Pain en cuisson !' });
+          }
+        }
       }
       setTimeout(() => setFeedback(null), 1000);
     }
@@ -474,54 +479,63 @@ export default function FermeBoulangerie() {
 
               {/* Bois pour le four */}
               <div className="lg:col-span-1 space-y-2">
-              <h3 className="text-sm font-bold text-orange-300 text-center">Bois (40)</h3>
-              <Draggable draggableId="wood-0" index={0}>
-               {(provided, snapshot) => (
-                 <div
-                   ref={provided.innerRef}
-                   {...provided.draggableProps}
-                   {...provided.dragHandleProps}
-                   className={`aspect-square rounded-lg bg-gradient-to-br from-orange-800 to-red-900 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
-                   style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
-                 >
-                   <span className="text-2xl">🪵</span>
-                   <div className="text-white font-bold text-[7px]">Bois</div>
-                 </div>
-               )}
-              </Draggable>
+                <h3 className="text-sm font-bold text-orange-300 text-center">Bois (40)</h3>
+                <Droppable droppableId="deck-wood" isDropDisabled={true}>
+                  {(provided) => (
+                    <div ref={provided.innerRef} {...provided.droppableProps}>
+                      <Draggable draggableId="wood-0" index={0}>
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className={`aspect-square rounded-lg bg-gradient-to-br from-orange-800 to-red-900 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
+                            style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                          >
+                            <span className="text-2xl">🪵</span>
+                            <div className="text-white font-bold text-[7px]">Bois</div>
+                          </div>
+                        )}
+                      </Draggable>
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
               </div>
 
               {/* Four */}
               <div className="lg:col-span-1 space-y-2">
                 <h3 className="text-sm font-bold text-orange-300 text-center">🔥 Four (20)</h3>
-                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30">
-                  <div className="grid grid-cols-5 gap-1 min-h-[250px]">
-                    {ovenSlots.map((slot, index) => (
-                      <Droppable key={index} droppableId={`oven-${index}`} type="oven">
-                        {(provided, snapshot) => (
+                <Droppable droppableId="oven-container" type="oven">
+                  {(provided) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                      className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30"
+                    >
+                      <div className="grid grid-cols-5 gap-1 min-h-[250px]">
+                        {ovenSlots.map((slot, index) => (
                           <div
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
+                            key={index}
+                            data-droppable-id={`oven-${index}`}
                             className={`aspect-square rounded border flex items-center justify-center transition-all relative ${
                               slot
                                 ? slot.type === 'wood'
                                   ? 'bg-red-900/50 border-red-500'
                                   : 'bg-orange-600/40 border-orange-400'
-                                : snapshot.isDraggingOver
-                                ? 'bg-orange-500/30 border-orange-400'
                                 : 'bg-white/5 border-white/20'
                             }`}
                           >
                             {slot && (
                               <span className="text-base">{slot.type === 'wood' ? '🪵' : '🥖'}</span>
                             )}
-                            {provided.placeholder}
                           </div>
-                        )}
-                      </Droppable>
-                    ))}
-                  </div>
-                </div>
+                        ))}
+                        {provided.placeholder}
+                      </div>
+                    </div>
+                  )}
+                </Droppable>
               </div>
               </div>
 
