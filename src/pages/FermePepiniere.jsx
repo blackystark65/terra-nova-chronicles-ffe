@@ -13,22 +13,117 @@ export default function FermePepiniere() {
   const [workStation, setWorkStation] = useState([]);
   const [completedPots, setCompletedPots] = useState([]);
   const [feedback, setFeedback] = useState(null);
-  const [waterLevel, setWaterLevel] = useState(100); // Niveau d'eau 0-100%
-  const [wateredPots, setWateredPots] = useState([]); // Pots arrosés pendant cette session
+  const [waterLevel, setWaterLevel] = useState(100);
+  const [wateredPots, setWateredPots] = useState([]);
+  const [serreStateId, setSerreStateId] = useState(null);
+  const [roleFermeId, setRoleFermeId] = useState(null);
+
+  const queryClient = useQueryClient();
+
+  const { data: user } = useQuery({
+    queryKey: ['user'],
+    queryFn: () => base44.auth.me(),
+  });
 
   const { data: graines = [] } = useQuery({
     queryKey: ['graines'],
     queryFn: () => base44.entities.Graine.list(),
   });
 
-  // Timer pour vider la barre d'eau progressivement (60 minutes = 3600 secondes)
+  // Récupérer le rôle de l'horticulteur
+  const { data: roleFerme } = useQuery({
+    queryKey: ['roleFerme', user?.email],
+    queryFn: async () => {
+      if (!user?.email) return null;
+      const roles = await base44.entities.RoleFerme.filter({ created_by: user.email, role: 'horticulteur' });
+      return roles[0] || null;
+    },
+    enabled: !!user?.email,
+  });
+
+  // Charger l'état de la serre
+  const { data: serreState } = useQuery({
+    queryKey: ['serreState', roleFerme?.id],
+    queryFn: async () => {
+      if (!roleFerme?.id) return null;
+      const states = await base44.entities.SerreState.filter({ role_ferme_id: roleFerme.id });
+      return states[0] || null;
+    },
+    enabled: !!roleFerme?.id,
+  });
+
+  // Mutation pour créer/mettre à jour l'état de la serre
+  const saveSerreMutation = useMutation({
+    mutationFn: async (data) => {
+      if (serreStateId) {
+        return await base44.entities.SerreState.update(serreStateId, data);
+      } else {
+        return await base44.entities.SerreState.create(data);
+      }
+    },
+    onSuccess: (data) => {
+      if (!serreStateId) {
+        setSerreStateId(data.id);
+      }
+      queryClient.invalidateQueries(['serreState']);
+    },
+  });
+
+  // Charger l'état sauvegardé au démarrage
+  React.useEffect(() => {
+    if (serreState) {
+      setSerreStateId(serreState.id);
+      setCompletedPots(serreState.completed_pots || []);
+      setWateredPots(serreState.watered_pots || []);
+      
+      // Calculer le niveau d'eau en fonction du temps écoulé
+      if (serreState.last_watered_time) {
+        const lastTime = new Date(serreState.last_watered_time).getTime();
+        const now = Date.now();
+        const elapsedSeconds = (now - lastTime) / 1000;
+        const waterLost = (elapsedSeconds / 3600) * 100; // 100% en 3600 secondes
+        setWaterLevel(Math.max(0, serreState.water_level - waterLost));
+      } else {
+        setWaterLevel(serreState.water_level || 100);
+      }
+    }
+  }, [serreState]);
+
+  React.useEffect(() => {
+    if (roleFerme?.id) {
+      setRoleFermeId(roleFerme.id);
+    }
+  }, [roleFerme]);
+
+  // Sauvegarder automatiquement l'état
+  const saveState = React.useCallback(() => {
+    if (!roleFermeId) return;
+    
+    saveSerreMutation.mutate({
+      role_ferme_id: roleFermeId,
+      completed_pots: completedPots,
+      water_level: waterLevel,
+      watered_pots: wateredPots,
+      last_watered_time: new Date().toISOString(),
+    });
+  }, [roleFermeId, completedPots, waterLevel, wateredPots]);
+
+  // Sauvegarder quand les pots ou l'eau changent
+  React.useEffect(() => {
+    if (roleFermeId && completedPots.length > 0) {
+      const timer = setTimeout(() => saveState(), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [completedPots, waterLevel, wateredPots, roleFermeId, saveState]);
+
+  // Timer pour vider la barre d'eau progressivement
   React.useEffect(() => {
     const interval = setInterval(() => {
       setWaterLevel((prev) => {
         if (prev <= 0) return 0;
-        return prev - (100 / 3600); // Diminue de 100% en 3600 secondes (60 minutes)
+        return prev - (100 / 3600);
       });
-    }, 1000); // Toutes les secondes
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
