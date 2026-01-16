@@ -207,14 +207,15 @@ export default function FermePepiniere() {
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
-                              className={`relative w-32 cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-50' : ''}`}
+                              className={`relative w-32 cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'z-[9999]' : ''}`}
+                              style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
                             >
                               {workStation.map((layer, i) => (
                                 <motion.div
                                   key={i}
                                   initial={{ y: -50, opacity: 0 }}
                                   animate={{ y: i * 12, opacity: 1 }}
-                                  className="absolute top-0 left-0 w-full aspect-square rounded-lg bg-gradient-to-br from-white/20 to-white/10 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center"
+                                  className="absolute top-0 left-0 w-full aspect-square rounded-lg bg-gradient-to-br from-white/20 to-white/10 border-2 border-white/30 shadow-2xl flex flex-col items-center justify-center"
                                   style={{ zIndex: i }}
                                 >
                                   <span className="text-3xl">{layer.emoji}</span>
@@ -251,7 +252,7 @@ export default function FermePepiniere() {
                 <h2 className="text-lg font-bold text-cyan-300 text-center">
                   🏡 Serre ({completedPots.length}/{graines.length})
                 </h2>
-                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-cyan-400/30 relative z-10">
+                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-cyan-400/30 relative z-0">
                   <div className="grid grid-cols-7 gap-1">
                     {Array.from({ length: graines.length }).map((_, index) => {
                       const pot = completedPots.find(p => p.slotIndex === index);
@@ -261,7 +262,7 @@ export default function FermePepiniere() {
                             <div
                               ref={provided.innerRef}
                               {...provided.droppableProps}
-                              className={`aspect-square rounded border flex items-center justify-center transition-all relative z-20 ${
+                              className={`aspect-square rounded border flex items-center justify-center transition-all relative z-0 ${
                                 pot
                                   ? 'bg-green-500/30 border-green-400'
                                   : snapshot.isDraggingOver
