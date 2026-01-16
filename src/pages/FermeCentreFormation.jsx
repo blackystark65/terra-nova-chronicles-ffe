@@ -47,6 +47,17 @@ export default function FermeCentreFormation() {
     },
   });
 
+  const deleteRoleMutation = useMutation({
+    mutationFn: (roleId) => base44.entities.RoleFerme.delete(roleId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['fermeRoles']);
+      setIsRegistered(false);
+      setSelectedRole(null);
+      setSelectedClasse(null);
+      setViewMode('inscription');
+    },
+  });
+
   useEffect(() => {
     if (existingRoles && existingRoles.length > 0) {
       setIsRegistered(true);
@@ -73,6 +84,12 @@ export default function FermeCentreFormation() {
 
   const handleContinueToFarm = () => {
     window.location.href = createPageUrl('FermeSchedule');
+  };
+
+  const handleUnregister = () => {
+    if (existingRoles && existingRoles.length > 0) {
+      deleteRoleMutation.mutate(existingRoles[0].id);
+    }
   };
 
   return (
@@ -306,18 +323,26 @@ export default function FermeCentreFormation() {
                   })}
                 </Tabs>
 
-                {/* Bouton pour commencer */}
+                {/* Boutons d'action */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="mt-8 text-center"
+                  className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
                 >
                   <Button
                     onClick={handleContinueToFarm}
                     className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 py-6 px-8 text-lg"
                   >
-                    🚀 Commencer mon travail à la ferme →
+                    🚀 Commencer mon travail à la ferme
+                  </Button>
+                  <Button
+                    onClick={handleUnregister}
+                    disabled={deleteRoleMutation.isPending}
+                    variant="outline"
+                    className="border-red-400 text-red-300 hover:bg-red-500/20 py-6 px-8 text-lg"
+                  >
+                    {deleteRoleMutation.isPending ? '⏳ Désinscription...' : '🔄 Me désinscrire et changer de poste'}
                   </Button>
                 </motion.div>
               </motion.div>
