@@ -13,11 +13,25 @@ export default function FermePepiniere() {
   const [workStation, setWorkStation] = useState([]);
   const [completedPots, setCompletedPots] = useState([]);
   const [feedback, setFeedback] = useState(null);
+  const [waterLevel, setWaterLevel] = useState(100); // Niveau d'eau 0-100%
+  const [wateredPots, setWateredPots] = useState([]); // Pots arrosés pendant cette session
 
   const { data: graines = [] } = useQuery({
     queryKey: ['graines'],
     queryFn: () => base44.entities.Graine.list(),
   });
+
+  // Timer pour vider la barre d'eau progressivement (60 minutes = 3600 secondes)
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setWaterLevel((prev) => {
+        if (prev <= 0) return 0;
+        return prev - (100 / 3600); // Diminue de 100% en 3600 secondes (60 minutes)
+      });
+    }, 1000); // Toutes les secondes
+
+    return () => clearInterval(interval);
+  }, []);
 
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
@@ -26,7 +40,7 @@ export default function FermePepiniere() {
     const [cardType, cardId] = draggableId.split('-');
 
     // Glisser vers la table de rempotage
-    if (destination.droppableId === 'workstation' && cardType !== 'completepot') {
+    if (destination.droppableId === 'workstation' && cardType !== 'completepot' && cardType !== 'water') {
       if (cardType === 'pot' && workStation.length === 0) {
         setWorkStation([{ type: 'pot', emoji: '🪴', name: 'Pot' }]);
         setFeedback({ type: 'success', message: '✅ Pot ajouté !' });
@@ -64,7 +78,33 @@ export default function FermePepiniere() {
         setTimeout(() => setFeedback(null), 2000);
       }
     }
+
+    // Glisser l'eau sur un pot de la serre
+    if (cardType === 'water' && destination.droppableId.startsWith('serre-')) {
+      const slotIndex = parseInt(destination.droppableId.split('-')[1]);
+      const pot = completedPots.find(p => p.slotIndex === slotIndex);
+      
+      if (pot && waterLevel < 100) {
+        // Arroser ce pot
+        if (!wateredPots.includes(slotIndex)) {
+          setWateredPots([...wateredPots, slotIndex]);
+          setWaterLevel((prev) => Math.min(100, prev + (100 / completedPots.length)));
+          setFeedback({ type: 'success', message: '💧 Pot arrosé !' });
+          setTimeout(() => setFeedback(null), 1000);
+        }
+      } else if (waterLevel >= 100) {
+        setFeedback({ type: 'error', message: '✅ Tous les pots sont déjà arrosés !' });
+        setTimeout(() => setFeedback(null), 1500);
+      }
+    }
   };
+
+  // Réinitialiser les pots arrosés quand la barre atteint 0
+  React.useEffect(() => {
+    if (waterLevel <= 0) {
+      setWateredPots([]);
+    }
+  }, [waterLevel]);
 
   const availableGraines = graines.filter(g => !completedPots.some(p => p.graine.id === g.id));
 
@@ -186,7 +226,7 @@ export default function FermePepiniere() {
                 </div>
               </div>
 
-              {/* Table de rempotage */}
+              {/* Table de rempotage + Arrosage */}
               <div className="space-y-2">
                 <h2 className="text-lg font-bold text-cyan-300 text-center">🛠️ Table</h2>
                 <Droppable droppableId="workstation">
@@ -245,6 +285,59 @@ export default function FermePepiniere() {
                     </div>
                   )}
                 </Droppable>
+
+                {/* Carte Eau */}
+                <div className="mt-4">
+                  <Droppable droppableId="water-deck" isDropDisabled={true}>
+                    {(provided) => (
+                      <div ref={provided.innerRef} {...provided.droppableProps}>
+                        <Draggable draggableId="water-card" index={0}>
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              className={`w-20 h-20 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing mx-auto ${snapshot.isDragging ? 'z-[9999]' : ''}`}
+                              style={{ ...provided.draggableProps.style, zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                            >
+                              <span className="text-3xl">💧</span>
+                              <div className="text-white text-[10px] font-bold">Eau</div>
+                            </div>
+                          )}
+                        </Draggable>
+                        {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                </div>
+
+                {/* Barre d'arrosage */}
+                <div className="mt-3 bg-white/10 rounded-lg p-3 border border-cyan-400/30">
+                  <div className="text-cyan-300 text-xs font-bold mb-2 text-center">
+                    💧 Niveau d'eau
+                  </div>
+                  <div className="w-full h-6 bg-gray-700 rounded-full overflow-hidden relative">
+                    <motion.div
+                      className={`h-full rounded-full transition-all ${
+                        waterLevel > 60 ? 'bg-gradient-to-r from-blue-500 to-cyan-400' :
+                        waterLevel > 30 ? 'bg-gradient-to-r from-yellow-500 to-orange-400' :
+                        'bg-gradient-to-r from-red-500 to-orange-500'
+                      }`}
+                      style={{ width: `${waterLevel}%` }}
+                      animate={waterLevel <= 20 ? { opacity: [1, 0.5, 1] } : {}}
+                      transition={{ duration: 1, repeat: Infinity }}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center text-white text-xs font-bold">
+                      {Math.round(waterLevel)}%
+                    </div>
+                  </div>
+                  <div className="text-cyan-400/70 text-[10px] text-center mt-1">
+                    {waterLevel <= 20 ? '⚠️ Arrose tes plantes !' : 'Glisse l\'eau sur les pots'}
+                  </div>
+                  <div className="text-cyan-400/50 text-[9px] text-center mt-1">
+                    Arrosés: {wateredPots.length}/{completedPots.length}
+                  </div>
+                </div>
               </div>
 
               {/* Serre - Grande carte verticale */}
@@ -264,15 +357,20 @@ export default function FermePepiniere() {
                               {...provided.droppableProps}
                               className={`aspect-square rounded border flex items-center justify-center transition-all relative z-0 ${
                                 pot
-                                  ? 'bg-green-500/30 border-green-400'
+                                  ? wateredPots.includes(index)
+                                    ? 'bg-blue-500/40 border-blue-400 shadow-lg shadow-blue-500/50'
+                                    : 'bg-green-500/30 border-green-400'
                                   : snapshot.isDraggingOver
                                   ? 'bg-cyan-500/30 border-cyan-400'
                                   : 'bg-white/5 border-white/20'
                               }`}
                             >
                               {pot ? (
-                                <div className="text-center">
+                                <div className="text-center relative">
                                   <div className="text-lg">{pot.graine.emoji || '🌱'}</div>
+                                  {wateredPots.includes(index) && (
+                                    <div className="absolute -top-1 -right-1 text-xs">💧</div>
+                                  )}
                                 </div>
                               ) : (
                                 <div className="text-white/30 text-[8px]">{index + 1}</div>
