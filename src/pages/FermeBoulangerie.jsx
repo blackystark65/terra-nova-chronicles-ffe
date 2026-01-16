@@ -530,7 +530,6 @@ export default function FermeBoulangerie() {
                     </div>
                   )}
                 </Droppable>
-              </div>
 
                 <h3 className="text-sm font-bold text-orange-300 text-center mt-2">🔥 Four</h3>
                 <Droppable droppableId="oven-container" type="oven">
@@ -563,29 +562,28 @@ export default function FermeBoulangerie() {
                   )}
                 </Droppable>
               </div>
-            </div>
+              </div>
 
-               {/* Bouton pour passer à la 2ème fournée */}
-               {currentStage === 'idle' && currentBatch === 1 && proofingTable.some(p => p) && (
-                 <Button
-                   onClick={startSecondBatch}
-                   className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
-                 >
-                   🔄 Préparer la 2ème fournée
-                 </Button>
-               )}
-               </div>
+              {/* Bouton pour passer à la 2ème fournée */}
+              {currentStage === 'idle' && currentBatch === 1 && proofingTable.some(p => p) && (
+              <Button
+               onClick={startSecondBatch}
+               className="w-full mt-4 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
+              >
+               🔄 Préparer la 2ème fournée
+              </Button>
+              )}
 
-               {/* Compteur final */}
-               <div className="mt-6 text-center">
-               <div className="inline-block bg-white/10 backdrop-blur-xl rounded-lg p-4 border border-orange-400/30">
-                 <div className="text-orange-300 font-bold text-lg">
-                   🥖 Pains complétés: {completedLoaves}/40
-                 </div>
+              {/* Compteur final */}
+              <div className="mt-6 text-center">
+              <div className="inline-block bg-white/10 backdrop-blur-xl rounded-lg p-4 border border-orange-400/30">
+               <div className="text-orange-300 font-bold text-lg">
+                 🥖 Pains complétés: {completedLoaves}/40
                </div>
-               </div>
-               </div>
-               </main>
+              </div>
+              </div>
+              </div>
+              </main>
 
         {/* Feedback */}
         <AnimatePresence>
