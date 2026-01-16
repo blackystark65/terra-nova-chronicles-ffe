@@ -14,7 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function FermeCentreFormation() {
   const queryClient = useQueryClient();
-  const [classCode, setClassCode] = useState('');
+  const [selectedClasse, setSelectedClasse] = useState(null);
   const [selectedRole, setSelectedRole] = useState(null);
   const [isRegistered, setIsRegistered] = useState(false);
   const [viewMode, setViewMode] = useState('inscription'); // 'inscription' ou 'formation'
@@ -22,6 +22,11 @@ export default function FermeCentreFormation() {
   const { data: user } = useQuery({
     queryKey: ['user'],
     queryFn: () => base44.auth.me(),
+  });
+
+  const { data: classes } = useQuery({
+    queryKey: ['classeFerme'],
+    queryFn: () => base44.entities.ClasseFerme.filter({ is_active: true }),
   });
 
   const { data: existingRoles } = useQuery({
@@ -51,7 +56,7 @@ export default function FermeCentreFormation() {
   }, [existingRoles]);
 
   const handleRegister = () => {
-    if (!selectedRole || !classCode.trim()) return;
+    if (!selectedRole || !selectedClasse) return;
     
     const roleData = ROLES_FERME.find(r => r.id === selectedRole);
     if (!roleData) return;
@@ -62,6 +67,7 @@ export default function FermeCentreFormation() {
       zone_principale: roleData.zones[0],
       total_actions: 0,
       is_active: true,
+      classe_id: selectedClasse.id,
     });
   };
 
@@ -104,18 +110,48 @@ export default function FermeCentreFormation() {
                 </div>
 
                 <div className="space-y-6">
-                  {/* Code de classe */}
+                  {/* Choix de la classe */}
                   <div className="bg-white/5 p-6 rounded-2xl border border-indigo-400/20">
-                    <label className="flex items-center gap-2 text-indigo-300 font-semibold mb-3">
+                    <label className="flex items-center gap-2 text-indigo-300 font-semibold mb-4">
                       <Users className="w-5 h-5" />
-                      Code de classe fourni par l'enseignant
+                      Choisis ta classe
                     </label>
-                    <Input
-                      value={classCode}
-                      onChange={(e) => setClassCode(e.target.value)}
-                      placeholder="Ex: FERME2026-A"
-                      className="bg-white/10 border-indigo-400/30 text-white text-lg"
-                    />
+                    {classes && classes.length > 0 ? (
+                      <div className="grid gap-3">
+                        {classes.map((classe) => (
+                          <motion.div
+                            key={classe.id}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => setSelectedClasse(classe)}
+                            className={`p-4 rounded-xl cursor-pointer transition-all ${
+                              selectedClasse?.id === classe.id
+                                ? 'bg-gradient-to-r from-indigo-500 to-purple-600 border-2 border-indigo-300'
+                                : 'bg-white/10 border border-indigo-400/20 hover:bg-white/20'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <div className="text-white font-bold text-lg">{classe.nom_classe}</div>
+                                <div className="text-indigo-200/70 text-sm">
+                                  👨‍🏫 {classe.enseignant} • 👥 {classe.nombre_eleves} élèves
+                                </div>
+                                {classe.description && (
+                                  <div className="text-indigo-300/60 text-xs mt-1">{classe.description}</div>
+                                )}
+                              </div>
+                              {selectedClasse?.id === classe.id && (
+                                <CheckCircle className="w-6 h-6 text-white" />
+                              )}
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-8 text-indigo-300/50">
+                        Aucune classe disponible pour le moment
+                      </div>
+                    )}
                   </div>
 
                   {/* Choix du poste */}
@@ -154,7 +190,7 @@ export default function FermeCentreFormation() {
 
                   <Button
                     onClick={handleRegister}
-                    disabled={!selectedRole || !classCode.trim() || createRoleMutation.isPending}
+                    disabled={!selectedRole || !selectedClasse || createRoleMutation.isPending}
                     className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 py-6 text-lg"
                   >
                     {createRoleMutation.isPending ? '⏳ Inscription en cours...' : '✅ S\'inscrire et accéder à la formation'}
