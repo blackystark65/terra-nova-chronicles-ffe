@@ -139,6 +139,14 @@ export const ROLES_FERME = [
     description: 'Développe la forêt comestible',
     zones: ['foret_jardin', 'bocage', 'compost'],
     color: 'from-green-700 to-emerald-800'
+  },
+  {
+    id: 'horticulteur',
+    name: 'Horticulteur·rice',
+    emoji: '🌱',
+    description: 'Prépare les semis à la pépinière',
+    zones: ['pepiniere'],
+    color: 'from-cyan-500 to-blue-600'
   }
 ];
 
@@ -176,6 +184,12 @@ export const SCHEDULES_FERME = {
     { hour: 8, zone: 'foret_jardin', duration: 180, label: 'Planter en strates' },
     { hour: 11, zone: 'bocage', duration: 180, label: 'Enrichir les haies' },
     { hour: 14, zone: 'compost', duration: 120, label: 'Mulcher et fertiliser' }
+  ],
+  horticulteur: [
+    { hour: 7, zone: 'pepiniere', duration: 180, label: 'Préparer les semis' },
+    { hour: 10, zone: 'pepiniere', duration: 180, label: 'Repiquer les plantons' },
+    { hour: 13, zone: 'pepiniere', duration: 120, label: 'Arroser et surveiller' },
+    { hour: 15, zone: 'pepiniere', duration: 120, label: 'Livrer les plants' }
   ]
 };
 

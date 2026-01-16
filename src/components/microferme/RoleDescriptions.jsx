@@ -311,5 +311,57 @@ export const ROLE_DESCRIPTIONS = {
       'Identifier les champignons',
       'Penser en écosystème'
     ]
+  },
+
+  horticulteur: {
+    title: 'Horticulteur·rice',
+    emoji: '🌱',
+    zones: ['Pépinière / Serre'],
+    description: 'Tu prépares tous les semis et plantons pour la ferme entière.',
+    
+    tasks: [
+      {
+        title: '1. Préparer les pots',
+        details: 'Place un pot de rempotage et remplis-le avec les couches nécessaires : bois broyé au fond pour le drainage, puis compost pour nourrir.',
+        icon: '🪴'
+      },
+      {
+        title: '2. Sélectionner les graines',
+        details: 'Choisis les graines à semer selon la saison et les besoins de la ferme. Il y a 80+ variétés : légumes, fruits, aromatiques, fleurs comestibles.',
+        icon: '🌾'
+      },
+      {
+        title: '3. Semer les graines',
+        details: 'Place une graine dans chaque pot préparé. Respecte l\'ordre : pot → bois broyé → compost → graine.',
+        icon: '🌱'
+      },
+      {
+        title: '4. Ranger dans la serre',
+        details: 'Place chaque pot semé sur un plateau de la serre. Organise par type de plante et date de semis.',
+        icon: '🏡'
+      },
+      {
+        title: '5. Arroser quotidiennement',
+        details: 'Arrose tous les semis chaque jour. Surveille l\'humidité sans noyer les graines.',
+        icon: '💧'
+      },
+      {
+        title: '6. Repiquer les plantons',
+        details: 'Quand les plants ont 2-3 feuilles, repique-les dans des pots plus grands pour qu\'ils se développent.',
+        icon: '🌿'
+      },
+      {
+        title: '7. Livrer aux autres postes',
+        details: 'Donne les plantons prêts au maraîcher, à l\'arboriste et au jardinier forestier pour qu\'ils les plantent.',
+        icon: '📦'
+      }
+    ],
+    
+    competences: [
+      'Connaître les besoins des graines',
+      'Maîtriser les techniques de semis',
+      'Gérer l\'arrosage et l\'humidité',
+      'Organiser la production de plants'
+    ]
   }
 };
