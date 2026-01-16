@@ -296,6 +296,40 @@ export default function FermeBoulangerie() {
               🥖 Boulangerie - Fournée {currentBatch}
             </h1>
 
+            <div className="space-y-6">
+            {/* Barre de progression principale */}
+            {currentStage !== 'idle' && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-4 bg-gradient-to-r from-orange-900/50 to-red-900/50 rounded-xl p-6 border-2 border-orange-400/50 shadow-2xl"
+              >
+                <div className="text-orange-200 text-lg font-bold mb-4 text-center flex items-center justify-center gap-2">
+                  {currentStage === 'proofing' && '🍞 Les pains lèvent...'}
+                  {currentStage === 'heating' && '🔥 Le four chauffe...'}
+                  {currentStage === 'baking' && '🥖 Les pains cuisent...'}
+                </div>
+                <div className="w-full h-12 bg-gray-900 rounded-full overflow-hidden relative border-2 border-orange-500">
+                  <motion.div
+                    className={`h-full rounded-full transition-all ${
+                      currentStage === 'proofing' ? 'bg-gradient-to-r from-green-500 via-green-400 to-emerald-300' :
+                      currentStage === 'heating' ? 'bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400' :
+                      'bg-gradient-to-r from-orange-600 via-yellow-500 to-yellow-300'
+                    }`}
+                    style={{ width: `${stageProgress}%` }}
+                    animate={{ boxShadow: `0 0 20px ${
+                      currentStage === 'proofing' ? 'rgb(34, 197, 94)' :
+                      currentStage === 'heating' ? 'rgb(239, 68, 68)' :
+                      'rgb(249, 115, 22)'
+                    }` }}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold drop-shadow-lg">
+                    {Math.round(stageProgress)}%
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
             <div className="grid lg:grid-cols-5 gap-4">
               {/* Paquets de cartes - Farines */}
               <div className="lg:col-span-1 space-y-2">
@@ -328,79 +362,60 @@ export default function FermeBoulangerie() {
               {/* Cartes Eau, Levain, Sel */}
               <div className="lg:col-span-1 space-y-2">
                 <h3 className="text-sm font-bold text-orange-300 text-center">Ingrédients</h3>
-                <div className="space-y-2">
-                  {/* Eau */}
-                  <Droppable droppableId="deck-water" isDropDisabled={true}>
-                    {(provided) => (
-                      <div ref={provided.innerRef} {...provided.droppableProps}>
-                        <Draggable draggableId="water-0" index={0}>
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              className={`aspect-square rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
-                              style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
-                            >
-                              <span className="text-3xl">💧</span>
-                              <div className="text-white font-bold text-[8px]">Eau</div>
-                              <div className="absolute top-1 right-1 bg-black/50 px-1 rounded text-white text-[8px]">40</div>
-                            </div>
-                          )}
-                        </Draggable>
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
+                <Droppable droppableId="deck-ingredients" isDropDisabled={true}>
+                  {(provided) => (
+                    <div ref={provided.innerRef} {...provided.droppableProps} className="grid grid-cols-3 gap-2">
+                      {/* Eau */}
+                      <Draggable draggableId="water-0" index={0}>
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className={`aspect-square rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
+                            style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                          >
+                            <span className="text-xl">💧</span>
+                            <div className="text-white font-bold text-[7px]">Eau</div>
+                          </div>
+                        )}
+                      </Draggable>
 
-                  {/* Levain */}
-                  <Droppable droppableId="deck-leaven" isDropDisabled={true}>
-                    {(provided) => (
-                      <div ref={provided.innerRef} {...provided.droppableProps}>
-                        <Draggable draggableId="leaven-0" index={0}>
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              className={`aspect-square rounded-lg bg-gradient-to-br from-red-500 to-orange-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
-                              style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
-                            >
-                              <span className="text-3xl">🫧</span>
-                              <div className="text-white font-bold text-[8px]">Levain</div>
-                              <div className="absolute top-1 right-1 bg-black/50 px-1 rounded text-white text-[8px]">40</div>
-                            </div>
-                          )}
-                        </Draggable>
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
+                      {/* Levain */}
+                      <Draggable draggableId="leaven-0" index={1}>
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className={`aspect-square rounded-lg bg-gradient-to-br from-red-500 to-orange-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
+                            style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                          >
+                            <span className="text-xl">🫧</span>
+                            <div className="text-white font-bold text-[7px]">Levain</div>
+                          </div>
+                        )}
+                      </Draggable>
 
-                  {/* Sel */}
-                  <Droppable droppableId="deck-salt" isDropDisabled={true}>
-                    {(provided) => (
-                      <div ref={provided.innerRef} {...provided.droppableProps}>
-                        <Draggable draggableId="salt-0" index={0}>
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              className={`aspect-square rounded-lg bg-gradient-to-br from-gray-400 to-gray-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
-                              style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
-                            >
-                              <span className="text-3xl">🧂</span>
-                              <div className="text-white font-bold text-[8px]">Sel</div>
-                              <div className="absolute top-1 right-1 bg-black/50 px-1 rounded text-white text-[8px]">40</div>
-                            </div>
-                          )}
-                        </Draggable>
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
-                </div>
+                      {/* Sel */}
+                      <Draggable draggableId="salt-0" index={2}>
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className={`aspect-square rounded-lg bg-gradient-to-br from-gray-400 to-gray-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
+                            style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                          >
+                            <span className="text-xl">🧂</span>
+                            <div className="text-white font-bold text-[7px]">Sel</div>
+                          </div>
+                        )}
+                      </Draggable>
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
               </div>
 
               {/* Table de pétrissage */}
@@ -492,106 +507,97 @@ export default function FermeBoulangerie() {
               {/* Four */}
               <div className="lg:col-span-1 space-y-2">
                 <h3 className="text-sm font-bold text-orange-300 text-center">🔥 Four (20)</h3>
-                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30">
-                  <div className="grid grid-cols-5 gap-1 h-[300px]">
-                    {ovenSlots.map((slot, index) => (
-                      <Droppable key={index} droppableId={`oven-${index}`}>
-                        {(provided, snapshot) => (
+                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30 min-h-[300px]">
+                  <Droppable droppableId="oven-container" type="oven">
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                        className={`grid grid-cols-5 gap-1 min-h-[280px] ${snapshot.isDraggingOver ? 'bg-orange-500/20' : ''}`}
+                      >
+                        {ovenSlots.map((slot, index) => (
                           <div
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                            className={`aspect-square rounded border flex items-center justify-center transition-all relative z-0 ${
+                            key={index}
+                            className={`aspect-square rounded border flex items-center justify-center transition-all ${
                               slot
                                 ? slot.type === 'wood'
                                   ? 'bg-red-900/50 border-red-500'
                                   : 'bg-orange-600/40 border-orange-400'
-                                : snapshot.isDraggingOver
-                                ? 'bg-orange-500/30 border-orange-400'
                                 : 'bg-white/5 border-white/20'
                             }`}
                           >
                             {slot && (
                               <span className="text-lg">{slot.type === 'wood' ? '🪵' : '🥖'}</span>
                             )}
-                            {provided.placeholder}
+                            <Droppable droppableId={`oven-${index}`} type="oven">
+                              {(innerProvided, innerSnapshot) => (
+                                <div
+                                  ref={innerProvided.innerRef}
+                                  {...innerProvided.droppableProps}
+                                  className="w-full h-full flex items-center justify-center"
+                                >
+                                  {innerProvided.placeholder}
+                                </div>
+                              )}
+                            </Droppable>
                           </div>
-                        )}
-                      </Droppable>
-                    ))}
-                  </div>
+                        ))}
+                        {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
                 </div>
               </div>
             </div>
 
-            {/* Table de pousse */}
-            <div className="mt-6 space-y-2">
+            </div>
+
+            {/* Table de pousse - DIRECTEMENT APRÈS */}
+            <div className="space-y-2">
               <h2 className="text-xl font-bold text-orange-300 text-center">
-                📍 Table de Pousse ({batchRange.start + 1}-{batchRange.end}) - {currentStage === 'proofing' ? `${Math.round(stageProgress)}% 📈` : 'Prête'}
+                📍 Table de Pousse ({batchRange.start + 1}-{batchRange.end})
               </h2>
               <div className="bg-white/5 backdrop-blur-xl rounded-lg p-3 border border-orange-400/30">
-                <div className="grid grid-cols-10 gap-1">
-                  {proofingTable.map((slot, index) => {
-                    const inCurrentBatch = index >= batchRange.start && index < batchRange.end;
-                    return inCurrentBatch ? (
-                      <Droppable key={index} droppableId={`proofing-${index}`}>
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                            className={`aspect-square rounded border flex items-center justify-center transition-all relative z-0 ${
-                              slot
-                                ? 'bg-green-500/30 border-green-400'
-                                : snapshot.isDraggingOver
-                                ? 'bg-orange-500/30 border-orange-400'
-                                : 'bg-white/5 border-white/20'
-                            }`}
-                          >
-                            {slot && (
-                              <div className="text-center">
-                                <span className="text-lg">🍞</span>
+                <Droppable droppableId="proofing-container" type="proofing">
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                      className={`grid grid-cols-10 gap-1 ${snapshot.isDraggingOver ? 'bg-orange-500/20 p-2 rounded' : ''}`}
+                    >
+                      {proofingTable.map((slot, index) => {
+                        const inCurrentBatch = index >= batchRange.start && index < batchRange.end;
+                        return inCurrentBatch ? (
+                          <Droppable key={index} droppableId={`proofing-${index}`} type="proofing">
+                            {(innerProvided, innerSnapshot) => (
+                              <div
+                                ref={innerProvided.innerRef}
+                                {...innerProvided.droppableProps}
+                                className={`aspect-square rounded border flex items-center justify-center transition-all ${
+                                  slot
+                                    ? 'bg-green-500/30 border-green-400'
+                                    : innerSnapshot.isDraggingOver
+                                    ? 'bg-orange-500/30 border-orange-400'
+                                    : 'bg-white/5 border-white/20'
+                                }`}
+                              >
+                                {slot && <span className="text-lg">🍞</span>}
+                                <div className="text-white/30 text-[8px]">{index + 1}</div>
+                                {innerProvided.placeholder}
                               </div>
                             )}
-                            <div className="text-white/30 text-[8px]">{index + 1}</div>
-                            {provided.placeholder}
+                          </Droppable>
+                        ) : (
+                          <div key={index} className="aspect-square rounded border border-gray-500/30 bg-gray-800/20 flex items-center justify-center text-gray-500/30 text-[8px]">
+                            {index + 1}
                           </div>
-                        )}
-                      </Droppable>
-                    ) : (
-                      <div key={index} className="aspect-square rounded border border-gray-500/30 bg-gray-800/20 flex items-center justify-center text-gray-500/30 text-[8px]">
-                        {index + 1}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Barre de progression */}
-              {currentStage !== 'idle' && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="mt-4 bg-white/10 rounded-lg p-4 border border-orange-400/30"
-                >
-                  <div className="text-orange-300 text-sm font-bold mb-2 text-center">
-                    {currentStage === 'proofing' && '🍞 Les pains lèvent...'}
-                    {currentStage === 'heating' && '🔥 Le four chauffe...'}
-                    {currentStage === 'baking' && '🥖 Les pains cuisent...'}
-                  </div>
-                  <div className="w-full h-6 bg-gray-700 rounded-full overflow-hidden relative">
-                    <motion.div
-                      className={`h-full rounded-full transition-all ${
-                        currentStage === 'proofing' ? 'bg-gradient-to-r from-green-500 to-emerald-400' :
-                        currentStage === 'heating' ? 'bg-gradient-to-r from-red-500 to-orange-400' :
-                        'bg-gradient-to-r from-orange-500 to-yellow-400'
-                      }`}
-                      style={{ width: `${stageProgress}%` }}
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center text-white text-xs font-bold">
-                      {Math.round(stageProgress)}%
+                        );
+                      })}
+                      {provided.placeholder}
                     </div>
-                  </div>
-                </motion.div>
-              )}
+                  )}
+                </Droppable>
+              </div>
 
               {/* Bouton pour passer à la 2ème fournée */}
               {currentStage === 'idle' && currentBatch === 1 && proofingTable.some(p => p) && (
