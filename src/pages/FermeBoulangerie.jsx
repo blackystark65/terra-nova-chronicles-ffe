@@ -482,20 +482,33 @@ export default function FermeBoulangerie() {
                     {proofingTable.slice(batchRange.start, batchRange.end).map((slot, idx) => {
                       const index = batchRange.start + idx;
                       return (
-                        <Droppable key={index} droppableId={`proofing-${index}`} type="proofing">
+                        <Droppable key={`drop-${index}`} droppableId={`proofing-${index}`} type="proofing">
                           {(provided, snapshot) => (
                             <div
                               ref={provided.innerRef}
                               {...provided.droppableProps}
                               className={`h-10 w-10 rounded border flex items-center justify-center text-sm transition-all ${
-                                slot
+                                snapshot.isDraggingOver
+                                  ? 'bg-orange-500/40 border-orange-400'
+                                  : slot
                                   ? 'bg-green-500/30 border-green-400'
-                                  : snapshot.isDraggingOver
-                                  ? 'bg-orange-500/30 border-orange-400'
                                   : 'bg-white/5 border-white/20'
                               }`}
                             >
-                              {slot && <span>🍞</span>}
+                              {slot && (
+                                <Draggable draggableId={`proofed-${index}`} index={idx}>
+                                  {(provided, snapshot) => (
+                                    <span
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      className={`cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-50' : ''}`}
+                                    >
+                                      🍞
+                                    </span>
+                                  )}
+                                </Draggable>
+                              )}
                               {provided.placeholder}
                             </div>
                           )}
@@ -508,19 +521,20 @@ export default function FermeBoulangerie() {
 
               {/* COL 4: Bois + Four */}
               <div className="space-y-2">
+                <h3 className="text-sm font-bold text-orange-300 text-center">Bois</h3>
                 <Droppable droppableId="deck-wood" isDropDisabled={true}>
                   {(provided) => (
-                    <div ref={provided.innerRef} {...provided.droppableProps}>
+                    <div ref={provided.innerRef} {...provided.droppableProps} className="flex justify-center">
                       <Draggable draggableId="wood-0" index={0}>
                         {(provided, snapshot) => (
                           <div
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`h-16 w-16 rounded-lg bg-gradient-to-br from-orange-800 to-red-900 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
+                            className={`h-14 w-14 rounded-lg bg-gradient-to-br from-orange-800 to-red-900 border-2 border-white/30 shadow-lg flex items-center justify-center cursor-grab active:cursor-grabbing text-lg ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
                             style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
                           >
-                            <span className="text-lg">🪵</span>
+                            🪵
                           </div>
                         )}
                       </Draggable>
