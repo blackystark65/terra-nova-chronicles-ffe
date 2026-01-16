@@ -574,17 +574,18 @@ export default function FermeBoulangerie() {
                    🔄 Préparer la 2ème fournée
                  </Button>
                )}
+               </div>
 
                {/* Compteur final */}
-            <div className="mt-6 text-center">
-              <div className="inline-block bg-white/10 backdrop-blur-xl rounded-lg p-4 border border-orange-400/30">
-                <div className="text-orange-300 font-bold text-lg">
-                  🥖 Pains complétés: {completedLoaves}/40
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
+               <div className="mt-6 text-center">
+               <div className="inline-block bg-white/10 backdrop-blur-xl rounded-lg p-4 border border-orange-400/30">
+                 <div className="text-orange-300 font-bold text-lg">
+                   🥖 Pains complétés: {completedLoaves}/40
+                 </div>
+               </div>
+               </div>
+               </div>
+               </main>
 
         {/* Feedback */}
         <AnimatePresence>
