@@ -289,7 +289,7 @@ export default function FermeCentreFormation() {
 
                 {/* Onglets des postes */}
                 <Tabs defaultValue={selectedRole || 'maraicher'} className="w-full">
-                  <TabsList className="grid grid-cols-2 lg:grid-cols-3 gap-2 bg-white/5 p-2 rounded-xl mb-6">
+                  <TabsList className="grid grid-cols-2 lg:grid-cols-3 gap-2 bg-white/5 p-4 rounded-xl mb-12">
                     {ROLES_FERME.map((role) => (
                       <TabsTrigger
                         key={role.id}
