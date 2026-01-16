@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { ZONES_FERME, ZONE_PAGES } from '@/components/microferme/FermeData';
-import { ArrowRight, Users } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 
 export default function MicroFerme() {
@@ -49,14 +49,6 @@ export default function MicroFerme() {
             <p className="text-emerald-200 text-xl max-w-3xl mx-auto mb-6">
               Cultive, transforme et partage dans un écosystème agricole vivant
             </p>
-            
-            <Link to={createPageUrl('FermeRoleSelection')}>
-              <Button className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-lg py-6 px-8">
-                <Users className="w-6 h-6 mr-3" />
-                Choisir ton Rôle et Commencer
-                <ArrowRight className="w-6 h-6 ml-3" />
-              </Button>
-            </Link>
           </motion.div>
 
           {/* Carte interactive */}
