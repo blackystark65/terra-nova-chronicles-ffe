@@ -330,9 +330,9 @@ export default function FermeBoulangerie() {
               </div>
             </div>
 
-            <div className="grid lg:grid-cols-4 gap-4">
-              {/* Paquets de cartes - Farines */}
-              <div className="lg:col-span-1 space-y-2">
+            <div className="grid lg:grid-cols-4 gap-3">
+              {/* COL 1: Farines */}
+              <div className="space-y-2">
                 <h3 className="text-sm font-bold text-orange-300 text-center">Farines</h3>
                 <Droppable droppableId="deck-flours" isDropDisabled={true}>
                   {(provided) => (
@@ -359,8 +359,8 @@ export default function FermeBoulangerie() {
                 </Droppable>
               </div>
 
-              {/* Cartes Eau, Levain, Sel */}
-              <div className="lg:col-span-1 space-y-2">
+              {/* COL 2: Ingrédients */}
+              <div className="space-y-2">
                 <h3 className="text-sm font-bold text-orange-300 text-center">Ingrédients</h3>
                 <Droppable droppableId="deck-ingredients" isDropDisabled={true}>
                   {(provided) => (
@@ -418,20 +418,20 @@ export default function FermeBoulangerie() {
                 </Droppable>
               </div>
 
-              {/* Table de pétrissage */}
-              <div className="lg:col-span-1 space-y-2">
+              {/* COL 3: Pétrissage + Table de Pousse */}
+              <div className="space-y-2">
                 <h3 className="text-sm font-bold text-orange-300 text-center">🛠️ Pétrissage</h3>
                 <Droppable droppableId="workstation">
                   {(provided, snapshot) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className={`bg-white/10 backdrop-blur-xl rounded-lg p-4 border-2 min-h-[250px] flex items-center justify-center ${
+                      className={`bg-white/10 backdrop-blur-xl rounded-lg p-3 border-2 min-h-[180px] flex items-center justify-center ${
                         snapshot.isDraggingOver ? 'border-orange-400 bg-orange-500/10' : 'border-orange-400/30'
                       }`}
                     >
                       {workStation.length === 0 ? (
-                        <div className="text-center text-orange-400/50 text-xs">Glisse la farine ici</div>
+                        <div className="text-center text-orange-400/50 text-[11px]">Glisse la farine</div>
                       ) : workStation.length === 4 ? (
                         <Draggable draggableId="dough-ready" index={0}>
                           {(provided, snapshot) => (
@@ -475,10 +475,39 @@ export default function FermeBoulangerie() {
                     </div>
                   )}
                 </Droppable>
+
+                <h3 className="text-sm font-bold text-orange-300 text-center mt-2">📍 Pousse</h3>
+                <div className="bg-white/5 backdrop-blur-xl rounded-lg p-1 border border-orange-400/30">
+                  <div className="grid grid-cols-10 gap-0.5">
+                    {proofingTable.slice(batchRange.start, batchRange.end).map((slot, idx) => {
+                      const index = batchRange.start + idx;
+                      return (
+                        <Droppable key={index} droppableId={`proofing-${index}`} type="proofing">
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.droppableProps}
+                              className={`h-6 w-6 rounded border flex items-center justify-center text-[10px] transition-all ${
+                                slot
+                                  ? 'bg-green-500/30 border-green-400'
+                                  : snapshot.isDraggingOver
+                                  ? 'bg-orange-500/30 border-orange-400'
+                                  : 'bg-white/5 border-white/20'
+                              }`}
+                            >
+                              {slot && <span>🍞</span>}
+                              {provided.placeholder}
+                            </div>
+                          )}
+                        </Droppable>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
 
-              {/* Bois pour le four */}
-              <div className="lg:col-span-1 space-y-2">
+              {/* COL 4: Bois + Four */}
+              <div className="space-y-2">
                 <h3 className="text-sm font-bold text-orange-300 text-center">Bois (40)</h3>
                 <Droppable droppableId="deck-wood" isDropDisabled={true}>
                   {(provided) => (
@@ -503,22 +532,19 @@ export default function FermeBoulangerie() {
                 </Droppable>
               </div>
 
-              {/* Four */}
-              <div className="lg:col-span-1 space-y-2">
-                <h3 className="text-sm font-bold text-orange-300 text-center">🔥 Four (20)</h3>
+                <h3 className="text-sm font-bold text-orange-300 text-center mt-2">🔥 Four</h3>
                 <Droppable droppableId="oven-container" type="oven">
                   {(provided) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30"
+                      className="bg-white/5 backdrop-blur-xl rounded-lg p-1 border border-orange-400/30"
                     >
-                      <div className="grid grid-cols-5 gap-1 min-h-[250px]">
+                      <div className="grid grid-cols-5 gap-0.5">
                         {ovenSlots.map((slot, index) => (
                           <div
                             key={index}
-                            data-droppable-id={`oven-${index}`}
-                            className={`aspect-square rounded border flex items-center justify-center transition-all relative ${
+                            className={`h-8 w-8 rounded border flex items-center justify-center transition-all text-sm ${
                               slot
                                 ? slot.type === 'wood'
                                   ? 'bg-red-900/50 border-red-500'
@@ -527,7 +553,7 @@ export default function FermeBoulangerie() {
                             }`}
                           >
                             {slot && (
-                              <span className="text-base">{slot.type === 'wood' ? '🪵' : '🥖'}</span>
+                              <span>{slot.type === 'wood' ? '🪵' : '🥖'}</span>
                             )}
                           </div>
                         ))}
@@ -537,43 +563,7 @@ export default function FermeBoulangerie() {
                   )}
                 </Droppable>
               </div>
-              </div>
-
-              {/* Table de pousse - Directement sous */}
-              <div className="space-y-2 mt-4">
-
-             <h2 className="text-lg font-bold text-orange-300 text-center">
-               📍 Table de Pousse ({batchRange.start + 1}-{batchRange.end})
-             </h2>
-             <div className="bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30">
-               <div className="grid grid-cols-20 gap-0.5">
-                 {proofingTable.map((slot, index) => {
-                   const inCurrentBatch = index >= batchRange.start && index < batchRange.end;
-                   return inCurrentBatch ? (
-                     <Droppable key={index} droppableId={`proofing-${index}`} type="proofing">
-                       {(provided, snapshot) => (
-                         <div
-                           ref={provided.innerRef}
-                           {...provided.droppableProps}
-                           className={`h-8 w-8 rounded border flex items-center justify-center text-xs transition-all ${
-                             slot
-                               ? 'bg-green-500/30 border-green-400'
-                               : snapshot.isDraggingOver
-                               ? 'bg-orange-500/30 border-orange-400'
-                               : 'bg-white/5 border-white/20'
-                           }`}
-                         >
-                           {slot && <span>🍞</span>}
-                           {provided.placeholder}
-                         </div>
-                       )}
-                     </Droppable>
-                   ) : (
-                     <div key={index} className="h-8 w-8 rounded border border-gray-500/30 bg-gray-800/20" />
-                   );
-                 })}
-               </div>
-             </div>
+            </div>
 
                {/* Bouton pour passer à la 2ème fournée */}
                {currentStage === 'idle' && currentBatch === 1 && proofingTable.some(p => p) && (
