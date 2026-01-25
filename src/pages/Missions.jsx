@@ -5,6 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { Flame, CheckCircle, Lock, Star, Award } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { sendPointsToHoloNexus, useGameSession } from '@/components/shared/HoloNexusSync';
 
 const MissionCard = ({ mission, profile, onStart }) => {
   const isCompleted = profile?.missions_completed >= 0 && mission.completed_by?.includes(profile.id);
@@ -203,10 +204,16 @@ export default function MissionsPage() {
   const queryClient = useQueryClient();
   const [selectedMission, setSelectedMission] = useState(null);
   const [filterBiome, setFilterBiome] = useState('all');
+  const { getSessionDuration } = useGameSession();
 
   const { data: missions } = useQuery({
     queryKey: ['missions'],
     queryFn: () => base44.entities.Mission.list()
+  });
+
+  const { data: user } = useQuery({
+    queryKey: ['user'],
+    queryFn: () => base44.auth.me()
   });
 
   const { data: profiles } = useQuery({
@@ -226,8 +233,8 @@ export default function MissionsPage() {
     onSuccess: () => queryClient.invalidateQueries(['missions'])
   });
 
-  const handleCompleteMission = (score) => {
-    if (profile && selectedMission) {
+  const handleCompleteMission = async (score) => {
+    if (profile && selectedMission && user) {
       const totalQuestions = selectedMission.questions?.length || 0;
       const xpEarned = Math.floor(score / totalQuestions * selectedMission.xp_reward);
 
@@ -245,6 +252,10 @@ export default function MissionsPage() {
           completed_by: [...(selectedMission.completed_by || []), profile.id]
         }
       });
+
+      // Synchroniser avec Holo-Nexus
+      const timePlayed = getSessionDuration();
+      await sendPointsToHoloNexus(user.email, xpEarned, timePlayed);
 
       setSelectedMission(null);
     }
