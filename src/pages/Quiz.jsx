@@ -5,6 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { BookOpen, CheckCircle, XCircle, Trophy, Leaf, TreeDeciduous, Droplets, Sprout, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { sendPointsToHoloNexus, useGameSession } from '@/components/shared/HoloNexusSync';
 
 const categoryIcons = {
   permaculture: Sprout,
@@ -191,6 +192,12 @@ export default function QuizPage() {
   const [userAnswers, setUserAnswers] = useState({});
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const { getSessionDuration } = useGameSession();
+
+  const { data: user } = useQuery({
+    queryKey: ['user'],
+    queryFn: () => base44.auth.me()
+  });
 
   const { data: quizzes } = useQuery({
     queryKey: ['quizzes'],
@@ -205,7 +212,7 @@ export default function QuizPage() {
     setShowResults(false);
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = async () => {
     if (selectedAnswers.length === 0) return;
 
     const newAnswers = { ...userAnswers, [currentQuestionIndex]: selectedAnswers };
@@ -215,6 +222,22 @@ export default function QuizPage() {
     if (currentQuestionIndex + 1 < selectedQuiz.questions.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
+      // Calculer le score et synchroniser avec Holo-Nexus
+      const score = selectedQuiz.questions.reduce((acc, q, i) => {
+        const userAnswer = newAnswers[i] || [];
+        const correctAnswers = q.correct_answers || [];
+        const isCorrect = userAnswer.length === correctAnswers.length &&
+          userAnswer.every(a => correctAnswers.includes(a));
+        return acc + (isCorrect ? 1 : 0);
+      }, 0);
+
+      const points = Math.round((score / selectedQuiz.questions.length) * 100);
+      const timePlayed = getSessionDuration();
+      
+      if (user?.email) {
+        await sendPointsToHoloNexus(user.email, points, timePlayed);
+      }
+
       setShowResults(true);
     }
   };
