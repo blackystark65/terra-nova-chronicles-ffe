@@ -286,10 +286,20 @@ export default function FermeEpicerie() {
     onSuccess: () => {
       queryClient.invalidateQueries(['profiles']);
       setFeedback({ type: 'success', message: '✅ Achat effectué avec succès !' });
-      setPanier([]);
+      setChariot([]);
       setTimeout(() => setFeedback(null), 3000);
     },
   });
+
+  // Charger les articles depuis le profil
+  React.useEffect(() => {
+    if (profile?.articles_achetes && profile.articles_achetes.length > 0) {
+      setChariot(profile.articles_achetes.map(article => ({
+        ...article,
+        uniqueId: article.id + '_' + article.date_achat
+      })));
+    }
+  }, [profile]);
 
   const totalChariot = chariot.reduce((acc, item) => acc + item.prix, 0);
   const creditsDisponibles = profile?.credits || 0;
@@ -319,10 +329,20 @@ export default function FermeEpicerie() {
       return;
     }
 
+    // Préparer les articles avec la date d'achat
+    const articlesAvecDate = chariot.map(item => ({
+      id: item.id,
+      nom: item.nom,
+      emoji: item.emoji,
+      prix: item.prix,
+      date_achat: new Date().toISOString()
+    }));
+
     updateProfileMutation.mutate({
       id: profile.id,
       data: {
-        credits: creditsDisponibles - totalChariot
+        credits: creditsDisponibles - totalChariot,
+        articles_achetes: articlesAvecDate
       }
     });
   };
@@ -362,7 +382,8 @@ export default function FermeEpicerie() {
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     {rayon.produits.map((produit) => {
-                      const canAdd = peutAjouterArticle(produit.prix);
+                      const dejaAchete = chariot.some(item => item.id === produit.id);
+                      const canAdd = peutAjouterArticle(produit.prix) && !dejaAchete;
                       return (
                         <motion.button
                           key={produit.id}
@@ -371,7 +392,9 @@ export default function FermeEpicerie() {
                           whileHover={canAdd ? { scale: 1.05 } : {}}
                           whileTap={canAdd ? { scale: 0.95 } : {}}
                           className={`p-3 rounded-xl border-2 text-center transition-all ${
-                            !canAdd 
+                            dejaAchete
+                              ? 'bg-emerald-900/50 border-emerald-500 opacity-60 cursor-not-allowed'
+                              : !canAdd 
                               ? 'bg-gray-900/50 border-gray-600 opacity-40 cursor-not-allowed' 
                               : 'bg-white/5 border-white/20 hover:bg-emerald-500/20 hover:border-emerald-400 cursor-pointer'
                           }`}
@@ -382,6 +405,9 @@ export default function FermeEpicerie() {
                             <Coins className="w-3 h-3 text-yellow-400" />
                             <span className="text-yellow-300 text-xs font-bold">{produit.prix}</span>
                           </div>
+                          {dejaAchete && (
+                            <div className="text-emerald-400 text-[10px] mt-1">✓ Acheté</div>
+                          )}
                         </motion.button>
                       );
                     })}
