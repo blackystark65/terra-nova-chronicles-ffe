@@ -471,8 +471,13 @@ export default function FermeEpicerie() {
     }
   }, [profile]);
 
-  const totalChariot = chariot.reduce((acc, item) => acc + item.prix, 0);
   const creditsDisponibles = profile?.credits || 0;
+  
+  // Calculer le total uniquement des articles non encore validés
+  const articlesAchetesIds = (profile?.articles_achetes || []).map(a => a.id);
+  const articlesNonValides = chariot.filter(item => !articlesAchetesIds.includes(item.id));
+  const totalChariot = articlesNonValides.reduce((acc, item) => acc + item.prix, 0);
+  
   const peutAjouterArticle = (prix) => {
     return (totalChariot + prix) <= creditsDisponibles;
   };
@@ -489,6 +494,13 @@ export default function FermeEpicerie() {
   };
 
   const retirerDuChariot = (uniqueId) => {
+    // On ne peut retirer que les articles non encore validés (pas ceux déjà dans articles_achetes)
+    const articlesAchetesIds = (profile?.articles_achetes || []).map(a => a.id + '_' + a.date_achat);
+    if (articlesAchetesIds.includes(uniqueId)) {
+      setFeedback({ type: 'error', message: '❌ Article déjà acheté, impossible de le retirer !' });
+      setTimeout(() => setFeedback(null), 2000);
+      return;
+    }
     setChariot(chariot.filter(item => item.uniqueId !== uniqueId));
   };
 
