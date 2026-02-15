@@ -399,8 +399,12 @@ export default function FermeBoulangerie() {
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
-                              className={`aspect-square rounded-lg bg-gradient-to-br ${flour.color} border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
-                              style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                              className={`aspect-square rounded-lg bg-gradient-to-br ${flour.color} border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                              style={{ 
+                                ...provided.draggableProps.style,
+                                zIndex: snapshot.isDragging ? 9999 : 'auto',
+                                position: snapshot.isDragging ? 'fixed' : 'relative'
+                              }}
                             >
                               <span className="text-xl">{flour.emoji}</span>
                               <div className="text-white font-bold text-[8px] mt-0.5 text-center line-clamp-1">{flour.name}</div>
@@ -427,8 +431,12 @@ export default function FermeBoulangerie() {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`aspect-square rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
-                            style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                            className={`aspect-square rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                            style={{ 
+                              ...provided.draggableProps.style,
+                              zIndex: snapshot.isDragging ? 9999 : 'auto',
+                              position: snapshot.isDragging ? 'fixed' : 'relative'
+                            }}
                           >
                             <span className="text-xl">💧</span>
                             <div className="text-white font-bold text-[7px]">Eau</div>
@@ -443,8 +451,12 @@ export default function FermeBoulangerie() {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`aspect-square rounded-lg bg-gradient-to-br from-red-500 to-orange-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
-                            style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                            className={`aspect-square rounded-lg bg-gradient-to-br from-red-500 to-orange-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                            style={{ 
+                              ...provided.draggableProps.style,
+                              zIndex: snapshot.isDragging ? 9999 : 'auto',
+                              position: snapshot.isDragging ? 'fixed' : 'relative'
+                            }}
                           >
                             <span className="text-xl">🫧</span>
                             <div className="text-white font-bold text-[7px]">Levain</div>
@@ -459,8 +471,12 @@ export default function FermeBoulangerie() {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`aspect-square rounded-lg bg-gradient-to-br from-gray-400 to-gray-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'z-[9999] opacity-50' : ''}`}
-                            style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                            className={`aspect-square rounded-lg bg-gradient-to-br from-gray-400 to-gray-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing text-[10px] ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                            style={{ 
+                              ...provided.draggableProps.style,
+                              zIndex: snapshot.isDragging ? 9999 : 'auto',
+                              position: snapshot.isDragging ? 'fixed' : 'relative'
+                            }}
                           >
                             <span className="text-xl">🧂</span>
                             <div className="text-white font-bold text-[7px]">Sel</div>
@@ -494,8 +510,12 @@ export default function FermeBoulangerie() {
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
-                              className={`relative w-24 cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'z-[9999]' : ''}`}
-                              style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                              className={`relative w-24 cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                              style={{ 
+                                ...provided.draggableProps.style,
+                                zIndex: snapshot.isDragging ? 9999 : 'auto',
+                                position: snapshot.isDragging ? 'fixed' : 'relative'
+                              }}
                             >
                               {workStation.map((layer, i) => (
                                 <motion.div

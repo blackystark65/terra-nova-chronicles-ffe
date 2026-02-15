@@ -234,7 +234,12 @@ export default function FermePepiniere() {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`aspect-square rounded-lg bg-gradient-to-br from-amber-600 to-orange-700 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-50' : ''}`}
+                            className={`aspect-square rounded-lg bg-gradient-to-br from-amber-600 to-orange-700 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                            style={{ 
+                              ...provided.draggableProps.style,
+                              zIndex: snapshot.isDragging ? 9999 : 'auto',
+                              position: snapshot.isDragging ? 'fixed' : 'relative'
+                            }}
                           >
                             <span className="text-3xl">🪴</span>
                             <div className="text-white font-bold text-xs mt-1">Pot</div>
@@ -257,7 +262,12 @@ export default function FermePepiniere() {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`aspect-square rounded-lg bg-gradient-to-br from-orange-800 to-amber-900 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-50' : ''}`}
+                            className={`aspect-square rounded-lg bg-gradient-to-br from-orange-800 to-amber-900 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                            style={{ 
+                              ...provided.draggableProps.style,
+                              zIndex: snapshot.isDragging ? 9999 : 'auto',
+                              position: snapshot.isDragging ? 'fixed' : 'relative'
+                            }}
                           >
                             <span className="text-3xl">🪵</span>
                             <div className="text-white font-bold text-xs mt-1">Bois</div>
@@ -280,7 +290,12 @@ export default function FermePepiniere() {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`aspect-square rounded-lg bg-gradient-to-br from-green-700 to-emerald-800 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-50' : ''}`}
+                            className={`aspect-square rounded-lg bg-gradient-to-br from-green-700 to-emerald-800 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                            style={{ 
+                              ...provided.draggableProps.style,
+                              zIndex: snapshot.isDragging ? 9999 : 'auto',
+                              position: snapshot.isDragging ? 'fixed' : 'relative'
+                            }}
                           >
                             <span className="text-3xl">♻️</span>
                             <div className="text-white font-bold text-xs mt-1">Compost</div>
@@ -306,7 +321,12 @@ export default function FermePepiniere() {
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
-                                className={`aspect-square rounded-lg bg-gradient-to-br from-cyan-600 to-blue-700 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-50' : ''}`}
+                                className={`aspect-square rounded-lg bg-gradient-to-br from-cyan-600 to-blue-700 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                                style={{ 
+                                  ...provided.draggableProps.style,
+                                  zIndex: snapshot.isDragging ? 9999 : 'auto',
+                                  position: snapshot.isDragging ? 'fixed' : 'relative'
+                                }}
                               >
                                 <span className="text-2xl">{graine.emoji || '🌱'}</span>
                                 <div className="text-white text-[8px] text-center mt-1 line-clamp-2 px-1">{graine.nom}</div>
@@ -342,8 +362,12 @@ export default function FermePepiniere() {
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
-                              className={`relative w-32 cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'z-[9999]' : ''}`}
-                              style={{ zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                              className={`relative w-32 cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                              style={{ 
+                                ...provided.draggableProps.style,
+                                zIndex: snapshot.isDragging ? 9999 : 'auto',
+                                position: snapshot.isDragging ? 'fixed' : 'relative'
+                              }}
                             >
                               {workStation.map((layer, i) => (
                                 <motion.div
@@ -392,8 +416,12 @@ export default function FermePepiniere() {
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
-                              className={`w-20 h-20 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing mx-auto ${snapshot.isDragging ? 'z-[9999]' : ''}`}
-                              style={{ ...provided.draggableProps.style, zIndex: snapshot.isDragging ? 9999 : 'auto' }}
+                              className={`w-20 h-20 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center cursor-grab active:cursor-grabbing mx-auto ${snapshot.isDragging ? 'opacity-70' : ''}`}
+                              style={{ 
+                                ...provided.draggableProps.style,
+                                zIndex: snapshot.isDragging ? 9999 : 'auto',
+                                position: snapshot.isDragging ? 'fixed' : 'relative'
+                              }}
                             >
                               <span className="text-3xl">💧</span>
                               <div className="text-white text-[10px] font-bold">Eau</div>
