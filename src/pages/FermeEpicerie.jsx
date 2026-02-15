@@ -5,9 +5,8 @@ import { createPageUrl } from '@/utils';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
-import { ArrowLeft, ShoppingCart, Coins } from 'lucide-react';
+import { ArrowLeft, ShoppingCart, Coins, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
 const RAYONS = {
   serre: {
@@ -106,32 +105,19 @@ export default function FermeEpicerie() {
     return (totalChariot + prix) <= creditsDisponibles;
   };
 
-  const onDragEnd = (result) => {
-    const { source, destination, draggableId } = result;
-    if (!destination) return;
-
-    // Ajouter au chariot
-    if (destination.droppableId === 'chariot') {
-      const [rayonId, produitId] = draggableId.split('_');
-      const rayon = RAYONS[rayonId];
-      const produit = rayon?.produits.find(p => p.id === produitId);
-      
-      if (produit && peutAjouterArticle(produit.prix)) {
-        setChariot([...chariot, { ...produit, uniqueId: Date.now() }]);
-        setFeedback({ type: 'success', message: `${produit.nom} ajouté !` });
-        setTimeout(() => setFeedback(null), 1000);
-      } else if (produit) {
-        setFeedback({ type: 'error', message: '❌ Budget insuffisant !' });
-        setTimeout(() => setFeedback(null), 1500);
-      }
+  const ajouterAuChariot = (produit) => {
+    if (peutAjouterArticle(produit.prix)) {
+      setChariot([...chariot, { ...produit, uniqueId: Date.now() }]);
+      setFeedback({ type: 'success', message: `${produit.nom} ajouté !` });
+      setTimeout(() => setFeedback(null), 1000);
+    } else {
+      setFeedback({ type: 'error', message: '❌ Budget insuffisant !' });
+      setTimeout(() => setFeedback(null), 1500);
     }
+  };
 
-    // Retirer du chariot
-    if (source.droppableId === 'chariot' && destination.droppableId !== 'chariot') {
-      const newChariot = [...chariot];
-      newChariot.splice(source.index, 1);
-      setChariot(newChariot);
-    }
+  const retirerDuChariot = (uniqueId) => {
+    setChariot(chariot.filter(item => item.uniqueId !== uniqueId));
   };
 
   const validerAchat = () => {
@@ -150,8 +136,7 @@ export default function FermeEpicerie() {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-green-950 to-teal-950">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-green-950 to-teal-950">
         <BiolumiHeader currentPage="MicroFerme" />
 
         <main className="pt-20 px-4 pb-12">
@@ -183,51 +168,32 @@ export default function FermeEpicerie() {
                     <span className="text-2xl">{rayon.emoji}</span>
                     <span className="text-white font-bold">{rayon.nom}</span>
                   </div>
-                  <Droppable droppableId={`rayon-${rayonId}`} isDropDisabled={true}>
-                    {(provided) => (
-                      <div ref={provided.innerRef} {...provided.droppableProps} className="grid grid-cols-2 gap-2">
-                        {rayon.produits.map((produit, index) => {
-                          const canAdd = peutAjouterArticle(produit.prix);
-                          return (
-                            <Draggable 
-                              key={produit.id} 
-                              draggableId={`${rayonId}_${produit.id}`} 
-                              index={index}
-                              isDragDisabled={!canAdd}
-                            >
-                              {(provided, snapshot) => (
-                                <div
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                  className={`p-3 rounded-xl border-2 text-center transition-all ${
-                                    !canAdd 
-                                      ? 'bg-gray-900/50 border-gray-600 opacity-40 cursor-not-allowed' 
-                                      : snapshot.isDragging 
-                                        ? 'bg-emerald-500/30 border-emerald-300 shadow-2xl' 
-                                        : 'bg-white/5 border-white/20 hover:bg-white/10 cursor-grab active:cursor-grabbing'
-                                  }`}
-                                  style={{ 
-                                    ...provided.draggableProps.style,
-                                    zIndex: snapshot.isDragging ? 9999 : 'auto',
-                                    position: snapshot.isDragging ? 'fixed' : 'relative'
-                                  }}
-                                >
-                                  <div className="text-3xl mb-1">{produit.emoji}</div>
-                                  <div className="text-emerald-200 text-xs font-semibold mb-1">{produit.nom}</div>
-                                  <div className="flex items-center justify-center gap-1">
-                                    <Coins className="w-3 h-3 text-yellow-400" />
-                                    <span className="text-yellow-300 text-xs font-bold">{produit.prix}</span>
-                                  </div>
-                                </div>
-                              )}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
+                  <div className="grid grid-cols-2 gap-2">
+                    {rayon.produits.map((produit) => {
+                      const canAdd = peutAjouterArticle(produit.prix);
+                      return (
+                        <motion.button
+                          key={produit.id}
+                          onClick={() => canAdd && ajouterAuChariot(produit)}
+                          disabled={!canAdd}
+                          whileHover={canAdd ? { scale: 1.05 } : {}}
+                          whileTap={canAdd ? { scale: 0.95 } : {}}
+                          className={`p-3 rounded-xl border-2 text-center transition-all ${
+                            !canAdd 
+                              ? 'bg-gray-900/50 border-gray-600 opacity-40 cursor-not-allowed' 
+                              : 'bg-white/5 border-white/20 hover:bg-emerald-500/20 hover:border-emerald-400 cursor-pointer'
+                          }`}
+                        >
+                          <div className="text-3xl mb-1">{produit.emoji}</div>
+                          <div className="text-emerald-200 text-xs font-semibold mb-1">{produit.nom}</div>
+                          <div className="flex items-center justify-center gap-1">
+                            <Coins className="w-3 h-3 text-yellow-400" />
+                            <span className="text-yellow-300 text-xs font-bold">{produit.prix}</span>
+                          </div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
                 </div>
               ))}
             </div>
@@ -235,58 +201,40 @@ export default function FermeEpicerie() {
             {/* Chariot Central + Caisse */}
             <div className="grid lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2">
-                <Droppable droppableId="chariot">
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.droppableProps}
-                      className={`bg-white/10 backdrop-blur-xl rounded-3xl p-8 border-4 min-h-[300px] transition-all ${
-                        snapshot.isDraggingOver 
-                          ? 'border-emerald-400 bg-emerald-500/20 shadow-2xl' 
-                          : 'border-emerald-400/30'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3 mb-6">
-                        <ShoppingCart className="w-8 h-8 text-emerald-400" />
-                        <h2 className="text-3xl font-bold text-emerald-300">Chariot</h2>
-                        <span className="text-emerald-300/70">({chariot.length} articles)</span>
-                      </div>
+                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border-4 border-emerald-400/30 min-h-[300px]">
+                  <div className="flex items-center gap-3 mb-6">
+                    <ShoppingCart className="w-8 h-8 text-emerald-400" />
+                    <h2 className="text-3xl font-bold text-emerald-300">Chariot</h2>
+                    <span className="text-emerald-300/70">({chariot.length} articles)</span>
+                  </div>
 
-                      {chariot.length === 0 ? (
-                        <div className="text-center py-16">
-                          <ShoppingCart className="w-24 h-24 mx-auto mb-4 text-emerald-400/30" />
-                          <p className="text-emerald-300/50 text-xl">Glisse les articles ici</p>
-                        </div>
-                      ) : (
-                        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
-                          {chariot.map((item, index) => (
-                            <Draggable key={item.uniqueId} draggableId={`chariot-${item.uniqueId}`} index={index}>
-                              {(provided, snapshot) => (
-                                <div
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                  className={`p-3 rounded-xl bg-emerald-500/20 border-2 border-emerald-400/50 text-center cursor-grab active:cursor-grabbing ${
-                                    snapshot.isDragging ? 'opacity-50' : ''
-                                  }`}
-                                  style={{ 
-                                    ...provided.draggableProps.style,
-                                    zIndex: snapshot.isDragging ? 9999 : 'auto',
-                                    position: snapshot.isDragging ? 'fixed' : 'relative'
-                                  }}
-                                >
-                                  <div className="text-4xl mb-1">{item.emoji}</div>
-                                  <div className="text-yellow-300 text-xs font-bold">{item.prix}</div>
-                                </div>
-                              )}
-                            </Draggable>
-                          ))}
-                        </div>
-                      )}
-                      {provided.placeholder}
+                  {chariot.length === 0 ? (
+                    <div className="text-center py-16">
+                      <ShoppingCart className="w-24 h-24 mx-auto mb-4 text-emerald-400/30" />
+                      <p className="text-emerald-300/50 text-xl">Clique sur les articles pour les ajouter</p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-3">
+                      {chariot.map((item) => (
+                        <motion.div
+                          key={item.uniqueId}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="relative p-3 rounded-xl bg-emerald-500/20 border-2 border-emerald-400/50 text-center group"
+                        >
+                          <button
+                            onClick={() => retirerDuChariot(item.uniqueId)}
+                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <Trash2 className="w-3 h-3 text-white" />
+                          </button>
+                          <div className="text-4xl mb-1">{item.emoji}</div>
+                          <div className="text-yellow-300 text-xs font-bold">{item.prix}</div>
+                        </motion.div>
+                      ))}
                     </div>
                   )}
-                </Droppable>
+                </div>
               </div>
 
               {/* Caisse */}
@@ -347,8 +295,7 @@ export default function FermeEpicerie() {
               </div>
             </motion.div>
           )}
-        </AnimatePresence>
-      </div>
-    </DragDropContext>
-  );
-}
+          </AnimatePresence>
+          </div>
+          );
+          }
