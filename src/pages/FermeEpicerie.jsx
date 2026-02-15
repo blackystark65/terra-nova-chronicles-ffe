@@ -8,6 +8,197 @@ import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { ArrowLeft, ShoppingCart, Coins, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+const FICHES_PEDAGOGIQUES = {
+  fleurs_comestibles: {
+    titre: 'Fleurs Comestibles',
+    emoji: '🌸',
+    sections: [
+      {
+        titre: 'Quand semer ?',
+        contenu: 'Printemps (mars-mai) pour la plupart. Certaines variétés en automne (septembre-octobre).'
+      },
+      {
+        titre: 'Comment obtenir les graines ?',
+        contenu: 'Récolter les graines matures en fin de saison. Laisser sécher les fleurs fanées. Extraire les graines et les conserver au sec.'
+      },
+      {
+        titre: 'Comment les produire ?',
+        contenu: 'Semer en godets à la serre. Repiquer en pleine terre après les gelées. Arroser régulièrement. Éclaircir si nécessaire.'
+      },
+      {
+        titre: 'Comment les récolter ?',
+        contenu: 'Cueillir le matin après la rosée. Choisir les fleurs épanouies. Éviter celles traitées aux pesticides.'
+      },
+      {
+        titre: 'Fleurs comestibles courantes',
+        liste: ['Capucine (goût poivré)', 'Pensée (douce)', 'Bourrache (goût concombre)', 'Calendula (légèrement épicé)', 'Lavande (parfumée)', 'Rose (sucrée)', 'Violette (délicate)', 'Souci (piquante)']
+      }
+    ]
+  },
+  tomates: {
+    titre: 'Tomates Bio',
+    emoji: '🍅',
+    sections: [
+      {
+        titre: 'Quand semer ?',
+        contenu: 'Février-mars en serre chauffée. Avril-mai en pleine terre après les gelées.'
+      },
+      {
+        titre: 'Comment obtenir les graines ?',
+        contenu: 'Choisir une tomate bien mûre. Extraire les graines. Les faire fermenter 2-3 jours dans l\'eau. Rincer et sécher.'
+      },
+      {
+        titre: 'Culture',
+        contenu: 'Planter profond pour favoriser les racines. Tuteurer les plants. Arroser au pied. Pailler le sol. Tailler les gourmands.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Juillet à octobre. Cueillir quand bien colorées. Récolter régulièrement pour stimuler la production.'
+      },
+      {
+        titre: 'Variétés populaires',
+        liste: ['Cœur de bœuf (grosse)', 'Cerise (petite)', 'Roma (allongée)', 'Noire de Crimée (pourpre)', 'Ananas (jaune)', 'Green Zebra (rayée)']
+      }
+    ]
+  },
+  compost: {
+    titre: 'Compost Bio',
+    emoji: '♻️',
+    sections: [
+      {
+        titre: 'Qu\'est-ce que le compost ?',
+        contenu: 'Matière organique décomposée naturellement. Riche en nutriments pour les plantes. Améliore la structure du sol.'
+      },
+      {
+        titre: 'Comment le fabriquer ?',
+        contenu: 'Alterner couches vertes (déchets cuisine, herbe) et brunes (feuilles sèches, carton). Maintenir l\'humidité. Aérer régulièrement. Compter 6-12 mois de maturation.'
+      },
+      {
+        titre: 'Ingrédients à composter',
+        liste: ['Épluchures de fruits et légumes', 'Marc de café', 'Coquilles d\'œufs', 'Feuilles mortes', 'Tontes de gazon', 'Cartons non imprimés', 'Branchages broyés']
+      },
+      {
+        titre: 'À éviter',
+        liste: ['Viande et poisson', 'Produits laitiers', 'Plantes malades', 'Mauvaises herbes en graines']
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Le compost est prêt quand il est brun foncé, friable et sent la terre. L\'incorporer au sol ou l\'utiliser en paillage.'
+      }
+    ]
+  },
+  terreau: {
+    titre: 'Terreau Bio',
+    emoji: '🪴',
+    sections: [
+      {
+        titre: 'Composition',
+        contenu: 'Mélange de compost mûr, tourbe, sable et matières organiques. pH équilibré pour la croissance des plantes.'
+      },
+      {
+        titre: 'Fabrication maison',
+        contenu: 'Mélanger 1/3 compost, 1/3 terre de jardin, 1/3 sable. Tamiser pour obtenir une texture fine. Laisser reposer 2 semaines.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Semis et boutures. Rempotage des plantes. Plantation en pots. Amélioration du sol du jardin.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'Stocker au sec dans un endroit aéré. Utiliser dans l\'année pour garder ses propriétés nutritives.'
+      }
+    ]
+  },
+  micropousses: {
+    titre: 'Micro-pousses',
+    emoji: '🌾',
+    sections: [
+      {
+        titre: 'Qu\'est-ce que c\'est ?',
+        contenu: 'Jeunes pousses de légumes et herbes récoltées après 7-21 jours. Concentrées en nutriments et saveurs.'
+      },
+      {
+        titre: 'Comment semer ?',
+        contenu: 'Utiliser des plateaux peu profonds. Étaler du terreau humide. Semer dense. Couvrir légèrement. Vaporiser d\'eau. Placer à la lumière.'
+      },
+      {
+        titre: 'Comment récolter ?',
+        contenu: 'Couper avec des ciseaux propres juste au-dessus du terreau quand les premières vraies feuilles apparaissent.'
+      },
+      {
+        titre: 'Comment consommer ?',
+        contenu: 'Rincer délicatement à l\'eau froide. Utiliser fraîches en salades, sandwichs, smoothies. Ne pas cuire pour garder les nutriments.'
+      },
+      {
+        titre: 'Variétés populaires',
+        liste: ['Radis (piquant)', 'Roquette (poivré)', 'Moutarde (fort)', 'Basilic (aromatique)', 'Pois (sucré)', 'Tournesol (croquant)', 'Betterave (terreux)']
+      }
+    ]
+  },
+  pain_complet: {
+    titre: 'Pain Complet',
+    emoji: '🥖',
+    sections: [
+      {
+        titre: 'Ingrédients',
+        contenu: 'Farine complète bio (blé, seigle, épeautre). Eau. Levain naturel. Sel.'
+      },
+      {
+        titre: 'Production du levain',
+        contenu: 'Mélanger farine et eau à parts égales. Laisser fermenter 5-7 jours en nourrissant quotidiennement. Le levain est prêt quand il double de volume.'
+      },
+      {
+        titre: 'Fabrication du pain',
+        contenu: 'Pétrir la pâte 10-15 min. Laisser lever 2-4h. Façonner. Laisser pousser 1-2h. Cuire à 240°C pendant 30-40 min.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Riche en fibres. Meilleure digestion. Index glycémique plus bas. Plus de vitamines et minéraux que le pain blanc.'
+      }
+    ]
+  },
+  lait: {
+    titre: 'Lait Frais de la Ferme',
+    emoji: '🥛',
+    sections: [
+      {
+        titre: 'Production',
+        contenu: 'Traite manuelle ou mécanique des vaches, chèvres ou brebis. Deux traites par jour (matin et soir).'
+      },
+      {
+        titre: 'Processus',
+        contenu: 'Nettoyage des mamelles. Traite dans des conditions d\'hygiène strictes. Filtrage immédiat. Refroidissement rapide à 4°C.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'À consommer dans les 3-4 jours. Garder au réfrigérateur. Ne pas rompre la chaîne du froid.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Riche en calcium et protéines. Vitamines A, D et B12. Lait cru: contient des enzymes et probiotiques bénéfiques.'
+      }
+    ]
+  },
+  plants_tomate: {
+    titre: 'Plants de Tomate',
+    emoji: '🌱',
+    sections: [
+      {
+        titre: 'Production en pépinière',
+        contenu: 'Semis en godets février-mars. Température 20-25°C. Repiquage après 3-4 semaines. Plants prêts en 6-8 semaines.'
+      },
+      {
+        titre: 'Plantation',
+        contenu: 'Attendre fin des gelées (mi-mai). Espacer de 50-70cm. Planter profond. Tuteurer dès la plantation.'
+      },
+      {
+        titre: 'Entretien',
+        contenu: 'Arroser régulièrement au pied. Pailler pour garder l\'humidité. Tailler les gourmands. Fertiliser avec du compost.'
+      }
+    ]
+  }
+};
+
 const RAYONS = {
   serre: {
     nom: 'Serre & Pépinière',
@@ -75,6 +266,7 @@ const RAYONS = {
 export default function FermeEpicerie() {
   const [chariot, setChariot] = useState([]);
   const [feedback, setFeedback] = useState(null);
+  const [ficheOuverte, setFicheOuverte] = useState(null);
   const queryClient = useQueryClient();
 
   const { data: user } = useQuery({
@@ -224,12 +416,18 @@ export default function FermeEpicerie() {
                         >
                           <button
                             onClick={() => retirerDuChariot(item.uniqueId)}
-                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
                           >
                             <Trash2 className="w-3 h-3 text-white" />
                           </button>
-                          <div className="text-4xl mb-1">{item.emoji}</div>
-                          <div className="text-yellow-300 text-xs font-bold">{item.prix}</div>
+                          <button
+                            onClick={() => setFicheOuverte(item.id)}
+                            className="w-full h-full"
+                          >
+                            <div className="text-4xl mb-1">{item.emoji}</div>
+                            <div className="text-yellow-300 text-xs font-bold">{item.prix}</div>
+                            <div className="text-emerald-300 text-[10px] mt-1 opacity-0 group-hover:opacity-100">ℹ️ Info</div>
+                          </button>
                         </motion.div>
                       ))}
                     </div>
@@ -293,6 +491,76 @@ export default function FermeEpicerie() {
               }`}>
                 {feedback.message}
               </div>
+            </motion.div>
+          )}
+          </AnimatePresence>
+
+          {/* Modale Fiche Pédagogique */}
+          <AnimatePresence>
+          {ficheOuverte && FICHES_PEDAGOGIQUES[ficheOuverte] && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setFicheOuverte(null)}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            >
+              <motion.div
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-gradient-to-br from-emerald-900 to-green-950 rounded-3xl p-8 max-w-3xl max-h-[90vh] overflow-y-auto border-4 border-emerald-400/50 shadow-2xl"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-4">
+                    <span className="text-6xl">{FICHES_PEDAGOGIQUES[ficheOuverte].emoji}</span>
+                    <h2 className="text-4xl font-bold text-emerald-300">{FICHES_PEDAGOGIQUES[ficheOuverte].titre}</h2>
+                  </div>
+                  <button
+                    onClick={() => setFicheOuverte(null)}
+                    className="text-emerald-400 hover:text-emerald-300 text-4xl"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <div className="space-y-6">
+                  {FICHES_PEDAGOGIQUES[ficheOuverte].sections.map((section, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-emerald-400/30"
+                    >
+                      <h3 className="text-2xl font-bold text-emerald-300 mb-3 flex items-center gap-2">
+                        📚 {section.titre}
+                      </h3>
+                      {section.contenu && (
+                        <p className="text-emerald-200 leading-relaxed text-lg">{section.contenu}</p>
+                      )}
+                      {section.liste && (
+                        <ul className="space-y-2 mt-3">
+                          {section.liste.map((item, i) => (
+                            <li key={i} className="flex items-start gap-2 text-emerald-200 text-lg">
+                              <span className="text-emerald-400 mt-1">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+
+                <Button
+                  onClick={() => setFicheOuverte(null)}
+                  className="w-full mt-6 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 py-6 text-lg"
+                >
+                  Fermer
+                </Button>
+              </motion.div>
             </motion.div>
           )}
           </AnimatePresence>
