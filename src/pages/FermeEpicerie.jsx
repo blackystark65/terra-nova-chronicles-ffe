@@ -466,17 +466,17 @@ export default function FermeEpicerie() {
     if (profile?.articles_achetes && profile.articles_achetes.length > 0) {
       setChariot(profile.articles_achetes.map(article => ({
         ...article,
-        uniqueId: article.id + '_' + article.date_achat
+        uniqueId: article.id + '_' + article.date_achat,
+        estNouveau: false
       })));
     }
   }, [profile]);
 
   const creditsDisponibles = profile?.credits || 0;
   
-  // Calculer le total uniquement des articles non encore validés
-  const articlesAchetesIds = (profile?.articles_achetes || []).map(a => a.id);
-  const articlesNonValides = chariot.filter(item => !articlesAchetesIds.includes(item.id));
-  const totalChariot = articlesNonValides.reduce((acc, item) => acc + item.prix, 0);
+  // Séparer les articles déjà achetés des nouveaux
+  const articlesNouveaux = chariot.filter(item => item.estNouveau === true);
+  const totalChariot = articlesNouveaux.reduce((acc, item) => acc + item.prix, 0);
   
   const peutAjouterArticle = (prix) => {
     return (totalChariot + prix) <= creditsDisponibles;
@@ -484,7 +484,8 @@ export default function FermeEpicerie() {
 
   const ajouterAuChariot = (produit) => {
     if (peutAjouterArticle(produit.prix)) {
-      setChariot([...chariot, { ...produit, uniqueId: Date.now() }]);
+      const nouvelArticle = { ...produit, uniqueId: Date.now(), estNouveau: true };
+      setChariot([...chariot, nouvelArticle]);
       setFeedback({ type: 'success', message: `${produit.nom} ajouté !` });
       setTimeout(() => setFeedback(null), 1000);
     } else {
@@ -494,9 +495,8 @@ export default function FermeEpicerie() {
   };
 
   const retirerDuChariot = (uniqueId) => {
-    // On ne peut retirer que les articles non encore validés (pas ceux déjà dans articles_achetes)
-    const articlesAchetesIds = (profile?.articles_achetes || []).map(a => a.id + '_' + a.date_achat);
-    if (articlesAchetesIds.includes(uniqueId)) {
+    const article = chariot.find(item => item.uniqueId === uniqueId);
+    if (!article || !article.estNouveau) {
       setFeedback({ type: 'error', message: '❌ Article déjà acheté, impossible de le retirer !' });
       setTimeout(() => setFeedback(null), 2000);
       return;
@@ -505,18 +505,14 @@ export default function FermeEpicerie() {
   };
 
   const validerAchat = () => {
-    // Vérifier qu'il y a des articles non encore validés
-    const articlesAchetesIds = (profile?.articles_achetes || []).map(a => a.id);
-    const nouveauxArticles = chariot.filter(item => !articlesAchetesIds.includes(item.id));
-    
-    if (nouveauxArticles.length === 0) {
-      setFeedback({ type: 'error', message: '❌ Tous les articles sont déjà achetés !' });
+    if (articlesNouveaux.length === 0) {
+      setFeedback({ type: 'error', message: '❌ Aucun nouvel article à payer !' });
       setTimeout(() => setFeedback(null), 2000);
       return;
     }
 
     // Préparer les nouveaux articles avec la date d'achat
-    const articlesAvecDate = nouveauxArticles.map(item => ({
+    const articlesAvecDate = articlesNouveaux.map(item => ({
       id: item.id,
       nom: item.nom,
       emoji: item.emoji,
@@ -526,14 +522,11 @@ export default function FermeEpicerie() {
 
     // Ajouter aux articles existants
     const tousLesArticles = [...(profile?.articles_achetes || []), ...articlesAvecDate];
-    
-    // Calculer le total des nouveaux articles uniquement
-    const totalNouveauxArticles = nouveauxArticles.reduce((sum, item) => sum + item.prix, 0);
 
     updateProfileMutation.mutate({
       id: profile.id,
       data: {
-        credits: creditsDisponibles - totalNouveauxArticles,
+        credits: creditsDisponibles - totalChariot,
         articles_achetes: tousLesArticles
       }
     });
@@ -633,15 +626,17 @@ export default function FermeEpicerie() {
                           onClick={() => setFicheOuverte(item.id)}
                           className="relative p-3 rounded-xl bg-emerald-500/20 border-2 border-emerald-400/50 text-center group cursor-pointer hover:bg-emerald-500/30 transition-all"
                         >
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              retirerDuChariot(item.uniqueId);
-                            }}
-                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                          >
-                            <Trash2 className="w-3 h-3 text-white" />
-                          </button>
+                          {item.estNouveau && (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                retirerDuChariot(item.uniqueId);
+                              }}
+                              className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                            >
+                              <Trash2 className="w-3 h-3 text-white" />
+                            </button>
+                          )}
                           <div className="text-4xl mb-1">{item.emoji}</div>
                           <div className="text-yellow-300 text-xs font-bold">{item.prix}</div>
                           <div className="text-emerald-300 text-[10px] mt-1 opacity-0 group-hover:opacity-100">ℹ️ Info</div>
