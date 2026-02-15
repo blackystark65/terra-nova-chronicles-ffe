@@ -237,11 +237,13 @@ export default function MissionsPage() {
     if (profile && selectedMission && user) {
       const totalQuestions = selectedMission.questions?.length || 0;
       const xpEarned = Math.floor(score / totalQuestions * selectedMission.xp_reward);
+      const creditsEarned = Math.floor(xpEarned / 2); // 50% des XP en crédits
 
       updateProfileMutation.mutate({
         id: profile.id,
         data: {
           experience_points: profile.experience_points + xpEarned,
+          credits: (profile.credits || 0) + creditsEarned,
           missions_completed: profile.missions_completed + 1
         }
       });

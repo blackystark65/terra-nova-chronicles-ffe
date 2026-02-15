@@ -212,6 +212,20 @@ export default function QuizPage() {
     setShowResults(false);
   };
 
+  const { data: profiles } = useQuery({
+    queryKey: ['profiles'],
+    queryFn: () => base44.entities.EcoProfile.list()
+  });
+
+  const profile = profiles?.[0];
+
+  const queryClient = useQueryClient();
+
+  const updateProfileMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.EcoProfile.update(id, data),
+    onSuccess: () => queryClient.invalidateQueries(['profiles'])
+  });
+
   const handleNextQuestion = async () => {
     if (selectedAnswers.length === 0) return;
 
@@ -232,10 +246,22 @@ export default function QuizPage() {
       }, 0);
 
       const points = Math.round((score / selectedQuiz.questions.length) * 100);
+      const credits = Math.round(points / 2); // 50% des points en crédits
       const timePlayed = getSessionDuration();
       
       if (user?.email) {
         await sendPointsToHoloNexus(user.email, points, timePlayed);
+      }
+
+      // Mettre à jour les crédits
+      if (profile) {
+        updateProfileMutation.mutate({
+          id: profile.id,
+          data: {
+            experience_points: (profile.experience_points || 0) + points,
+            credits: (profile.credits || 0) + credits
+          }
+        });
       }
 
       setShowResults(true);
