@@ -438,22 +438,21 @@ export default function FermeEpicerie() {
                           key={item.uniqueId}
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="relative p-3 rounded-xl bg-emerald-500/20 border-2 border-emerald-400/50 text-center group"
+                          onClick={() => setFicheOuverte(item.id)}
+                          className="relative p-3 rounded-xl bg-emerald-500/20 border-2 border-emerald-400/50 text-center group cursor-pointer hover:bg-emerald-500/30 transition-all"
                         >
                           <button
-                            onClick={() => retirerDuChariot(item.uniqueId)}
-                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              retirerDuChariot(item.uniqueId);
+                            }}
+                            className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
                           >
                             <Trash2 className="w-3 h-3 text-white" />
                           </button>
-                          <button
-                            onClick={() => setFicheOuverte(item.id)}
-                            className="w-full h-full"
-                          >
-                            <div className="text-4xl mb-1">{item.emoji}</div>
-                            <div className="text-yellow-300 text-xs font-bold">{item.prix}</div>
-                            <div className="text-emerald-300 text-[10px] mt-1 opacity-0 group-hover:opacity-100">ℹ️ Info</div>
-                          </button>
+                          <div className="text-4xl mb-1">{item.emoji}</div>
+                          <div className="text-yellow-300 text-xs font-bold">{item.prix}</div>
+                          <div className="text-emerald-300 text-[10px] mt-1 opacity-0 group-hover:opacity-100">ℹ️ Info</div>
                         </motion.div>
                       ))}
                     </div>

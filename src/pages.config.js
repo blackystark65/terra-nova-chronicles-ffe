@@ -57,6 +57,7 @@ import Climate from './pages/Climate';
 import Encyclopedia from './pages/Encyclopedia';
 import FermeBoulangerie from './pages/FermeBoulangerie';
 import FermeCentreFormation from './pages/FermeCentreFormation';
+import FermeEpicerie from './pages/FermeEpicerie';
 import FermePepiniere from './pages/FermePepiniere';
 import FermeRoleSelection from './pages/FermeRoleSelection';
 import Home from './pages/Home';
@@ -81,7 +82,6 @@ import RecyclageRoleSelection from './pages/RecyclageRoleSelection';
 import RecyclageRooms from './pages/RecyclageRooms';
 import RecyclageSchedule from './pages/RecyclageSchedule';
 import RecyclageShop from './pages/RecyclageShop';
-import FermeEpicerie from './pages/FermeEpicerie';
 
 
 export const PAGES = {
@@ -95,6 +95,7 @@ export const PAGES = {
     "Encyclopedia": Encyclopedia,
     "FermeBoulangerie": FermeBoulangerie,
     "FermeCentreFormation": FermeCentreFormation,
+    "FermeEpicerie": FermeEpicerie,
     "FermePepiniere": FermePepiniere,
     "FermeRoleSelection": FermeRoleSelection,
     "Home": Home,
@@ -119,7 +120,6 @@ export const PAGES = {
     "RecyclageRooms": RecyclageRooms,
     "RecyclageSchedule": RecyclageSchedule,
     "RecyclageShop": RecyclageShop,
-    "FermeEpicerie": FermeEpicerie,
 }
 
 export const pagesConfig = {
