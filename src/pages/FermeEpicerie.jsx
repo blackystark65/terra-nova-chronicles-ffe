@@ -196,6 +196,176 @@ const FICHES_PEDAGOGIQUES = {
         contenu: 'Arroser régulièrement au pied. Pailler pour garder l\'humidité. Tailler les gourmands. Fertiliser avec du compost.'
       }
     ]
+  },
+  plants_salade: {
+    titre: 'Plants de Salade',
+    emoji: '🌿',
+    sections: [
+      {
+        titre: 'Production',
+        contenu: 'Semis toute l\'année en pépinière. Repiquage après 4-5 semaines. Croissance rapide (6-8 semaines).'
+      },
+      {
+        titre: 'Plantation',
+        contenu: 'Espacer de 25-30cm. Sol frais et léger. Mi-ombre en été.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Couper au couteau ou arracher avec racine. Récolter tôt le matin.'
+      }
+    ]
+  },
+  plantes_aromatiques: {
+    titre: 'Plantes Aromatiques',
+    emoji: '🪴',
+    sections: [
+      {
+        titre: 'Variétés populaires',
+        liste: ['Basilic (annuel)', 'Persil (bisannuel)', 'Ciboulette (vivace)', 'Menthe (vivace)', 'Thym (vivace)', 'Romarin (vivace)']
+      },
+      {
+        titre: 'Culture',
+        contenu: 'En pot ou pleine terre. Sol drainant. Exposition ensoleillée. Arrosage modéré.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Couper les tiges au besoin. Ne pas tout récolter d\'un coup. Récolter avant la floraison pour plus de saveur.'
+      }
+    ]
+  },
+  carottes: {
+    titre: 'Carottes Bio',
+    emoji: '🥕',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Semis direct mars-juillet. Sol meuble et profond. Éclaircir à 5cm. Pas de fumier frais.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: '3-4 mois après semis. Arracher avec fourche-bêche. Conservation en cave ou terre.'
+      }
+    ]
+  },
+  salades: {
+    titre: 'Salades Fraîches',
+    emoji: '🥬',
+    sections: [
+      {
+        titre: 'Variétés',
+        liste: ['Laitue (douce)', 'Batavia (croquante)', 'Feuille de chêne (tendre)', 'Roquette (poivrée)', 'Mâche (hivernale)']
+      },
+      {
+        titre: 'Culture',
+        contenu: 'Semis échelonnés toute l\'année. Sol frais. Arrosage régulier.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Feuille par feuille ou plant entier. Récolter avant montée en graines.'
+      }
+    ]
+  },
+  pommes: {
+    titre: 'Pommes du Verger',
+    emoji: '🍎',
+    sections: [
+      {
+        titre: 'Variétés',
+        liste: ['Golden (sucrée)', 'Gala (croquante)', 'Reinette (acidulée)', 'Boskoop (à cuire)']
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Août-octobre selon variétés. Tester en tournant légèrement. Cueillir avec le pédoncule.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'Cave fraîche et aérée. Trier régulièrement. Dure 2-6 mois selon variétés.'
+      }
+    ]
+  },
+  fraises: {
+    titre: 'Fraises du Jardin',
+    emoji: '🍓',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Plantation printemps ou automne. Sol riche en humus. Pailler la terre. Supprimer les stolons.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Mai-juillet. Cueillir avec le pédoncule. Récolter tous les 2-3 jours. Déguster rapidement.'
+      }
+    ]
+  },
+  pain_seigle: {
+    titre: 'Pain de Seigle',
+    emoji: '🍞',
+    sections: [
+      {
+        titre: 'Particularités',
+        contenu: 'Farine de seigle + blé. Mie dense et compacte. Goût prononcé. Excellente conservation.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Très riche en fibres. Minéraux (fer, magnésium). Satiété durable. Bon pour la digestion.'
+      }
+    ]
+  },
+  beurre: {
+    titre: 'Beurre Fermier',
+    emoji: '🧈',
+    sections: [
+      {
+        titre: 'Fabrication',
+        contenu: 'Crème du lait (maturation 12-24h). Barattage jusqu\'à séparation. Malaxage et lavage. Moulage.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'Au réfrigérateur 2-3 semaines. Peut se congeler. Protéger de la lumière.'
+      }
+    ]
+  },
+  fromage: {
+    titre: 'Fromage Artisanal',
+    emoji: '🧀',
+    sections: [
+      {
+        titre: 'Fabrication',
+        contenu: 'Caillage du lait (présure). Égouttage du caillé. Moulage et pressage. Salage. Affinage.'
+      },
+      {
+        titre: 'Types',
+        liste: ['Frais (chèvre, ricotta)', 'Pâte molle (camembert)', 'Pâte pressée (tomme)', 'Pâte dure (comté)']
+      }
+    ]
+  },
+  bouquet_champetre: {
+    titre: 'Bouquet Champêtre',
+    emoji: '💐',
+    sections: [
+      {
+        titre: 'Composition',
+        contenu: 'Mélange de fleurs des champs et du jardin. Marguerites, bleuets, cosmos, zinnias, lavande.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'Couper les tiges en biais. Eau fraîche changée tous les 2 jours. Retirer feuilles immergées. Dure 7-10 jours.'
+      }
+    ]
+  },
+  bouquet_roses: {
+    titre: 'Bouquet de Roses',
+    emoji: '🌹',
+    sections: [
+      {
+        titre: 'Variétés',
+        contenu: 'Roses parfumées du jardin. Rouges, roses, blanches ou jaunes. Taillées le matin.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'Recouper les tiges sous l\'eau. Enlever épines basses. Vase propre eau fraîche. Dure 5-8 jours.'
+      }
+    ]
   }
 };
 
@@ -323,14 +493,18 @@ export default function FermeEpicerie() {
   };
 
   const validerAchat = () => {
-    if (chariot.length === 0) {
-      setFeedback({ type: 'error', message: '❌ Chariot vide !' });
+    // Vérifier qu'il y a des articles non encore validés
+    const articlesAchetesIds = (profile?.articles_achetes || []).map(a => a.id);
+    const nouveauxArticles = chariot.filter(item => !articlesAchetesIds.includes(item.id));
+    
+    if (nouveauxArticles.length === 0) {
+      setFeedback({ type: 'error', message: '❌ Tous les articles sont déjà achetés !' });
       setTimeout(() => setFeedback(null), 2000);
       return;
     }
 
-    // Préparer les articles avec la date d'achat
-    const articlesAvecDate = chariot.map(item => ({
+    // Préparer les nouveaux articles avec la date d'achat
+    const articlesAvecDate = nouveauxArticles.map(item => ({
       id: item.id,
       nom: item.nom,
       emoji: item.emoji,
@@ -338,11 +512,17 @@ export default function FermeEpicerie() {
       date_achat: new Date().toISOString()
     }));
 
+    // Ajouter aux articles existants
+    const tousLesArticles = [...(profile?.articles_achetes || []), ...articlesAvecDate];
+    
+    // Calculer le total des nouveaux articles uniquement
+    const totalNouveauxArticles = nouveauxArticles.reduce((sum, item) => sum + item.prix, 0);
+
     updateProfileMutation.mutate({
       id: profile.id,
       data: {
-        credits: creditsDisponibles - totalChariot,
-        articles_achetes: articlesAvecDate
+        credits: creditsDisponibles - totalNouveauxArticles,
+        articles_achetes: tousLesArticles
       }
     });
   };
