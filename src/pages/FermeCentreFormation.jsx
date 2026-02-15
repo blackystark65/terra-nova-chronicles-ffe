@@ -21,9 +21,9 @@ export default function FermeCentreFormation() {
   const [viewMode, setViewMode] = useState('inscription'); // 'inscription' ou 'formation'
 
   const categories = [
-    { id: 'juniors', name: 'Juniors', description: 'Élémentaire & Collège', emoji: '🎒', color: 'from-blue-500 to-cyan-600' },
-    { id: 'cadets', name: 'Cadets', description: 'Lycée', emoji: '🎓', color: 'from-purple-500 to-pink-600' },
-    { id: 'seniors', name: 'Seniors', description: 'Université', emoji: '🎯', color: 'from-orange-500 to-red-600' }
+    { id: 'juniors', name: 'Juniors - Découverte', description: 'CM2', emoji: '🎒', color: 'from-blue-500 to-cyan-600' },
+    { id: 'cadets', name: 'Cadets - Environnement', description: '5ème', emoji: '🎓', color: 'from-purple-500 to-pink-600' },
+    { id: 'seniors', name: 'Seniors - Sciences naturelles', description: '6ème', emoji: '🎯', color: 'from-orange-500 to-red-600' }
   ];
 
   const { data: user } = useQuery({
@@ -186,7 +186,9 @@ export default function FermeCentreFormation() {
                     </label>
                     {classes && classes.length > 0 ? (
                       <div className="grid gap-3">
-                        {classes.map((classe) => (
+                        {classes
+                          .filter(classe => !selectedCategory || classe.niveau === selectedCategory)
+                          .map((classe) => (
                           <motion.div
                             key={classe.id}
                             whileHover={{ scale: 1.02 }}
@@ -214,6 +216,10 @@ export default function FermeCentreFormation() {
                             </div>
                           </motion.div>
                         ))}
+                      </div>
+                    ) : selectedCategory ? (
+                      <div className="text-center py-8 text-indigo-300/50">
+                        Aucune classe disponible pour cette catégorie
                       </div>
                     ) : (
                       <div className="text-center py-8 text-indigo-300/50">
