@@ -93,10 +93,10 @@ export default function FermeCentreFormation() {
     // Redirection vers la page spécifique du poste
     const rolePageMap = {
       'horticulteur': 'FermePepiniere',
-      'maraicher': 'FermeMilpa',
-      'arboriste': 'FermeJouale',
+      'maraicher': 'FermeMaraichage',
+      'arboriste': 'FermeArboriculture',
       'boulanger': 'FermeBoulangerie',
-      'eleveur': 'FermePedagogique',
+      'eleveur': 'FermeElevage',
       'epicier': 'FermeEpicerie',
       'jardinier_foret': 'FermeForetJardin'
     };
