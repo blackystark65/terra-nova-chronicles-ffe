@@ -5,7 +5,7 @@ import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 import { 
   BookOpen, Search, MessageCircle, Send, X, TreeDeciduous, 
-  Droplets, Leaf, Recycle, Bug, Sprout, Zap, Globe, Dna 
+  Droplets, Leaf, Recycle, Bug, Sprout, Zap, Globe, Dna, Coins 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -250,6 +250,97 @@ const themes = [
         "Étudier l'évolution et la paléontologie",
         "Comprendre notre place dans le vivant",
         "Préserver le patrimoine génétique"
+      ]
+    }
+  },
+  {
+    id: 'circuit_court',
+    name: 'Circuit Court',
+    icon: Sprout,
+    color: 'from-green-600 to-lime-700',
+    description: 'Production et consommation locale',
+    content: {
+      intro: "Le circuit court est un mode de commercialisation avec un maximum d'un intermédiaire entre le producteur et le consommateur. Il rapproche producteurs et consommateurs, favorise une alimentation de qualité et réduit l'impact environnemental.",
+      facts: [
+        "🌾 Production locale : Les aliments sont cultivés, récoltés et transformés sur place (ferme, village, région)",
+        "🚜 Moins de transport : Les produits parcourent peu de kilomètres, réduisant pollution, CO₂ et gaspillage d'énergie",
+        "👨‍🌾 Lien direct producteur-consommateur : L'agriculteur vend directement ses produits (marché, ferme, AMAP, boutique locale)",
+        "🥬 Fraîcheur garantie : Les produits sont cueillis à maturité et arrivent rapidement, conservant saveurs et nutriments",
+        "💰 Prix juste : Le producteur est rémunéré correctement, le consommateur paie le juste prix sans intermédiaires multiples",
+        "🌍 Impact environnemental réduit : Moins d'emballages, moins de transport, moins de stockage, agriculture souvent plus respectueuse",
+        "🏘️ Dynamisme local : L'argent circule dans la région, crée des emplois locaux et renforce le tissu social",
+        "📚 Pédagogie : Permet de comprendre d'où vient notre alimentation, comment elle est produite, et les métiers de la terre"
+      ],
+      actions: [
+        "Acheter directement à la ferme ou au marché local",
+        "Rejoindre une AMAP (Association pour le Maintien d'une Agriculture Paysanne)",
+        "Privilégier les boutiques et épiceries de producteurs locaux",
+        "Visiter les fermes pédagogiques pour comprendre le travail agricole",
+        "Soutenir l'agriculture locale et les circuits courts dans ta région",
+        "Cultiver ton propre potager pour être autonome"
+      ]
+    }
+  },
+  {
+    id: 'economie_circulaire',
+    name: 'Économie Circulaire',
+    icon: Recycle,
+    color: 'from-emerald-600 to-teal-700',
+    description: 'Système économique durable et responsable',
+    content: {
+      intro: "L'économie circulaire est un modèle économique qui vise à produire, consommer et recycler de manière durable, en opposition au modèle linéaire 'extraire-fabriquer-jeter'. Elle minimise les déchets, valorise les ressources et crée un système où tout se transforme et se régénère.",
+      facts: [
+        "♻️ Principe central : Rien ne se perd, tout se transforme. Les déchets deviennent des ressources pour un nouveau cycle",
+        "🔄 Les 3 piliers : Réduire (consommer moins et mieux), Réutiliser (réparer, donner une seconde vie), Recycler (transformer en nouvelles matières)",
+        "🌾 Exemple agricole - Micro-ferme : Tu travailles → tu es payé en crédits → tu achètes des produits de la ferme → l'argent finance les salaires → le cycle continue",
+        "🥕 Compostage : Déchets organiques → compost → nourrit les plantes → produit des légumes → déchets organiques → boucle fermée",
+        "🌳 Forêt : Feuilles mortes → humus → nourrit les arbres → nouvelles feuilles → nature = économie circulaire parfaite",
+        "💧 Eau : Océans → nuages → pluie → sols → rivières → océans → cycle fermé naturel",
+        "🏭 Industrie circulaire : Concevoir des produits durables, réparables et recyclables dès la conception",
+        "💼 Économie locale : Favorise l'emploi local, les ressources locales et les circuits courts",
+        "📉 Moins de pollution : Réduit extraction de ressources, production de déchets et émissions de CO₂",
+        "🌍 Vision long terme : Préserve les ressources pour les générations futures et respecte les limites planétaires"
+      ],
+      actions: [
+        "Privilégier les produits durables, réparables et recyclables",
+        "Réparer plutôt que jeter (électronique, vêtements, meubles)",
+        "Donner, échanger ou revendre ce dont tu n'as plus besoin",
+        "Composter tes déchets organiques",
+        "Acheter d'occasion et local",
+        "Soutenir les entreprises qui appliquent l'économie circulaire",
+        "Trier correctement tes déchets pour faciliter le recyclage",
+        "Participer à des projets locaux d'économie circulaire (repair cafés, ressourceries)"
+      ]
+    }
+  },
+  {
+    id: 'monnaie_locale',
+    name: 'Monnaie Locale',
+    icon: Coins,
+    color: 'from-yellow-600 to-amber-700',
+    description: 'Crédit local et économie solidaire',
+    content: {
+      intro: "Une monnaie locale est une monnaie complémentaire utilisable uniquement dans une zone géographique définie (village, région) ou au sein d'un réseau de partenaires engagés. Elle favorise l'économie locale, renforce les liens sociaux et soutient les producteurs et commerçants locaux.",
+      facts: [
+        "💰 Le crédit Terra Nova : Monnaie locale de la Micro-Ferme qui ne peut être dépensée qu'à l'épicerie de la ferme ou chez les partenaires locaux",
+        "🏘️ Circulation locale : L'argent reste dans le circuit local, ne part pas vers les grandes entreprises extérieures",
+        "👨‍🌾 Soutien aux producteurs locaux : Les agriculteurs et artisans locaux sont prioritairement soutenus",
+        "🔄 Économie circulaire : Tu travailles à la ferme → tu gagnes des crédits → tu achètes à l'épicerie → les crédits servent à payer les salaires → circuit fermé",
+        "🌍 Impact écologique : Favorise les circuits courts, moins de transport, moins de CO₂, produits frais et locaux",
+        "🤝 Solidarité : Renforce le lien social entre producteurs et consommateurs, crée une communauté solidaire",
+        "💡 Exemples réels : Le Sol Violette à Toulouse, l'Eusko au Pays Basque, le Léman en Suisse romande, le WIR en Suisse alémanique",
+        "📚 Pédagogie : Permet de comprendre la valeur du travail, le circuit économique et l'importance de l'économie locale",
+        "⚖️ Justice sociale : Valorise le travail local et permet une rémunération équitable des producteurs",
+        "🚫 Pas utilisable ailleurs : Une monnaie locale ne fonctionne que localement, ce qui garantit que l'argent reste dans le territoire"
+      ],
+      actions: [
+        "Utiliser la monnaie locale de ta région si elle existe",
+        "Privilégier les commerces et producteurs qui acceptent la monnaie locale",
+        "Participer à la création d'une monnaie locale dans ton école ou ta commune",
+        "Comprendre la différence entre monnaie nationale (euros, francs) et monnaie locale",
+        "Soutenir les initiatives d'économie solidaire et locale",
+        "Échanger des services avec ta communauté locale (troc, SEL - Système d'Échange Local)",
+        "Sensibiliser ton entourage à l'importance de l'économie locale"
       ]
     }
   }
