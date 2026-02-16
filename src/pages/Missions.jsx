@@ -188,8 +188,12 @@ const QuizModal = ({ mission, onComplete, onClose }) => {
 
             {showExplanation && (
               <Button
-                onClick={handleNext}
-                className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 py-6 text-lg"
+                onClick={(e) => {
+                  console.log('Button clicked!', e);
+                  e.stopPropagation();
+                  handleNext();
+                }}
+                className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 py-6 text-lg relative z-50"
               >
                 {isLastQuestion ? 'Terminer la mission' : 'Question suivante →'}
               </Button>
