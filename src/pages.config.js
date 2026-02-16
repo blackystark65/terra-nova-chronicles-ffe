@@ -82,6 +82,10 @@ import RecyclageRoleSelection from './pages/RecyclageRoleSelection';
 import RecyclageRooms from './pages/RecyclageRooms';
 import RecyclageSchedule from './pages/RecyclageSchedule';
 import RecyclageShop from './pages/RecyclageShop';
+import FermeMaraichage from './pages/FermeMaraichage';
+import FermeArboriculture from './pages/FermeArboriculture';
+import FermeElevage from './pages/FermeElevage';
+import FermeForetJardin from './pages/FermeForetJardin';
 
 
 export const PAGES = {
@@ -120,6 +124,10 @@ export const PAGES = {
     "RecyclageRooms": RecyclageRooms,
     "RecyclageSchedule": RecyclageSchedule,
     "RecyclageShop": RecyclageShop,
+    "FermeMaraichage": FermeMaraichage,
+    "FermeArboriculture": FermeArboriculture,
+    "FermeElevage": FermeElevage,
+    "FermeForetJardin": FermeForetJardin,
 }
 
 export const pagesConfig = {
