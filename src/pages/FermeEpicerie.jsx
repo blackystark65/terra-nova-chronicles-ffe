@@ -375,23 +375,70 @@ const RAYONS = {
     emoji: '🌱',
     color: 'from-green-600 to-emerald-700',
     produits: [
-      { id: 'plants_tomate', nom: 'Plant Tomate', emoji: '🌱', prix: 8 },
-      { id: 'plants_salade', nom: 'Plant Salade', emoji: '🌿', prix: 6 },
-      { id: 'micropousses', nom: 'Micro-pousses', emoji: '🌾', prix: 12 },
-      { id: 'fleurs_comestibles', nom: 'Fleurs Comestibles', emoji: '🌸', prix: 10 },
-      { id: 'plantes_aromatiques', nom: 'Plantes Aromatiques', emoji: '🪴', prix: 15 }
+      { id: 'plants_tomate', nom: 'Plant Tomate', emoji: '🌱', prix: 3 },
+      { id: 'plants_salade', nom: 'Plant Salade', emoji: '🌿', prix: 2 },
+      { id: 'micropousses', nom: 'Micro-pousses', emoji: '🌾', prix: 5 },
+      { id: 'fleurs_comestibles', nom: 'Fleurs Comestibles', emoji: '🌸', prix: 4 },
+      { id: 'plantes_aromatiques', nom: 'Plantes Aromatiques', emoji: '🪴', prix: 6 }
     ]
   },
-  maraichage: {
-    nom: 'Fruits & Légumes',
+  fruits: {
+    nom: 'Fruits du Verger',
+    emoji: '🍎',
+    color: 'from-red-600 to-pink-700',
+    produits: [
+      { id: 'pommes', nom: 'Pommes', emoji: '🍎', prix: 8 },
+      { id: 'poires', nom: 'Poires', emoji: '🍐', prix: 8 },
+      { id: 'fraises', nom: 'Fraises', emoji: '🍓', prix: 12 },
+      { id: 'framboises', nom: 'Framboises', emoji: '🫐', prix: 15 },
+      { id: 'myrtilles', nom: 'Myrtilles', emoji: '🫐', prix: 14 },
+      { id: 'groseilles', nom: 'Groseilles', emoji: '🍒', prix: 10 },
+      { id: 'cassis', nom: 'Cassis', emoji: '🫐', prix: 12 },
+      { id: 'kiwi', nom: 'Kiwis', emoji: '🥝', prix: 10 },
+      { id: 'melon', nom: 'Melons', emoji: '🍈', prix: 9 },
+      { id: 'pasteque', nom: 'Pastèques', emoji: '🍉', prix: 7 }
+    ]
+  },
+  fruits_secs: {
+    nom: 'Fruits à Coque',
+    emoji: '🌰',
+    color: 'from-amber-700 to-orange-800',
+    produits: [
+      { id: 'chataignes', nom: 'Châtaignes', emoji: '🌰', prix: 11 },
+      { id: 'noix', nom: 'Noix', emoji: '🥜', prix: 13 }
+    ]
+  },
+  legumes: {
+    nom: 'Légumes du Potager',
     emoji: '🥕',
     color: 'from-orange-600 to-red-700',
     produits: [
-      { id: 'tomates', nom: 'Tomates', emoji: '🍅', prix: 15 },
-      { id: 'carottes', nom: 'Carottes', emoji: '🥕', prix: 10 },
-      { id: 'salades', nom: 'Salades', emoji: '🥬', prix: 12 },
-      { id: 'pommes', nom: 'Pommes', emoji: '🍎', prix: 18 },
-      { id: 'fraises', nom: 'Fraises', emoji: '🍓', prix: 20 }
+      { id: 'tomates', nom: 'Tomates', emoji: '🍅', prix: 7 },
+      { id: 'carottes', nom: 'Carottes', emoji: '🥕', prix: 5 },
+      { id: 'salades', nom: 'Salades', emoji: '🥬', prix: 6 },
+      { id: 'courges', nom: 'Courges', emoji: '🎃', prix: 6 },
+      { id: 'courgettes', nom: 'Courgettes', emoji: '🥒', prix: 5 },
+      { id: 'concombres', nom: 'Concombres', emoji: '🥒', prix: 5 },
+      { id: 'aubergines', nom: 'Aubergines', emoji: '🍆', prix: 7 },
+      { id: 'betteraves', nom: 'Betteraves', emoji: '🫚', prix: 6 },
+      { id: 'celeri_rave', nom: 'Céleri-rave', emoji: '🥔', prix: 6 },
+      { id: 'choux_blanc', nom: 'Chou blanc', emoji: '🥬', prix: 5 },
+      { id: 'choux_rouge', nom: 'Chou rouge', emoji: '🥬', prix: 5 },
+      { id: 'choux_rave', nom: 'Chou-rave', emoji: '🥬', prix: 6 },
+      { id: 'choux_chinois', nom: 'Chou chinois', emoji: '🥬', prix: 7 },
+      { id: 'haricots', nom: 'Haricots', emoji: '🫘', prix: 8 },
+      { id: 'mais', nom: 'Maïs', emoji: '🌽', prix: 4 }
+    ]
+  },
+  viandes: {
+    nom: 'Viandes de la Ferme',
+    emoji: '🥩',
+    color: 'from-red-700 to-rose-800',
+    produits: [
+      { id: 'poulet', nom: 'Poulet', emoji: '🍗', prix: 25 },
+      { id: 'lapin', nom: 'Lapin', emoji: '🐰', prix: 28 },
+      { id: 'agneau', nom: 'Agneau', emoji: '🐑', prix: 35 },
+      { id: 'boeuf', nom: 'Bœuf', emoji: '🥩', prix: 40 }
     ]
   },
   boulangerie: {
@@ -399,27 +446,38 @@ const RAYONS = {
     emoji: '🥖',
     color: 'from-amber-600 to-yellow-700',
     produits: [
-      { id: 'pain_complet', nom: 'Pain Complet', emoji: '🥖', prix: 20 },
-      { id: 'pain_seigle', nom: 'Pain Seigle', emoji: '🍞', prix: 25 }
+      { id: 'pain_complet', nom: 'Pain Complet', emoji: '🥖', prix: 8 },
+      { id: 'pain_seigle', nom: 'Pain Seigle', emoji: '🍞', prix: 9 }
     ]
   },
-  ferme: {
+  laitiers: {
     nom: 'Produits Laitiers',
     emoji: '🥛',
     color: 'from-blue-600 to-cyan-700',
     produits: [
-      { id: 'lait', nom: 'Lait Frais', emoji: '🥛', prix: 18 },
-      { id: 'beurre', nom: 'Beurre', emoji: '🧈', prix: 22 },
-      { id: 'fromage', nom: 'Fromage', emoji: '🧀', prix: 28 }
+      { id: 'lait', nom: 'Lait Frais', emoji: '🥛', prix: 7 },
+      { id: 'beurre', nom: 'Beurre', emoji: '🧈', prix: 10 },
+      { id: 'fromage', nom: 'Fromage', emoji: '🧀', prix: 12 }
     ]
   },
-  compost: {
+  boissons: {
+    nom: 'Boissons',
+    emoji: '💧',
+    color: 'from-cyan-600 to-blue-700',
+    produits: [
+      { id: 'eau_source', nom: 'Eau de Source', emoji: '💧', prix: 3 },
+      { id: 'eau_gazeuse', nom: 'Eau Gazeuse CO2', emoji: '🫧', prix: 4 },
+      { id: 'hydromel', nom: 'Hydromel', emoji: '🍯', prix: 18 },
+      { id: 'biere', nom: 'Bière artisanale', emoji: '🍺', prix: 15 }
+    ]
+  },
+  jardinage: {
     nom: 'Compost & Terreau',
     emoji: '♻️',
     color: 'from-brown-600 to-stone-700',
     produits: [
-      { id: 'compost', nom: 'Sac Compost', emoji: '♻️', prix: 14 },
-      { id: 'terreau', nom: 'Sac Terreau', emoji: '🪴', prix: 16 }
+      { id: 'compost', nom: 'Sac Compost', emoji: '♻️', prix: 6 },
+      { id: 'terreau', nom: 'Sac Terreau', emoji: '🪴', prix: 7 }
     ]
   },
   fleurs: {
@@ -427,8 +485,8 @@ const RAYONS = {
     emoji: '💐',
     color: 'from-pink-600 to-rose-700',
     produits: [
-      { id: 'bouquet_champetre', nom: 'Bouquet Champêtre', emoji: '💐', prix: 25 },
-      { id: 'bouquet_roses', nom: 'Bouquet Roses', emoji: '🌹', prix: 30 }
+      { id: 'bouquet_champetre', nom: 'Bouquet Champêtre', emoji: '💐', prix: 12 },
+      { id: 'bouquet_roses', nom: 'Bouquet Roses', emoji: '🌹', prix: 15 }
     ]
   }
 };
@@ -451,6 +509,13 @@ export default function FermeEpicerie() {
 
   const profile = profiles?.[0];
 
+  const { data: caisses } = useQuery({
+    queryKey: ['caisseFerme'],
+    queryFn: () => base44.entities.CaisseFerme.list(),
+  });
+
+  const caisse = caisses?.[0];
+
   const updateProfileMutation = useMutation({
     mutationFn: ({ id, data }) => base44.entities.EcoProfile.update(id, data),
     onSuccess: () => {
@@ -460,6 +525,31 @@ export default function FermeEpicerie() {
       setTimeout(() => setFeedback(null), 3000);
     },
   });
+
+  const updateCaisseMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.CaisseFerme.update(id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['caisseFerme']);
+    },
+  });
+
+  const createCaisseMutation = useMutation({
+    mutationFn: (data) => base44.entities.CaisseFerme.create(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['caisseFerme']);
+    },
+  });
+
+  React.useEffect(() => {
+    if (!caisse && user) {
+      createCaisseMutation.mutate({
+        total_credits: 1000,
+        revenus_epicerie: 0,
+        salaires_verses: 0,
+        historique_transactions: []
+      });
+    }
+  }, [caisse, user]);
 
   // Charger les articles depuis le profil
   React.useEffect(() => {
@@ -530,6 +620,27 @@ export default function FermeEpicerie() {
         articles_achetes: tousLesArticles
       }
     });
+
+    // Alimenter la caisse avec les revenus
+    if (caisse) {
+      const nouvelleTransaction = {
+        type: 'vente',
+        montant: totalChariot,
+        eleve_email: user?.email || 'inconnu',
+        description: `Achat de ${articlesNouveaux.length} articles`,
+        date: new Date().toISOString()
+      };
+
+      updateCaisseMutation.mutate({
+        id: caisse.id,
+        data: {
+          total_credits: (caisse.total_credits || 1000) + totalChariot,
+          revenus_epicerie: (caisse.revenus_epicerie || 0) + totalChariot,
+          derniere_transaction: new Date().toISOString(),
+          historique_transactions: [...(caisse.historique_transactions || []), nouvelleTransaction]
+        }
+      });
+    }
   };
 
   return (
@@ -547,14 +658,20 @@ export default function FermeEpicerie() {
 
             <div className="text-center mb-6">
               <h1 className="text-4xl font-bold text-emerald-300 mb-4">
-                🏪 Épicerie de la Ferme
+                🏪 Épicerie de la Ferme - Circuit Court
               </h1>
-              <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-xl rounded-2xl px-6 py-3 border border-emerald-400/30">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-wrap justify-center gap-4">
+                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl rounded-2xl px-6 py-3 border border-emerald-400/30">
                   <Coins className="w-6 h-6 text-yellow-400" />
-                  <span className="text-yellow-300 text-xl font-bold">{creditsDisponibles} crédits</span>
+                  <span className="text-yellow-300 text-xl font-bold">Mon salaire: {creditsDisponibles} crédits</span>
+                </div>
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-emerald-700 rounded-2xl px-6 py-3 border border-emerald-400/30">
+                  <span className="text-white text-lg font-bold">💰 Caisse Ferme: {caisse?.total_credits || 0} crédits</span>
                 </div>
               </div>
+              <p className="text-emerald-300/70 mt-2 text-sm">
+                🌍 Tu travailles → Tu es payé → Tu achètes ici → L'argent finance les salaires
+              </p>
             </div>
 
             {/* Rayons */}
