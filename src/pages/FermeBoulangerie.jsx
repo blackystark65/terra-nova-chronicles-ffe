@@ -241,7 +241,7 @@ export default function FermeBoulangerie() {
           if (woodCardsPlaced + 1 === 20) {
             setFeedback({ type: 'success', message: '🔥 Four en chauffe !' });
           } else {
-            setFeedback({ type: 'success', message: `🪵 Bois placé (${woodCardsPlaced + 1}/20)` });
+            setFeedback({ type: 'success', message: `🔥 Bois placé (${woodCardsPlaced + 1}/20)` });
           }
         }
       }
@@ -629,7 +629,7 @@ export default function FermeBoulangerie() {
                       : 'bg-gradient-to-br from-orange-800 to-red-900 border-white/20 opacity-50 cursor-not-allowed'
                   }`}
                 >
-                  🪵
+                  🔥
                 </button>
 
                 <h3 className="text-sm font-bold text-orange-300 text-center mt-2">🔥 Four (20)</h3>
@@ -651,7 +651,7 @@ export default function FermeBoulangerie() {
                         }`}
                       >
                         {slot && (
-                          <span className="text-xs">{slot.type === 'wood' ? '🪵' : '🥖'}</span>
+                          <span className="text-xs">{slot.type === 'wood' ? '🔥' : '🥖'}</span>
                         )}
                       </button>
                     ))}

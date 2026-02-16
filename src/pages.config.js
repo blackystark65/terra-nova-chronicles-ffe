@@ -55,9 +55,13 @@ import BiomeRainforest from './pages/BiomeRainforest';
 import BiomeSavanna from './pages/BiomeSavanna';
 import Climate from './pages/Climate';
 import Encyclopedia from './pages/Encyclopedia';
+import FermeArboriculture from './pages/FermeArboriculture';
 import FermeBoulangerie from './pages/FermeBoulangerie';
 import FermeCentreFormation from './pages/FermeCentreFormation';
+import FermeElevage from './pages/FermeElevage';
 import FermeEpicerie from './pages/FermeEpicerie';
+import FermeForetJardin from './pages/FermeForetJardin';
+import FermeMaraichage from './pages/FermeMaraichage';
 import FermePepiniere from './pages/FermePepiniere';
 import FermeRoleSelection from './pages/FermeRoleSelection';
 import Home from './pages/Home';
@@ -82,10 +86,6 @@ import RecyclageRoleSelection from './pages/RecyclageRoleSelection';
 import RecyclageRooms from './pages/RecyclageRooms';
 import RecyclageSchedule from './pages/RecyclageSchedule';
 import RecyclageShop from './pages/RecyclageShop';
-import FermeMaraichage from './pages/FermeMaraichage';
-import FermeArboriculture from './pages/FermeArboriculture';
-import FermeElevage from './pages/FermeElevage';
-import FermeForetJardin from './pages/FermeForetJardin';
 
 
 export const PAGES = {
@@ -97,9 +97,13 @@ export const PAGES = {
     "BiomeSavanna": BiomeSavanna,
     "Climate": Climate,
     "Encyclopedia": Encyclopedia,
+    "FermeArboriculture": FermeArboriculture,
     "FermeBoulangerie": FermeBoulangerie,
     "FermeCentreFormation": FermeCentreFormation,
+    "FermeElevage": FermeElevage,
     "FermeEpicerie": FermeEpicerie,
+    "FermeForetJardin": FermeForetJardin,
+    "FermeMaraichage": FermeMaraichage,
     "FermePepiniere": FermePepiniere,
     "FermeRoleSelection": FermeRoleSelection,
     "Home": Home,
@@ -124,10 +128,6 @@ export const PAGES = {
     "RecyclageRooms": RecyclageRooms,
     "RecyclageSchedule": RecyclageSchedule,
     "RecyclageShop": RecyclageShop,
-    "FermeMaraichage": FermeMaraichage,
-    "FermeArboriculture": FermeArboriculture,
-    "FermeElevage": FermeElevage,
-    "FermeForetJardin": FermeForetJardin,
 }
 
 export const pagesConfig = {
