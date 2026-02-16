@@ -547,6 +547,10 @@ export default function FermeBoulangerie() {
                   <div className="grid grid-cols-5 gap-1">
                     {proofingTable.slice(batchRange.start, batchRange.end).map((slot, idx) => {
                       const index = batchRange.start + idx;
+                      const canPlaceDough = selectedDough && !slot;
+                      const canMoveBread = currentStage === 'baking' && slot;
+                      const isClickable = canPlaceDough || canMoveBread;
+                      
                       return (
                         <button
                           key={index}
@@ -568,7 +572,6 @@ export default function FermeBoulangerie() {
                               }
                               setTimeout(() => setFeedback(null), 1500);
                             } else if (currentStage === 'baking' && slot) {
-                              // Déplacer un pain vers le four
                               const newProofing = [...proofingTable];
                               const bread = newProofing[index];
                               newProofing[index] = null;
@@ -584,15 +587,14 @@ export default function FermeBoulangerie() {
                               }
                             }
                           }}
-                          disabled={!((selectedDough && !slot) || (currentStage === 'baking' && slot))}
                           className={`h-10 w-10 rounded border flex items-center justify-center text-sm transition-all ${
                             slot
-                              ? currentStage === 'baking'
+                              ? canMoveBread
                                 ? 'bg-green-500/30 border-green-400 hover:bg-green-500/50 cursor-pointer'
-                                : 'bg-green-500/30 border-green-400 cursor-not-allowed'
-                              : selectedDough
+                                : 'bg-green-500/30 border-green-400'
+                              : canPlaceDough
                               ? 'bg-orange-500/40 border-orange-400 hover:bg-orange-500/60 cursor-pointer'
-                              : 'bg-white/5 border-white/20 cursor-not-allowed'
+                              : 'bg-white/5 border-white/20'
                           }`}
                         >
                           {slot && <span>🍞</span>}
