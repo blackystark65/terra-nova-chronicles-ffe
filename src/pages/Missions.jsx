@@ -185,14 +185,14 @@ const QuizModal = ({ mission, onComplete, onClose }) => {
               </motion.div>
             }
 
-            {showExplanation &&
-            <Button
-              onClick={handleNext}
-              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600">
-
+            {showExplanation && (
+              <Button
+                onClick={handleNext}
+                className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 py-6 text-lg"
+              >
                 {isLastQuestion ? 'Terminer la mission' : 'Question suivante →'}
               </Button>
-            }
+            )}
           </div>
         </motion.div>
       </motion.div>
