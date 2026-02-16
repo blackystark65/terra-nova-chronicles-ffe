@@ -88,7 +88,7 @@ export default function BiolumiHeader({ currentPage }) {
 
               if (item.externalUrl) {
                 return (
-                  <a key={item.name} href={item.externalUrl} target="_blank" rel="noopener noreferrer">
+                  <a key={item.name} href={item.externalUrl}>
                     <motion.div
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
@@ -236,8 +236,6 @@ export default function BiolumiHeader({ currentPage }) {
                     <a 
                       key={item.name}
                       href={item.externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <motion.div
