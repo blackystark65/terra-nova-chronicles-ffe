@@ -11,6 +11,7 @@ export default function BiolumiHeader({ currentPage }) {
   const navItems = [
     { name: 'Atlas', icon: Globe, path: 'Atlas' },
     { name: 'Encyclopédie', icon: BookOpen, path: 'Encyclopedia' },
+    { name: 'Permaculture', icon: Leaf, path: null, externalUrl: 'https://www.permaculturedurosey.org' },
     { name: 'Quiz', icon: Trophy, path: 'Quiz' },
     { name: 'Jeux', icon: Flame, path: 'Jeux' },
     { name: 'Puzzle', icon: Trophy, path: 'Puzzle' },
@@ -92,6 +93,23 @@ export default function BiolumiHeader({ currentPage }) {
             {navItems.map((item) => {
               const isActive = currentPage === item.path;
               const Icon = item.icon;
+
+              if (item.externalUrl) {
+                return (
+                  <a key={item.name} href={item.externalUrl} target="_blank" rel="noopener noreferrer">
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="relative px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300"
+                    >
+                      <div className="relative flex items-center gap-1.5">
+                        <Icon className="w-3.5 h-3.5 text-emerald-400/70" />
+                        <span className="text-xs font-medium text-emerald-300/70">{item.name}</span>
+                      </div>
+                    </motion.div>
+                  </a>
+                );
+              }
 
               return (
                 <Link key={item.path} to={createPageUrl(item.path)}>
@@ -190,6 +208,26 @@ export default function BiolumiHeader({ currentPage }) {
               {navItems.map((item) => {
                 const isActive = currentPage === item.path;
                 const Icon = item.icon;
+
+                if (item.externalUrl) {
+                  return (
+                    <a 
+                      key={item.name}
+                      href={item.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <motion.div
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300"
+                      >
+                        <Icon className="w-5 h-5 text-emerald-400/70" />
+                        <span className="text-base font-medium text-emerald-300/70">{item.name}</span>
+                      </motion.div>
+                    </a>
+                  );
+                }
 
                 return (
                   <Link 
