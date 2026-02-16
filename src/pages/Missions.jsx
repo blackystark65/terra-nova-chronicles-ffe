@@ -237,25 +237,24 @@ export default function MissionsPage() {
     if (profile && selectedMission && user) {
       const totalQuestions = selectedMission.questions?.length || 0;
       const xpEarned = Math.floor(score / totalQuestions * selectedMission.xp_reward);
-      const creditsEarned = Math.floor(xpEarned / 2); // 50% des XP en crédits
+      const creditsEarned = Math.floor(xpEarned / 2);
 
-      updateProfileMutation.mutate({
+      await updateProfileMutation.mutateAsync({
         id: profile.id,
         data: {
-          experience_points: profile.experience_points + xpEarned,
+          experience_points: (profile.experience_points || 0) + xpEarned,
           credits: (profile.credits || 0) + creditsEarned,
-          missions_completed: profile.missions_completed + 1
+          missions_completed: (profile.missions_completed || 0) + 1
         }
       });
 
-      updateMissionMutation.mutate({
+      await updateMissionMutation.mutateAsync({
         id: selectedMission.id,
         data: {
           completed_by: [...(selectedMission.completed_by || []), profile.id]
         }
       });
 
-      // Synchroniser avec Holo-Nexus
       const timePlayed = getSessionDuration();
       await sendPointsToHoloNexus(user.email, xpEarned, timePlayed);
 
