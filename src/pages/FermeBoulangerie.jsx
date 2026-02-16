@@ -35,7 +35,7 @@ export default function FermeBoulangerie() {
   const [boulangeriStateId, setBoulangeriStateId] = useState(null);
   const [roleFermeId, setRoleFermeId] = useState(null);
   const [selectedWood, setSelectedWood] = useState(false);
-  const [selectedIngredient, setSelectedIngredient] = useState(null);
+  const [selectedDough, setSelectedDough] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -504,33 +504,24 @@ export default function FermeBoulangerie() {
                       {workStation.length === 0 ? (
                         <div className="text-center text-orange-400/50 text-[11px]">Glisse la farine</div>
                       ) : workStation.length === 4 ? (
-                        <Draggable draggableId="dough-ready" index={0}>
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              className={`relative w-24 cursor-grab active:cursor-grabbing ${snapshot.isDragging ? 'opacity-70' : ''}`}
-                              style={{ 
-                                ...provided.draggableProps.style,
-                                zIndex: snapshot.isDragging ? 9999 : 'auto',
-                                position: snapshot.isDragging ? 'fixed' : 'relative'
-                              }}
+                        <button
+                          onClick={() => setSelectedDough(!selectedDough)}
+                          className={`relative w-24 cursor-pointer transition-all ${
+                            selectedDough ? 'ring-4 ring-yellow-400 shadow-lg shadow-yellow-500' : ''
+                          }`}
+                        >
+                          {workStation.map((layer, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ y: -30, opacity: 0 }}
+                              animate={{ y: i * 10, opacity: 1 }}
+                              className="absolute top-0 left-0 w-full aspect-square rounded-lg bg-gradient-to-br from-amber-200 to-yellow-300 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center pointer-events-none"
+                              style={{ zIndex: i }}
                             >
-                              {workStation.map((layer, i) => (
-                                <motion.div
-                                  key={i}
-                                  initial={{ y: -30, opacity: 0 }}
-                                  animate={{ y: i * 10, opacity: 1 }}
-                                  className="absolute top-0 left-0 w-full aspect-square rounded-lg bg-gradient-to-br from-amber-200 to-yellow-300 border-2 border-white/30 shadow-lg flex flex-col items-center justify-center"
-                                  style={{ zIndex: i }}
-                                >
-                                  <span className="text-2xl">{layer.emoji}</span>
-                                </motion.div>
-                              ))}
-                            </div>
-                          )}
-                        </Draggable>
+                              <span className="text-2xl">{layer.emoji}</span>
+                            </motion.div>
+                          ))}
+                        </button>
                       ) : (
                         <div className="relative w-24">
                           {workStation.map((layer, i) => (
@@ -552,36 +543,70 @@ export default function FermeBoulangerie() {
                 </Droppable>
 
                 <h3 className="text-sm font-bold text-orange-300 text-center mt-2">📍 Pousse (20)</h3>
-                <button
-                  onClick={handlePlaceAllBreadInOven}
-                  disabled={currentStage !== 'baking' || !proofingTable.slice(batchRange.start, batchRange.end).some(s => s)}
-                  className={`w-full bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30 min-h-[120px] transition-all ${
-                    currentStage === 'baking' && proofingTable.slice(batchRange.start, batchRange.end).some(s => s)
-                      ? 'hover:bg-orange-500/20 hover:border-orange-400 cursor-pointer'
-                      : 'cursor-not-allowed opacity-60'
-                  }`}
-                >
-                  <div className="grid grid-cols-5 gap-1 pointer-events-none">
+                <div className="w-full bg-white/5 backdrop-blur-xl rounded-lg p-2 border border-orange-400/30 min-h-[120px]">
+                  <div className="grid grid-cols-5 gap-1">
                     {proofingTable.slice(batchRange.start, batchRange.end).map((slot, idx) => {
                       const index = batchRange.start + idx;
                       return (
-                        <div
+                        <button
                           key={index}
+                          onClick={() => {
+                            if (selectedDough && !slot) {
+                              const newTable = [...proofingTable];
+                              newTable[index] = { id: Date.now(), flour: workStation[0].flourId };
+                              setProofingTable(newTable);
+                              setWorkStation([]);
+                              setSelectedDough(false);
+                              
+                              const filledSlots = newTable.filter((_, i) => i >= batchRange.start && i < batchRange.end && newTable[i]).length;
+                              if (filledSlots === 20) {
+                                setCurrentStage('proofing');
+                                setStageProgress(0);
+                                setFeedback({ type: 'success', message: '🍞 20 pains mis à lever !' });
+                              } else {
+                                setFeedback({ type: 'success', message: `📍 Pain placé (${filledSlots}/20)` });
+                              }
+                              setTimeout(() => setFeedback(null), 1500);
+                            } else if (currentStage === 'baking' && slot) {
+                              // Déplacer un pain vers le four
+                              const newProofing = [...proofingTable];
+                              const bread = newProofing[index];
+                              newProofing[index] = null;
+                              setProofingTable(newProofing);
+                              
+                              const emptySlot = ovenSlots.findIndex((s, i) => !s && i < 20);
+                              if (emptySlot !== -1) {
+                                const newOven = [...ovenSlots];
+                                newOven[emptySlot] = { type: 'bread', flour: bread.flour };
+                                setOvenSlots(newOven);
+                                setFeedback({ type: 'success', message: '🥖 Pain au four !' });
+                                setTimeout(() => setFeedback(null), 1000);
+                              }
+                            }
+                          }}
+                          disabled={!selectedDough && currentStage !== 'baking'}
                           className={`h-10 w-10 rounded border flex items-center justify-center text-sm transition-all ${
                             slot
-                              ? 'bg-green-500/30 border-green-400'
-                              : 'bg-white/5 border-white/20'
+                              ? currentStage === 'baking'
+                                ? 'bg-green-500/30 border-green-400 hover:bg-green-500/50 cursor-pointer'
+                                : 'bg-green-500/30 border-green-400'
+                              : selectedDough
+                              ? 'bg-orange-500/40 border-orange-400 hover:bg-orange-500/60 cursor-pointer'
+                              : 'bg-white/5 border-white/20 cursor-not-allowed'
                           }`}
                         >
                           {slot && <span>🍞</span>}
-                        </div>
+                        </button>
                       );
                     })}
                   </div>
-                  {currentStage === 'baking' && proofingTable.slice(batchRange.start, batchRange.end).some(s => s) && (
-                    <div className="text-xs text-orange-300 mt-2 font-bold">👉 Clique pour mettre les pains au four</div>
+                  {selectedDough && (
+                    <div className="text-xs text-orange-300 mt-2 font-bold text-center">👉 Clique sur une case vide</div>
                   )}
-                </button>
+                  {currentStage === 'baking' && proofingTable.slice(batchRange.start, batchRange.end).some(s => s) && (
+                    <div className="text-xs text-orange-300 mt-2 font-bold text-center">👉 Clique sur les pains pour les mettre au four</div>
+                  )}
+                </div>
               </div>
 
               {/* COL 4: Bois + Four */}
