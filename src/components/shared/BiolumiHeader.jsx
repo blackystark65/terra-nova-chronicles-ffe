@@ -160,7 +160,7 @@ export default function BiolumiHeader({ currentPage }) {
                 <User className="w-5 h-5 text-white" />
               </motion.div>
             </Link>
-
+          </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-2">
@@ -279,7 +279,7 @@ export default function BiolumiHeader({ currentPage }) {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
-      </header>);
-
-}
+        </AnimatePresence>
+        </header>
+        );
+        }
