@@ -506,7 +506,7 @@ export default function FermeBoulangerie() {
                       ) : workStation.length === 4 ? (
                         <button
                           onClick={() => setSelectedDough(!selectedDough)}
-                          className={`relative w-24 cursor-pointer transition-all ${
+                          className={`relative w-24 aspect-square cursor-pointer transition-all ${
                             selectedDough ? 'ring-4 ring-yellow-400 shadow-lg shadow-yellow-500' : ''
                           }`}
                         >
