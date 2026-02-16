@@ -18,8 +18,7 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Recyclage', icon: Leaf, path: 'RecyclageRoleSelection' },
     { name: 'Micro-ferme', icon: Leaf, path: 'MicroFerme' },
     { name: 'Missions', icon: Flame, path: 'Missions' },
-    { name: 'Climat', icon: Leaf, path: 'Climate' },
-    { name: 'Profil', icon: User, path: 'Profile' }];
+    { name: 'Climat', icon: Leaf, path: 'Climate' }];
 
   const handleLogout = () => {
     base44.auth.redirectToLogin();
@@ -66,14 +65,6 @@ export default function BiolumiHeader({ currentPage }) {
                   transition={{ duration: 2, repeat: Infinity }} />
 
               </motion.div>
-
-              <div>
-                <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/9e8d7687f_BandeauTerraNovaChronicles.png"
-                  alt="Terra Nova Chronicles"
-                  className="h-10 w-auto"
-                />
-              </div>
             </motion.div>
           </Link>
 
@@ -90,6 +81,7 @@ export default function BiolumiHeader({ currentPage }) {
                 <span className="text-xs font-medium text-red-300">Déconnexion</span>
               </div>
             </motion.button>
+            
             {navItems.map((item) => {
               const isActive = currentPage === item.path;
               const Icon = item.icon;
@@ -157,10 +149,30 @@ export default function BiolumiHeader({ currentPage }) {
                 </Link>);
 
             })}
-          </div>
+            
+            {/* Photo de profil */}
+            <Link to={createPageUrl('Profile')}>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="ml-2 w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg border-2 border-emerald-400/50 cursor-pointer"
+              >
+                <User className="w-5 h-5 text-white" />
+              </motion.div>
+            </Link>
+
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <Link to={createPageUrl('Profile')}>
+              <motion.div
+                whileTap={{ scale: 0.9 }}
+                className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg border-2 border-emerald-400/50"
+              >
+                <User className="w-4 h-4 text-white" />
+              </motion.div>
+            </Link>
+            
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -197,6 +209,16 @@ export default function BiolumiHeader({ currentPage }) {
             className="md:hidden overflow-hidden"
           >
             <div className="px-4 py-4 space-y-2 bg-emerald-950/95 backdrop-blur-xl">
+              <Link to={createPageUrl('Profile')} onClick={() => setMobileMenuOpen(false)}>
+                <motion.div
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 transition-all duration-300"
+                >
+                  <User className="w-5 h-5 text-emerald-400" />
+                  <span className="text-base font-medium text-emerald-300">Profil</span>
+                </motion.div>
+              </Link>
+              
               <motion.button
                 onClick={handleLogout}
                 whileTap={{ scale: 0.95 }}
