@@ -584,12 +584,12 @@ export default function FermeBoulangerie() {
                               }
                             }
                           }}
-                          disabled={!selectedDough && currentStage !== 'baking'}
+                          disabled={!((selectedDough && !slot) || (currentStage === 'baking' && slot))}
                           className={`h-10 w-10 rounded border flex items-center justify-center text-sm transition-all ${
                             slot
                               ? currentStage === 'baking'
                                 ? 'bg-green-500/30 border-green-400 hover:bg-green-500/50 cursor-pointer'
-                                : 'bg-green-500/30 border-green-400'
+                                : 'bg-green-500/30 border-green-400 cursor-not-allowed'
                               : selectedDough
                               ? 'bg-orange-500/40 border-orange-400 hover:bg-orange-500/60 cursor-pointer'
                               : 'bg-white/5 border-white/20 cursor-not-allowed'
