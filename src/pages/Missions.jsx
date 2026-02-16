@@ -109,6 +109,7 @@ const QuizModal = ({ mission, onComplete, onClose }) => {
 
   const handleNext = () => {
     if (isLastQuestion) {
+      console.log('Completing mission with score:', score);
       onComplete(score);
     } else {
       setCurrentQuestion((prev) => prev + 1);
@@ -234,31 +235,44 @@ export default function MissionsPage() {
   });
 
   const handleCompleteMission = async (score) => {
-    if (profile && selectedMission && user) {
-      const totalQuestions = selectedMission.questions?.length || 0;
-      const xpEarned = Math.floor(score / totalQuestions * selectedMission.xp_reward);
-      const creditsEarned = Math.floor(xpEarned / 2);
+    console.log('handleCompleteMission called with score:', score);
+    console.log('Profile:', profile, 'User:', user, 'Mission:', selectedMission);
+    
+    try {
+      if (profile && selectedMission && user) {
+        const totalQuestions = selectedMission.questions?.length || 1;
+        const xpEarned = Math.floor((score / totalQuestions) * selectedMission.xp_reward) || 0;
+        const creditsEarned = Math.floor(xpEarned / 2);
 
-      await updateProfileMutation.mutateAsync({
-        id: profile.id,
-        data: {
-          experience_points: (profile.experience_points || 0) + xpEarned,
-          credits: (profile.credits || 0) + creditsEarned,
-          missions_completed: (profile.missions_completed || 0) + 1
-        }
-      });
+        console.log('Updating profile with XP:', xpEarned, 'Credits:', creditsEarned);
 
-      await updateMissionMutation.mutateAsync({
-        id: selectedMission.id,
-        data: {
-          completed_by: [...(selectedMission.completed_by || []), profile.id]
-        }
-      });
+        await updateProfileMutation.mutateAsync({
+          id: profile.id,
+          data: {
+            experience_points: (profile.experience_points || 0) + xpEarned,
+            credits: (profile.credits || 0) + creditsEarned,
+            missions_completed: (profile.missions_completed || 0) + 1
+          }
+        });
 
-      const timePlayed = getSessionDuration();
-      await sendPointsToHoloNexus(user.email, xpEarned, timePlayed);
+        await updateMissionMutation.mutateAsync({
+          id: selectedMission.id,
+          data: {
+            completed_by: [...(selectedMission.completed_by || []), profile.id]
+          }
+        });
 
-      setSelectedMission(null);
+        const timePlayed = getSessionDuration();
+        await sendPointsToHoloNexus(user.email, xpEarned, timePlayed);
+
+        console.log('Mission completed successfully');
+        setSelectedMission(null);
+      } else {
+        console.error('Missing data:', { profile, user, selectedMission });
+      }
+    } catch (error) {
+      console.error('Error completing mission:', error);
+      alert('Erreur lors de la validation de la mission: ' + error.message);
     }
   };
 
