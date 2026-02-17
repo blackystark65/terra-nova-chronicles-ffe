@@ -134,7 +134,11 @@ export default function FermeArboriculture() {
     }));
     
     setTailles(tailles + 1);
-    setFeedback({ type: 'success', message: '✂️ Arbre taillé ! +20% croissance' });
+    
+    // Payer pour la taille
+    payerTravail(3, 'Arboriculture: taille d\'un arbre');
+    
+    setFeedback({ type: 'success', message: '✂️ Arbre taillé ! +3 crédits' });
     setTimeout(() => setFeedback(null), 1000);
   };
 
@@ -150,7 +154,11 @@ export default function FermeArboriculture() {
     }));
     
     setRecoltesFruits(recoltesFruits + 5);
-    setFeedback({ type: 'success', message: `${arbre.fruit} Récolte de 5 fruits !` });
+    
+    // Payer pour la récolte de fruits
+    payerTravail(4, 'Arboriculture: récolte de fruits');
+    
+    setFeedback({ type: 'success', message: `${arbre.fruit} Récolte ! +4 crédits` });
     setTimeout(() => setFeedback(null), 1500);
   };
 
