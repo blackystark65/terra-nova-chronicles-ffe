@@ -1110,16 +1110,48 @@ export default function FermeEpicerie() {
     },
   });
 
+  const payerEpicier = (montant, description) => {
+    if (profile && caisse && caisse.total_credits >= montant) {
+      const nouvelleTransaction = {
+        type: 'salaire',
+        montant: montant,
+        eleve_email: user?.email || 'inconnu',
+        description: description,
+        date: new Date().toISOString()
+      };
+
+      updateProfileMutation.mutate({
+        id: profile.id,
+        data: {
+          credits: (profile.credits || 0) + montant
+        }
+      });
+
+      updateCaisseMutation.mutate({
+        id: caisse.id,
+        data: {
+          total_credits: caisse.total_credits - montant,
+          salaires_verses: (caisse.salaires_verses || 0) + montant,
+          derniere_transaction: new Date().toISOString(),
+          historique_transactions: [...(caisse.historique_transactions || []), nouvelleTransaction]
+        }
+      });
+    }
+  };
+
+  const [caisseInitialisee, setCaisseInitialisee] = React.useState(false);
+
   React.useEffect(() => {
-    if (!caisse && user) {
+    if (!caisse && user && !caisseInitialisee) {
       createCaisseMutation.mutate({
         total_credits: 1000,
         revenus_epicerie: 0,
         salaires_verses: 0,
         historique_transactions: []
       });
+      setCaisseInitialisee(true);
     }
-  }, [caisse, user]);
+  }, [caisse, user, caisseInitialisee]);
 
   // Vider le chariot après 24h
   React.useEffect(() => {
@@ -1281,7 +1313,10 @@ export default function FermeEpicerie() {
       });
     }
     
-    setFeedback({ type: 'success', message: `📦 +10 ${produit.nom} livrés !` });
+    // Payer l'épicier pour son travail de réapprovisionnement
+    payerEpicier(5, `Réapprovisionnement: +10 ${produit.nom}`);
+    
+    setFeedback({ type: 'success', message: `📦 +10 ${produit.nom} livrés ! (+5 crédits)` });
     setTimeout(() => setFeedback(null), 1500);
   };
 
@@ -1341,7 +1376,7 @@ export default function FermeEpicerie() {
                     {rayon.produits.map((produit) => {
                       const stockDispo = stocks?.find(s => s.produit_id === produit.id);
                       const quantiteStock = stockDispo?.quantite || 0;
-                      const dejaAchete = chariot.some(item => item.id === produit.id);
+                      const dejaAchete = articlesNouveaux.some(item => item.id === produit.id);
                       const enRupture = quantiteStock === 0;
                       const canAdd = peutAjouterArticle(produit.prix) && !dejaAchete && !enRupture;
                       
