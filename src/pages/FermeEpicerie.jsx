@@ -703,10 +703,10 @@ export default function FermeEpicerie() {
       updateCaisseMutation.mutate({
         id: caisse.id,
         data: {
-          total_credits: (caisse.total_credits || 1000) + totalChariot,
-          revenus_epicerie: (caisse.revenus_epicerie || 0) + totalChariot,
+          total_credits: (caisse.total_credits ?? 0) + totalChariot,
+          revenus_epicerie: (caisse.revenus_epicerie ?? 0) + totalChariot,
           derniere_transaction: new Date().toISOString(),
-          historique_transactions: [...(caisse.historique_transactions || []), nouvelleTransaction]
+          historique_transactions: [...(caisse.historique_transactions ?? []), nouvelleTransaction]
         }
       });
     }
