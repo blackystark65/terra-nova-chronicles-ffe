@@ -5,7 +5,7 @@ import { createPageUrl } from '@/utils';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
-import { ArrowLeft, ShoppingCart, Coins, Trash2 } from 'lucide-react';
+import { ArrowLeft, ShoppingCart, Coins, Trash2, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const FICHES_PEDAGOGIQUES = {
@@ -495,6 +495,7 @@ export default function FermeEpicerie() {
   const [chariot, setChariot] = useState([]);
   const [feedback, setFeedback] = useState(null);
   const [ficheOuverte, setFicheOuverte] = useState(null);
+  const [modeEpicier, setModeEpicier] = useState(false);
   const queryClient = useQueryClient();
 
   const { data: user } = useQuery({
@@ -515,6 +516,21 @@ export default function FermeEpicerie() {
   });
 
   const caisse = caisses?.[0];
+
+  const { data: stocks } = useQuery({
+    queryKey: ['stockEpicerie'],
+    queryFn: () => base44.entities.StockEpicerie.list(),
+  });
+
+  const { data: roleEpicier } = useQuery({
+    queryKey: ['roleEpicier', user?.email],
+    queryFn: async () => {
+      if (!user?.email) return null;
+      const roles = await base44.entities.RoleFerme.filter({ created_by: user.email, role: 'epicier' });
+      return roles[0] || null;
+    },
+    enabled: !!user?.email,
+  });
 
   const updateProfileMutation = useMutation({
     mutationFn: ({ id, data }) => base44.entities.EcoProfile.update(id, data),
@@ -540,6 +556,20 @@ export default function FermeEpicerie() {
     },
   });
 
+  const updateStockMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.StockEpicerie.update(id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['stockEpicerie']);
+    },
+  });
+
+  const createStockMutation = useMutation({
+    mutationFn: (data) => base44.entities.StockEpicerie.create(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['stockEpicerie']);
+    },
+  });
+
   React.useEffect(() => {
     if (!caisse && user) {
       createCaisseMutation.mutate({
@@ -550,6 +580,27 @@ export default function FermeEpicerie() {
       });
     }
   }, [caisse, user]);
+
+  // Vider le chariot après 24h
+  React.useEffect(() => {
+    if (profile?.derniere_visite_epicerie) {
+      const derniereVisite = new Date(profile.derniere_visite_epicerie);
+      const maintenant = new Date();
+      const heuresEcoulees = (maintenant - derniereVisite) / (1000 * 60 * 60);
+      
+      if (heuresEcoulees >= 24 && profile.articles_achetes?.length > 0) {
+        updateProfileMutation.mutate({
+          id: profile.id,
+          data: {
+            articles_achetes: [],
+            derniere_visite_epicerie: new Date().toISOString()
+          }
+        });
+        setFeedback({ type: 'success', message: '🔄 Chariot vidé après 24h - Tu peux racheter !' });
+        setTimeout(() => setFeedback(null), 3000);
+      }
+    }
+  }, [profile?.derniere_visite_epicerie]);
 
   // Charger les articles depuis le profil
   React.useEffect(() => {
@@ -572,7 +623,13 @@ export default function FermeEpicerie() {
     return (totalChariot + prix) <= creditsDisponibles;
   };
 
-  const ajouterAuChariot = (produit) => {
+  const ajouterAuChariot = (produit, stockDispo) => {
+    if (!stockDispo || stockDispo.quantite <= 0) {
+      setFeedback({ type: 'error', message: '❌ Rupture de stock ! Demande à l\'épicier de réapprovisionner' });
+      setTimeout(() => setFeedback(null), 2000);
+      return;
+    }
+    
     if (peutAjouterArticle(produit.prix)) {
       const nouvelArticle = { ...produit, uniqueId: Date.now(), estNouveau: true };
       setChariot([...chariot, nouvelArticle]);
@@ -613,11 +670,23 @@ export default function FermeEpicerie() {
     // Ajouter aux articles existants
     const tousLesArticles = [...(profile?.articles_achetes || []), ...articlesAvecDate];
 
+    // Déduire du stock
+    articlesNouveaux.forEach(item => {
+      const stockItem = stocks?.find(s => s.produit_id === item.id);
+      if (stockItem && stockItem.quantite > 0) {
+        updateStockMutation.mutate({
+          id: stockItem.id,
+          data: { quantite: stockItem.quantite - 1 }
+        });
+      }
+    });
+
     updateProfileMutation.mutate({
       id: profile.id,
       data: {
         credits: creditsDisponibles - totalChariot,
-        articles_achetes: tousLesArticles
+        articles_achetes: tousLesArticles,
+        derniere_visite_epicerie: new Date().toISOString()
       }
     });
 
@@ -643,6 +712,39 @@ export default function FermeEpicerie() {
     }
   };
 
+  const reapprovisionner = (produit, rayonId) => {
+    if (!roleEpicier) {
+      setFeedback({ type: 'error', message: '❌ Tu dois être épicier pour réapprovisionner !' });
+      setTimeout(() => setFeedback(null), 2000);
+      return;
+    }
+
+    const stockExistant = stocks?.find(s => s.produit_id === produit.id);
+    
+    if (stockExistant) {
+      updateStockMutation.mutate({
+        id: stockExistant.id,
+        data: {
+          quantite: stockExistant.quantite + 10,
+          derniere_livraison: new Date().toISOString()
+        }
+      });
+    } else {
+      createStockMutation.mutate({
+        produit_id: produit.id,
+        nom: produit.nom,
+        emoji: produit.emoji,
+        rayon: rayonId,
+        quantite: 10,
+        prix: produit.prix,
+        derniere_livraison: new Date().toISOString()
+      });
+    }
+    
+    setFeedback({ type: 'success', message: `📦 +10 ${produit.nom} livrés !` });
+    setTimeout(() => setFeedback(null), 1500);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-green-950 to-teal-950">
         <BiolumiHeader currentPage="MicroFerme" />
@@ -660,7 +762,7 @@ export default function FermeEpicerie() {
               <h1 className="text-4xl font-bold text-emerald-300 mb-4">
                 🏪 Épicerie de la Ferme - Circuit Court
               </h1>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-4 mb-4">
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl rounded-2xl px-6 py-3 border border-emerald-400/30">
                   <Coins className="w-6 h-6 text-yellow-400" />
                   <span className="text-yellow-300 text-xl font-bold">Mon salaire: {creditsDisponibles} crédits</span>
@@ -669,6 +771,19 @@ export default function FermeEpicerie() {
                   <span className="text-white text-lg font-bold">💰 Caisse Ferme: {caisse?.total_credits || 0} crédits</span>
                 </div>
               </div>
+              {roleEpicier && (
+                <Button
+                  onClick={() => setModeEpicier(!modeEpicier)}
+                  className={`mb-4 ${
+                    modeEpicier 
+                      ? 'bg-gradient-to-r from-orange-600 to-red-700' 
+                      : 'bg-gradient-to-r from-purple-600 to-indigo-700'
+                  }`}
+                >
+                  <Package className="w-4 h-4 mr-2" />
+                  {modeEpicier ? '🛒 Mode Client' : '📦 Mode Épicier'}
+                </Button>
+              )}
               <p className="text-emerald-300/70 mt-2 text-sm">
                 🌍 Tu travailles → Tu es payé → Tu achètes ici → L'argent finance les salaires
               </p>
@@ -684,31 +799,57 @@ export default function FermeEpicerie() {
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     {rayon.produits.map((produit) => {
+                      const stockDispo = stocks?.find(s => s.produit_id === produit.id);
+                      const quantiteStock = stockDispo?.quantite || 0;
                       const dejaAchete = chariot.some(item => item.id === produit.id);
-                      const canAdd = peutAjouterArticle(produit.prix) && !dejaAchete;
+                      const enRupture = quantiteStock === 0;
+                      const canAdd = peutAjouterArticle(produit.prix) && !dejaAchete && !enRupture;
+                      
                       return (
                         <motion.button
                           key={produit.id}
-                          onClick={() => canAdd && ajouterAuChariot(produit)}
-                          disabled={!canAdd}
-                          whileHover={canAdd ? { scale: 1.05 } : {}}
-                          whileTap={canAdd ? { scale: 0.95 } : {}}
-                          className={`p-3 rounded-xl border-2 text-center transition-all ${
-                            dejaAchete
+                          onClick={() => {
+                            if (modeEpicier) {
+                              reapprovisionner(produit, rayonId);
+                            } else {
+                              canAdd && ajouterAuChariot(produit, stockDispo);
+                            }
+                          }}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`p-3 rounded-xl border-2 text-center transition-all relative ${
+                            modeEpicier
+                              ? 'bg-purple-500/20 border-purple-400 cursor-pointer hover:bg-purple-500/30'
+                              : dejaAchete
                               ? 'bg-emerald-900/50 border-emerald-500 opacity-60 cursor-not-allowed'
+                              : enRupture
+                              ? 'bg-red-900/50 border-red-600 opacity-50 cursor-not-allowed'
                               : !canAdd 
                               ? 'bg-gray-900/50 border-gray-600 opacity-40 cursor-not-allowed' 
                               : 'bg-white/5 border-white/20 hover:bg-emerald-500/20 hover:border-emerald-400 cursor-pointer'
                           }`}
                         >
+                          {modeEpicier && (
+                            <div className="absolute -top-2 -right-2 bg-purple-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">
+                              +10
+                            </div>
+                          )}
                           <div className="text-3xl mb-1">{produit.emoji}</div>
                           <div className="text-emerald-200 text-xs font-semibold mb-1">{produit.nom}</div>
                           <div className="flex items-center justify-center gap-1">
                             <Coins className="w-3 h-3 text-yellow-400" />
                             <span className="text-yellow-300 text-xs font-bold">{produit.prix}</span>
                           </div>
-                          {dejaAchete && (
-                            <div className="text-emerald-400 text-[10px] mt-1">✓ Acheté</div>
+                          {!modeEpicier && (
+                            <>
+                              {dejaAchete && (
+                                <div className="text-emerald-400 text-[10px] mt-1">✓ Acheté</div>
+                              )}
+                              {enRupture && !dejaAchete && (
+                                <div className="text-red-400 text-[10px] mt-1">❌ Rupture</div>
+                              )}
+                              <div className="text-white/50 text-[9px] mt-1">Stock: {quantiteStock}</div>
+                            </>
                           )}
                         </motion.button>
                       );
