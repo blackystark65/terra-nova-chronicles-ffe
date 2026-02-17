@@ -25,6 +25,59 @@ export default function FermePepiniere() {
     queryFn: () => base44.auth.me(),
   });
 
+  const { data: profiles } = useQuery({
+    queryKey: ['profiles'],
+    queryFn: () => base44.entities.EcoProfile.list()
+  });
+
+  const profile = profiles?.[0];
+
+  const { data: caisses } = useQuery({
+    queryKey: ['caisseFerme'],
+    queryFn: () => base44.entities.CaisseFerme.list(),
+  });
+
+  const caisse = caisses?.[0];
+
+  const updateProfileMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.EcoProfile.update(id, data),
+    onSuccess: () => queryClient.invalidateQueries(['profiles']),
+  });
+
+  const updateCaisseMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.CaisseFerme.update(id, data),
+    onSuccess: () => queryClient.invalidateQueries(['caisseFerme']),
+  });
+
+  const payerTravail = (montant, description) => {
+    if (profile && caisse && caisse.total_credits >= montant) {
+      const nouvelleTransaction = {
+        type: 'salaire',
+        montant: montant,
+        eleve_email: user?.email || 'inconnu',
+        description: description,
+        date: new Date().toISOString()
+      };
+
+      updateProfileMutation.mutate({
+        id: profile.id,
+        data: {
+          credits: (profile.credits || 0) + montant
+        }
+      });
+
+      updateCaisseMutation.mutate({
+        id: caisse.id,
+        data: {
+          total_credits: caisse.total_credits - montant,
+          salaires_verses: (caisse.salaires_verses || 0) + montant,
+          derniere_transaction: new Date().toISOString(),
+          historique_transactions: [...(caisse.historique_transactions || []), nouvelleTransaction]
+        }
+      });
+    }
+  };
+
   const { data: graines = [] } = useQuery({
     queryKey: ['graines'],
     queryFn: () => base44.entities.Graine.list(),
@@ -169,7 +222,11 @@ export default function FermePepiniere() {
         };
         setCompletedPots([...completedPots, newPot]);
         setWorkStation([]);
-        setFeedback({ type: 'success', message: '🌱 Pot rangé dans la serre !' });
+        
+        // Payer pour le rempotage
+        payerTravail(3, 'Horticulteur: pot complété et rangé');
+        
+        setFeedback({ type: 'success', message: '🌱 Pot rangé ! +3 crédits' });
         setTimeout(() => setFeedback(null), 2000);
       }
     }
@@ -184,7 +241,11 @@ export default function FermePepiniere() {
         if (!wateredPots.includes(slotIndex)) {
           setWateredPots([...wateredPots, slotIndex]);
           setWaterLevel((prev) => Math.min(100, prev + (100 / completedPots.length)));
-          setFeedback({ type: 'success', message: '💧 Pot arrosé !' });
+          
+          // Payer pour arroser
+          payerTravail(1, 'Horticulteur: arrosage d\'un pot');
+          
+          setFeedback({ type: 'success', message: '💧 Pot arrosé ! +1 crédit' });
           setTimeout(() => setFeedback(null), 1000);
         }
       } else if (waterLevel >= 100) {

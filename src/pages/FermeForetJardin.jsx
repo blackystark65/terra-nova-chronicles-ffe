@@ -80,6 +80,59 @@ export default function FermeForetJardin() {
     queryFn: () => base44.auth.me(),
   });
 
+  const { data: profiles } = useQuery({
+    queryKey: ['profiles'],
+    queryFn: () => base44.entities.EcoProfile.list()
+  });
+
+  const profile = profiles?.[0];
+
+  const { data: caisses } = useQuery({
+    queryKey: ['caisseFerme'],
+    queryFn: () => base44.entities.CaisseFerme.list(),
+  });
+
+  const caisse = caisses?.[0];
+
+  const updateProfileMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.EcoProfile.update(id, data),
+    onSuccess: () => queryClient.invalidateQueries(['profiles']),
+  });
+
+  const updateCaisseMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.CaisseFerme.update(id, data),
+    onSuccess: () => queryClient.invalidateQueries(['caisseFerme']),
+  });
+
+  const payerTravail = (montant, description) => {
+    if (profile && caisse && caisse.total_credits >= montant) {
+      const nouvelleTransaction = {
+        type: 'salaire',
+        montant: montant,
+        eleve_email: user?.email || 'inconnu',
+        description: description,
+        date: new Date().toISOString()
+      };
+
+      updateProfileMutation.mutate({
+        id: profile.id,
+        data: {
+          credits: (profile.credits || 0) + montant
+        }
+      });
+
+      updateCaisseMutation.mutate({
+        id: caisse.id,
+        data: {
+          total_credits: caisse.total_credits - montant,
+          salaires_verses: (caisse.salaires_verses || 0) + montant,
+          derniere_transaction: new Date().toISOString(),
+          historique_transactions: [...(caisse.historique_transactions || []), nouvelleTransaction]
+        }
+      });
+    }
+  };
+
   React.useEffect(() => {
     // Calculer la biodiversité basée sur la diversité des guildes
     let score = 0;
