@@ -366,6 +366,546 @@ const FICHES_PEDAGOGIQUES = {
         contenu: 'Recouper les tiges sous l\'eau. Enlever épines basses. Vase propre eau fraîche. Dure 5-8 jours.'
       }
     ]
+  },
+  poires: {
+    titre: 'Poires du Verger',
+    emoji: '🍐',
+    sections: [
+      {
+        titre: 'Variétés',
+        liste: ['Williams (juteuse)', 'Conférence (sucrée)', 'Comice (fondante)', 'Louise Bonne (parfumée)']
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Août-octobre. Cueillir avant maturité complète. Finir de mûrir à température ambiante.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'Cave fraîche et ventilée. Dure 2-4 mois selon variétés.'
+      }
+    ]
+  },
+  framboises: {
+    titre: 'Framboises',
+    emoji: '🫐',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Arbuste vivace. Plantation automne ou printemps. Sol riche et frais. Tailler les tiges après récolte.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Juin-juillet (remontantes jusqu\'en octobre). Cueillir délicatement. Très fragiles. À consommer rapidement.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Riche en vitamine C et antioxydants. Fibres. Faible en calories.'
+      }
+    ]
+  },
+  myrtilles: {
+    titre: 'Myrtilles',
+    emoji: '🫐',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Sol acide indispensable. Plantation automne. Arrosage régulier. Paillage conseillé.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Juillet-août. Cueillir les baies bien bleues. Se conservent quelques jours au frais.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Super-aliment. Antioxydants puissants. Bon pour la vue et la mémoire.'
+      }
+    ]
+  },
+  groseilles: {
+    titre: 'Groseilles',
+    emoji: '🍒',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Arbuste rustique. Pousse partout. Peu exigeant. Tailler en hiver.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Juin-juillet. Cueillir en grappes. Acidulées et rafraîchissantes.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Confitures, gelées, coulis, sirops. Excellentes en pâtisserie.'
+      }
+    ]
+  },
+  cassis: {
+    titre: 'Cassis',
+    emoji: '🫐',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Groseillier à fruits noirs. Très rustique. Sol riche et frais.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Juillet. Baies noires brillantes. Très parfumées. Riches en vitamine C.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Confitures, sirops, crème de cassis. Infusions de bourgeons (anti-inflammatoire).'
+      }
+    ]
+  },
+  kiwi: {
+    titre: 'Kiwis',
+    emoji: '🥝',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Liane fruitière. Besoin de tuteur ou pergola. Plant mâle et femelle nécessaires.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Octobre-novembre. Cueillir avant les gelées. Finir de mûrir à température ambiante.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Champion de vitamine C (plus qu\'une orange). Fibres. Aide à la digestion.'
+      }
+    ]
+  },
+  melon: {
+    titre: 'Melons',
+    emoji: '🍈',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Plante gourmande en chaleur. Semis sous abri en avril. Plantation mai. Arrosage régulier.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Juillet-septembre. Mûr quand il se détache facilement. Parfum sucré. Croûte souple.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'Se garde quelques jours à température ambiante. Une fois coupé, au réfrigérateur.'
+      }
+    ]
+  },
+  pasteque: {
+    titre: 'Pastèques',
+    emoji: '🍉',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Besoin de chaleur et espace. Semis sous abri en avril. Plantation mai. Pailler le sol.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Août-septembre. Mûre quand la vrille sèche et le son creux. Très rafraîchissante.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: '90% d\'eau. Hydratante. Vitamines A et C. Faible en calories.'
+      }
+    ]
+  },
+  chataignes: {
+    titre: 'Châtaignes',
+    emoji: '🌰',
+    sections: [
+      {
+        titre: 'Production',
+        contenu: 'Fruit du châtaignier. Récolte octobre-novembre. Ramasser les bogues tombées au sol.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Grillées, bouillies, en purée, farine. Aliment de base historique dans certaines régions.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Riche en glucides complexes. Fibres. Sans gluten. Minéraux (potassium, magnésium).'
+      }
+    ]
+  },
+  noix: {
+    titre: 'Noix',
+    emoji: '🥜',
+    sections: [
+      {
+        titre: 'Production',
+        contenu: 'Fruit du noyer. Récolte septembre-octobre. Séchage nécessaire avant consommation.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'En coque: plusieurs mois au sec. Décortiquées: quelques semaines au frais.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Oméga-3. Protéines végétales. Vitamines E et B. Bon pour le cerveau et le cœur.'
+      }
+    ]
+  },
+  courges: {
+    titre: 'Courges',
+    emoji: '🎃',
+    sections: [
+      {
+        titre: 'Variétés',
+        liste: ['Potiron (grosse)', 'Butternut (allongée)', 'Potimarron (sucrée)', 'Spaghetti (filaments)']
+      },
+      {
+        titre: 'Culture',
+        contenu: 'Semis avril-mai. Plantation après gelées. Gourmande en eau et compost. Récolte avant gelées.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'Se garde plusieurs mois au sec et au frais. Peau épaisse protectrice.'
+      }
+    ]
+  },
+  courgettes: {
+    titre: 'Courgettes',
+    emoji: '🥒',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Semis avril-mai. Pousse rapide. Arrosage régulier. Récolter jeunes (15-20cm).'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Juin-octobre. Cueillir tous les 2-3 jours. Plus on récolte, plus ça produit.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Crue, grillée, farcie, en gratin, ratatouille. Fleurs aussi comestibles.'
+      }
+    ]
+  },
+  concombres: {
+    titre: 'Concombres',
+    emoji: '🥒',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Semis mai. Arrosage abondant. Tuteurage conseillé. Récolte juillet-septembre.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Cueillir régulièrement quand fermes et verts. Ne pas laisser jaunir.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: '95% d\'eau. Très hydratant. Faible en calories. Rafraîchissant.'
+      }
+    ]
+  },
+  aubergines: {
+    titre: 'Aubergines',
+    emoji: '🍆',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Besoin de chaleur. Semis sous abri mars. Plantation mai. Tuteurage nécessaire.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Juillet-septembre. Cueillir brillantes et fermes. Peau lisse et tendue.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Grillée, farcie, caviar, moussaka, ratatouille. Ne se mange pas crue.'
+      }
+    ]
+  },
+  betteraves: {
+    titre: 'Betteraves',
+    emoji: '🫚',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Semis avril-juin. Sol profond et frais. Éclaircir à 10cm. Récolte octobre.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'Excellente conservation en cave. Plusieurs mois.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Riche en antioxydants. Fer. Bonne pour le sang. Détoxifiante.'
+      }
+    ]
+  },
+  celeri_rave: {
+    titre: 'Céleri-rave',
+    emoji: '🥔',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Semis sous abri mars. Repiquage mai. Arrosage régulier. Récolte automne.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Rémoulade, purée, potage, gratin. Cru ou cuit. Saveur prononcée.'
+      },
+      {
+        titre: 'Conservation',
+        contenu: 'Se garde plusieurs semaines au frais.'
+      }
+    ]
+  },
+  choux_blanc: {
+    titre: 'Chou Blanc',
+    emoji: '🥬',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Semis printemps-été. Repiquage après 6 semaines. Sol riche. Récolte automne-hiver.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Choucroute, potée, salade crue, soupe. Très polyvalent.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Riche en vitamine C. Fibres. Peu calorique. Bon pour la digestion.'
+      }
+    ]
+  },
+  choux_rouge: {
+    titre: 'Chou Rouge',
+    emoji: '🥬',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Même culture que le chou blanc. Couleur due aux anthocyanes.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Salade crue, braisé, accompagnement. Joli en pickles.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Antioxydants puissants. Vitamines. Anti-inflammatoire.'
+      }
+    ]
+  },
+  choux_rave: {
+    titre: 'Chou-rave',
+    emoji: '🥬',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Pousse rapide (2 mois). Semis mars-juillet. Récolter jeune et tendre.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Cru en salade, cuit vapeur, gratin. Goût doux de chou et navet.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Vitamine C. Fibres. Digeste.'
+      }
+    ]
+  },
+  choux_chinois: {
+    titre: 'Chou Chinois',
+    emoji: '🥬',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Semis juillet-août pour récolte automne. Croissance rapide. Aime la fraîcheur.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Sauté au wok, soupe, salade, kimchi. Feuilles tendres et croquantes.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Très riche en vitamines. Faible en calories. Très digeste.'
+      }
+    ]
+  },
+  haricots: {
+    titre: 'Haricots',
+    emoji: '🫘',
+    sections: [
+      {
+        titre: 'Variétés',
+        liste: ['Verts (filets)', 'Beurre (jaunes)', 'À rames (grimpants)', 'Nains (compacts)']
+      },
+      {
+        titre: 'Culture',
+        contenu: 'Semis mai-juillet. Chaleur nécessaire. Arrosage régulier. Récolte 2-3 mois après.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Protéines végétales. Fibres. Vitamines. Pauvres en calories.'
+      }
+    ]
+  },
+  mais: {
+    titre: 'Maïs',
+    emoji: '🌽',
+    sections: [
+      {
+        titre: 'Culture',
+        contenu: 'Semis mai en poquets. Chaleur et eau nécessaires. Pollinisation par le vent.'
+      },
+      {
+        titre: 'Récolte',
+        contenu: 'Août-septembre. Grains laiteux quand on perce. Soies brunies.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Frais (épis bouillis/grillés), pop-corn, farine, polenta.'
+      }
+    ]
+  },
+  poulet: {
+    titre: 'Poulet Fermier',
+    emoji: '🍗',
+    sections: [
+      {
+        titre: 'Élevage',
+        contenu: 'Poulets élevés en plein air. Alimentation céréales et herbe. Croissance lente (120 jours minimum).'
+      },
+      {
+        titre: 'Qualité',
+        contenu: 'Chair ferme et goûteuse. Bien-être animal respecté. Parcours herbeux.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Protéines de qualité. Faible en graisses. Vitamines B.'
+      }
+    ]
+  },
+  lapin: {
+    titre: 'Lapin Fermier',
+    emoji: '🐰',
+    sections: [
+      {
+        titre: 'Élevage',
+        contenu: 'Lapins élevés en clapiers spacieux. Alimentation foin, herbe, céréales. Croissance naturelle.'
+      },
+      {
+        titre: 'Qualité',
+        contenu: 'Viande blanche maigre. Saveur délicate. Élevage traditionnel.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Très riche en protéines. Pauvre en graisses. Fer et vitamines B.'
+      }
+    ]
+  },
+  agneau: {
+    titre: 'Agneau Fermier',
+    emoji: '🐑',
+    sections: [
+      {
+        titre: 'Élevage',
+        contenu: 'Agneaux élevés avec leur mère en pâturage. Alimentation lait maternel puis herbe. Respectueux du bien-être.'
+      },
+      {
+        titre: 'Qualité',
+        contenu: 'Viande tendre et savoureuse. Élevage extensif en prairie.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Protéines complètes. Fer, zinc, vitamines B12. Riche en oméga-3 si élevé à l\'herbe.'
+      }
+    ]
+  },
+  boeuf: {
+    titre: 'Bœuf Fermier',
+    emoji: '🥩',
+    sections: [
+      {
+        titre: 'Élevage',
+        contenu: 'Bovins élevés en pâturage. Alimentation herbe et foin. Croissance lente et naturelle.'
+      },
+      {
+        titre: 'Qualité',
+        contenu: 'Viande persillée et goûteuse. Maturée selon tradition. Race locale adaptée.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Excellente source de protéines. Fer héminique. Vitamines B12. Zinc.'
+      }
+    ]
+  },
+  eau_source: {
+    titre: 'Eau de Source',
+    emoji: '💧',
+    sections: [
+      {
+        titre: 'Origine',
+        contenu: 'Eau puisée directement à la source locale. Filtration naturelle par les roches.'
+      },
+      {
+        titre: 'Qualité',
+        contenu: 'Pure et naturelle. Minéraux naturels. Contrôles réguliers.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Hydratation essentielle. Minéraux naturels. Pas de traitement chimique.'
+      }
+    ]
+  },
+  eau_gazeuse: {
+    titre: 'Eau Gazeuse CO2',
+    emoji: '🫧',
+    sections: [
+      {
+        titre: 'Production',
+        contenu: 'Eau de source gazéifiée naturellement ou par ajout de CO2 alimentaire.'
+      },
+      {
+        titre: 'Utilisation',
+        contenu: 'Désaltérante. Base de cocktails. Digestion facilitée.'
+      },
+      {
+        titre: 'Bienfaits',
+        contenu: 'Hydratation. Sensation de fraîcheur. Aide à la digestion.'
+      }
+    ]
+  },
+  hydromel: {
+    titre: 'Hydromel Artisanal',
+    emoji: '🍯',
+    sections: [
+      {
+        titre: 'Qu\'est-ce que c\'est ?',
+        contenu: 'Boisson alcoolisée ancestrale obtenue par fermentation de miel et d\'eau. "Boisson des dieux" dans la mythologie nordique.'
+      },
+      {
+        titre: 'Fabrication',
+        contenu: 'Mélange de miel et eau. Fermentation avec levures (plusieurs mois). Vieillissement en fût. Titrage 10-15°.'
+      },
+      {
+        titre: 'Dégustation',
+        contenu: 'Saveur douce et miellée. Servi frais. Apéritif ou accompagnement dessert.'
+      }
+    ]
+  },
+  biere: {
+    titre: 'Bière Artisanale',
+    emoji: '🍺',
+    sections: [
+      {
+        titre: 'Fabrication',
+        contenu: 'Brassage de malt d\'orge, houblon et eau. Fermentation. Maturation. Production locale.'
+      },
+      {
+        titre: 'Variétés',
+        liste: ['Blonde (douce)', 'Ambrée (maltée)', 'Brune (torréfiée)', 'IPA (houblonnée)']
+      },
+      {
+        titre: 'Dégustation',
+        contenu: 'Servir fraîche (6-8°C). Accompagne plats rustiques. Tradition brassicole locale.'
+      }
+    ]
   }
 };
 
