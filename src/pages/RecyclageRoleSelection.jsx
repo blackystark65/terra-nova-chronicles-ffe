@@ -154,12 +154,12 @@ export default function RecyclageRoleSelection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center"
+              className="relative z-20 text-center"
             >
               <Button
                 onClick={handleConfirm}
                 disabled={createRoleMutation.isPending}
-                className="px-12 py-6 text-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600"
+                className="relative z-20 px-12 py-6 text-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 cursor-pointer"
               >
                 {createRoleMutation.isPending ? 'Enregistrement...' : (
                   <>
