@@ -39,6 +39,62 @@ export default function FermeElevage() {
     queryFn: () => base44.auth.me(),
   });
 
+  const { data: profiles } = useQuery({
+    queryKey: ['profiles'],
+    queryFn: () => base44.entities.EcoProfile.list()
+  });
+
+  const profile = profiles?.[0];
+
+  const { data: caisses } = useQuery({
+    queryKey: ['caisseFerme'],
+    queryFn: () => base44.entities.CaisseFerme.list(),
+  });
+
+  const caisse = caisses?.[0];
+
+  const updateProfileMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.EcoProfile.update(id, data),
+    onSuccess: () => queryClient.invalidateQueries(['profiles']),
+  });
+
+  const updateCaisseMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.CaisseFerme.update(id, data),
+    onSuccess: () => queryClient.invalidateQueries(['caisseFerme']),
+  });
+
+  const payerTravail = (montant, description) => {
+    if (profile && caisse && caisse.total_credits >= montant) {
+      const nouvelleTransaction = {
+        type: 'salaire',
+        montant: montant,
+        eleve_email: user?.email || 'inconnu',
+        description: description,
+        date: new Date().toISOString()
+      };
+
+      updateProfileMutation.mutate({
+        id: profile.id,
+        data: {
+          credits: (profile.credits || 0) + montant
+        }
+      });
+
+      updateCaisseMutation.mutate({
+        id: caisse.id,
+        data: {
+          total_credits: caisse.total_credits - montant,
+          salaires_verses: (caisse.salaires_verses || 0) + montant,
+          derniere_transaction: new Date().toISOString(),
+          historique_transactions: [...(caisse.historique_transactions || []), nouvelleTransaction]
+        }
+      });
+
+      setFeedback({ type: 'success', message: `💰 +${montant} crédits gagnés !` });
+      setTimeout(() => setFeedback(null), 2000);
+    }
+  };
+
   // Production automatique
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -88,8 +144,7 @@ export default function FermeElevage() {
       [index]: { ...prev[index], bienEtre: Math.min(100, prev[index].bienEtre + 20) }
     }));
     
-    setFeedback({ type: 'success', message: '🍽️ Animal nourri !' });
-    setTimeout(() => setFeedback(null), 1000);
+    payerTravail(3, `Soin animal: ${animal.nom} nourri`);
   };
 
   const donnerEau = (index) => {
@@ -101,8 +156,7 @@ export default function FermeElevage() {
       [index]: { ...prev[index], bienEtre: Math.min(100, prev[index].bienEtre + 10) }
     }));
     
-    setFeedback({ type: 'success', message: '💧 Animal abreuvé !' });
-    setTimeout(() => setFeedback(null), 1000);
+    payerTravail(2, `Soin animal: abreuvé`);
   };
 
   const recolterProduit = (index) => {
@@ -121,8 +175,7 @@ export default function FermeElevage() {
       [animal.id]: (prev[animal.id] || 0) + 1
     }));
     
-    setFeedback({ type: 'success', message: `${animal.produit} ${animal.produitNom} récolté !` });
-    setTimeout(() => setFeedback(null), 1500);
+    payerTravail(5, `Récolte: ${animal.produitNom}`);
   };
 
   const totalProductions = Object.values(productions).reduce((a, b) => a + b, 0);
