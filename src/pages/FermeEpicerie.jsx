@@ -930,10 +930,10 @@ const RAYONS = {
       { id: 'pommes', nom: 'Pommes', emoji: '🍎', prix: 8 },
       { id: 'poires', nom: 'Poires', emoji: '🍐', prix: 8 },
       { id: 'fraises', nom: 'Fraises', emoji: '🍓', prix: 12 },
-      { id: 'framboises', nom: 'Framboises', emoji: '🫐', prix: 15 },
-      { id: 'myrtilles', nom: 'Myrtilles', emoji: '🫐', prix: 14 },
+      { id: 'framboises', nom: 'Framboises', emoji: '🍓', prix: 15 },
+      { id: 'myrtilles', nom: 'Myrtilles', emoji: '🍇', prix: 14 },
       { id: 'groseilles', nom: 'Groseilles', emoji: '🍒', prix: 10 },
-      { id: 'cassis', nom: 'Cassis', emoji: '🫐', prix: 12 },
+      { id: 'cassis', nom: 'Cassis', emoji: '🍒', prix: 12 },
       { id: 'kiwi', nom: 'Kiwis', emoji: '🥝', prix: 10 },
       { id: 'melon', nom: 'Melons', emoji: '🍈', prix: 9 },
       { id: 'pasteque', nom: 'Pastèques', emoji: '🍉', prix: 7 }
@@ -960,13 +960,13 @@ const RAYONS = {
       { id: 'courgettes', nom: 'Courgettes', emoji: '🥒', prix: 5 },
       { id: 'concombres', nom: 'Concombres', emoji: '🥒', prix: 5 },
       { id: 'aubergines', nom: 'Aubergines', emoji: '🍆', prix: 7 },
-      { id: 'betteraves', nom: 'Betteraves', emoji: '🫚', prix: 6 },
+      { id: 'betteraves', nom: 'Betteraves', emoji: '🌱', prix: 6 },
       { id: 'celeri_rave', nom: 'Céleri-rave', emoji: '🥔', prix: 6 },
       { id: 'choux_blanc', nom: 'Chou blanc', emoji: '🥬', prix: 5 },
       { id: 'choux_rouge', nom: 'Chou rouge', emoji: '🥬', prix: 5 },
       { id: 'choux_rave', nom: 'Chou-rave', emoji: '🥬', prix: 6 },
       { id: 'choux_chinois', nom: 'Chou chinois', emoji: '🥬', prix: 7 },
-      { id: 'haricots', nom: 'Haricots', emoji: '🫘', prix: 8 },
+      { id: 'haricots', nom: 'Haricots', emoji: '🥬', prix: 8 },
       { id: 'mais', nom: 'Maïs', emoji: '🌽', prix: 4 }
     ]
   },
@@ -1006,7 +1006,7 @@ const RAYONS = {
     color: 'from-cyan-600 to-blue-700',
     produits: [
       { id: 'eau_source', nom: 'Eau de Source', emoji: '💧', prix: 3 },
-      { id: 'eau_gazeuse', nom: 'Eau Gazeuse CO2', emoji: '🫧', prix: 4 },
+      { id: 'eau_gazeuse', nom: 'Eau Gazeuse CO2', emoji: '💧', prix: 4 },
       { id: 'hydromel', nom: 'Hydromel', emoji: '🍯', prix: 18 },
       { id: 'biere', nom: 'Bière artisanale', emoji: '🍺', prix: 15 }
     ]
