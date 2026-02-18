@@ -17,7 +17,7 @@ const LEGUMES = [
   { id: 'poireau', nom: 'Poireau', emoji: '🧅', type: 'bulbe', compagnons: ['carotte', 'celeri'], duree: 3 },
   { id: 'basilic', nom: 'Basilic', emoji: '🌿', type: 'aromate', compagnons: ['tomate', 'courgette'], duree: 2 },
   { id: 'mais', nom: 'Maïs', emoji: '🌽', type: 'cereale', compagnons: ['haricot', 'courge'], duree: 3 },
-  { id: 'haricot', nom: 'Haricot', emoji: '🫘', type: 'legumineuse', compagnons: ['mais', 'courge'], duree: 2 },
+  { id: 'haricot', nom: 'Haricot', emoji: '🥬', type: 'legumineuse', compagnons: ['mais', 'courge'], duree: 2 },
   { id: 'courge', nom: 'Courge', emoji: '🎃', type: 'fruit', compagnons: ['mais', 'haricot'], duree: 3 }
 ];
 

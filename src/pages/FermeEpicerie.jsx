@@ -919,7 +919,7 @@ const RAYONS = {
       { id: 'plants_salade', nom: 'Plant Salade', emoji: '🌿', prix: 2 },
       { id: 'micropousses', nom: 'Micro-pousses', emoji: '🌾', prix: 5 },
       { id: 'fleurs_comestibles', nom: 'Fleurs Comestibles', emoji: '🌸', prix: 4 },
-      { id: 'plantes_aromatiques', nom: 'Plantes Aromatiques', emoji: '🪴', prix: 6 }
+      { id: 'plantes_aromatiques', nom: 'Plantes Aromatiques', emoji: '🌿', prix: 6 }
     ]
   },
   fruits: {
@@ -1017,7 +1017,7 @@ const RAYONS = {
     color: 'from-brown-600 to-stone-700',
     produits: [
       { id: 'compost', nom: 'Sac Compost', emoji: '♻️', prix: 6 },
-      { id: 'terreau', nom: 'Sac Terreau', emoji: '🪴', prix: 7 }
+      { id: 'terreau', nom: 'Sac Terreau', emoji: '🌱', prix: 7 }
     ]
   },
   fleurs: {

@@ -11,9 +11,9 @@ import { Button } from '@/components/ui/button';
 const ANIMAUX = [
   { id: 'poule', nom: 'Poule', emoji: '🐔', produit: '🥚', produitNom: 'Œuf', besoin: 'grain', duree: 2 },
   { id: 'vache', nom: 'Vache', emoji: '🐄', produit: '🥛', produitNom: 'Lait', besoin: 'herbe', duree: 3 },
-  { id: 'mouton', nom: 'Mouton', emoji: '🐑', produit: '🧶', produitNom: 'Laine', besoin: 'herbe', duree: 4 },
-  { id: 'chevre', nom: 'Chèvre', emoji: '🐐', produit: '🧀', produitNom: 'Fromage', besoin: 'herbe', duree: 3 },
-  { id: 'cochon', nom: 'Cochon', emoji: '🐷', produit: '🥓', produitNom: 'Viande', besoin: 'legumes', duree: 5 },
+  { id: 'mouton', nom: 'Mouton', emoji: '🐑', produit: '☁️', produitNom: 'Laine', besoin: 'herbe', duree: 4 },
+  { id: 'chevre', nom: 'Chèvre', emoji: '🐐', produit: '🍕', produitNom: 'Fromage', besoin: 'herbe', duree: 3 },
+  { id: 'cochon', nom: 'Cochon', emoji: '🐷', produit: '🍖', produitNom: 'Viande', besoin: 'legumes', duree: 5 },
   { id: 'lapin', nom: 'Lapin', emoji: '🐰', produit: '🥕', produitNom: 'Fumier', besoin: 'legumes', duree: 2 }
 ];
 

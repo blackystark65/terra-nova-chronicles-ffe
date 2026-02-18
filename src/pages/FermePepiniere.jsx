@@ -190,10 +190,10 @@ export default function FermePepiniere() {
     // Glisser vers la table de rempotage
     if (destination.droppableId === 'workstation' && cardType !== 'completepot' && cardType !== 'water') {
       if (cardType === 'pot' && workStation.length === 0) {
-        setWorkStation([{ type: 'pot', emoji: '🪴', name: 'Pot' }]);
+        setWorkStation([{ type: 'pot', emoji: '⚱️', name: 'Pot' }]);
         setFeedback({ type: 'success', message: '✅ Pot ajouté !' });
       } else if (cardType === 'bois' && workStation.length === 1) {
-        setWorkStation([...workStation, { type: 'bois', emoji: '🪵', name: 'Bois broyé' }]);
+        setWorkStation([...workStation, { type: 'bois', emoji: '🌳', name: 'Bois broyé' }]);
         setFeedback({ type: 'success', message: '✅ Bois broyé ajouté !' });
       } else if (cardType === 'compost' && workStation.length === 2) {
         setWorkStation([...workStation, { type: 'compost', emoji: '♻️', name: 'Compost' }]);
@@ -302,7 +302,7 @@ export default function FermePepiniere() {
                               position: snapshot.isDragging ? 'fixed' : 'relative'
                             }}
                           >
-                            <span className="text-3xl">🪴</span>
+                            <span className="text-3xl">⚱️</span>
                             <div className="text-white font-bold text-xs mt-1">Pot</div>
                             <div className="absolute top-1 right-1 bg-black/50 px-1.5 py-0.5 rounded text-white text-[10px] font-bold">79</div>
                           </div>
@@ -330,7 +330,7 @@ export default function FermePepiniere() {
                               position: snapshot.isDragging ? 'fixed' : 'relative'
                             }}
                           >
-                            <span className="text-3xl">🪵</span>
+                            <span className="text-3xl">🌳</span>
                             <div className="text-white font-bold text-xs mt-1">Bois</div>
                             <div className="absolute top-1 right-1 bg-black/50 px-1.5 py-0.5 rounded text-white text-[10px] font-bold">79</div>
                           </div>
