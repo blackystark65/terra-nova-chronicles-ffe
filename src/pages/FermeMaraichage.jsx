@@ -71,11 +71,10 @@ export default function FermeMaraichage() {
         date: new Date().toISOString()
       };
 
+      const updates = computeRewards(profile, { xp: montant, credits: montant, ferme_action: true });
       updateProfileMutation.mutate({
         id: profile.id,
-        data: {
-          credits: (profile.credits || 0) + montant
-        }
+        data: updates
       });
 
       updateCaisseMutation.mutate({
