@@ -14,6 +14,7 @@ export default function ProfilePage() {
   const [isEditingName, setIsEditingName] = useState(false);
   const [newName, setNewName] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
+  const syncedSessionRef = useRef(null);
 
   const { data: user } = useQuery({
     queryKey: ['user'],
