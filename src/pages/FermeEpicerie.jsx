@@ -1516,10 +1516,12 @@ export default function FermeEpicerie() {
 
                   <Button
                     onClick={validerAchat}
-                    disabled={chariot.length === 0}
+                    disabled={articlesNouveaux.length === 0 || totalChariot > creditsDisponibles}
                     className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 py-6 text-lg disabled:opacity-50"
                   >
-                    {chariot.length === 0 ? '🛒 Chariot vide' : '✅ Payer'}
+                    {articlesNouveaux.length === 0 ? '🛒 Rien à payer' :
+                     totalChariot > creditsDisponibles ? '❌ Crédits insuffisants' :
+                     `✅ Payer ${totalChariot} crédits`}
                   </Button>
                 </div>
               </div>
