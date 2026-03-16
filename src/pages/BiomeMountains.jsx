@@ -58,6 +58,7 @@ const threats = [
 
 export default function BiomeMountainsPage() {
   const [selectedSpecies, setSelectedSpecies] = useState(null);
+  useBiomeExploration('mountains');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-stone-900 to-gray-950">

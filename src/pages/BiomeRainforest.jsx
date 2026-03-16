@@ -58,6 +58,7 @@ const threats = [
 
 export default function BiomeRainforestPage() {
   const [selectedSpecies, setSelectedSpecies] = useState(null);
+  useBiomeExploration('rainforest');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-950 via-emerald-900 to-teal-950">

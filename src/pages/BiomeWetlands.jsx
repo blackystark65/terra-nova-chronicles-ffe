@@ -58,6 +58,7 @@ const threats = [
 
 export default function BiomeWetlandsPage() {
   const [selectedSpecies, setSelectedSpecies] = useState(null);
+  useBiomeExploration('wetlands');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-950 via-cyan-900 to-blue-950">

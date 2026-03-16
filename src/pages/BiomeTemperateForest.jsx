@@ -58,6 +58,7 @@ const threats = [
 
 export default function BiomeTemperateForestPage() {
   const [selectedSpecies, setSelectedSpecies] = useState(null);
+  useBiomeExploration('temperate_forest');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-950 via-lime-900 to-emerald-950">
