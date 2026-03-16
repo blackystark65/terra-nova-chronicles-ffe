@@ -253,15 +253,15 @@ export default function QuizPage() {
         await sendPointsToHoloNexus(user.email, points, timePlayed);
       }
 
-      // Mettre à jour les crédits
+      // Mettre à jour XP, crédits et badges
       if (profile) {
-        updateProfileMutation.mutate({
-          id: profile.id,
-          data: {
-            experience_points: (profile.experience_points || 0) + points,
-            credits: (profile.credits || 0) + credits
-          }
+        const { computeRewards } = await import('@/lib/rewardPlayer');
+        const updates = computeRewards(profile, {
+          xp: points,
+          credits,
+          quiz_completed: true,
         });
+        updateProfileMutation.mutate({ id: profile.id, data: updates });
       }
 
       setShowResults(true);
