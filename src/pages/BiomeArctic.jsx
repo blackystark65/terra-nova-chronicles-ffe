@@ -29,6 +29,7 @@ const threats = [
 ];
 
 export default function BiomeArcticPage() {
+  useBiomeExploration('arctic');
   return (
     <div className="min-h-screen relative">
       <div 

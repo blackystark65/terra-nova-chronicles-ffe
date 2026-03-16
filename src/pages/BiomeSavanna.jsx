@@ -29,6 +29,7 @@ const threats = [
 ];
 
 export default function BiomeSavannaPage() {
+  useBiomeExploration('savanna');
   return (
     <div className="min-h-screen relative">
       <div 

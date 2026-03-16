@@ -29,6 +29,7 @@ const threats = [
 ];
 
 export default function BiomeDesertPage() {
+  useBiomeExploration('desert');
   return (
     <div className="min-h-screen relative">
       <div 

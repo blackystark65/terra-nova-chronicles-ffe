@@ -39,6 +39,7 @@ const oceanFacts = [
 ];
 
 export default function BiomeOceanPage() {
+  useBiomeExploration('ocean');
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-950 via-cyan-900 to-teal-950 relative overflow-hidden">
       {/* Vagues animées en arrière-plan */}
