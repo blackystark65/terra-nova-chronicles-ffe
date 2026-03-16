@@ -1121,32 +1121,27 @@ export default function FermeEpicerie() {
   });
 
   const payerEpicier = (montant, description) => {
-    if (profile && caisse && caisse.total_credits >= montant) {
-      const nouvelleTransaction = {
-        type: 'salaire',
-        montant: montant,
-        eleve_email: user?.email || 'inconnu',
-        description: description,
-        date: new Date().toISOString()
-      };
-
-      updateProfileMutation.mutate({
-        id: profile.id,
-        data: {
-          credits: (profile.credits || 0) + montant
-        }
-      });
-
-      updateCaisseMutation.mutate({
-        id: caisse.id,
-        data: {
-          total_credits: caisse.total_credits - montant,
-          salaires_verses: (caisse.salaires_verses || 0) + montant,
-          derniere_transaction: new Date().toISOString(),
-          historique_transactions: [...(caisse.historique_transactions || []), nouvelleTransaction]
-        }
-      });
-    }
+    if (!profile || !caisse) return;
+    // La caisse paie l'épicier depuis ses réserves
+    const nouvelleTransaction = {
+      type: 'salaire',
+      montant: montant,
+      eleve_email: user?.email || 'inconnu',
+      description: description,
+      date: new Date().toISOString()
+    };
+    // Crédits + XP + badges ferme via computeRewards
+    const updates = computeRewards(profile, { xp: montant * 2, credits: montant, ferme_action: true });
+    updateProfileMutation.mutate({ id: profile.id, data: updates });
+    updateCaisseMutation.mutate({
+      id: caisse.id,
+      data: {
+        total_credits: Math.max(0, (caisse.total_credits || 0) - montant),
+        salaires_verses: (caisse.salaires_verses || 0) + montant,
+        derniere_transaction: new Date().toISOString(),
+        historique_transactions: [...(caisse.historique_transactions || []), nouvelleTransaction]
+      }
+    });
   };
 
   const [caisseInitialisee, setCaisseInitialisee] = React.useState(false);
