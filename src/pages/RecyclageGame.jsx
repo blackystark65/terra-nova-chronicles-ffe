@@ -173,11 +173,13 @@ export default function RecyclageGame() {
     const isCorrect = waste.correct_bin === binType;
     
     if (isCorrect) {
-      // Correct sort
-      setScore(prev => prev + 10 + (streak * 5));
+      const points = 10 + (streak * 5);
+      setScore(prev => prev + points);
       setStreak(prev => prev + 1);
+      sessionStats.current.wastes_sorted += 1;
+      sessionStats.current.score += points;
+      if (streak >= 2) sessionStats.current.perfect_sorts += 1;
       
-      // Add to bin level
       setGameState(prev => ({
         ...prev,
         pending_wastes: prev.pending_wastes.filter(w => w.id !== waste.id),
@@ -187,8 +189,12 @@ export default function RecyclageGame() {
         }
       }));
       setSelectedWaste(null);
+
+      // Sauvegarde tous les 5 tris corrects
+      if (sessionStats.current.wastes_sorted % 5 === 0) {
+        saveProgress();
+      }
     } else {
-      // Wrong sort
       setMistakes(prev => prev + 1);
       setStreak(0);
       setScore(prev => Math.max(0, prev - 5));
@@ -199,6 +205,8 @@ export default function RecyclageGame() {
     if (gameState?.bin_levels?.[binType] >= 100) {
       setShowTruck(binType);
       setScore(prev => prev + 50);
+      sessionStats.current.bins_emptied += 1;
+      sessionStats.current.score += 50;
     }
   };
 
