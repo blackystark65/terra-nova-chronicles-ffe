@@ -127,7 +127,7 @@ export default function ProfilePage() {
         });
       }
     }
-  }, [profile, gameSession]);
+  }, [gameSession?.id]);
 
   const handleSaveName = () => {
     if (newName.trim()) {
