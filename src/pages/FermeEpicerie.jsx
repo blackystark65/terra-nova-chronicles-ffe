@@ -388,7 +388,7 @@ const FICHES_PEDAGOGIQUES = {
   },
   framboises: {
     titre: 'Framboises',
-    emoji: '🫐',
+    emoji: '🍓',
     sections: [
       {
         titre: 'Culture',
@@ -622,7 +622,7 @@ const FICHES_PEDAGOGIQUES = {
   },
   betteraves: {
     titre: 'Betteraves',
-    emoji: '🫚',
+    emoji: '🟣',
     sections: [
       {
         titre: 'Culture',
