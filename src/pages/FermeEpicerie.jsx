@@ -961,7 +961,7 @@ const RAYONS = {
       { id: 'courgettes', nom: 'Courgettes', emoji: '🥒', prix: 5 },
       { id: 'concombres', nom: 'Concombres', emoji: '🥒', prix: 5 },
       { id: 'aubergines', nom: 'Aubergines', emoji: '🍆', prix: 7 },
-      { id: 'betteraves', nom: 'Betteraves', emoji: '🌱', prix: 6 },
+      { id: 'betteraves', nom: 'Betteraves', emoji: '🫚', prix: 6 },
       { id: 'celeri_rave', nom: 'Céleri-rave', emoji: '🥔', prix: 6 },
       { id: 'choux_blanc', nom: 'Chou blanc', emoji: '🥬', prix: 5 },
       { id: 'choux_rouge', nom: 'Chou rouge', emoji: '🥬', prix: 5 },
