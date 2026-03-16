@@ -1073,13 +1073,22 @@ export default function FermeEpicerie() {
     enabled: !!user?.email,
   });
 
+  // Mutation achat client — vide le chariot et affiche succès
+  const updateProfileAchatMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.EcoProfile.update(id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['profiles']);
+      setFeedback({ type: 'success', message: '✅ Achat effectué ! Crédits déduits.' });
+      setChariot([]);
+      setTimeout(() => setFeedback(null), 3000);
+    },
+  });
+
+  // Mutation générique profil (épicier, etc.) — sans vider le chariot
   const updateProfileMutation = useMutation({
     mutationFn: ({ id, data }) => base44.entities.EcoProfile.update(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries(['profiles']);
-      setFeedback({ type: 'success', message: '✅ Achat effectué avec succès !' });
-      setChariot([]);
-      setTimeout(() => setFeedback(null), 3000);
     },
   });
 
