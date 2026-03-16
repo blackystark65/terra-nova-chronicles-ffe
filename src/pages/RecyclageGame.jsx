@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -11,6 +11,7 @@ import GameWasteItem from '@/components/recyclage/GameWasteItem';
 import TruckAnimation from '@/components/recyclage/TruckAnimation';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Play, Trophy, Info } from 'lucide-react';
+import { computeRewards } from '@/lib/rewardPlayer';
 
 const ZONES = [
   { id: 'kitchen', name: 'Cuisine', emoji: '👨‍🍳', bg: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/42f687342_cuisine.png' },
