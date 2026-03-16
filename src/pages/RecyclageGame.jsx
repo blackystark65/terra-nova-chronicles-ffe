@@ -68,6 +68,18 @@ export default function RecyclageGame() {
   const [playerRole, setPlayerRole] = useState(null);
   const [selectedWaste, setSelectedWaste] = useState(null);
   const queryClient = useQueryClient();
+  const sessionStats = useRef({ wastes_sorted: 0, perfect_sorts: 0, bins_emptied: 0, score: 0 });
+
+  const { data: profiles } = useQuery({
+    queryKey: ['profiles'],
+    queryFn: () => base44.entities.EcoProfile.list(),
+  });
+  const profile = profiles?.[0];
+
+  const updateProfileMutation = useMutation({
+    mutationFn: ({ id, data }) => base44.entities.EcoProfile.update(id, data),
+    onSuccess: () => queryClient.invalidateQueries(['profiles']),
+  });
 
   useEffect(() => {
     const fetchUserAndRole = async () => {
@@ -85,6 +97,27 @@ export default function RecyclageGame() {
     };
     fetchUserAndRole();
   }, []);
+
+  // Sauvegarde des points toutes les 30 secondes et à la fin d'une session
+  const saveProgress = () => {
+    if (!profile || sessionStats.current.wastes_sorted === 0) return;
+    const stats = sessionStats.current;
+    const xp = stats.wastes_sorted * 5 + stats.perfect_sorts * 10 + stats.bins_emptied * 20;
+    const credits = Math.floor(xp / 3);
+    const updates = computeRewards(profile, {
+      xp,
+      credits,
+      impact_score: stats.score,
+      recycling_stats: {
+        wastes_sorted: stats.wastes_sorted,
+        perfect_sorts: stats.perfect_sorts,
+        bins_emptied: stats.bins_emptied,
+        score: stats.score,
+      },
+    });
+    updateProfileMutation.mutate({ id: profile.id, data: updates });
+    sessionStats.current = { wastes_sorted: 0, perfect_sorts: 0, bins_emptied: 0, score: 0 };
+  };
 
   // Generate waste periodically
   useEffect(() => {
