@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { ArrowLeft, TreeDeciduous, Bug, Droplets, AlertTriangle, Leaf } from 'lucide-react';
+import { useBiomeExploration } from '@/hooks/useBiomeExploration';
 
 const species = [
   { name: 'Cerf élaphe', emoji: '🦌', status: 'Stable', role: 'Herbivore régulateur' },

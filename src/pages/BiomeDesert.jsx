@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
+import { useBiomeExploration } from '@/hooks/useBiomeExploration';
 import { ArrowLeft, AlertTriangle, Sun, Droplets } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
