@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { ArrowLeft, TreeDeciduous, Bug, Droplets, AlertTriangle, Info, Leaf } from 'lucide-react';
+import { useBiomeExploration } from '@/hooks/useBiomeExploration';
 
 const species = [
   { name: 'Jaguar', emoji: '🐆', status: 'Vulnérable', role: 'Prédateur apex' },
