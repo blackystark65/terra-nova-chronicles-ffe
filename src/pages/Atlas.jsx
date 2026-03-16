@@ -75,7 +75,7 @@ const biomes = [
     description: 'Cycles saisonniers riches',
     threats: ['Urbanisation', 'Fragmentation'],
     species: 90,
-    path: 'BiomeTemperate',
+    path: 'BiomeTemperateForest',
     position: { x: 35, y: 30 },
   },
   {
