@@ -1258,7 +1258,7 @@ export default function FermeEpicerie() {
       }
     });
 
-    updateProfileMutation.mutate({
+    updateProfileAchatMutation.mutate({
       id: profile.id,
       data: {
         credits: creditsDisponibles - totalChariot,
