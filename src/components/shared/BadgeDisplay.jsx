@@ -3,16 +3,24 @@ import { motion } from 'framer-motion';
 import { Award, Shield, Star, Leaf, Droplets, Bug, TreeDeciduous, Mountain } from 'lucide-react';
 
 const badgeIcons = {
-  first_explorer: { icon: Star, color: 'from-yellow-400 to-amber-500', name: 'Premier Explorateur' },
-  ocean_guardian: { icon: Droplets, color: 'from-blue-400 to-cyan-500', name: 'Gardien des Océans' },
-  forest_protector: { icon: TreeDeciduous, color: 'from-green-400 to-emerald-500', name: 'Protecteur des Forêts' },
-  biodiversity_expert: { icon: Bug, color: 'from-purple-400 to-pink-500', name: 'Expert Biodiversité' },
-  climate_warrior: { icon: Leaf, color: 'from-teal-400 to-emerald-500', name: 'Guerrier du Climat' },
-  mountain_explorer: { icon: Mountain, color: 'from-slate-400 to-gray-500', name: 'Explorateur des Sommets' },
-  recycling_beginner: { icon: Leaf, color: 'from-green-400 to-emerald-500', name: 'Recycleur Débutant' },
-  recycling_expert: { icon: Star, color: 'from-emerald-400 to-teal-500', name: 'Expert du Tri' },
-  perfect_sorter: { icon: Award, color: 'from-yellow-400 to-orange-500', name: 'Tri Parfait' },
-  eco_warrior: { icon: Shield, color: 'from-purple-400 to-pink-500', name: 'Guerrier Éco' },
+  // Exploration
+  first_explorer:     { icon: Star,           color: 'from-yellow-400 to-amber-500',   name: 'Premier Explorateur' },
+  ocean_guardian:     { icon: Droplets,        color: 'from-blue-400 to-cyan-500',      name: 'Gardien des Océans' },
+  forest_protector:   { icon: TreeDeciduous,   color: 'from-green-400 to-emerald-500',  name: 'Protecteur des Forêts' },
+  mountain_explorer:  { icon: Mountain,        color: 'from-slate-400 to-gray-500',     name: 'Explorateur des Sommets' },
+  // Biodiversité & Climat
+  biodiversity_expert:{ icon: Bug,             color: 'from-purple-400 to-pink-500',    name: 'Expert Biodiversité' },
+  climate_warrior:    { icon: Leaf,            color: 'from-teal-400 to-emerald-500',   name: 'Guerrier du Climat' },
+  // Recyclage
+  recycling_beginner: { icon: Leaf,            color: 'from-green-400 to-emerald-500',  name: 'Recycleur Débutant' },
+  recycling_expert:   { icon: Star,            color: 'from-emerald-400 to-teal-500',   name: 'Expert du Tri' },
+  perfect_sorter:     { icon: Award,           color: 'from-yellow-400 to-orange-500',  name: 'Tri Parfait' },
+  eco_warrior:        { icon: Shield,          color: 'from-purple-400 to-pink-500',    name: 'Guerrier Éco' },
+  // Ferme
+  farmer_apprentice:  { icon: Leaf,            color: 'from-lime-400 to-green-600',     name: 'Apprenti Fermier' },
+  master_farmer:      { icon: Award,           color: 'from-amber-400 to-orange-600',   name: 'Maître Fermier' },
+  // Quiz
+  quiz_champion:      { icon: Star,            color: 'from-indigo-400 to-violet-500',  name: 'Champion des Quiz' },
 };
 
 export default function BadgeDisplay({ badge, size = 'md', showName = false, locked = false }) {
