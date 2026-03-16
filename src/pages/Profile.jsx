@@ -79,14 +79,11 @@ export default function ProfilePage() {
     }
   }, [user, profile]);
 
-  // Sync recycling stats and unlock badges
+  // Sync recycling stats and unlock badges - only once per session
   useEffect(() => {
-    if (profile && gameSession) {
-      const needsUpdate = 
-        profile.recycling_stats?.total_wastes_sorted !== gameSession.wastes_sorted_today ||
-        profile.recycling_stats?.total_score !== gameSession.total_score;
-
-      if (needsUpdate) {
+    if (profile && gameSession && syncedSessionRef.current !== gameSession.id) {
+      syncedSessionRef.current = gameSession.id;
+      {
         const updatedStats = {
           total_wastes_sorted: (profile.recycling_stats?.total_wastes_sorted || 0) + (gameSession.wastes_sorted_today || 0),
           perfect_sorts: (profile.recycling_stats?.perfect_sorts || 0) + (gameSession.perfect_sorts || 0),
