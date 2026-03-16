@@ -1409,26 +1409,28 @@ export default function FermeEpicerie() {
                               : 'bg-white/5 border-white/20 hover:bg-emerald-500/20 hover:border-emerald-400 cursor-pointer'
                           }`}
                         >
-                          {modeEpicier && (
-                            <div className="absolute -top-2 -right-2 bg-purple-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">
-                              +10
-                            </div>
-                          )}
                           <div className="text-3xl mb-1">{produit.emoji}</div>
-                          <div className="text-emerald-200 text-xs font-semibold mb-1">{produit.nom}</div>
-                          <div className="flex items-center justify-center gap-1">
+                          <div className="text-emerald-200 text-xs font-semibold mb-1 leading-tight">{produit.nom}</div>
+                          <div className="flex items-center justify-center gap-1 mb-1">
                             <Coins className="w-3 h-3 text-yellow-400" />
                             <span className="text-yellow-300 text-xs font-bold">{produit.prix}</span>
                           </div>
-                          {!modeEpicier && (
+                          {modeEpicier ? (
                             <>
-                              {dejaAchete && (
-                                <div className="text-emerald-400 text-[10px] mt-1">✓ Acheté</div>
+                              <div className={`text-[9px] font-bold mt-1 ${enRupture ? 'text-red-400' : 'text-emerald-300'}`}>
+                                📦 Stock: {quantiteStock}
+                              </div>
+                              <div className="text-[9px] text-purple-300 mt-0.5">+10 → +5 💰</div>
+                            </>
+                          ) : (
+                            <>
+                              {dejaAchete && <div className="text-emerald-400 text-[10px] mt-1">✓ Dans chariot</div>}
+                              {enRupture && !dejaAchete && <div className="text-red-400 text-[10px] mt-1">❌ Rupture</div>}
+                              {!enRupture && !dejaAchete && (
+                                <div className={`text-[9px] mt-1 ${quantiteStock < 3 ? 'text-orange-400' : 'text-white/40'}`}>
+                                  Stock: {quantiteStock}
+                                </div>
                               )}
-                              {enRupture && !dejaAchete && (
-                                <div className="text-red-400 text-[10px] mt-1">❌ Rupture</div>
-                              )}
-                              <div className="text-white/50 text-[9px] mt-1">Stock: {quantiteStock}</div>
                             </>
                           )}
                         </motion.button>
