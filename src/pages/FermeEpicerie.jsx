@@ -1352,17 +1352,24 @@ export default function FermeEpicerie() {
                 </div>
               </div>
               {roleEpicier && (
-                <Button
-                  onClick={() => setModeEpicier(!modeEpicier)}
-                  className={`mb-4 ${
-                    modeEpicier 
-                      ? 'bg-gradient-to-r from-orange-600 to-red-700' 
-                      : 'bg-gradient-to-r from-purple-600 to-indigo-700'
-                  }`}
-                >
-                  <Package className="w-4 h-4 mr-2" />
-                  {modeEpicier ? '🛒 Mode Client' : '📦 Mode Épicier'}
-                </Button>
+                <div className="flex flex-col items-center gap-2 mb-4">
+                  <Button
+                    onClick={() => setModeEpicier(!modeEpicier)}
+                    className={`${
+                      modeEpicier 
+                        ? 'bg-gradient-to-r from-orange-600 to-red-700 border-2 border-orange-300' 
+                        : 'bg-gradient-to-r from-purple-600 to-indigo-700'
+                    }`}
+                  >
+                    <Package className="w-4 h-4 mr-2" />
+                    {modeEpicier ? '🛒 Passer en Mode Client' : '📦 Passer en Mode Épicier'}
+                  </Button>
+                  {modeEpicier && (
+                    <div className="text-xs text-purple-300 bg-purple-900/30 border border-purple-400/30 rounded-xl px-4 py-2">
+                      📦 <strong>Mode Épicier actif</strong> — Clique sur un article pour réapprovisionner +10 unités (+5 crédits)
+                    </div>
+                  )}
+                </div>
               )}
               <p className="text-emerald-300/70 mt-2 text-sm">
                 🌍 Tu travailles → Tu es payé → Tu achètes ici → L'argent finance les salaires
