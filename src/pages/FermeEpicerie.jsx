@@ -5,8 +5,9 @@ import { createPageUrl } from '@/utils';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
-import { ArrowLeft, ShoppingCart, Coins, Trash2, Package } from 'lucide-react';
+import { ArrowLeft, ShoppingCart, Coins, Trash2, Package, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { computeRewards } from '@/lib/rewardPlayer';
 
 const FICHES_PEDAGOGIQUES = {
   fleurs_comestibles: {
