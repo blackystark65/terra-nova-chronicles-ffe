@@ -61,6 +61,9 @@ const AuthenticatedApp = () => {
           }
         />
       ))}
+      <Route path="/BiomeTemperateForest" element={<LayoutWrapper currentPageName="BiomeTemperateForest"><BiomeTemperateForestPage /></LayoutWrapper>} />
+      <Route path="/BiomeWetlands" element={<LayoutWrapper currentPageName="BiomeWetlands"><BiomeWetlandsPage /></LayoutWrapper>} />
+      <Route path="/BiomeMountains" element={<LayoutWrapper currentPageName="BiomeMountains"><BiomeMountainsPage /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
