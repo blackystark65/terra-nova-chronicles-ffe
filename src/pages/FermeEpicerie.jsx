@@ -1166,7 +1166,7 @@ export default function FermeEpicerie() {
       const heuresEcoulees = (maintenant - derniereVisite) / (1000 * 60 * 60);
       
       if (heuresEcoulees >= 24 && profile.articles_achetes?.length > 0) {
-        updateProfileMutation.mutate({
+        updateProfileAchatMutation.mutate({
           id: profile.id,
           data: {
             articles_achetes: [],
