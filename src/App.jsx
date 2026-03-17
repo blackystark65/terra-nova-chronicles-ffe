@@ -10,6 +10,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import BiomeTemperateForestPage from './pages/BiomeTemperateForest';
 import BiomeWetlandsPage from './pages/BiomeWetlands';
 import BiomeMountainsPage from './pages/BiomeMountains';
+import BiodiversitePage from './pages/Biodiversite';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
