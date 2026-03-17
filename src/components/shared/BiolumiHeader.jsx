@@ -18,7 +18,8 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Recyclage', icon: Leaf, path: 'RecyclageRoleSelection' },
     { name: 'Micro-ferme', icon: Leaf, path: 'MicroFerme' },
     { name: 'Missions', icon: Flame, path: 'Missions' },
-    { name: 'Climat', icon: Leaf, path: 'Climate' }];
+    { name: 'Climat', icon: Leaf, path: 'Climate' },
+    { name: 'Biodiversité', icon: Leaf, path: 'Biodiversite' }];
 
   const handleLogout = () => {
     base44.auth.redirectToLogin();
