@@ -93,7 +93,7 @@ export const CARTES = [
   // ═══════════════════
   { id: 'renard', nom: 'Renard roux', nom_en: 'Red fox', categorie: 'Mammifère', emoji: '🦊', couleur: 'from-orange-600 to-red-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Rotfuchs_2.jpg/320px-Rotfuchs_2.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Vulpes_vulpes_call.ogg',
+    son_url: null,
     description: 'Régulateur de rongeurs et lapins. Disperse des graines en mangeant des fruits.', points: 10 },
 
   { id: 'chevreuil', nom: 'Chevreuil', nom_en: 'Roe deer', categorie: 'Mammifère', emoji: '🦌', couleur: 'from-amber-600 to-orange-800',
