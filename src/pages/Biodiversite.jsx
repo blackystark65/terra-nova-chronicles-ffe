@@ -409,7 +409,7 @@ export default function BiodiversitePage() {
           </motion.div>
 
           {/* Statistiques */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
             {Object.entries(CAT_COLORS).map(([cat, couleur]) => {
               const count = CARTES.filter(c => c.categorie === cat).length;
               return (
