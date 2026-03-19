@@ -20,7 +20,7 @@ export const CARTES = [
 
   { id: 'pic_epeiche', nom: 'Pic épeiche', nom_en: 'Great spotted woodpecker', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-red-600 to-rose-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Dendrocopos_major_-_01.jpg/320px-Dendrocopos_major_-_01.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/SXFLLHNKRG/XC596204-Great%20Spotted%20Woodpecker%2020200412_073734.mp3',
+    son_url: null,
     description: 'Creuse les arbres morts, logeant chouettes et chauves-souris. Essentiel.', points: 15 },
 
   { id: 'chouette', nom: 'Chouette hulotte', nom_en: 'Tawny owl', categorie: 'Oiseau', emoji: '🦉', couleur: 'from-amber-700 to-yellow-900',
