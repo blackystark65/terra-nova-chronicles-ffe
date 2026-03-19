@@ -80,7 +80,7 @@ export const CARTES = [
 
   { id: 'tourterelle', nom: 'Tourterelle des bois', nom_en: 'European turtle dove', categorie: 'Oiseau', emoji: '🕊️', couleur: 'from-rose-400 to-amber-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Streptopelia_turtur_-_01.jpg/320px-Streptopelia_turtur_-_01.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/YADDAYPQMW/XC709343-European%20Turtle%20Dove%2020210610_064312.mp3',
+    son_url: null,
     description: 'Espèce en déclin critique. Migrateur d\'Afrique. Symbole de la paix.', points: 20 },
 
   { id: 'bergeronnette', nom: 'Bergeronnette grise', nom_en: 'White wagtail', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-400 to-gray-700',
