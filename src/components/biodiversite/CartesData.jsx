@@ -10,7 +10,7 @@ export const CARTES = [
   // ═══════════════════════════════
   { id: 'rouge_gorge', nom: 'Rouge-gorge', nom_en: 'Robin', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-orange-500 to-red-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Erithacus_rubecula_with_cocked_head.jpg/320px-Erithacus_rubecula_with_cocked_head.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/ZWAQHOJFLZ/XC798648-Robin%20song%2020220411_064614.mp3',
+    son_url: null,
     description: 'Petit oiseau au ventre orange. Chant flûté. Disperse les graines en forêt.', points: 10 },
 
   { id: 'merle', nom: 'Merle noir', nom_en: 'Blackbird', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-700 to-slate-900',
