@@ -8,43 +8,69 @@ import { CARTES, CATEGORIES, CAT_COLORS } from '@/components/biodiversite/Cartes
 // ──────────────────────────────
 // COMPOSANT : Carte de jeu
 // ──────────────────────────────
+// Sons Wikimedia Commons — URLs .ogg vérifiées (pages wiki confirmées)
+const SONS_OISEAUX = {
+  'rouge_gorge':       'https://upload.wikimedia.org/wikipedia/commons/8/8d/Erithacus_rubecula.ogg',
+  'merle':             'https://upload.wikimedia.org/wikipedia/commons/c/c5/Turdus_merula_2.ogg',
+  'pic_epeiche':       'https://upload.wikimedia.org/wikipedia/commons/8/8e/Dendrocopos_major.ogg',
+  'chouette':          'https://upload.wikimedia.org/wikipedia/commons/7/7a/Strix_aluco_%28song%29.ogg',
+  'mesange':           'https://upload.wikimedia.org/wikipedia/commons/b/b2/Cyanistes_caeruleus.ogg',
+  'fauvette':          'https://upload.wikimedia.org/wikipedia/commons/6/65/Sylvia_atricapilla_-_Eurasian_Blackcap_XC125794.ogg',
+  'hirondelle':        'https://upload.wikimedia.org/wikipedia/commons/4/40/Delichon_urbicum_-_Common_House_Martin_XC125791.ogg',
+  'cigogne':           'https://upload.wikimedia.org/wikipedia/commons/a/a1/Ciconia_ciconia.ogg',
+  'martin_pecheur':    'https://upload.wikimedia.org/wikipedia/commons/2/2d/Alcedo_atthis_%28call%29.ogg',
+  'faucon_crecerelle': 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Falco_tinnunculus_%28call%29.ogg',
+  'milan_noir':        'https://upload.wikimedia.org/wikipedia/commons/a/ab/Milvus_migrans_-_Black_Kite_XC125790.ogg',
+  'buse':              'https://upload.wikimedia.org/wikipedia/commons/e/e1/Buteo_buteo_call.ogg',
+  'pic_vert':          'https://upload.wikimedia.org/wikipedia/commons/b/b1/Picus_viridis_%28call%29.ogg',
+  'roitelet':          'https://upload.wikimedia.org/wikipedia/commons/f/f3/Regulus_regulus.ogg',
+  'tourterelle':       'https://upload.wikimedia.org/wikipedia/commons/8/8b/Streptopelia_turtur.ogg',
+  'bergeronnette':     'https://upload.wikimedia.org/wikipedia/commons/2/2e/Motacilla_alba.ogg',
+};
+
 function CarteJeu({ carte, mode, onReponse }) {
   const [inputVal, setInputVal] = useState('');
-  const [etat, setEtat] = useState(null); // 'correct' | 'faux'
+  const [etat, setEtat] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [loadingSon, setLoadingSon] = useState(false);
-  const [sonUrl, setSonUrl] = useState(null);
-  const audioElemRef = useRef(null);
+  const audioRef = useRef(null);
 
   useEffect(() => {
-    setInputVal(''); setEtat(null); setIsPlaying(false); setSonUrl(null);
-    if (audioElemRef.current) {
-      audioElemRef.current.pause();
-      audioElemRef.current.src = '';
+    setInputVal('');
+    setEtat(null);
+    setIsPlaying(false);
+    setLoadingSon(false);
+    const audio = audioRef.current;
+    if (audio) {
+      audio.pause();
+      audio.src = '';
     }
   }, [carte.id]);
 
-  // Sons Wikimedia Commons — URLs .ogg vérifiées (fichiers réels)
-  const SONS_OISEAUX = {
-    'rouge_gorge':       'https://upload.wikimedia.org/wikipedia/commons/8/8d/Erithacus_rubecula.ogg',
-    'merle':             'https://upload.wikimedia.org/wikipedia/commons/c/c5/Turdus_merula_2.ogg',
-    'pic_epeiche':       'https://upload.wikimedia.org/wikipedia/commons/8/8e/Dendrocopos_major.ogg',
-    'chouette':          'https://upload.wikimedia.org/wikipedia/commons/7/7a/Strix_aluco_%28song%29.ogg',
-    'mesange':           'https://upload.wikimedia.org/wikipedia/commons/b/b2/Cyanistes_caeruleus.ogg',
-    'fauvette':          'https://upload.wikimedia.org/wikipedia/commons/6/6e/Sylvia_atricapilla_XC125794.ogg',
-    'hirondelle':        'https://upload.wikimedia.org/wikipedia/commons/4/40/Delichon_urbicum_-_Common_House_Martin_XC125791.ogg',
-    'cigogne':           'https://upload.wikimedia.org/wikipedia/commons/a/a1/Ciconia_ciconia.ogg',
-    'martin_pecheur':    'https://upload.wikimedia.org/wikipedia/commons/2/2d/Alcedo_atthis_%28call%29.ogg',
-    'faucon_crecerelle': 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Falco_tinnunculus_%28call%29.ogg',
-    'milan_noir':        'https://upload.wikimedia.org/wikipedia/commons/a/ab/Milvus_migrans_-_Black_Kite_XC125790.ogg',
-    'buse':              'https://upload.wikimedia.org/wikipedia/commons/e/e1/Buteo_buteo_call.ogg',
-    'pic_vert':          'https://upload.wikimedia.org/wikipedia/commons/b/b1/Picus_viridis_%28call%29.ogg',
-    'roitelet':          'https://upload.wikimedia.org/wikipedia/commons/f/f3/Regulus_regulus.ogg',
-    'tourterelle':       'https://upload.wikimedia.org/wikipedia/commons/8/8b/Streptopelia_turtur.ogg',
-    'bergeronnette':     'https://upload.wikimedia.org/wikipedia/commons/2/2e/Motacilla_alba.ogg',
-  };
+  const sonUrl = SONS_OISEAUX[carte.id] || null;
+  const hasSon = carte.categorie === 'Oiseau' && !!sonUrl;
 
-  const hasSon = carte.categorie === 'Oiseau';
+  const jouerSon = () => {
+    const audio = audioRef.current;
+    if (!audio || !sonUrl) return;
+
+    if (isPlaying) {
+      audio.pause();
+      audio.currentTime = 0;
+      setIsPlaying(false);
+      return;
+    }
+
+    if (!audio.src || audio.src === window.location.href) {
+      audio.src = sonUrl;
+      audio.load();
+    }
+
+    setLoadingSon(true);
+    audio.play()
+      .then(() => { setIsPlaying(true); setLoadingSon(false); })
+      .catch((e) => { console.error('Audio error:', e); setIsPlaying(false); setLoadingSon(false); });
+  };
 
   const normalise = (str) =>
     str.trim().toLowerCase()
