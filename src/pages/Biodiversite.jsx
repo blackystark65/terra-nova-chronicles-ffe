@@ -24,27 +24,19 @@ function CarteJeu({ carte, mode, onReponse }) {
 
   const jouerSon = () => {
     if (!carte.son_url) return;
-    const audio = audioElemRef.current;
-    if (!audio) return;
 
     if (isPlaying) {
-      audio.pause();
-      audio.currentTime = 0;
+      const audio = audioElemRef.current;
+      if (audio) { audio.pause(); audio.currentTime = 0; }
       setIsPlaying(false);
       return;
     }
 
-    // Proxy CORS pour contourner les restrictions de Wikimedia
-    const url = `https://corsproxy.io/?url=${encodeURIComponent(carte.son_url)}`;
-
-    audio.src = url;
-    audio.load();
-    audio.play()
-      .then(() => setIsPlaying(true))
-      .catch((e) => {
-        console.warn('Audio play failed:', e);
-        setIsPlaying(false);
-      });
+    // Ouvrir directement la page Wikimedia du fichier dans un nouvel onglet
+    // C'est la méthode la plus fiable — aucun blocage CORS possible
+    window.open(carte.son_url, '_blank');
+    setIsPlaying(true);
+    setTimeout(() => setIsPlaying(false), 3000);
   };
 
   const normalise = (str) =>
