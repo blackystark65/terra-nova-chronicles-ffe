@@ -55,7 +55,7 @@ export const CARTES = [
 
   { id: 'faucon_crecerelle', nom: 'Faucon crécerelle', nom_en: 'Common kestrel', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-600 to-red-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Falco_tinnunculus_-_01.jpg/320px-Falco_tinnunculus_-_01.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/SXFLLHNKRG/XC596208-Common%20Kestrel%2020200415_101234.mp3',
+    son_url: null,
     description: 'Rapace diurne qui fait du "vol du Saint-Esprit". Régule les campagnols.', points: 15 },
 
   { id: 'milan_noir', nom: 'Milan noir', nom_en: 'Black kite', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-800 to-stone-800',
