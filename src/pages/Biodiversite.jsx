@@ -65,6 +65,13 @@ function CarteJeu({ carte, mode, onReponse }) {
       transition={{ duration: 0.5 }}
       className="w-full max-w-md mx-auto"
     >
+      {/* Élément audio HTML natif — géré par le navigateur directement */}
+      <audio
+        ref={audioElemRef}
+        onEnded={() => setIsPlaying(false)}
+        onError={() => setIsPlaying(false)}
+        preload="none"
+      />
       <div className={`rounded-3xl overflow-hidden bg-gradient-to-br ${carte.couleur} shadow-2xl border-2 border-white/20`}>
         {/* Badge catégorie */}
         <div className="flex items-center justify-between px-5 pt-4 pb-2">
