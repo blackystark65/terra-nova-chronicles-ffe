@@ -65,7 +65,7 @@ export const CARTES = [
 
   { id: 'buse', nom: 'Buse variable', nom_en: 'Common buzzard', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-700 to-stone-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Buteo_buteo_1_%28Marek_Szczepanek%29.jpg/320px-Buteo_buteo_1_%28Marek_Szczepanek%29.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/YADDAYPQMW/XC709342-Common%20Buzzard%2020210805_092134.mp3',
+    son_url: null,
     description: 'Rapace commun des campagnes. Consomme mulots, campagnols et lapereaux.', points: 12 },
 
   { id: 'pic_vert', nom: 'Pic vert', nom_en: 'Green woodpecker', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-green-600 to-lime-700',
