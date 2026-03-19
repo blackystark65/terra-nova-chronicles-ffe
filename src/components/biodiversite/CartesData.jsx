@@ -60,7 +60,7 @@ export const CARTES = [
 
   { id: 'milan_noir', nom: 'Milan noir', nom_en: 'Black kite', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-800 to-stone-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Black_Kite_Milvus_migrans.jpg/320px-Black_Kite_Milvus_migrans.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757742-Black%20Kite%2020220404_083421.mp3',
+    son_url: null,
     description: 'Rapace migrateur. Nettoie carcasses et déchets organiques — éboueur naturel.', points: 15 },
 
   { id: 'buse', nom: 'Buse variable', nom_en: 'Common buzzard', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-700 to-stone-800',
