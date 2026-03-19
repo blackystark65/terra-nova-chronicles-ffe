@@ -159,26 +159,45 @@ const CAT_COLORS = {
 // ──────────────────────────────
 // COMPOSANT : Carte de jeu
 // ──────────────────────────────
-function CarteJeu({ carte, mode, onReponse, estRetournee }) {
+function CarteJeu({ carte, mode, onReponse }) {
   const [inputVal, setInputVal] = useState('');
   const [etat, setEtat] = useState(null); // 'correct' | 'faux'
-  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  useEffect(() => { setInputVal(''); setEtat(null); }, [carte.id]);
+  useEffect(() => { setInputVal(''); setEtat(null); setIsPlaying(false); }, [carte.id]);
 
   const jouerSon = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play().catch(() => {});
-    }
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    setIsPlaying(true);
+    const utterance = new SpeechSynthesisUtterance(carte.son_desc);
+    utterance.lang = 'en-GB';
+    utterance.rate = 0.85;
+    utterance.pitch = 1.1;
+    utterance.volume = 1;
+    // Choisir une voix anglaise si disponible
+    const voices = window.speechSynthesis.getVoices();
+    const enVoice = voices.find(v => v.lang.startsWith('en'));
+    if (enVoice) utterance.voice = enVoice;
+    utterance.onend = () => setIsPlaying(false);
+    utterance.onerror = () => setIsPlaying(false);
+    window.speechSynthesis.speak(utterance);
   };
 
+  const normalise = (str) =>
+    str.trim().toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // retire accents
+      .replace(/[^a-z0-9\s]/g, '');
+
   const valider = () => {
-    const rep = inputVal.trim().toLowerCase();
-    const correct = carte.nom.toLowerCase();
-    const isOk = correct.includes(rep) && rep.length >= 3;
+    const rep = normalise(inputVal);
+    if (rep.length < 2) return;
+    const nomFR = normalise(carte.nom);
+    const nomEN = normalise(carte.nom_en || '');
+    // Accepte si la réponse est contenue dans le nom FR ou EN (au moins 3 lettres)
+    const isOk = rep.length >= 3 && (nomFR.includes(rep) || nomEN.includes(rep));
     setEtat(isOk ? 'correct' : 'faux');
-    setTimeout(() => onReponse(isOk, carte.points), 800);
+    setTimeout(() => onReponse(isOk, carte.points), 900);
   };
 
   return (
