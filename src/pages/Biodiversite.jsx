@@ -12,32 +12,33 @@ function CarteJeu({ carte, mode, onReponse }) {
   const [inputVal, setInputVal] = useState('');
   const [etat, setEtat] = useState(null); // 'correct' | 'faux'
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
+  const audioElemRef = useRef(null);
 
   useEffect(() => {
     setInputVal(''); setEtat(null); setIsPlaying(false);
-    if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
+    if (audioElemRef.current) {
+      audioElemRef.current.pause();
+      audioElemRef.current.src = '';
+    }
   }, [carte.id]);
 
   const jouerSon = () => {
     if (!carte.son_url) return;
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
+    const audio = audioElemRef.current;
+    if (!audio) return;
+
+    if (isPlaying) {
+      audio.pause();
+      audio.currentTime = 0;
       setIsPlaying(false);
       return;
     }
-    // Extraire le nom du fichier et utiliser Special:FilePath qui sert le fichier directement sans CORS strict
-    const fileMatch = carte.son_url.match(/\/([^/]+\.(?:ogg|mp3|wav|flac))$/i);
-    const url = fileMatch
-      ? `https://commons.wikimedia.org/wiki/Special:FilePath/${fileMatch[1]}`
-      : carte.son_url;
-    const audio = new Audio(url);
-    audioRef.current = audio;
-    setIsPlaying(true);
-    audio.play().catch(() => { setIsPlaying(false); audioRef.current = null; });
-    audio.onended = () => { setIsPlaying(false); audioRef.current = null; };
-    audio.onerror = () => { setIsPlaying(false); audioRef.current = null; };
+
+    audio.src = carte.son_url;
+    audio.load();
+    audio.play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setIsPlaying(false));
   };
 
   const normalise = (str) =>
