@@ -81,11 +81,19 @@ function CarteJeu({ carte, mode, onReponse }) {
         {mode === 'image' && (
           <div className="px-4">
             <img
+              key={carte.id}
               src={carte.image}
               alt="?"
               className="w-full h-48 object-cover rounded-2xl border-2 border-white/20 shadow-lg"
-              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400'; }}
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
             />
+            <div style={{ display: 'none' }}
+              className="w-full h-48 rounded-2xl border-2 border-white/20 shadow-lg items-center justify-center text-8xl">
+              {carte.emoji}
+            </div>
           </div>
         )}
 
