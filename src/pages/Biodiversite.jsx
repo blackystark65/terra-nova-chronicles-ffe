@@ -12,7 +12,7 @@ function CarteJeu({ carte, mode, onReponse }) {
   const [inputVal, setInputVal] = useState('');
   const [etat, setEtat] = useState(null); // 'correct' | 'faux'
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = React.useRef(null);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     setInputVal(''); setEtat(null); setIsPlaying(false);
