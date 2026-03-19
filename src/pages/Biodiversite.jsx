@@ -230,18 +230,21 @@ function CarteJeu({ carte, mode, onReponse }) {
         {/* Mode SON */}
         {mode === 'son' && (
           <div className="flex flex-col items-center justify-center py-8 gap-4">
-            {carte.son ? (
+            {carte.son_desc ? (
               <>
                 <motion.button
                   onClick={jouerSon}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-24 h-24 rounded-full bg-white/20 hover:bg-white/30 border-4 border-white/50 flex items-center justify-center shadow-xl transition-all"
+                  animate={isPlaying ? { scale: [1, 1.08, 1] } : {}}
+                  transition={{ repeat: Infinity, duration: 0.6 }}
+                  className={`w-24 h-24 rounded-full border-4 flex items-center justify-center shadow-xl transition-all ${
+                    isPlaying ? 'bg-white/40 border-white/80' : 'bg-white/20 hover:bg-white/30 border-white/50'
+                  }`}
                 >
                   <Volume2 className="w-10 h-10 text-white" />
                 </motion.button>
-                <p className="text-white/70 text-sm">▶ Écoute et devine !</p>
-                <audio ref={audioRef} src={carte.son} preload="auto" />
+                <p className="text-white/70 text-sm">{isPlaying ? '🔊 En cours...' : '▶ Écoute et devine !'}</p>
               </>
             ) : (
               <>
