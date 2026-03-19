@@ -30,7 +30,7 @@ export const CARTES = [
 
   { id: 'mesange', nom: 'Mésange bleue', nom_en: 'Blue tit', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-blue-500 to-cyan-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Cyanistes_caeruleus_-_Parc_naturel_regional_du_Perche_-_02.jpg/320px-Cyanistes_caeruleus_-_Parc_naturel_regional_du_Perche_-_02.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757735-Blue%20Tit%2020220319_072100.mp3',
+    son_url: null,
     description: 'Mange des chenilles ravageuses. Indispensable à l\'équilibre des forêts.', points: 10 },
 
   { id: 'fauvette', nom: 'Fauvette à tête noire', nom_en: 'Blackcap warbler', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-gray-600 to-slate-700',
