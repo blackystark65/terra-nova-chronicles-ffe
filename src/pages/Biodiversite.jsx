@@ -34,20 +34,15 @@ function CarteJeu({ carte, mode, onReponse }) {
       return;
     }
 
-    // Convertir l'URL commons.wikimedia.org en URL directe upload.wikimedia.org
-    // Ex: https://upload.wikimedia.org/wikipedia/commons/1/1e/Fichier.ogg
-    let url = carte.son_url;
-    const pathMatch = url.match(/\/wikipedia\/commons\/(.+\.(?:ogg|mp3|wav|flac))/i);
-    if (pathMatch) {
-      url = `https://upload.wikimedia.org/wikipedia/commons/${pathMatch[1]}`;
-    }
+    // Proxy CORS pour contourner les restrictions de Wikimedia
+    const url = `https://corsproxy.io/?url=${encodeURIComponent(carte.son_url)}`;
 
     audio.src = url;
     audio.load();
     audio.play()
       .then(() => setIsPlaying(true))
       .catch((e) => {
-        console.warn('Audio play failed:', url, e);
+        console.warn('Audio play failed:', e);
         setIsPlaying(false);
       });
   };
