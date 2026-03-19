@@ -136,7 +136,7 @@ export const CARTES = [
 
   { id: 'salamandre', nom: 'Salamandre tachetée', nom_en: 'Fire salamander', categorie: 'Batracien', emoji: '🦎', couleur: 'from-yellow-500 to-slate-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Salamandra_salamandra_Luc_Viatour.jpg/320px-Salamandra_salamandra_Luc_Viatour.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Amphibien des sous-bois humides. Peau toxique. Indicateur de forêts saines.', points: 20 },
 
   { id: 'triton', nom: 'Triton alpestre', nom_en: 'Alpine newt', categorie: 'Batracien', emoji: '🦎', couleur: 'from-blue-600 to-indigo-800',
