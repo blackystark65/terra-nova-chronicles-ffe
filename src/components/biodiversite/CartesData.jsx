@@ -40,7 +40,7 @@ export const CARTES = [
 
   { id: 'hirondelle', nom: 'Hirondelle de fenêtre', nom_en: 'House martin', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-600 to-blue-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Common_house_martin.jpg/320px-Common_house_martin.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/SXFLLHNKRG/XC596207-House%20Martin%2020200412_082134.mp3',
+    son_url: null,
     description: 'Migrateur africain. Capture des insectes en vol. Bioindicateur de qualité de l\'air.', points: 12 },
 
   { id: 'cigogne', nom: 'Cigogne blanche', nom_en: 'White stork', categorie: 'Oiseau', emoji: '🦢', couleur: 'from-slate-200 to-slate-600',
