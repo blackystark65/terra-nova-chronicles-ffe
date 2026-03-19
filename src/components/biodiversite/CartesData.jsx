@@ -164,7 +164,7 @@ export const CARTES = [
   // ═══════════════════
   { id: 'abeille', nom: 'Abeille mellifère', nom_en: 'Honeybee', categorie: 'Insecte', emoji: '🐝', couleur: 'from-yellow-400 to-amber-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Apis_mellifera_flying.jpg/320px-Apis_mellifera_flying.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Honey_Bee_Queen_Flying.ogg',
+    son_url: null,
     description: 'Pollinisatrice de 80% des plantes à fleurs. Sans elle, l\'agriculture s\'effondre.', points: 10 },
 
   { id: 'bourdon', nom: 'Bourdon des prés', nom_en: 'Bumblebee', categorie: 'Insecte', emoji: '🐝', couleur: 'from-yellow-500 to-orange-600',
