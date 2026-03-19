@@ -131,7 +131,7 @@ export const CARTES = [
   // ═══════════════════
   { id: 'grenouille', nom: 'Grenouille verte', nom_en: 'Green frog', categorie: 'Batracien', emoji: '🐸', couleur: 'from-green-500 to-emerald-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Rana_esculenta_-_Naaldwijk.jpg/320px-Rana_esculenta_-_Naaldwijk.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/0/09/Rana_ridibunda.ogg',
+    son_url: null,
     description: 'Bioindicateur de la santé des zones humides. Mange moustiques et insectes.', points: 10 },
 
   { id: 'salamandre', nom: 'Salamandre tachetée', nom_en: 'Fire salamander', categorie: 'Batracien', emoji: '🦎', couleur: 'from-yellow-500 to-slate-900',
