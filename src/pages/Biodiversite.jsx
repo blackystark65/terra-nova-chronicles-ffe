@@ -76,7 +76,7 @@ function CarteJeu({ carte, mode, onReponse }) {
         {/* Mode SON */}
         {mode === 'son' && (
           <div className="flex flex-col items-center justify-center py-8 gap-4">
-            {carte.son_desc ? (
+            {carte.son_url ? (
               <>
                 <motion.button
                   onClick={jouerSon}
