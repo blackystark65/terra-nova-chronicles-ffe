@@ -297,7 +297,9 @@ function CarteJeu({ carte, mode, onReponse }) {
                   etat === 'correct' ? 'bg-green-500/30 text-green-100 border border-green-400/50' : 'bg-red-500/30 text-red-100 border border-red-400/50'
                 }`}
               >
-                {etat === 'correct' ? `✅ Bravo ! C'est bien : ${carte.nom} (+${carte.points} pts)` : `❌ Dommage… C'était : ${carte.nom} (-3 pts)`}
+                {etat === 'correct'
+                  ? `✅ Bravo ! ${carte.nom} · ${carte.nom_en} (+${carte.points} pts)`
+                  : `❌ C'était : ${carte.nom} · ${carte.nom_en} (-3 pts)`}
               </motion.div>
             )}
           </AnimatePresence>
