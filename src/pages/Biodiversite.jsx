@@ -100,8 +100,10 @@ function CarteJeu({ carte, mode, onReponse }) {
       <audio
         ref={audioElemRef}
         onEnded={() => setIsPlaying(false)}
-        onError={() => setIsPlaying(false)}
+        onError={() => { setIsPlaying(false); setLoadingSon(false); }}
+        onCanPlay={() => setLoadingSon(false)}
         preload="none"
+        crossOrigin="anonymous"
       />
       <div className={`rounded-3xl overflow-hidden bg-gradient-to-br ${carte.couleur} shadow-2xl border-2 border-white/20`}>
         {/* Badge catégorie */}
