@@ -35,7 +35,7 @@ export const CARTES = [
 
   { id: 'fauvette', nom: 'Fauvette à tête noire', nom_en: 'Blackcap warbler', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-gray-600 to-slate-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Sylvia_atricapilla_-_01.jpg/320px-Sylvia_atricapilla_-_01.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757739-Blackcap%2020220319_074012.mp3',
+    son_url: null,
     description: 'Chant puissant. Disperseur clé de graines de baies sauvages.', points: 12 },
 
   { id: 'hirondelle', nom: 'Hirondelle de fenêtre', nom_en: 'House martin', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-600 to-blue-800',
