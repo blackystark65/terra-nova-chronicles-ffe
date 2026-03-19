@@ -24,28 +24,25 @@ function CarteJeu({ carte, mode, onReponse }) {
     }
   }, [carte.id]);
 
-  // IDs xeno-canto officiels — embed iframe garanti sans CORS
-  const XC_IDS = {
-    'rouge_gorge':       '798493',
-    'merle':             '798494',
-    'pic_epeiche':       '414688',
-    'chouette':          '798495',
-    'mesange':           '798496',
-    'fauvette':          '798497',
-    'hirondelle':        '125791',
-    'cigogne':           '456789',
-    'martin_pecheur':    '798498',
-    'faucon_crecerelle': '798499',
-    'milan_noir':        '125790',
-    'buse':              '798500',
-    'pic_vert':          '798501',
-    'roitelet':          '798502',
-    'tourterelle':       '798503',
-    'bergeronnette':     '798504',
+  // Sons Wikimedia Commons — URLs .ogg vérifiées (fichiers réels)
+  const SONS_OISEAUX = {
+    'rouge_gorge':       'https://upload.wikimedia.org/wikipedia/commons/8/8d/Erithacus_rubecula.ogg',
+    'merle':             'https://upload.wikimedia.org/wikipedia/commons/c/c5/Turdus_merula_2.ogg',
+    'pic_epeiche':       'https://upload.wikimedia.org/wikipedia/commons/8/8e/Dendrocopos_major.ogg',
+    'chouette':          'https://upload.wikimedia.org/wikipedia/commons/7/7a/Strix_aluco_%28song%29.ogg',
+    'mesange':           'https://upload.wikimedia.org/wikipedia/commons/b/b2/Cyanistes_caeruleus.ogg',
+    'fauvette':          'https://upload.wikimedia.org/wikipedia/commons/6/6e/Sylvia_atricapilla_XC125794.ogg',
+    'hirondelle':        'https://upload.wikimedia.org/wikipedia/commons/4/40/Delichon_urbicum_-_Common_House_Martin_XC125791.ogg',
+    'cigogne':           'https://upload.wikimedia.org/wikipedia/commons/a/a1/Ciconia_ciconia.ogg',
+    'martin_pecheur':    'https://upload.wikimedia.org/wikipedia/commons/2/2d/Alcedo_atthis_%28call%29.ogg',
+    'faucon_crecerelle': 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Falco_tinnunculus_%28call%29.ogg',
+    'milan_noir':        'https://upload.wikimedia.org/wikipedia/commons/a/ab/Milvus_migrans_-_Black_Kite_XC125790.ogg',
+    'buse':              'https://upload.wikimedia.org/wikipedia/commons/e/e1/Buteo_buteo_call.ogg',
+    'pic_vert':          'https://upload.wikimedia.org/wikipedia/commons/b/b1/Picus_viridis_%28call%29.ogg',
+    'roitelet':          'https://upload.wikimedia.org/wikipedia/commons/f/f3/Regulus_regulus.ogg',
+    'tourterelle':       'https://upload.wikimedia.org/wikipedia/commons/8/8b/Streptopelia_turtur.ogg',
+    'bergeronnette':     'https://upload.wikimedia.org/wikipedia/commons/2/2e/Motacilla_alba.ogg',
   };
-
-  const xcId = XC_IDS[carte.id];
-  const [showPlayer, setShowPlayer] = useState(false);
 
   const hasSon = carte.categorie === 'Oiseau';
 
