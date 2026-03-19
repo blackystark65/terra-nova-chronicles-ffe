@@ -21,13 +21,43 @@ function CarteJeu({ carte, mode, onReponse }) {
 
   const jouerSon = () => {
     if (!carte.son_url) return;
-    if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; setIsPlaying(false); return; }
-    const audio = new Audio(carte.son_url);
+    // Stop si déjà en lecture
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+      setIsPlaying(false);
+      return;
+    }
+    // Convertir l'URL Wikimedia OGG en URL directe via Special:FilePath pour éviter les problèmes CORS
+    let url = carte.son_url;
+    const wikiMatch = url.match(/commons\.wikimedia\.org\/wiki\/(?:File:|Special:FilePath\/)(.+)/);
+    if (!wikiMatch) {
+      // Extraire le nom du fichier depuis l'URL directe Wikimedia
+      const fileMatch = url.match(/\/([^/]+\.(?:ogg|mp3|wav|flac))$/i);
+      if (fileMatch) {
+        url = `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(fileMatch[1])}`;
+      }
+    }
+    const audio = new Audio(url);
+    audio.crossOrigin = 'anonymous';
     audioRef.current = audio;
     setIsPlaying(true);
-    audio.play();
+    audio.play().catch(() => {
+      // Fallback: essai sans crossOrigin
+      const audio2 = new Audio(carte.son_url);
+      audioRef.current = audio2;
+      audio2.play().catch(() => { setIsPlaying(false); audioRef.current = null; });
+      audio2.onended = () => { setIsPlaying(false); audioRef.current = null; };
+    });
     audio.onended = () => { setIsPlaying(false); audioRef.current = null; };
-    audio.onerror = () => { setIsPlaying(false); audioRef.current = null; };
+    audio.onerror = () => {
+      // Fallback sans crossOrigin
+      const audio2 = new Audio(carte.son_url);
+      audioRef.current = audio2;
+      audio2.play().catch(() => { setIsPlaying(false); audioRef.current = null; });
+      audio2.onended = () => { setIsPlaying(false); audioRef.current = null; };
+      audio2.onerror = () => { setIsPlaying(false); audioRef.current = null; };
+    };
   };
 
   const normalise = (str) =>
