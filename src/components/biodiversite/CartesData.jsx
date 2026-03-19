@@ -15,7 +15,7 @@ export const CARTES = [
 
   { id: 'merle', nom: 'Merle noir', nom_en: 'Blackbird', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-700 to-slate-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Turdus-merula-002.jpg/320px-Turdus-merula-002.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757732-Common%20Blackbird%2020220319_063821.mp3',
+    son_url: null,
     description: 'Bec jaune chez le mâle. Chant mélodieux au crépuscule. Disperse les baies.', points: 10 },
 
   { id: 'pic_epeiche', nom: 'Pic épeiche', nom_en: 'Great spotted woodpecker', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-red-600 to-rose-800',
