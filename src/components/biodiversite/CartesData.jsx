@@ -45,7 +45,7 @@ export const CARTES = [
 
   { id: 'cigogne', nom: 'Cigogne blanche', nom_en: 'White stork', categorie: 'Oiseau', emoji: '🦢', couleur: 'from-slate-200 to-slate-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Ciconia_ciconia_-_02.jpg/320px-Ciconia_ciconia_-_02.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/YADDAYPQMW/XC709340-White%20Stork%2020210905_093421.mp3',
+    son_url: null,
     description: 'Grand migrateur. Régule grenouilles et rongeurs dans les zones humides.', points: 15 },
 
   { id: 'martin_pecheur', nom: 'Martin-pêcheur', nom_en: 'Common kingfisher', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-blue-500 to-orange-600',
