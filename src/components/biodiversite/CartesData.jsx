@@ -50,7 +50,7 @@ export const CARTES = [
 
   { id: 'martin_pecheur', nom: 'Martin-pêcheur', nom_en: 'Common kingfisher', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-blue-500 to-orange-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Alcedo_atthis_-_Riserva_Naturale_Tevere_Farfa.jpg/320px-Alcedo_atthis_-_Riserva_Naturale_Tevere_Farfa.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/YADDAYPQMW/XC709341-Common%20Kingfisher%2020210720_073421.mp3',
+    son_url: null,
     description: 'Plumage bleu turquoise. Indicateur de rivières propres et poissonneuses.', points: 18 },
 
   { id: 'faucon_crecerelle', nom: 'Faucon crécerelle', nom_en: 'Common kestrel', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-600 to-red-700',
