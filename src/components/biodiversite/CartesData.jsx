@@ -75,7 +75,7 @@ export const CARTES = [
 
   { id: 'roitelet', nom: 'Roitelet huppé', nom_en: 'Goldcrest', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-yellow-500 to-green-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Regulus_regulus_regulus_male.jpg/320px-Regulus_regulus_regulus_male.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757745-Goldcrest%2020220320_072134.mp3',
+    son_url: null,
     description: 'Le plus petit oiseau d\'Europe. Mange les œufs d\'insectes ravageurs en hiver.', points: 18 },
 
   { id: 'tourterelle', nom: 'Tourterelle des bois', nom_en: 'European turtle dove', categorie: 'Oiseau', emoji: '🕊️', couleur: 'from-rose-400 to-amber-600',
