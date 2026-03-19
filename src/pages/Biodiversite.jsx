@@ -24,30 +24,27 @@ function CarteJeu({ carte, mode, onReponse }) {
     }
   }, [carte.id]);
 
-  // Cherche le vrai MP3 via l'API xeno-canto au premier clic
-  const fetchSon = async () => {
-    if (sonUrl) return sonUrl;
-    if (!carte.nom_en) return null;
-    setLoadingSon(true);
-    try {
-      const query = encodeURIComponent(carte.nom_en);
-      const res = await fetch(`https://xeno-canto.org/api/2/recordings?query=${query}+q:A&page=1`);
-      const data = await res.json();
-      const rec = data.recordings?.[0];
-      if (rec) {
-        const url = `https:${rec.file}`;
-        setSonUrl(url);
-        return url;
-      }
-    } catch (e) {
-      // silencieux
-    } finally {
-      setLoadingSon(false);
-    }
-    return null;
+  // Sons Wikimedia Commons — URLs directes, sans CORS
+  const SONS_OISEAUX = {
+    'rouge_gorge':     'https://upload.wikimedia.org/wikipedia/commons/1/1b/Erithacus_rubecula_song.ogg',
+    'merle':           'https://upload.wikimedia.org/wikipedia/commons/6/60/Turdus-merula-song.ogg',
+    'pic_epeiche':     'https://upload.wikimedia.org/wikipedia/commons/5/5d/Dendrocopos_major_drum.ogg',
+    'chouette':        'https://upload.wikimedia.org/wikipedia/commons/b/b4/Strix_aluco_call.ogg',
+    'mesange':         'https://upload.wikimedia.org/wikipedia/commons/a/a0/Cyanistes_caeruleus_song.ogg',
+    'fauvette':        'https://upload.wikimedia.org/wikipedia/commons/3/36/Sylvia_atricapilla_-_song.ogg',
+    'hirondelle':      'https://upload.wikimedia.org/wikipedia/commons/e/e8/Delichon_urbicum_call.ogg',
+    'cigogne':         'https://upload.wikimedia.org/wikipedia/commons/5/50/Ciconia_ciconia_-_bill_clattering.ogg',
+    'martin_pecheur':  'https://upload.wikimedia.org/wikipedia/commons/3/38/Alcedo_atthis_call.ogg',
+    'faucon_crecerelle': 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Falco_tinnunculus_call.ogg',
+    'milan_noir':      'https://upload.wikimedia.org/wikipedia/commons/2/2d/Milvus_migrans_call.ogg',
+    'buse':            'https://upload.wikimedia.org/wikipedia/commons/6/6e/Buteo_buteo_call.ogg',
+    'pic_vert':        'https://upload.wikimedia.org/wikipedia/commons/4/48/Picus_viridis_call.ogg',
+    'roitelet':        'https://upload.wikimedia.org/wikipedia/commons/f/f2/Regulus_regulus_song.ogg',
+    'tourterelle':     'https://upload.wikimedia.org/wikipedia/commons/3/3f/Streptopelia_turtur_call.ogg',
+    'bergeronnette':   'https://upload.wikimedia.org/wikipedia/commons/a/ab/Motacilla_alba_call.ogg',
   };
 
-  const jouerSon = async () => {
+  const jouerSon = () => {
     const audio = audioElemRef.current;
     if (!audio) return;
 
@@ -58,14 +55,19 @@ function CarteJeu({ carte, mode, onReponse }) {
       return;
     }
 
-    const url = await fetchSon();
+    const url = SONS_OISEAUX[carte.id];
     if (!url) return;
 
-    audio.src = url;
-    audio.load();
+    if (!sonUrl) {
+      setSonUrl(url);
+      audio.src = url;
+      audio.load();
+    }
+
+    setLoadingSon(true);
     audio.play()
-      .then(() => setIsPlaying(true))
-      .catch(() => setIsPlaying(false));
+      .then(() => { setIsPlaying(true); setLoadingSon(false); })
+      .catch(() => { setIsPlaying(false); setLoadingSon(false); });
   };
 
   const hasSon = carte.categorie === 'Oiseau';
