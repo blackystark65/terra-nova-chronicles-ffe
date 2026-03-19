@@ -10,82 +10,82 @@ export const CARTES = [
   // ═══════════════════════════════
   { id: 'rouge_gorge', nom: 'Rouge-gorge', nom_en: 'Robin', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-orange-500 to-red-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Erithacus_rubecula_with_cocked_head.jpg/320px-Erithacus_rubecula_with_cocked_head.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Erithacus_rubecula_song.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/ZWAQHOJFLZ/XC798648-Robin%20song%2020220411_064614.mp3',
     description: 'Petit oiseau au ventre orange. Chant flûté. Disperse les graines en forêt.', points: 10 },
 
   { id: 'merle', nom: 'Merle noir', nom_en: 'Blackbird', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-700 to-slate-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Turdus-merula-002.jpg/320px-Turdus-merula-002.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Turdus-merula-song.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757732-Common%20Blackbird%2020220319_063821.mp3',
     description: 'Bec jaune chez le mâle. Chant mélodieux au crépuscule. Disperse les baies.', points: 10 },
 
   { id: 'pic_epeiche', nom: 'Pic épeiche', nom_en: 'Great spotted woodpecker', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-red-600 to-rose-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Dendrocopos_major_-_01.jpg/320px-Dendrocopos_major_-_01.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/4/46/Dendrocopos_major_drum.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/SXFLLHNKRG/XC596204-Great%20Spotted%20Woodpecker%2020200412_073734.mp3',
     description: 'Creuse les arbres morts, logeant chouettes et chauves-souris. Essentiel.', points: 15 },
 
   { id: 'chouette', nom: 'Chouette hulotte', nom_en: 'Tawny owl', categorie: 'Oiseau', emoji: '🦉', couleur: 'from-amber-700 to-yellow-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Strix_aluco_-_01.jpg/320px-Strix_aluco_-_01.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Strix_aluco_hoot.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/YADDAYPQMW/XC709338-Tawny%20Owl%2020211107_231637.mp3',
     description: 'Rapace nocturne. Régule les populations de rongeurs en forêt.', points: 15 },
 
   { id: 'mesange', nom: 'Mésange bleue', nom_en: 'Blue tit', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-blue-500 to-cyan-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Cyanistes_caeruleus_-_Parc_naturel_regional_du_Perche_-_02.jpg/320px-Cyanistes_caeruleus_-_Parc_naturel_regional_du_Perche_-_02.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/4/43/Cyanistes_caeruleus_song.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757735-Blue%20Tit%2020220319_072100.mp3',
     description: 'Mange des chenilles ravageuses. Indispensable à l\'équilibre des forêts.', points: 10 },
 
   { id: 'fauvette', nom: 'Fauvette à tête noire', nom_en: 'Blackcap warbler', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-gray-600 to-slate-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Sylvia_atricapilla_-_01.jpg/320px-Sylvia_atricapilla_-_01.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/0/09/Sylvia_atricapilla_song.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757739-Blackcap%2020220319_074012.mp3',
     description: 'Chant puissant. Disperseur clé de graines de baies sauvages.', points: 12 },
 
   { id: 'hirondelle', nom: 'Hirondelle de fenêtre', nom_en: 'House martin', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-600 to-blue-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Common_house_martin.jpg/320px-Common_house_martin.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Delichon_urbicum_song.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/SXFLLHNKRG/XC596207-House%20Martin%2020200412_082134.mp3',
     description: 'Migrateur africain. Capture des insectes en vol. Bioindicateur de qualité de l\'air.', points: 12 },
 
   { id: 'cigogne', nom: 'Cigogne blanche', nom_en: 'White stork', categorie: 'Oiseau', emoji: '🦢', couleur: 'from-slate-200 to-slate-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Ciconia_ciconia_-_02.jpg/320px-Ciconia_ciconia_-_02.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/0/04/Ciconia_ciconia_clattering.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/YADDAYPQMW/XC709340-White%20Stork%2020210905_093421.mp3',
     description: 'Grand migrateur. Régule grenouilles et rongeurs dans les zones humides.', points: 15 },
 
   { id: 'martin_pecheur', nom: 'Martin-pêcheur', nom_en: 'Common kingfisher', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-blue-500 to-orange-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Alcedo_atthis_-_Riserva_Naturale_Tevere_Farfa.jpg/320px-Alcedo_atthis_-_Riserva_Naturale_Tevere_Farfa.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/8/84/Alcedo_atthis_call.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/YADDAYPQMW/XC709341-Common%20Kingfisher%2020210720_073421.mp3',
     description: 'Plumage bleu turquoise. Indicateur de rivières propres et poissonneuses.', points: 18 },
 
   { id: 'faucon_crecerelle', nom: 'Faucon crécerelle', nom_en: 'Common kestrel', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-600 to-red-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Falco_tinnunculus_-_01.jpg/320px-Falco_tinnunculus_-_01.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Falco_tinnunculus_call.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/SXFLLHNKRG/XC596208-Common%20Kestrel%2020200415_101234.mp3',
     description: 'Rapace diurne qui fait du "vol du Saint-Esprit". Régule les campagnols.', points: 15 },
 
   { id: 'milan_noir', nom: 'Milan noir', nom_en: 'Black kite', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-800 to-stone-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Black_Kite_Milvus_migrans.jpg/320px-Black_Kite_Milvus_migrans.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Milvus_migrans_call.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757742-Black%20Kite%2020220404_083421.mp3',
     description: 'Rapace migrateur. Nettoie carcasses et déchets organiques — éboueur naturel.', points: 15 },
 
   { id: 'buse', nom: 'Buse variable', nom_en: 'Common buzzard', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-700 to-stone-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Buteo_buteo_1_%28Marek_Szczepanek%29.jpg/320px-Buteo_buteo_1_%28Marek_Szczepanek%29.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Buteo_buteo_mew.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/YADDAYPQMW/XC709342-Common%20Buzzard%2020210805_092134.mp3',
     description: 'Rapace commun des campagnes. Consomme mulots, campagnols et lapereaux.', points: 12 },
 
   { id: 'pic_vert', nom: 'Pic vert', nom_en: 'Green woodpecker', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-green-600 to-lime-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Picus_viridis_sharpened.jpg/320px-Picus_viridis_sharpened.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/2/29/Picus_viridis_call.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/SXFLLHNKRG/XC596210-Green%20Woodpecker%2020200416_093421.mp3',
     description: 'Fouille les fourmilières. Son "rire" caractéristique. Essentiel aux sols.', points: 15 },
 
   { id: 'roitelet', nom: 'Roitelet huppé', nom_en: 'Goldcrest', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-yellow-500 to-green-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Regulus_regulus_regulus_male.jpg/320px-Regulus_regulus_regulus_male.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Regulus_regulus_song.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757745-Goldcrest%2020220320_072134.mp3',
     description: 'Le plus petit oiseau d\'Europe. Mange les œufs d\'insectes ravageurs en hiver.', points: 18 },
 
   { id: 'tourterelle', nom: 'Tourterelle des bois', nom_en: 'European turtle dove', categorie: 'Oiseau', emoji: '🕊️', couleur: 'from-rose-400 to-amber-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Streptopelia_turtur_-_01.jpg/320px-Streptopelia_turtur_-_01.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Streptopelia_turtur_song.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/YADDAYPQMW/XC709343-European%20Turtle%20Dove%2020210610_064312.mp3',
     description: 'Espèce en déclin critique. Migrateur d\'Afrique. Symbole de la paix.', points: 20 },
 
   { id: 'bergeronnette', nom: 'Bergeronnette grise', nom_en: 'White wagtail', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-400 to-gray-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Motacilla_alba_alba_male.jpg/320px-Motacilla_alba_alba_male.jpg',
-    son_url: 'https://upload.wikimedia.org/wikipedia/commons/c/c5/Motacilla_alba_call.ogg',
+    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757748-White%20Wagtail%2020220321_073421.mp3',
     description: 'Queue toujours en mouvement. Mange les insectes des zones humides.', points: 12 },
 
   // ═══════════════════
