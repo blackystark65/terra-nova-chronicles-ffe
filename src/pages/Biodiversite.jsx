@@ -526,7 +526,7 @@ export default function BiodiversitePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-3">
                   <div className="text-white text-xs font-bold">{carte.nom}</div>
-                  <div className="text-white/60 text-[10px]">{carte.categorie}</div>
+                  <div className="text-cyan-300/80 text-[10px] italic">{carte.nom_en}</div>
                   {carte.son && <Volume2 className="w-3 h-3 text-cyan-400 mt-1" />}
                 </div>
                 <div className="absolute top-2 right-2 text-lg">{carte.emoji}</div>
