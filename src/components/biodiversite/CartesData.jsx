@@ -70,7 +70,7 @@ export const CARTES = [
 
   { id: 'pic_vert', nom: 'Pic vert', nom_en: 'Green woodpecker', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-green-600 to-lime-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Picus_viridis_sharpened.jpg/320px-Picus_viridis_sharpened.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/SXFLLHNKRG/XC596210-Green%20Woodpecker%2020200416_093421.mp3',
+    son_url: null,
     description: 'Fouille les fourmilières. Son "rire" caractéristique. Essentiel aux sols.', points: 15 },
 
   { id: 'roitelet', nom: 'Roitelet huppé', nom_en: 'Goldcrest', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-yellow-500 to-green-600',
