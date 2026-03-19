@@ -138,7 +138,7 @@ function CarteJeu({ carte, mode, onReponse }) {
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && inputVal.length >= 2 && valider()}
-              placeholder={`Nom FR ou EN — ex: ${carte.nom_en || carte.nom}`}
+              placeholder="Tape le nom en français ou anglais..."
               disabled={etat !== null}
               className={`flex-1 px-4 py-3 rounded-xl bg-white/20 border-2 text-white placeholder-white/50 outline-none text-sm font-medium transition-all ${
                 etat === 'correct' ? 'border-green-300 bg-green-500/30' :
