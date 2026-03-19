@@ -12,25 +12,22 @@ function CarteJeu({ carte, mode, onReponse }) {
   const [inputVal, setInputVal] = useState('');
   const [etat, setEtat] = useState(null); // 'correct' | 'faux'
   const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = React.useRef(null);
 
-  useEffect(() => { setInputVal(''); setEtat(null); setIsPlaying(false); }, [carte.id]);
+  useEffect(() => {
+    setInputVal(''); setEtat(null); setIsPlaying(false);
+    if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
+  }, [carte.id]);
 
   const jouerSon = () => {
-    if (!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
+    if (!carte.son_url) return;
+    if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; setIsPlaying(false); return; }
+    const audio = new Audio(carte.son_url);
+    audioRef.current = audio;
     setIsPlaying(true);
-    const utterance = new SpeechSynthesisUtterance(carte.son_desc);
-    utterance.lang = 'en-GB';
-    utterance.rate = 0.85;
-    utterance.pitch = 1.1;
-    utterance.volume = 1;
-    // Choisir une voix anglaise si disponible
-    const voices = window.speechSynthesis.getVoices();
-    const enVoice = voices.find(v => v.lang.startsWith('en'));
-    if (enVoice) utterance.voice = enVoice;
-    utterance.onend = () => setIsPlaying(false);
-    utterance.onerror = () => setIsPlaying(false);
-    window.speechSynthesis.speak(utterance);
+    audio.play();
+    audio.onended = () => { setIsPlaying(false); audioRef.current = null; };
+    audio.onerror = () => { setIsPlaying(false); audioRef.current = null; };
   };
 
   const normalise = (str) =>
