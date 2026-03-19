@@ -85,7 +85,7 @@ export const CARTES = [
 
   { id: 'bergeronnette', nom: 'Bergeronnette grise', nom_en: 'White wagtail', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-400 to-gray-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Motacilla_alba_alba_male.jpg/320px-Motacilla_alba_alba_male.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/PVBHARMOXA/XC757748-White%20Wagtail%2020220321_073421.mp3',
+    son_url: null,
     description: 'Queue toujours en mouvement. Mange les insectes des zones humides.', points: 12 },
 
   // ═══════════════════
