@@ -10,82 +10,82 @@ export const CARTES = [
   // ═══════════════════════════════
   { id: 'rouge_gorge', nom: 'Rouge-gorge', nom_en: 'Robin', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-orange-500 to-red-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Erithacus_rubecula_with_cocked_head.jpg/320px-Erithacus_rubecula_with_cocked_head.jpg',
-    son_desc: 'Robin song, melodious flute-like warbling tweet tweet tweetle',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Erithacus_rubecula_song.ogg',
     description: 'Petit oiseau au ventre orange. Chant flûté. Disperse les graines en forêt.', points: 10 },
 
   { id: 'merle', nom: 'Merle noir', nom_en: 'Blackbird', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-700 to-slate-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Turdus-merula-002.jpg/320px-Turdus-merula-002.jpg',
-    son_desc: 'Blackbird rich melodious flute song, tchink tchink alarm call',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Turdus-merula-song.ogg',
     description: 'Bec jaune chez le mâle. Chant mélodieux au crépuscule. Disperse les baies.', points: 10 },
 
   { id: 'pic_epeiche', nom: 'Pic épeiche', nom_en: 'Great spotted woodpecker', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-red-600 to-rose-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Dendrocopos_major_-_01.jpg/320px-Dendrocopos_major_-_01.jpg',
-    son_desc: 'Woodpecker drumming on tree, rapid drum roll on bark, kick kick call',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/4/46/Dendrocopos_major_drum.ogg',
     description: 'Creuse les arbres morts, logeant chouettes et chauves-souris. Essentiel.', points: 15 },
 
   { id: 'chouette', nom: 'Chouette hulotte', nom_en: 'Tawny owl', categorie: 'Oiseau', emoji: '🦉', couleur: 'from-amber-700 to-yellow-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Strix_aluco_-_01.jpg/320px-Strix_aluco_-_01.jpg',
-    son_desc: 'Tawny owl hooting at night, hooo hooo, ke-wick ke-wick',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/2/25/Strix_aluco_hoot.ogg',
     description: 'Rapace nocturne. Régule les populations de rongeurs en forêt.', points: 15 },
 
   { id: 'mesange', nom: 'Mésange bleue', nom_en: 'Blue tit', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-blue-500 to-cyan-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Cyanistes_caeruleus_-_Parc_naturel_regional_du_Perche_-_02.jpg/320px-Cyanistes_caeruleus_-_Parc_naturel_regional_du_Perche_-_02.jpg',
-    son_desc: 'Blue tit high pitched tsee tsee tsee, tsi si si si si trill',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/4/43/Cyanistes_caeruleus_song.ogg',
     description: 'Mange des chenilles ravageuses. Indispensable à l\'équilibre des forêts.', points: 10 },
 
   { id: 'fauvette', nom: 'Fauvette à tête noire', nom_en: 'Blackcap warbler', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-gray-600 to-slate-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Sylvia_atricapilla_-_01.jpg/320px-Sylvia_atricapilla_-_01.jpg',
-    son_desc: 'Blackcap warbler loud rich varied song, beautiful flute melody',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/0/09/Sylvia_atricapilla_song.ogg',
     description: 'Chant puissant. Disperseur clé de graines de baies sauvages.', points: 12 },
 
   { id: 'hirondelle', nom: 'Hirondelle de fenêtre', nom_en: 'House martin', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-600 to-blue-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Common_house_martin.jpg/320px-Common_house_martin.jpg',
-    son_desc: 'House martin chirping twitter, soft prrit prrit call in flight',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Delichon_urbicum_song.ogg',
     description: 'Migrateur africain. Capture des insectes en vol. Bioindicateur de qualité de l\'air.', points: 12 },
 
-  { id: 'cigogne', nom: 'Cigogne blanche', nom_en: 'White stork', categorie: 'Oiseau', emoji: '🦢', couleur: 'from-white/30 to-slate-600',
+  { id: 'cigogne', nom: 'Cigogne blanche', nom_en: 'White stork', categorie: 'Oiseau', emoji: '🦢', couleur: 'from-slate-200 to-slate-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Ciconia_ciconia_-_02.jpg/320px-Ciconia_ciconia_-_02.jpg',
-    son_desc: 'White stork bill clattering, loud clatter clack clack clack',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/0/04/Ciconia_ciconia_clattering.ogg',
     description: 'Grand migrateur. Régule grenouilles et rongeurs dans les zones humides.', points: 15 },
 
   { id: 'martin_pecheur', nom: 'Martin-pêcheur', nom_en: 'Common kingfisher', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-blue-500 to-orange-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Alcedo_atthis_-_Riserva_Naturale_Tevere_Farfa.jpg/320px-Alcedo_atthis_-_Riserva_Naturale_Tevere_Farfa.jpg',
-    son_desc: 'Kingfisher sharp high whistle, shrill tee tee tee along river',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/8/84/Alcedo_atthis_call.ogg',
     description: 'Plumage bleu turquoise. Indicateur de rivières propres et poissonneuses.', points: 18 },
 
   { id: 'faucon_crecerelle', nom: 'Faucon crécerelle', nom_en: 'Common kestrel', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-600 to-red-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Falco_tinnunculus_-_01.jpg/320px-Falco_tinnunculus_-_01.jpg',
-    son_desc: 'Kestrel kee kee kee loud shrieking call in flight',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Falco_tinnunculus_call.ogg',
     description: 'Rapace diurne qui fait du "vol du Saint-Esprit". Régule les campagnols.', points: 15 },
 
-  { id: 'milan_noir', nom: 'Milan noir', nom_en: 'Black kite', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-800 to-brown-900',
+  { id: 'milan_noir', nom: 'Milan noir', nom_en: 'Black kite', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-800 to-stone-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Black_Kite_Milvus_migrans.jpg/320px-Black_Kite_Milvus_migrans.jpg',
-    son_desc: 'Black kite whinnying call, weeoo weeoo descending whistle',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Milvus_migrans_call.ogg',
     description: 'Rapace migrateur. Nettoie carcasses et déchets organiques — éboueur naturel.', points: 15 },
 
   { id: 'buse', nom: 'Buse variable', nom_en: 'Common buzzard', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-700 to-stone-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Buteo_buteo_1_%28Marek_Szczepanek%29.jpg/320px-Buteo_buteo_1_%28Marek_Szczepanek%29.jpg',
-    son_desc: 'Buzzard mewing call, pee-oo pee-oo mewing cat-like cry',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Buteo_buteo_mew.ogg',
     description: 'Rapace commun des campagnes. Consomme mulots, campagnols et lapereaux.', points: 12 },
 
   { id: 'pic_vert', nom: 'Pic vert', nom_en: 'Green woodpecker', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-green-600 to-lime-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Picus_viridis_sharpened.jpg/320px-Picus_viridis_sharpened.jpg',
-    son_desc: 'Green woodpecker laughing call, yaffling keu keu keu laugh',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/2/29/Picus_viridis_call.ogg',
     description: 'Fouille les fourmilières. Son "rire" caractéristique. Essentiel aux sols.', points: 15 },
 
   { id: 'roitelet', nom: 'Roitelet huppé', nom_en: 'Goldcrest', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-yellow-500 to-green-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Regulus_regulus_regulus_male.jpg/320px-Regulus_regulus_regulus_male.jpg',
-    son_desc: 'Goldcrest very high thin seeee seeee si si si si call',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Regulus_regulus_song.ogg',
     description: 'Le plus petit oiseau d\'Europe. Mange les œufs d\'insectes ravageurs en hiver.', points: 18 },
 
   { id: 'tourterelle', nom: 'Tourterelle des bois', nom_en: 'European turtle dove', categorie: 'Oiseau', emoji: '🕊️', couleur: 'from-rose-400 to-amber-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Streptopelia_turtur_-_01.jpg/320px-Streptopelia_turtur_-_01.jpg',
-    son_desc: 'Turtle dove purring turr turr turr soft cooing',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Streptopelia_turtur_song.ogg',
     description: 'Espèce en déclin critique. Migrateur d\'Afrique. Symbole de la paix.', points: 20 },
 
   { id: 'bergeronnette', nom: 'Bergeronnette grise', nom_en: 'White wagtail', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-400 to-gray-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Motacilla_alba_alba_male.jpg/320px-Motacilla_alba_alba_male.jpg',
-    son_desc: 'White wagtail sharp chissick call, tsit tsit in flight',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/c/c5/Motacilla_alba_call.ogg',
     description: 'Queue toujours en mouvement. Mange les insectes des zones humides.', points: 12 },
 
   // ═══════════════════
@@ -93,37 +93,37 @@ export const CARTES = [
   // ═══════════════════
   { id: 'renard', nom: 'Renard roux', nom_en: 'Red fox', categorie: 'Mammifère', emoji: '🦊', couleur: 'from-orange-600 to-red-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Rotfuchs_2.jpg/320px-Rotfuchs_2.jpg',
-    son_desc: 'Red fox barking at night, high pitched screaming bark, yap yap',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Vulpes_vulpes_call.ogg',
     description: 'Régulateur de rongeurs et lapins. Disperse des graines en mangeant des fruits.', points: 10 },
 
   { id: 'chevreuil', nom: 'Chevreuil', nom_en: 'Roe deer', categorie: 'Mammifère', emoji: '🦌', couleur: 'from-amber-600 to-orange-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Capreolus_capreolus_2_%28Kees_Vegelin%29.jpg/320px-Capreolus_capreolus_2_%28Kees_Vegelin%29.jpg',
-    son_desc: 'Roe deer sharp barking alarm call, bark bark in forest',
+    son_url: null,
     description: 'Petit cervidé qui broute et taille naturellement la végétation forestière.', points: 12 },
 
   { id: 'herisson', nom: 'Hérisson', nom_en: 'Hedgehog', categorie: 'Mammifère', emoji: '🦔', couleur: 'from-yellow-700 to-amber-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Erinaceus_europaeus_LC0119.jpg/320px-Erinaceus_europaeus_LC0119.jpg',
-    son_desc: 'Hedgehog snuffling and snorting at night, grunt grunt in leaves',
+    son_url: null,
     description: 'Consomme limaces, escargots et insectes. Allié précieux du jardinier.', points: 10 },
 
   { id: 'blaireau', nom: 'Blaireau', nom_en: 'Badger', categorie: 'Mammifère', emoji: '🦡', couleur: 'from-gray-600 to-zinc-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/European_badger.jpg/320px-European_badger.jpg',
-    son_desc: 'Badger growling and churring at night, low growl kecker kecker call',
+    son_url: null,
     description: 'Fouisseur qui aère le sol. Mange les vers de terre et régule les terriers.', points: 15 },
 
   { id: 'chauve_souris', nom: 'Chauve-souris commune', nom_en: 'Common pipistrelle', categorie: 'Mammifère', emoji: '🦇', couleur: 'from-purple-800 to-indigo-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Pipistrellus_pipistrellus.jpg/320px-Pipistrellus_pipistrellus.jpg',
-    son_desc: 'Bat echolocation ultrasonic clicks, rapid clicking squeaks at dusk',
+    son_url: null,
     description: 'Mange 3000 moustiques par nuit ! Pollinise certaines fleurs nocturnes.', points: 15 },
 
   { id: 'ecureuil', nom: 'Écureuil roux', nom_en: 'Red squirrel', categorie: 'Mammifère', emoji: '🐿️', couleur: 'from-red-600 to-amber-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Sciurus_vulgaris_Variable_Motor_Glasgow.jpg/320px-Sciurus_vulgaris_Variable_Motor_Glasgow.jpg',
-    son_desc: 'Red squirrel chattering alarm, chuk chuk chuk rapid staccato call',
+    son_url: null,
     description: 'Enterre des glands et noisettes oubliés — plante ainsi de futurs chênes !', points: 12 },
 
   { id: 'loutre', nom: 'Loutre d\'Europe', nom_en: 'European otter', categorie: 'Mammifère', emoji: '🦦', couleur: 'from-amber-800 to-stone-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/European_otter_%28Lutra_lutra%29.jpg/320px-European_otter_%28Lutra_lutra%29.jpg',
-    son_desc: 'Otter whistling call, short sharp whistle, piping contact call',
+    son_url: null,
     description: 'Indicateur de rivières propres. Régule les poissons et amphibiens.', points: 18 },
 
   // ═══════════════════
@@ -131,7 +131,7 @@ export const CARTES = [
   // ═══════════════════
   { id: 'grenouille', nom: 'Grenouille verte', nom_en: 'Green frog', categorie: 'Batracien', emoji: '🐸', couleur: 'from-green-500 to-emerald-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Rana_esculenta_-_Naaldwijk.jpg/320px-Rana_esculenta_-_Naaldwijk.jpg',
-    son_desc: 'Frog croaking loudly, ribbit ribbit, chorus of frogs in pond at night',
+    son_url: 'https://upload.wikimedia.org/wikipedia/commons/0/09/Rana_ridibunda.ogg',
     description: 'Bioindicateur de la santé des zones humides. Mange moustiques et insectes.', points: 10 },
 
   { id: 'salamandre', nom: 'Salamandre tachetée', nom_en: 'Fire salamander', categorie: 'Batracien', emoji: '🦎', couleur: 'from-yellow-500 to-slate-900',
