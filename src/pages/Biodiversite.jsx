@@ -284,7 +284,7 @@ export default function BiodiversitePage() {
   };
 
   const getModeEffectif = (carte) => {
-    if (modeJeu === 'mixte') return carte.son_url ? 'son' : 'image';
+    if (modeJeu === 'mixte') return carte.categorie === 'Oiseau' ? 'son' : 'image';
     return modeJeu;
   };
 
