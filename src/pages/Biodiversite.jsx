@@ -338,7 +338,7 @@ export default function BiodiversitePage() {
               Forêt Européenne
             </h1>
             <p className="text-emerald-300/70 text-lg max-w-2xl mx-auto">
-              Reconnais les espèces par leurs sons ou leur apparence. Oiseaux, mammifères, batraciens, insectes, fleurs et plantes sauvages.
+              80+ espèces d'Europe. Oiseaux, mammifères, batraciens, reptiles, insectes, fleurs sauvages, arbustes, arbres fruitiers et plantes aromatiques.
             </p>
           </motion.div>
 
