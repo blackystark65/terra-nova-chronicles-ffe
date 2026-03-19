@@ -141,22 +141,22 @@ export const CARTES = [
 
   { id: 'triton', nom: 'Triton alpestre', nom_en: 'Alpine newt', categorie: 'Batracien', emoji: '🦎', couleur: 'from-blue-600 to-indigo-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Ichthyosaura_alpestris_male_%28Luc_Viatour%29.jpg/320px-Ichthyosaura_alpestris_male_%28Luc_Viatour%29.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Se reproduit dans les mares propres et fraîches. Ventre orange caractéristique.', points: 20 },
 
   { id: 'lezard', nom: 'Lézard vert', nom_en: 'Green lizard', categorie: 'Reptile', emoji: '🦎', couleur: 'from-lime-500 to-green-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Lacerta_viridis_male_%28Luc_Viatour%29.jpg/320px-Lacerta_viridis_male_%28Luc_Viatour%29.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Régule les insectes des lisières. Indicateur de milieux chauds et ensoleillés.', points: 12 },
 
   { id: 'orvet', nom: 'Orvet fragile', nom_en: 'Slow worm', categorie: 'Reptile', emoji: '🐍', couleur: 'from-amber-500 to-yellow-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Anguis_fragilis.jpg/320px-Anguis_fragilis.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Lézard sans pattes inoffensif. Mange limaces et vers — ami du compost !', points: 15 },
 
   { id: 'couleuvre', nom: 'Couleuvre à collier', nom_en: 'Grass snake', categorie: 'Reptile', emoji: '🐍', couleur: 'from-green-700 to-emerald-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Natrix_natrix_2_%28Piotr_Kuczynski%29.jpg/320px-Natrix_natrix_2_%28Piotr_Kuczynski%29.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Serpent non venimeux. Excellent nageur, régule grenouilles et petits rongeurs.', points: 15 },
 
   // ═══════════════════
@@ -174,22 +174,22 @@ export const CARTES = [
 
   { id: 'papillon_paon', nom: 'Paon du jour', nom_en: 'Peacock butterfly', categorie: 'Insecte', emoji: '🦋', couleur: 'from-red-600 to-purple-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Aglais_io_top.jpg/320px-Aglais_io_top.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Papillon aux ocelles en forme d\'yeux. Se nourrit des fleurs de l\'ortie.', points: 12 },
 
   { id: 'papillon_monarque', nom: 'Vulcain', nom_en: 'Red admiral butterfly', categorie: 'Insecte', emoji: '🦋', couleur: 'from-red-700 to-slate-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Vanessa_atalanta_Mietesheim.jpg/320px-Vanessa_atalanta_Mietesheim.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Migrateur partiel. Pollinisateur des lilas et orties. Apparaît en automne.', points: 15 },
 
   { id: 'coccinelle', nom: 'Coccinelle à 7 points', nom_en: 'Seven-spot ladybird', categorie: 'Insecte', emoji: '🐞', couleur: 'from-red-500 to-red-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Coccinella_septempunctata01.jpg/320px-Coccinella_septempunctata01.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Mange 150 pucerons par jour. Alliée essentielle des agriculteurs bio.', points: 10 },
 
   { id: 'libellule', nom: 'Libellule bleue', nom_en: 'Azure damselfly', categorie: 'Insecte', emoji: '🪲', couleur: 'from-blue-500 to-cyan-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Coenagrion_puella_male_%28aka%29.jpg/320px-Coenagrion_puella_male_%28aka%29.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Prédatrice de moustiques à tous les stades. Indicatrice de zones humides saines.', points: 12 },
 
   // ═══════════════════
@@ -197,42 +197,42 @@ export const CARTES = [
   // ═══════════════════
   { id: 'coquelicot', nom: 'Coquelicot', nom_en: 'Poppy', categorie: 'Fleur', emoji: '🌺', couleur: 'from-red-500 to-rose-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Poppies_in_Flanders_Fields.jpg/320px-Poppies_in_Flanders_Fields.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Indicateur de sol argilo-calcaire perturbé. Nourrit abeilles et papillons.', points: 8 },
 
   { id: 'pissenlit', nom: 'Pissenlit', nom_en: 'Dandelion', categorie: 'Fleur', emoji: '🌼', couleur: 'from-yellow-400 to-yellow-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Taraxacum_officinale_-_Koeh-183.jpg/320px-Taraxacum_officinale_-_Koeh-183.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Première source de pollen au printemps pour les abeilles. Feuilles comestibles.', points: 8 },
 
   { id: 'primevere', nom: 'Primevère officinale', nom_en: 'Cowslip', categorie: 'Fleur', emoji: '🌼', couleur: 'from-yellow-400 to-amber-500',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Primula_veris_flowers.jpg/320px-Primula_veris_flowers.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Première fleur du printemps. Hôte du papillon Azuré. Fleurs médicinales.', points: 12 },
 
   { id: 'violette', nom: 'Violette odorante', nom_en: 'Sweet violet', categorie: 'Fleur', emoji: '💜', couleur: 'from-violet-500 to-purple-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/ViolettaOdorata.jpg/320px-ViolettaOdorata.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Parfum délicat. Hôte de chenilles de fritillaires. Comestible en salade.', points: 10 },
 
   { id: 'bourrache', nom: 'Bourrache officinale', nom_en: 'Borage', categorie: 'Fleur', emoji: '🌸', couleur: 'from-blue-400 to-indigo-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Borago_officinalis_flower.jpg/320px-Borago_officinalis_flower.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Fleurs bleues comestibles. Attire bourdons et abeilles. Compagne idéale des tomates.', points: 12 },
 
   { id: 'millepertuis', nom: 'Millepertuis perforé', nom_en: 'St John\'s wort', categorie: 'Fleur', emoji: '🌼', couleur: 'from-yellow-500 to-orange-500',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Hypericum_perforatum_flowers.jpg/320px-Hypericum_perforatum_flowers.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Plante médicinale aux fleurs jaunes. Refuge de nombreux insectes pollinisateurs.', points: 12 },
 
   { id: 'valerian', nom: 'Valériane officinale', nom_en: 'Common valerian', categorie: 'Fleur', emoji: '🌸', couleur: 'from-pink-400 to-rose-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Valeriana_officinalis_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-279.jpg/320px-Valeriana_officinalis_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-279.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Attire irrésistiblement les chats et les papillons. Racines médicinales sédatives.', points: 12 },
 
   { id: 'caillou_blanc', nom: 'Marguerite commune', nom_en: 'Oxeye daisy', categorie: 'Fleur', emoji: '🌼', couleur: 'from-white/20 to-yellow-500',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Leucanthemum_vulgare_%28Marguerite%29.jpg/320px-Leucanthemum_vulgare_%28Marguerite%29.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Prairie fleurie. Nourrit guêpes, abeilles et syrphes pollinisateurs.', points: 8 },
 
   // ═══════════════════
@@ -240,47 +240,47 @@ export const CARTES = [
   // ═══════════════════
   { id: 'sureau', nom: 'Sureau noir', nom_en: 'Elderberry', categorie: 'Arbuste', emoji: '🌳', couleur: 'from-purple-600 to-indigo-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Sambucus_nigra_003.jpg/320px-Sambucus_nigra_003.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Arbuste mellifère. Fleurs et baies comestibles. Refuge pour 50 espèces d\'insectes.', points: 12 },
 
   { id: 'aubepine', nom: 'Aubépine', nom_en: 'Hawthorn', categorie: 'Arbuste', emoji: '🌳', couleur: 'from-rose-500 to-red-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Crataegus_monogyna_flowers.jpg/320px-Crataegus_monogyna_flowers.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Épines protègent oiseaux nicheurs. Baies rouges nourrissent merles et grives en hiver.', points: 12 },
 
   { id: 'prunellier', nom: 'Prunellier', nom_en: 'Blackthorn', categorie: 'Arbuste', emoji: '🌳', couleur: 'from-slate-700 to-purple-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Prunus_spinosa_flowers.jpg/320px-Prunus_spinosa_flowers.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Premier à fleurir avant les feuilles. Prunelles pour le gin et gelées. Refuge à insectes.', points: 12 },
 
   { id: 'noisetier', nom: 'Noisetier commun', nom_en: 'Common hazel', categorie: 'Arbuste', emoji: '🌰', couleur: 'from-amber-600 to-brown-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Corylus_avellana_002.jpg/320px-Corylus_avellana_002.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Noisettes pour écureuils et geais. Pollinisation par le vent dès janvier.', points: 12 },
 
   { id: 'myrtille', nom: 'Myrtille', nom_en: 'Bilberry', categorie: 'Arbuste', emoji: '🫐', couleur: 'from-indigo-600 to-purple-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Vaccinium_myrtillus.jpg/320px-Vaccinium_myrtillus.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Sous-arbuste des forêts acides. Baies riches en antioxydants. Nourriture de gelinottes.', points: 12 },
 
   { id: 'framboisier', nom: 'Framboisier', nom_en: 'Raspberry', categorie: 'Arbuste', emoji: '🍓', couleur: 'from-pink-600 to-red-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Framboise_r.jpg/320px-Framboise_r.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Colonise les clairières forestières. Baies adorées des oiseaux et des ours.', points: 10 },
 
   { id: 'ronce', nom: 'Ronce commune', nom_en: 'Blackberry', categorie: 'Arbuste', emoji: '🫐', couleur: 'from-slate-800 to-purple-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Blackberry_flowers_arp.jpg/320px-Blackberry_flowers_arp.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Mûres essentielles pour oiseaux migrateurs en automne. Épines protègent nids.', points: 10 },
 
   { id: 'genêt', nom: 'Genêt à balais', nom_en: 'Broom', categorie: 'Arbuste', emoji: '🌿', couleur: 'from-yellow-500 to-green-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Cytisus_scoparius_close.jpg/320px-Cytisus_scoparius_close.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Fixe l\'azote dans le sol pauvre. Fleurs mellifères. Habitat de la fauvette.', points: 15 },
 
   { id: 'viorne', nom: 'Viorne obier', nom_en: 'Guelder rose', categorie: 'Arbuste', emoji: '🌸', couleur: 'from-white/20 to-green-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Snowball_tree_%28Viburnum_opulus%29.jpg/320px-Snowball_tree_%28Viburnum_opulus%29.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Baies rouges en grappes. Nourrit les merles et listes en hiver. Fleurs en couronne.', points: 12 },
 
   // ═══════════════════
@@ -288,42 +288,42 @@ export const CARTES = [
   // ═══════════════════
   { id: 'chene', nom: 'Chêne pédonculé', nom_en: 'English oak', categorie: 'Arbre', emoji: '🌳', couleur: 'from-amber-700 to-green-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Quercus_robur_%28Eiche%29.jpg/320px-Quercus_robur_%28Eiche%29.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Roi des forêts. Abrite 500 espèces d\'insectes. Les glands nourrissent sangliers et geais.', points: 15 },
 
   { id: 'hetre', nom: 'Hêtre commun', nom_en: 'European beech', categorie: 'Arbre', emoji: '🌳', couleur: 'from-green-700 to-emerald-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Fagus_sylvatica_%28Zell_am_See%29.jpg/320px-Fagus_sylvatica_%28Zell_am_See%29.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Faînes riches en lipides, nourriture des geais et pinsons. Bois mort refuge à insectes.', points: 15 },
 
   { id: 'merisier', nom: 'Merisier', nom_en: 'Wild cherry', categorie: 'Arbre', emoji: '🍒', couleur: 'from-red-500 to-rose-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Prunus_avium_flowers.jpg/320px-Prunus_avium_flowers.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Cerisier sauvage. Fleurs nectarifères printanières. Cerises pour merles et fauvettes.', points: 12 },
 
   { id: 'pommier_sauvage', nom: 'Pommier sauvage', nom_en: 'Crab apple', categorie: 'Arbre', emoji: '🍎', couleur: 'from-red-400 to-green-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Apple_tree_blossoms.jpg/320px-Apple_tree_blossoms.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Pollinisateur des pommiers cultivés. Petites pommes sauvages pour la gelée.', points: 12 },
 
   { id: 'alisier', nom: 'Alisier blanc', nom_en: 'Whitebeam', categorie: 'Arbre', emoji: '🌳', couleur: 'from-green-500 to-slate-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Sorbus_aria_2006-04-25.jpg/320px-Sorbus_aria_2006-04-25.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Baies orangées pour oiseaux migrateurs. Résiste aux sols calcaires secs.', points: 15 },
 
   { id: 'frene', nom: 'Frêne commun', nom_en: 'Common ash', categorie: 'Arbre', emoji: '🌳', couleur: 'from-gray-500 to-green-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Fraxinus_excelsior_%28Gemeine_Esche%29_%281%29.jpg/320px-Fraxinus_excelsior_%28Gemeine_Esche%29_%281%29.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Bois élastique traditionnel. Graines (samares) nourrissent mésanges en hiver.', points: 12 },
 
   { id: 'tilleul', nom: 'Tilleul à grandes feuilles', nom_en: 'Large-leaved lime', categorie: 'Arbre', emoji: '🌳', couleur: 'from-yellow-400 to-green-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Tilia_platyphyllos_flowers_1.jpg/320px-Tilia_platyphyllos_flowers_1.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Fleurs mellifères par excellence. Le bourdonnement des abeilles l\'enveloppe en juillet.', points: 12 },
 
   { id: 'poirier_sauvage', nom: 'Poirier sauvage', nom_en: 'Wild pear', categorie: 'Arbre', emoji: '🍐', couleur: 'from-green-500 to-yellow-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pyrus_communis_subsp_pyraster_flowers_2.jpg/320px-Pyrus_communis_subsp_pyraster_flowers_2.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Arbre rare et précieux. Pollinisateur des poiriers cultivés. Bois dur et durable.', points: 15 },
 
   // ═══════════════════
@@ -331,42 +331,42 @@ export const CARTES = [
   // ═══════════════════
   { id: 'menthe', nom: 'Menthe sauvage', nom_en: 'Wild mint', categorie: 'Aromatique', emoji: '🌿', couleur: 'from-green-400 to-teal-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Minze.jpg/320px-Minze.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Colonise les berges. Attire papillons et abeilles. Repousse les pucerons.', points: 10 },
 
   { id: 'thym', nom: 'Thym serpolet', nom_en: 'Wild thyme', categorie: 'Aromatique', emoji: '🌿', couleur: 'from-pink-400 to-purple-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Thymus_serpyllum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-275.jpg/320px-Thymus_serpyllum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-275.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Tapisse les pelouses sèches. Refuge de l\'Azuré du serpolet — papillon rare.', points: 10 },
 
   { id: 'ortie', nom: 'Ortie dioïque', nom_en: 'Stinging nettle', categorie: 'Aromatique', emoji: '🌿', couleur: 'from-green-600 to-emerald-800',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Urtica_dioica_7.jpg/320px-Urtica_dioica_7.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Hôte de 40 espèces de papillons. Riche en fer. Lisier d\'ortie = engrais naturel.', points: 10 },
 
   { id: 'lavande', nom: 'Lavande vraie', nom_en: 'True lavender', categorie: 'Aromatique', emoji: '💜', couleur: 'from-purple-500 to-violet-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_the_Lavender_Fields.jpg/320px-Above_the_Lavender_Fields.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Attire bourdons, abeilles et papillons. Huile essentielle antiseptique naturelle.', points: 10 },
 
   { id: 'romarin', nom: 'Romarin', nom_en: 'Rosemary', categorie: 'Aromatique', emoji: '🌿', couleur: 'from-blue-400 to-green-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Rosemaryflower.jpg/320px-Rosemaryflower.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Fleurs bleues mellifères dès janvier. Répulsif naturel contre les mouches.', points: 10 },
 
   { id: 'achillee', nom: 'Achillée millefeuille', nom_en: 'Yarrow', categorie: 'Aromatique', emoji: '🌿', couleur: 'from-white/20 to-green-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Achillea_millefolium_-_Koeh-083.jpg/320px-Achillea_millefolium_-_Koeh-083.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Plante médicinale hémostatique. Attire guêpes et syrphes prédateurs d\'insectes.', points: 12 },
 
   { id: 'fenouil', nom: 'Fenouil sauvage', nom_en: 'Wild fennel', categorie: 'Aromatique', emoji: '🌿', couleur: 'from-yellow-400 to-green-600',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Foeniculum_vulgare_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-063.jpg/320px-Foeniculum_vulgare_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-063.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Plante hôte du machaon (papillon). Fleurs en ombelles pour syrphes et guêpes.', points: 12 },
 
   { id: 'consoude', nom: 'Consoude officinale', nom_en: 'Common comfrey', categorie: 'Aromatique', emoji: '🌿', couleur: 'from-purple-400 to-green-700',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Symphytum_officinale_L_%28Comfrey%29.jpg/320px-Symphytum_officinale_L_%28Comfrey%29.jpg',
-    son_desc: null,
+    son_url: null,
     description: 'Accumulatrice de potasse. Lisier de consoude = engrais bio. Fleurs adorées des bourdons.', points: 12 },
 
 ];
