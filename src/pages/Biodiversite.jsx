@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { Volume2, Star, X, RotateCcw, Leaf } from 'lucide-react';
