@@ -222,7 +222,7 @@ export default function BiodiversitePage() {
   };
 
   const getModeEffectif = (carte) => {
-    if (modeJeu === 'mixte') return carte.son ? 'son' : 'image';
+    if (modeJeu === 'mixte') return carte.son_url ? 'son' : 'image';
     return modeJeu;
   };
 
