@@ -12,18 +12,42 @@ function CarteJeu({ carte, mode, onReponse }) {
   const [inputVal, setInputVal] = useState('');
   const [etat, setEtat] = useState(null); // 'correct' | 'faux'
   const [isPlaying, setIsPlaying] = useState(false);
+  const [loadingSon, setLoadingSon] = useState(false);
+  const [sonUrl, setSonUrl] = useState(null);
   const audioElemRef = useRef(null);
 
   useEffect(() => {
-    setInputVal(''); setEtat(null); setIsPlaying(false);
+    setInputVal(''); setEtat(null); setIsPlaying(false); setSonUrl(null);
     if (audioElemRef.current) {
       audioElemRef.current.pause();
       audioElemRef.current.src = '';
     }
   }, [carte.id]);
 
-  const jouerSon = () => {
-    if (!carte.son_url) return;
+  // Cherche le vrai MP3 via l'API xeno-canto au premier clic
+  const fetchSon = async () => {
+    if (sonUrl) return sonUrl;
+    if (!carte.nom_en) return null;
+    setLoadingSon(true);
+    try {
+      const query = encodeURIComponent(carte.nom_en);
+      const res = await fetch(`https://xeno-canto.org/api/2/recordings?query=${query}+q:A&page=1`);
+      const data = await res.json();
+      const rec = data.recordings?.[0];
+      if (rec) {
+        const url = `https:${rec.file}`;
+        setSonUrl(url);
+        return url;
+      }
+    } catch (e) {
+      // silencieux
+    } finally {
+      setLoadingSon(false);
+    }
+    return null;
+  };
+
+  const jouerSon = async () => {
     const audio = audioElemRef.current;
     if (!audio) return;
 
@@ -34,12 +58,17 @@ function CarteJeu({ carte, mode, onReponse }) {
       return;
     }
 
-    audio.src = carte.son_url;
+    const url = await fetchSon();
+    if (!url) return;
+
+    audio.src = url;
     audio.load();
     audio.play()
       .then(() => setIsPlaying(true))
       .catch(() => setIsPlaying(false));
   };
+
+  const hasSon = carte.categorie === 'Oiseau';
 
   const normalise = (str) =>
     str.trim().toLowerCase()
