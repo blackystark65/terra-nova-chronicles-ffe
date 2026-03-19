@@ -25,7 +25,7 @@ export const CARTES = [
 
   { id: 'chouette', nom: 'Chouette hulotte', nom_en: 'Tawny owl', categorie: 'Oiseau', emoji: '🦉', couleur: 'from-amber-700 to-yellow-900',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Strix_aluco_-_01.jpg/320px-Strix_aluco_-_01.jpg',
-    son_url: 'https://www.xeno-canto.org/sounds/uploaded/YADDAYPQMW/XC709338-Tawny%20Owl%2020211107_231637.mp3',
+    son_url: null,
     description: 'Rapace nocturne. Régule les populations de rongeurs en forêt.', points: 15 },
 
   { id: 'mesange', nom: 'Mésange bleue', nom_en: 'Blue tit', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-blue-500 to-cyan-600',
