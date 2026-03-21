@@ -11,7 +11,7 @@ import { CARTES, CATEGORIES, CAT_COLORS } from '@/components/biodiversite/Cartes
 // Sons Wikimedia Commons — URLs .ogg vérifiées (pages wiki confirmées)
 const SONS_OISEAUX = {
   'rouge_gorge':       'https://upload.wikimedia.org/wikipedia/commons/8/8d/Erithacus_rubecula.ogg',
-  'merle':             'https://upload.wikimedia.org/wikipedia/commons/c/c5/Turdus_merula_2.ogg',
+  'merle':             'https://s31.aconvert.com/convert/p3r68-cdx67/6bp9l-w9fjw.mp3',
   'pic_epeiche':       'https://upload.wikimedia.org/wikipedia/commons/8/8e/Dendrocopos_major.ogg',
   'chouette':          'https://upload.wikimedia.org/wikipedia/commons/7/7a/Strix_aluco_%28song%29.ogg',
   'mesange':           'https://upload.wikimedia.org/wikipedia/commons/b/b2/Cyanistes_caeruleus.ogg',
