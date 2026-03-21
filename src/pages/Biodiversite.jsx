@@ -24,7 +24,7 @@ const SONS_OISEAUX = {
   'buse':              'https://s31.aconvert.com/convert/p3r68-cdx67/9aiae-qbova.mp3',
   'pic_vert':          'https://s19.aconvert.com/convert/p3r68-cdx67/yvbjj-4j48f.mp3',
   'roitelet':          'https://upload.wikimedia.org/wikipedia/commons/f/f3/Regulus_regulus.ogg',
-  'tourterelle':       'https://upload.wikimedia.org/wikipedia/commons/8/8b/Streptopelia_turtur.ogg',
+  'tourterelle':       'https://s17.aconvert.com/convert/p3r68-cdx67/an28t-p3po6.mp3',
   'bergeronnette':     'https://upload.wikimedia.org/wikipedia/commons/2/2e/Motacilla_alba.ogg',
 };
 
