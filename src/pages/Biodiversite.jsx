@@ -13,7 +13,7 @@ const SONS_OISEAUX = {
   'rouge_gorge':       'https://s17.aconvert.com/convert/p3r68-cdx67/nj6nw-fymv7.mp3',
   'merle':             'https://s31.aconvert.com/convert/p3r68-cdx67/6bp9l-w9fjw.mp3',
   'pic_epeiche':       'https://upload.wikimedia.org/wikipedia/commons/8/8e/Dendrocopos_major.ogg',
-  'chouette':          'https://upload.wikimedia.org/wikipedia/commons/7/7a/Strix_aluco_%28song%29.ogg',
+  'chouette':          'https://s19.aconvert.com/convert/p3r68-cdx67/f16j0-p2snp.mp3',
   'mesange':           'https://upload.wikimedia.org/wikipedia/commons/b/b2/Cyanistes_caeruleus.ogg',
   'fauvette':          'https://upload.wikimedia.org/wikipedia/commons/6/65/Sylvia_atricapilla_-_Eurasian_Blackcap_XC125794.ogg',
   'hirondelle':        'https://upload.wikimedia.org/wikipedia/commons/4/40/Delichon_urbicum_-_Common_House_Martin_XC125791.ogg',
