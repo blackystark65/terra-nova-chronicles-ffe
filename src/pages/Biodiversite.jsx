@@ -22,7 +22,7 @@ const SONS_OISEAUX = {
   'faucon_crecerelle': 'https://s19.aconvert.com/convert/p3r68-cdx67/8uci4-eor6p.mp3',
   'milan_noir':        'https://upload.wikimedia.org/wikipedia/commons/a/ab/Milvus_migrans_-_Black_Kite_XC125790.ogg',
   'buse':              'https://s31.aconvert.com/convert/p3r68-cdx67/9aiae-qbova.mp3',
-  'pic_vert':          'https://upload.wikimedia.org/wikipedia/commons/b/b1/Picus_viridis_%28call%29.ogg',
+  'pic_vert':          'https://s19.aconvert.com/convert/p3r68-cdx67/yvbjj-4j48f.mp3',
   'roitelet':          'https://upload.wikimedia.org/wikipedia/commons/f/f3/Regulus_regulus.ogg',
   'tourterelle':       'https://upload.wikimedia.org/wikipedia/commons/8/8b/Streptopelia_turtur.ogg',
   'bergeronnette':     'https://upload.wikimedia.org/wikipedia/commons/2/2e/Motacilla_alba.ogg',
