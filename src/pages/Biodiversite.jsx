@@ -14,7 +14,7 @@ const SONS_OISEAUX = {
   'merle':             'https://s31.aconvert.com/convert/p3r68-cdx67/6bp9l-w9fjw.mp3',
   'pic_epeiche':       'https://s17.aconvert.com/convert/p3r68-cdx67/blcj4-6574o.mp3',
   'chouette':          'https://s19.aconvert.com/convert/p3r68-cdx67/f16j0-p2snp.mp3',
-  'mesange':           'https://upload.wikimedia.org/wikipedia/commons/b/b2/Cyanistes_caeruleus.ogg',
+  'mesange':           'https://s19.aconvert.com/convert/p3r68-cdx67/fifik-w5txm.mp3',
   'fauvette':          'https://upload.wikimedia.org/wikipedia/commons/6/65/Sylvia_atricapilla_-_Eurasian_Blackcap_XC125794.ogg',
   'hirondelle':        'https://upload.wikimedia.org/wikipedia/commons/4/40/Delichon_urbicum_-_Common_House_Martin_XC125791.ogg',
   'cigogne':           'https://upload.wikimedia.org/wikipedia/commons/a/a1/Ciconia_ciconia.ogg',
