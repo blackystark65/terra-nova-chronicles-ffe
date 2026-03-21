@@ -88,6 +88,96 @@ export const CARTES = [
     son_url: null,
     description: 'Queue toujours en mouvement. Mange les insectes des zones humides.', points: 12 },
 
+  { id: 'corneille', nom: 'Corneille noire', nom_en: 'Carrion crow', categorie: 'Oiseau', emoji: '🐦‍⬛', couleur: 'from-slate-900 to-zinc-900',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Corvus_corone_-_01.jpg/320px-Corvus_corone_-_01.jpg',
+    son_url: null,
+    description: 'Corvidé très intelligent. Utilise des outils, reconnaît les visages humains.', points: 15 },
+
+  { id: 'moineau', nom: 'Moineau domestique', nom_en: 'House sparrow', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-amber-600 to-stone-700',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Passer_domesticus_male_%281%29.jpg/320px-Passer_domesticus_male_%281%29.jpg',
+    son_url: null,
+    description: 'Compagnon de l\'homme depuis 10 000 ans. En déclin alarmant en ville.', points: 10 },
+
+  { id: 'etourneau', nom: 'Étourneau sansonnet', nom_en: 'Common starling', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-indigo-700 to-slate-800',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Common_Starling.jpg/320px-Common_Starling.jpg',
+    son_url: null,
+    description: 'Forme des murmures géants. Imitateur sonore extraordinaire. Mange les larves du sol.', points: 12 },
+
+  { id: 'poule', nom: 'Poule domestique', nom_en: 'Domestic hen', categorie: 'Oiseau', emoji: '🐔', couleur: 'from-orange-400 to-red-600',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Hen_and_chicks_on_farm.jpg/320px-Hen_and_chicks_on_farm.jpg',
+    son_url: null,
+    description: 'Gratte le sol et fertilise. Mange insectes et larves. Essentielle à la ferme.', points: 8 },
+
+  { id: 'coq', nom: 'Coq domestique', nom_en: 'Rooster', categorie: 'Oiseau', emoji: '🐓', couleur: 'from-red-600 to-orange-700',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/A_Rooster_at_a_petting_zoo.jpg/320px-A_Rooster_at_a_petting_zoo.jpg',
+    son_url: null,
+    description: 'Horloge vivante de la ferme. Son chant annonce l\'aube. Protège ses poules.', points: 8 },
+
+  { id: 'corbeau', nom: 'Grand corbeau', nom_en: 'Common raven', categorie: 'Oiseau', emoji: '🐦‍⬛', couleur: 'from-zinc-900 to-slate-950',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Corvus_corax_%28FWS%29.jpg/320px-Corvus_corax_%28FWS%29.jpg',
+    son_url: null,
+    description: 'Le plus grand passereau. Intelligence remarquable. Vit en couple fidèle à vie.', points: 18 },
+
+  { id: 'coucou', nom: 'Coucou gris', nom_en: 'Common cuckoo', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-500 to-gray-700',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Cuculus_canorus_vogelartinfo.jpg/320px-Cuculus_canorus_vogelartinfo.jpg',
+    son_url: null,
+    description: 'Son chant annonce le printemps. Parasite les nids d\'autres oiseaux.', points: 15 },
+
+  { id: 'geai', nom: 'Geai des chênes', nom_en: 'Eurasian jay', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-blue-400 to-amber-600',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Garrulus_glandarius_-_Rambouillet_%28Yvelines%29_-_01.jpg/320px-Garrulus_glandarius_-_Rambouillet_%28Yvelines%29_-_01.jpg',
+    son_url: null,
+    description: 'Plante des milliers de glands chaque automne. Reboiseur naturel des forêts.', points: 15 },
+
+  { id: 'mouette', nom: 'Mouette rieuse', nom_en: 'Black-headed gull', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-slate-100 to-slate-400',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Larus_ridibundus_ad_summer_1.jpg/320px-Larus_ridibundus_ad_summer_1.jpg',
+    son_url: null,
+    description: 'Opportuniste des côtes et villes. Cri caractéristique. Nettoie déchets organiques.', points: 10 },
+
+  { id: 'goeland', nom: 'Goéland argenté', nom_en: 'Herring gull', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-gray-300 to-slate-500',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Larus_argentatus_1.jpg/320px-Larus_argentatus_1.jpg',
+    son_url: null,
+    description: 'Grand laridé côtier. Très opportuniste. Indicateur de la santé des littoraux.', points: 12 },
+
+  { id: 'pie', nom: 'Pie bavarde', nom_en: 'Eurasian magpie', categorie: 'Oiseau', emoji: '🐦‍⬛', couleur: 'from-slate-900 to-white/20',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Pica_pica_-_01.jpg/320px-Pica_pica_-_01.jpg',
+    son_url: null,
+    description: 'Seul oiseau à se reconnaître dans un miroir. Corvidé très intelligent.', points: 15 },
+
+  { id: 'aigle', nom: 'Aigle royal', nom_en: 'Golden eagle', categorie: 'Oiseau', emoji: '🦅', couleur: 'from-amber-600 to-yellow-800',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty-eagle.jpg/320px-24701-nature-natural-beauty-eagle.jpg',
+    son_url: null,
+    description: 'Roi des airs. Envergure de 2m. Régule lapins, lièvres et marmottes en montagne.', points: 20 },
+
+  { id: 'canard', nom: 'Canard colvert', nom_en: 'Mallard', categorie: 'Oiseau', emoji: '🦆', couleur: 'from-green-700 to-blue-700',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Mallard_male_-_Washington.jpg/320px-Mallard_male_-_Washington.jpg',
+    son_url: null,
+    description: 'Canard sauvage emblématique. Régule plantes aquatiques. Ancêtre de nos canards domestiques.', points: 10 },
+
+  { id: 'hibou_grand_duc', nom: 'Hibou grand-duc', nom_en: 'Eurasian eagle-owl', categorie: 'Oiseau', emoji: '🦉', couleur: 'from-amber-800 to-orange-900',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Bubo_bubo_1_%28Bohu%29.jpg/320px-Bubo_bubo_1_%28Bohu%29.jpg',
+    son_url: null,
+    description: 'Le plus grand rapace nocturne d\'Europe. Chasse renards, lapins et hérons.', points: 20 },
+
+  { id: 'paon', nom: 'Paon bleu', nom_en: 'Indian peafowl', categorie: 'Oiseau', emoji: '🦚', couleur: 'from-blue-600 to-green-700',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Peacock_Plumage.jpg/320px-Peacock_Plumage.jpg',
+    son_url: null,
+    description: 'Roue spectaculaire pour séduire la femelle. Cri strident. Mange insectes et serpents.', points: 12 },
+
+  { id: 'pigeon_ramier', nom: 'Pigeon ramier', nom_en: 'Common wood pigeon', categorie: 'Oiseau', emoji: '🕊️', couleur: 'from-slate-400 to-blue-600',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Columba_palumbus_0.jpg/320px-Columba_palumbus_0.jpg',
+    son_url: null,
+    description: 'Le plus grand pigeon d\'Europe. Roucoulement doux. Disperse graines forestières.', points: 10 },
+
+  { id: 'pinson', nom: 'Pinson des arbres', nom_en: 'Common chaffinch', categorie: 'Oiseau', emoji: '🐦', couleur: 'from-orange-500 to-blue-600',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Fringilla_coelebs_chaffinch_male_edit2.jpg/320px-Fringilla_coelebs_chaffinch_male_edit2.jpg',
+    son_url: null,
+    description: 'Chant varié et mélodieux. Un des oiseaux les plus communs d\'Europe. Mange graines et insectes.', points: 10 },
+
+  { id: 'dindon', nom: 'Dindon sauvage', nom_en: 'Wild turkey', categorie: 'Oiseau', emoji: '🦃', couleur: 'from-amber-700 to-red-800',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Meleagris_gallopavo_National_Zoo.jpg/320px-Meleagris_gallopavo_National_Zoo.jpg',
+    son_url: null,
+    description: 'Ancêtre du dindon domestique. Excellent coureur. Mange glands, graines et insectes.', points: 12 },
+
   // ═══════════════════
   // MAMMIFÈRES
   // ═══════════════════
