@@ -12,7 +12,7 @@ import { CARTES, CATEGORIES, CAT_COLORS } from '@/components/biodiversite/Cartes
 const SONS_OISEAUX = {
   'rouge_gorge':       'https://s17.aconvert.com/convert/p3r68-cdx67/nj6nw-fymv7.mp3',
   'merle':             'https://s31.aconvert.com/convert/p3r68-cdx67/6bp9l-w9fjw.mp3',
-  'pic_epeiche':       'https://upload.wikimedia.org/wikipedia/commons/8/8e/Dendrocopos_major.ogg',
+  'pic_epeiche':       'https://s17.aconvert.com/convert/p3r68-cdx67/blcj4-6574o.mp3',
   'chouette':          'https://s19.aconvert.com/convert/p3r68-cdx67/f16j0-p2snp.mp3',
   'mesange':           'https://upload.wikimedia.org/wikipedia/commons/b/b2/Cyanistes_caeruleus.ogg',
   'fauvette':          'https://upload.wikimedia.org/wikipedia/commons/6/65/Sylvia_atricapilla_-_Eurasian_Blackcap_XC125794.ogg',
