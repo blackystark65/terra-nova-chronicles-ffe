@@ -189,6 +189,17 @@ export default function HomePage() {
                   </span>
                 </Button>
               </Link>
+
+              <Link to={createPageUrl('Guide')}>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="group px-8 py-6 text-lg rounded-2xl bg-white/5 backdrop-blur-xl border-2 border-teal-400/30 hover:bg-white/10 hover:border-teal-400/50 text-teal-300">
+                  <span className="flex items-center gap-3">
+                    🗺️ Guide de la plateforme
+                  </span>
+                </Button>
+              </Link>
             </motion.div>
 
             {/* Stats globales */}
