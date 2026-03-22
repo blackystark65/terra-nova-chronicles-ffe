@@ -117,7 +117,7 @@ export default function FermeMaraichage() {
     } else if (outilActif === 'arroser') {
       if (!parcelle) { showFeedback('error', '❌ Pas de plante ici'); return; }
       if (waterLevel < 5) { showFeedback('error', '💧 Plus d\'eau !'); return; }
-      setWaterLevel(w => w - 5);
+      setWaterLevel(w => w - 1);
       setCroissance(prev => ({ ...prev, [idx]: Math.min(100, (prev[idx] || 0) + 15) }));
       showFeedback('success', '💧 Parcelle arrosée ! +15% de croissance');
     } else if (outilActif === 'recolter') {
