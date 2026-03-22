@@ -304,14 +304,13 @@ export default function FermeBoulangerie() {
                     <div className="text-5xl mb-2">🥣</div>
                     <p className="text-green-300 font-bold">Pâte prête ! Farine: {recette[0]?.flourId}</p>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex gap-3 flex-col items-center">
+                    <p className="text-amber-300/60 text-xs italic">
+                      Tu peux choisir une farine différente pour chaque pain ! ({proofingTable.filter(Boolean).length}/20 posés)
+                    </p>
                     <button onClick={() => { const idx = proofingTable.findIndex(s => !s); if (idx !== -1) placerPain(idx); }}
-                      className="px-6 py-3 rounded-xl bg-orange-500/30 hover:bg-orange-500/50 border border-orange-300 text-orange-200 font-bold transition-all">
-                      📍 Placer 1 pain sur la table
-                    </button>
-                    <button onClick={placerTousPains}
-                      className="px-6 py-3 rounded-xl bg-green-500/30 hover:bg-green-500/50 border border-green-300 text-green-200 font-bold transition-all">
-                      ✅ Placer les 20 pains !
+                      className="px-8 py-4 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 hover:from-orange-400 hover:to-amber-500 border-2 border-white/30 text-white font-bold text-lg shadow-xl hover:scale-105 transition-all">
+                      📍 Poser ce pain sur la table ({proofingTable.filter(Boolean).length + 1}/20)
                     </button>
                   </div>
                 </div>
