@@ -334,7 +334,7 @@ export default function FermeMaraichage() {
               )}
 
               {/* Bouton récolter tout */}
-              {outilActif === 'recolter' && parcelles.some((p, idx) => p && (croissance[idx] || 0) >= 100) && (
+              {outilActif === 'recolter' && parcelles.some((p, idx) => p && !p.recolte && (croissance[idx] || 0) >= 100) && (
                 <motion.button
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
