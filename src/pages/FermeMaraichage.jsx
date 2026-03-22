@@ -324,21 +324,18 @@ export default function FermeMaraichage() {
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
                   onClick={() => {
-                    let count = 0;
-                    const newParcelles = [...parcelles];
-                    const newCroissance = { ...croissance };
-                    parcelles.forEach((p, idx) => {
-                      if (p && (croissance[idx] || 0) >= 100) {
-                        newParcelles[idx] = null;
-                        delete newCroissance[idx];
-                        count++;
-                      }
-                    });
-                    setParcelles(newParcelles);
-                    setCroissance(newCroissance);
-                    setRecoltes(r => r + count);
-                    payerTravail(count * 2, `Maraîchage: récolte de ${count} légumes`);
-                    showFeedback('success', `🧺 ${count} légumes récoltés ! +${count * 2} crédits`);
+                   let count = 0;
+                   const newParcelles = [...parcelles];
+                   parcelles.forEach((p, idx) => {
+                     if (p && !p.recolte && (croissance[idx] || 0) >= 100) {
+                       newParcelles[idx] = { ...p, recolte: true };
+                       count++;
+                     }
+                   });
+                   setParcelles(newParcelles);
+                   setRecoltes(r => r + count);
+                   payerTravail(count * 2, `Maraîchage: récolte de ${count} légumes`);
+                   showFeedback('success', `🧺 ${count} légumes récoltés ! +${count * 2} crédits — Arrache les tiges pour replanter`);
                   }}
                   className="mt-3 w-full py-3 rounded-xl bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-400/40 text-yellow-300 text-sm font-bold transition-all"
                 >
