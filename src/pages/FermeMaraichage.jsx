@@ -271,6 +271,17 @@ export default function FermeMaraichage() {
                       className={`aspect-square rounded-xl border-2 flex flex-col items-center justify-center relative overflow-hidden transition-all ${bgClass} ${borderClass} ${cursor}`}
                     >
                       {parcelle ? (
+                        parcelle.recolte ? (
+                          <>
+                            <div className="text-3xl z-10 opacity-40 grayscale">🌿</div>
+                            <div className="text-[9px] text-amber-400/70 z-10">Tiges</div>
+                            {outilActif === 'arracher' && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-red-900/20">
+                                <span className="text-lg">🗑️</span>
+                              </div>
+                            )}
+                          </>
+                        ) : (
                         <>
                           <div className="text-3xl z-10">{parcelle.emoji}</div>
                           <div className="text-[9px] text-green-300/70 z-10">{parcelle.nom}</div>
@@ -289,6 +300,7 @@ export default function FermeMaraichage() {
                             </div>
                           )}
                         </>
+                        )
                       ) : outilActif === 'planter' && selectedLegume ? (
                         <div className="text-center">
                           <div className="text-2xl opacity-40">{selectedLegume.emoji}</div>
