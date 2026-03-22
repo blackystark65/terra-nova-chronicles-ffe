@@ -122,14 +122,14 @@ export default function FermeMaraichage() {
       showFeedback('success', '💧 Parcelle arrosée ! +15% de croissance');
     } else if (outilActif === 'recolter') {
       if (!parcelle) { showFeedback('error', '❌ Pas de plante ici'); return; }
+      if (parcelle.recolte) { showFeedback('error', '✅ Déjà récoltée — arrache-la pour libérer la parcelle'); return; }
       if (progress < 100) { showFeedback('error', `⏳ Pas encore prête (${progress}%)`); return; }
       const newParcelles = [...parcelles];
-      newParcelles[idx] = null;
+      newParcelles[idx] = { ...parcelle, recolte: true };
       setParcelles(newParcelles);
-      setCroissance(prev => { const n = { ...prev }; delete n[idx]; return n; });
       setRecoltes(r => r + 1);
       payerTravail(2, `Maraîchage: récolte ${parcelle.nom}`);
-      showFeedback('success', `🧺 ${parcelle.emoji} ${parcelle.nom} récolté ! +2 crédits`);
+      showFeedback('success', `🧺 ${parcelle.emoji} ${parcelle.nom} récolté ! +2 crédits — Arrache les tiges pour replanter`);
     } else if (outilActif === 'arracher') {
       if (!parcelle) { showFeedback('error', '❌ Pas de plante ici'); return; }
       const newParcelles = [...parcelles];
