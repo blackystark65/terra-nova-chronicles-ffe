@@ -247,7 +247,7 @@ export default function FermeBoulangerie() {
           </div>
 
           {/* ===== ÉTAPE 1 : RECETTE ===== */}
-          {currentStage === 'idle' && !proofingTable.some(Boolean) && (
+          {currentStage === 'idle' && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
               className="bg-amber-900/30 rounded-2xl p-5 border border-amber-400/30 mb-5">
               <h3 className="text-lg font-bold text-amber-300 mb-4">🍞 Étape 1 — Préparer la pâte</h3>
@@ -323,7 +323,14 @@ export default function FermeBoulangerie() {
           {(currentStage === 'proofing' || (currentStage === 'idle' && proofingTable.some(Boolean))) && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
               className="bg-green-900/30 rounded-2xl p-5 border border-green-400/30 mb-5">
-              <h3 className="text-lg font-bold text-green-300 mb-3">🍞 Table de pousse — {proofingTable.filter(Boolean).length}/20 pains</h3>
+              <h3 className="text-lg font-bold text-green-300 mb-3">
+                🍞 Table de pousse — {proofingTable.filter(Boolean).length}/20 pains
+                {currentStage === 'idle' && (
+                  <span className="ml-3 text-sm text-amber-300/70 font-normal">
+                    ← Prépare un nouveau pain ci-dessus et place-le ici
+                  </span>
+                )}
+              </h3>
               <div className="grid grid-cols-10 gap-1.5 mb-3">
                 {proofingTable.map((slot, idx) => (
                   <motion.div key={idx} animate={slot && currentStage === 'proofing' ? { scale: [1, 1.05, 1] } : {}}
@@ -339,6 +346,14 @@ export default function FermeBoulangerie() {
               </div>
               {currentStage === 'proofing' && (
                 <div className="text-green-300/70 text-sm text-center">⏳ Levée en cours... {Math.round(stageProgress)}%</div>
+              )}
+              {currentStage === 'idle' && proofingTable.filter(Boolean).length === 20 && (
+                <div className="text-center mt-3">
+                  <button onClick={() => { setCurrentStage('proofing'); setStageProgress(0); showFeedback('success', '🍞 20 pains mis à lever ! (60 sec)'); }}
+                    className="px-8 py-3 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 hover:scale-105 border-2 border-white/30 text-white font-bold text-lg shadow-xl transition-all">
+                    ✅ Lancer la levée (20/20 pains prêts) !
+                  </button>
+                </div>
               )}
             </motion.div>
           )}
