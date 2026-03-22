@@ -481,7 +481,7 @@ export default function BiodiversitePage() {
                   className={`p-4 rounded-2xl bg-gradient-to-br ${couleur} cursor-pointer border border-white/20 shadow-lg text-center`}
                 >
                   <div className="text-2xl font-black text-white">{count}</div>
-                  <div className="text-white/80 text-xs">{cat}s</div>
+                  <div className="text-white/80 text-xs">{cat === 'Oiseau' ? 'Oiseaux' : cat === 'Mammifère' ? 'Mammifères' : cat === 'Batracien' ? 'Batraciens' : cat === 'Reptile' ? 'Reptiles' : cat === 'Insecte' ? 'Insectes' : cat === 'Fleur' ? 'Fleurs' : cat === 'Arbuste' ? 'Arbustes' : cat === 'Arbre' ? 'Arbres' : cat === 'Aromatique' ? 'Aromatiques' : `${cat}s`}</div>
                 </motion.div>
               );
             })}
