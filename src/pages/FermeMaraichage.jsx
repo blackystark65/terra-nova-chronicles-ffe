@@ -252,6 +252,9 @@ export default function FermeMaraichage() {
 
                   if (!parcelle) {
                     if (outilActif === 'planter' && selectedLegume) { bgClass = 'bg-green-500/15 hover:bg-green-500/30'; borderClass = 'border-green-400/50 hover:border-green-300'; cursor = 'cursor-pointer'; }
+                  } else if (parcelle.recolte) {
+                    bgClass = 'bg-gradient-to-br from-amber-900/40 to-stone-800/40'; borderClass = 'border-amber-700/60'; cursor = 'cursor-pointer';
+                    if (outilActif === 'arracher') { borderClass = 'border-red-400 hover:border-red-200'; bgClass = 'bg-red-900/30 hover:bg-red-800/40'; }
                   } else {
                     if (isReady) { bgClass = 'bg-gradient-to-br from-yellow-500/30 to-orange-500/30'; borderClass = 'border-yellow-300'; cursor = 'cursor-pointer'; }
                     else { bgClass = 'bg-gradient-to-br from-green-800/40 to-emerald-800/40'; borderClass = 'border-green-500/60'; cursor = 'cursor-pointer'; }
