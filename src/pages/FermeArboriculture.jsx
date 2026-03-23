@@ -115,7 +115,7 @@ export default function FermeArboriculture() {
     }
     setStades(prev => ({ ...prev, [index]: { stade: stade.stade + 1, niveau: 0, taillesStade: 0 } }));
     showFeedback('success', `🌳 ${verger[index]?.nom} a évolué → ${STAGES[stade.stade + 1]}`);
-    setSelectedSlot(null);
+    // NE PAS fermer le panneau — l'élève voit le nouveau stade directement
   };
 
   const recolterFruits = (index) => {
