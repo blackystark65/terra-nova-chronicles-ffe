@@ -46,11 +46,16 @@ const SONS_OISEAUX = {
   'dindon':            'https://base44.app/api/apps/6959886137576a65dcfe1370/files/mp/public/6959886137576a65dcfe1370/5c06dc216_SFB-dindon-1.mp3',
 };
 
+// Transforme les URLs Wikimedia thumb (hash souvent faux) en Special:FilePath fiable
+const getImgSrc = (url) => {
+  if (!url || !url.includes('upload.wikimedia.org')) return url;
+  const m = url.match(/\/([^\/]+)\/\d+px-[^\/]+$/);
+  if (m) return `https://commons.wikimedia.org/wiki/Special:FilePath/${m[1]}?width=400`;
+  return url;
+};
+
 function CarteJeu({ carte, mode, onReponse }) {
-  const [inputVal, setInputVal] = useState('');
-  const [etat, setEtat] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [loadingSon, setLoadingSon] = useState(false);
+  const imgSrc = getImgSrc(carte.image);
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -133,7 +138,7 @@ function CarteJeu({ carte, mode, onReponse }) {
           <div className="px-4">
             <img
               key={carte.id}
-              src={carte.image}
+              src={imgSrc}
               alt="?"
               className="w-full h-48 object-cover rounded-2xl border-2 border-white/20 shadow-lg"
               onError={(e) => {
@@ -448,7 +453,7 @@ export default function BiodiversitePage() {
                 whileHover={{ scale: 1.05, y: -5 }}
                 className={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${carte.couleur} border border-white/20 shadow-lg aspect-[3/4]`}
               >
-                <img src={carte.image} alt={carte.nom}
+                <img src={getImgSrc(carte.image)} alt={carte.nom}
                   className="absolute inset-0 w-full h-full object-cover opacity-60"
                   onError={(e) => { e.target.style.display = 'none'; }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
