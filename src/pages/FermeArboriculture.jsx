@@ -283,7 +283,7 @@ export default function FermeArboriculture() {
                 {selectedSlot !== null && arbreSelectionne && (
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
                     className="bg-green-900/40 backdrop-blur-xl rounded-2xl p-4 border-2 border-green-400/40">
-                    <div className="flex items-center gap-3 mb-4">
+                    <div className="flex items-center gap-3 mb-3">
                       <span className="text-4xl">{stadeSelectionne?.stade === 3 ? arbreSelectionne.fruit : arbreSelectionne.emoji}</span>
                       <div>
                         <div className="font-bold text-green-200 text-lg">{arbreSelectionne.nom}</div>
@@ -293,6 +293,19 @@ export default function FermeArboriculture() {
                       </div>
                       <button onClick={() => setSelectedSlot(null)} className="ml-auto text-green-300/50 hover:text-green-300 text-xl">✕</button>
                     </div>
+                    {/* Guide étape par étape */}
+                    {stadeSelectionne?.stade < 3 && (
+                      <div className="mb-3 p-2 rounded-xl bg-black/30 border border-white/10 text-xs text-center">
+                        {stadeSelectionne?.niveau < 30
+                          ? <span className="text-yellow-300">⏳ Attends que la croissance atteigne 30% pour pouvoir tailler</span>
+                          : !taillesSuffisantes
+                          ? <span className="text-blue-300">✂️ Clique sur <strong>Tailler</strong> encore {taillesRequises - taillesEffectuees} fois ({taillesEffectuees}/{taillesRequises})</span>
+                          : stadeSelectionne?.niveau < 100
+                          ? <span className="text-green-300">✅ Tailles OK ! Attends 100% de croissance pour évoluer</span>
+                          : <span className="text-emerald-200 animate-pulse">🎉 Prêt ! Clique sur <strong>Faire évoluer</strong></span>
+                        }
+                      </div>
+                    )}
                     <div className="grid grid-cols-3 gap-3">
                       <button onClick={() => taillerArbre(selectedSlot)} disabled={!canTailler}
                         className="p-3 rounded-xl bg-blue-500/20 hover:bg-blue-500/40 border border-blue-400/40 text-center disabled:opacity-30 disabled:cursor-not-allowed transition-all">
