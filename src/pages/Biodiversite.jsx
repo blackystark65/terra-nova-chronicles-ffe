@@ -168,7 +168,6 @@ function CarteJeu({ carte, mode, onReponse }) {
               key={carte.id}
               src={imgSrc}
               referrerPolicy="no-referrer"
-              crossOrigin="anonymous"
               onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.nextSibling.style.display = 'flex';
@@ -483,7 +482,6 @@ export default function BiodiversitePage() {
               >
                 <img src={getImgSrc(carte.image)} alt={carte.nom}
                   referrerPolicy="no-referrer"
-                  crossOrigin="anonymous"
                   className="absolute inset-0 w-full h-full object-cover opacity-60"
                   onError={(e) => { e.target.style.display = 'none'; }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
