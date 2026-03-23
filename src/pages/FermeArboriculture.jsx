@@ -138,8 +138,11 @@ export default function FermeArboriculture() {
   const stadeSelectionne = selectedSlot !== null ? stades[selectedSlot] : null;
 
   // Actions disponibles pour l'arbre sélectionné
-  const canTailler = stadeSelectionne && stadeSelectionne.niveau >= 30 && stadeSelectionne.niveau < 100;
-  const canEvoluer = stadeSelectionne && stadeSelectionne.niveau >= 100 && stadeSelectionne.stade < 3;
+  const canTailler = stadeSelectionne && stadeSelectionne.niveau >= 30 && stadeSelectionne.stade < 3;
+  const taillesEffectuees = stadeSelectionne?.taillesStade || 0;
+  const taillesRequises = stadeSelectionne ? (TAILLES_REQUISES[stadeSelectionne.stade] || 0) : 0;
+  const taillesSuffisantes = taillesEffectuees >= taillesRequises;
+  const canEvoluer = stadeSelectionne && stadeSelectionne.niveau >= 100 && stadeSelectionne.stade < 3 && taillesSuffisantes;
   const canRecolter = stadeSelectionne && stadeSelectionne.stade === 3 && stadeSelectionne.niveau >= 100;
 
   return (
