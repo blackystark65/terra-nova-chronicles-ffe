@@ -223,7 +223,9 @@ export default function FermeArboriculture() {
                   const isReady = niveau >= 100;
                   const canEvolveThis = isReady && stade?.stade < 3;
                   const canHarvestThis = isReady && stade?.stade === 3;
-                  const canTailleThis = niveau >= 30 && niveau < 100;
+                  const canTailleThis = niveau >= 30 && stade?.stade < 3;
+                  const taillesThis = stade?.taillesStade || 0;
+                  const taillesReqThis = stade ? (TAILLES_REQUISES[stade.stade] || 0) : 0;
                   const isSelected = selectedSlot === idx;
 
                   return (
