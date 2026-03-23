@@ -296,7 +296,7 @@ export const CARTES = [
     description: 'Première source de pollen au printemps pour les abeilles. Feuilles comestibles.', points: 8 },
 
   { id: 'primevere', nom: 'Primevère officinale', nom_en: 'Cowslip', categorie: 'Fleur', emoji: '🌼', couleur: 'from-yellow-400 to-amber-500',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Primula_veris_flowers.jpg/320px-Primula_veris_flowers.jpg',
+    image: 'https://media.base44.com/images/public/6959886137576a65dcfe1370/3e47adbad_primevere-des-pres.png',
     son_url: null,
     description: 'Première fleur du printemps. Hôte du papillon Azuré. Fleurs médicinales.', points: 12 },
 
@@ -455,7 +455,7 @@ export const CARTES = [
     description: 'Plante hôte du machaon (papillon). Fleurs en ombelles pour syrphes et guêpes.', points: 12 },
 
   { id: 'consoude', nom: 'Consoude officinale', nom_en: 'Common comfrey', categorie: 'Aromatique', emoji: '🌿', couleur: 'from-purple-400 to-green-700',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Symphytum_officinale_L_%28Comfrey%29.jpg/320px-Symphytum_officinale_L_%28Comfrey%29.jpg',
+    image: 'https://media.base44.com/images/public/6959886137576a65dcfe1370/56eb62ab4_consoude_officinale.jpg',
     son_url: null,
     description: 'Accumulatrice de potasse. Lisier de consoude = engrais bio. Fleurs adorées des bourdons.', points: 12 },
 
