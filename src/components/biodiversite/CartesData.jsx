@@ -311,7 +311,7 @@ export const CARTES = [
     description: 'Fleurs bleues comestibles. Attire bourdons et abeilles. Compagne idéale des tomates.', points: 12 },
 
   { id: 'millepertuis', nom: 'Millepertuis perforé', nom_en: 'St John\'s wort', categorie: 'Fleur', emoji: '🌼', couleur: 'from-yellow-500 to-orange-500',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Hypericum_perforatum_flowers.jpg/320px-Hypericum_perforatum_flowers.jpg',
+    image: 'https://media.base44.com/images/public/6959886137576a65dcfe1370/1289048d0_images3.jpeg',
     son_url: null,
     description: 'Plante médicinale aux fleurs jaunes. Refuge de nombreux insectes pollinisateurs.', points: 12 },
 
@@ -445,7 +445,7 @@ export const CARTES = [
     description: 'Fleurs bleues mellifères dès janvier. Répulsif naturel contre les mouches.', points: 10 },
 
   { id: 'achillee', nom: 'Achillée millefeuille', nom_en: 'Yarrow', categorie: 'Aromatique', emoji: '🌿', couleur: 'from-white/20 to-green-600',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Achillea_millefolium_-_Koeh-083.jpg/320px-Achillea_millefolium_-_Koeh-083.jpg',
+    image: 'https://media.base44.com/images/public/6959886137576a65dcfe1370/ecfdab8f1_Achillea_millefoliumdetail_resultat.jpg',
     son_url: null,
     description: 'Plante médicinale hémostatique. Attire guêpes et syrphes prédateurs d\'insectes.', points: 12 },
 
