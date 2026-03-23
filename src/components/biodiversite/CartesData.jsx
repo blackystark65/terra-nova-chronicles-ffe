@@ -286,12 +286,12 @@ export const CARTES = [
   // FLEURS SAUVAGES
   // ═══════════════════
   { id: 'coquelicot', nom: 'Coquelicot', nom_en: 'Poppy', categorie: 'Fleur', emoji: '🌺', couleur: 'from-red-500 to-rose-700',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Poppies_in_Flanders_Fields.jpg/320px-Poppies_in_Flanders_Fields.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Simple_red_poppy_flower_05.jpg/320px-Simple_red_poppy_flower_05.jpg',
     son_url: null,
     description: 'Indicateur de sol argilo-calcaire perturbé. Nourrit abeilles et papillons.', points: 8 },
 
   { id: 'pissenlit', nom: 'Pissenlit', nom_en: 'Dandelion', categorie: 'Fleur', emoji: '🌼', couleur: 'from-yellow-400 to-yellow-600',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Taraxacum_officinale_-_Koeh-183.jpg/320px-Taraxacum_officinale_-_Koeh-183.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Taraxacum_officinale_-_Doubs.jpg/320px-Taraxacum_officinale_-_Doubs.jpg',
     son_url: null,
     description: 'Première source de pollen au printemps pour les abeilles. Feuilles comestibles.', points: 8 },
 
@@ -321,7 +321,7 @@ export const CARTES = [
     description: 'Attire irrésistiblement les chats et les papillons. Racines médicinales sédatives.', points: 12 },
 
   { id: 'caillou_blanc', nom: 'Marguerite commune', nom_en: 'Oxeye daisy', categorie: 'Fleur', emoji: '🌼', couleur: 'from-white/20 to-yellow-500',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Leucanthemum_vulgare_%28Marguerite%29.jpg/320px-Leucanthemum_vulgare_%28Marguerite%29.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Leucanthemum_vulgare_-_Margerite_-_Ox-eye_Daisy_-_Marguerite.jpg/320px-Leucanthemum_vulgare_-_Margerite_-_Ox-eye_Daisy_-_Marguerite.jpg',
     son_url: null,
     description: 'Prairie fleurie. Nourrit guêpes, abeilles et syrphes pollinisateurs.', points: 8 },
 
