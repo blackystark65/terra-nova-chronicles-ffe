@@ -85,7 +85,7 @@ export default function FermeArboriculture() {
     const newVerger = [...verger];
     newVerger[index] = { ...selectedArbre, plante_a: Date.now() };
     setVerger(newVerger);
-    setStades(prev => ({ ...prev, [index]: { stade: 0, niveau: 0 } }));
+    setStades(prev => ({ ...prev, [index]: { stade: 0, niveau: 0, taillesStade: 0 } }));
     setSelectedArbre(null);
     setSelectedSlot(null);
     showFeedback('success', `🌱 ${selectedArbre.nom} planté ! Il va grandir avec le temps.`);
