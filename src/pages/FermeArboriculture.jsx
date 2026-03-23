@@ -94,10 +94,13 @@ export default function FermeArboriculture() {
   const taillerArbre = (index) => {
     const stade = stades[index];
     if (!stade || stade.niveau < 30) { showFeedback('error', '⏳ L\'arbre doit avoir au moins 30% de croissance'); return; }
-    setStades(prev => ({ ...prev, [index]: { ...prev[index], niveau: Math.min(100, prev[index].niveau + 20) } }));
+    if (stade.stade >= 3) { showFeedback('error', '❌ Un arbre en production ne se taille plus'); return; }
+    const taillesStade = (stade.taillesStade || 0) + 1;
+    const requises = TAILLES_REQUISES[stade.stade];
+    setStades(prev => ({ ...prev, [index]: { ...prev[index], niveau: Math.min(100, prev[index].niveau + 20), taillesStade } }));
     setTailles(t => t + 1);
     payerTravail(3, `Arboriculture: taille ${verger[index]?.nom}`);
-    showFeedback('success', `✂️ ${verger[index]?.nom} taillé ! Croissance accélérée +3 crédits`);
+    showFeedback('success', `✂️ Taillé ! (${taillesStade}/${requises} tailles pour évoluer) +3 crédits`);
     setSelectedSlot(null);
   };
 
