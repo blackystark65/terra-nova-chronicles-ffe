@@ -101,7 +101,7 @@ export default function FermeArboriculture() {
     setTailles(t => t + 1);
     payerTravail(3, `Arboriculture: taille ${verger[index]?.nom}`);
     showFeedback('success', `✂️ Taillé ! (${taillesStade}/${requises} tailles pour évoluer) +3 crédits`);
-    setSelectedSlot(null);
+    // NE PAS fermer le panneau — l'élève doit pouvoir tailler plusieurs fois de suite
   };
 
   const evoluerArbre = (index) => {
