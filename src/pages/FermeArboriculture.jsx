@@ -107,7 +107,13 @@ export default function FermeArboriculture() {
   const evoluerArbre = (index) => {
     const stade = stades[index];
     if (!stade || stade.niveau < 100 || stade.stade >= 3) return;
-    setStades(prev => ({ ...prev, [index]: { stade: stade.stade + 1, niveau: 0 } }));
+    const taillesStade = stade.taillesStade || 0;
+    const requises = TAILLES_REQUISES[stade.stade];
+    if (taillesStade < requises) {
+      showFeedback('error', `✂️ Il faut ${requises} tailles pour évoluer (${taillesStade}/${requises})`);
+      return;
+    }
+    setStades(prev => ({ ...prev, [index]: { stade: stade.stade + 1, niveau: 0, taillesStade: 0 } }));
     showFeedback('success', `🌳 ${verger[index]?.nom} a évolué → ${STAGES[stade.stade + 1]}`);
     setSelectedSlot(null);
   };
