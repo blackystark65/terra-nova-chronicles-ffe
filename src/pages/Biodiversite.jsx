@@ -57,6 +57,10 @@ const getImgSrc = (url) => {
 function CarteJeu({ carte, mode, onReponse }) {
   const imgSrc = getImgSrc(carte.image);
   const audioRef = useRef(null);
+  const [inputVal, setInputVal] = useState('');
+  const [etat, setEtat] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [loadingSon, setLoadingSon] = useState(false);
 
   useEffect(() => {
     setInputVal('');
