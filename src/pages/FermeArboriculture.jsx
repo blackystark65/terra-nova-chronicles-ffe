@@ -95,13 +95,17 @@ export default function FermeArboriculture() {
     const stade = stades[index];
     if (!stade || stade.niveau < 30) { showFeedback('error', '⏳ L\'arbre doit avoir au moins 30% de croissance'); return; }
     if (stade.stade >= 3) { showFeedback('error', '❌ Un arbre en production ne se taille plus'); return; }
-    const taillesStade = (stade.taillesStade || 0) + 1;
     const requises = TAILLES_REQUISES[stade.stade];
-    setStades(prev => ({ ...prev, [index]: { ...prev[index], niveau: Math.min(100, prev[index].niveau + 20), taillesStade } }));
+    // Utiliser le setter fonctionnel pour toujours lire la valeur la plus récente
+    setStades(prev => {
+      const current = prev[index];
+      const taillesStade = (current.taillesStade || 0) + 1;
+      return { ...prev, [index]: { ...current, niveau: Math.min(100, current.niveau + 20), taillesStade } };
+    });
     setTailles(t => t + 1);
     payerTravail(3, `Arboriculture: taille ${verger[index]?.nom}`);
-    showFeedback('success', `✂️ Taillé ! (${taillesStade}/${requises} tailles pour évoluer) +3 crédits`);
-    // NE PAS fermer le panneau — l'élève doit pouvoir tailler plusieurs fois de suite
+    const taillesActuelles = (stade.taillesStade || 0) + 1;
+    showFeedback('success', `✂️ Taillé ! (${taillesActuelles}/${requises} tailles pour évoluer) +3 crédits`);
   };
 
   const evoluerArbre = (index) => {
