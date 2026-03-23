@@ -101,16 +101,40 @@ function CarteJeu({ carte, mode, onReponse }) {
 
   const normalise = (str) =>
     str.trim().toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // retire accents
-      .replace(/[^a-z0-9\s]/g, '');
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s]/g, '')
+      .replace(/s$/, ''); // ignore pluriel
+
+  // Distance de Levenshtein simple
+  const levenshtein = (a, b) => {
+    const dp = Array.from({ length: a.length + 1 }, (_, i) =>
+      Array.from({ length: b.length + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
+    );
+    for (let i = 1; i <= a.length; i++)
+      for (let j = 1; j <= b.length; j++)
+        dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+    return dp[a.length][b.length];
+  };
+
+  const matchFlou = (rep, nom) => {
+    if (nom.includes(rep) || rep.includes(nom)) return true;
+    // Vérifier chaque mot du nom
+    const mots = nom.split(' ');
+    for (const mot of mots) {
+      if (mot.length >= 4) {
+        const tolerance = mot.length >= 7 ? 2 : 1;
+        if (levenshtein(rep, mot) <= tolerance) return true;
+      }
+    }
+    return false;
+  };
 
   const valider = () => {
     const rep = normalise(inputVal);
     if (rep.length < 2) return;
     const nomFR = normalise(carte.nom);
     const nomEN = normalise(carte.nom_en || '');
-    // Accepte si la réponse est contenue dans le nom FR ou EN (au moins 3 lettres)
-    const isOk = rep.length >= 3 && (nomFR.includes(rep) || nomEN.includes(rep));
+    const isOk = rep.length >= 3 && (matchFlou(rep, nomFR) || matchFlou(rep, nomEN));
     setEtat(isOk ? 'correct' : 'faux');
     setTimeout(() => onReponse(isOk, carte.points), 900);
   };
@@ -143,8 +167,8 @@ function CarteJeu({ carte, mode, onReponse }) {
             <img
               key={carte.id}
               src={imgSrc}
-              alt="?"
-              className="w-full h-48 object-cover rounded-2xl border-2 border-white/20 shadow-lg"
+              referrerPolicy="no-referrer"
+              crossOrigin="anonymous"
               onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.nextSibling.style.display = 'flex';
@@ -458,6 +482,8 @@ export default function BiodiversitePage() {
                 className={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${carte.couleur} border border-white/20 shadow-lg aspect-[3/4]`}
               >
                 <img src={getImgSrc(carte.image)} alt={carte.nom}
+                  referrerPolicy="no-referrer"
+                  crossOrigin="anonymous"
                   className="absolute inset-0 w-full h-full object-cover opacity-60"
                   onError={(e) => { e.target.style.display = 'none'; }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
