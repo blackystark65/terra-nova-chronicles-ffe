@@ -19,6 +19,8 @@ const ARBRES = [
 ];
 
 const STAGES = ['🌱 Jeune plant', '🌿 Croissance', '🌲 Adulte', '🍎 Production'];
+// Nombre de tailles requises pour passer au stade suivant
+const TAILLES_REQUISES = [3, 3, 2]; // stade 0→1: 3 tailles, stade 1→2: 3 tailles, stade 2→3: 2 tailles
 
 export default function FermeArboriculture() {
   const [verger, setVerger] = useState(Array(12).fill(null));
