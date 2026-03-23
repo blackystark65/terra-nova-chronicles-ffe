@@ -31,7 +31,7 @@ export default function FermeElevage() {
   const [selectedEnclos, setSelectedEnclos] = useState(null); // enclos sélectionné pour agir dessus
   const [etats, setEtats] = useState({});
   const [feedback, setFeedback] = useState(null);
-  const [nourritures, setNourritures] = useState({ grain: 10, herbe: 10, legumes: 10, eau: 20 });
+  const [nourritures, setNourritures] = useState({ grain: 100, herbe: 100, legumes: 100, eau: 100 });
   const [productions, setProductions] = useState({});
 
   const queryClient = useQueryClient();
