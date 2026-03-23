@@ -256,7 +256,12 @@ export default function FermeArboriculture() {
                           </div>
                           {canHarvestThis && <div className="absolute top-1.5 right-1.5 text-base">🍎</div>}
                           {canEvolveThis && <div className="absolute top-1.5 right-1.5 text-base">⬆️</div>}
-                          {canTailleThis && <div className="absolute top-1.5 left-1.5"><Scissors className="w-3.5 h-3.5 text-blue-400" /></div>}
+                          {canTailleThis && (
+                            <div className="absolute top-1 left-1 flex items-center gap-0.5 bg-blue-900/60 rounded px-1">
+                              <Scissors className="w-2.5 h-2.5 text-blue-300" />
+                              <span className={`text-[8px] font-bold ${taillesThis >= taillesReqThis ? 'text-green-300' : 'text-orange-300'}`}>{taillesThis}/{taillesReqThis}</span>
+                            </div>
+                          )}
                           {isSelected && <div className="absolute inset-0 bg-white/10 rounded-2xl border-2 border-white pointer-events-none" />}
                         </>
                       ) : selectedArbre ? (
