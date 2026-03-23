@@ -42,7 +42,7 @@ const SONS_OISEAUX = {
   'hibou_grand_duc':   'https://base44.app/api/apps/6959886137576a65dcfe1370/files/mp/public/6959886137576a65dcfe1370/5d4b56639_SF-grand-duc.mp3',
   'paon':              'https://base44.app/api/apps/6959886137576a65dcfe1370/files/mp/public/6959886137576a65dcfe1370/d497007b3_SF-paon.mp3',
   'pigeon_ramier':     'https://base44.app/api/apps/6959886137576a65dcfe1370/files/mp/public/6959886137576a65dcfe1370/4ceaabe6b_sf-pigeon-ramier-chant-03.mp3',
-  'pinson':            'https://base44.app/api/apps/6959886137576a65dcfe1370/files/mp/public/6959886137576a65dcfe1370/ea15dbaa8_sf-pinson-arbres-Norvege-Bergen.mp3',
+  'pinson':            'https://base44.app/api/apps/6959886137576a65dcfe1370/files/mp/public/6959886137576a65dcfe1370/e2821159a_sf-pinson-arbres-Norvege-Bergen.mp3',
   'dindon':            'https://base44.app/api/apps/6959886137576a65dcfe1370/files/mp/public/6959886137576a65dcfe1370/5c06dc216_SFB-dindon-1.mp3',
 };
 
