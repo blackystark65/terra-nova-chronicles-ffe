@@ -290,14 +290,22 @@ export default function FermeArboriculture() {
                         className="p-3 rounded-xl bg-blue-500/20 hover:bg-blue-500/40 border border-blue-400/40 text-center disabled:opacity-30 disabled:cursor-not-allowed transition-all">
                         <div className="text-2xl mb-1">✂️</div>
                         <div className="text-blue-300 text-xs font-bold">Tailler</div>
-                        <div className="text-blue-300/60 text-[9px]">Accélère la croissance</div>
+                        <div className={`text-[10px] font-bold ${taillesSuffisantes ? 'text-green-400' : 'text-orange-300'}`}>
+                          {taillesEffectuees}/{taillesRequises} tailles
+                        </div>
                         <div className="text-yellow-300/70 text-[9px]">+3 crédits</div>
                       </button>
                       <button onClick={() => evoluerArbre(selectedSlot)} disabled={!canEvoluer}
-                        className="p-3 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/40 border border-emerald-400/40 text-center disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                        className={`p-3 rounded-xl border text-center disabled:opacity-30 disabled:cursor-not-allowed transition-all ${
+                          canEvoluer ? 'bg-emerald-500/40 hover:bg-emerald-500/60 border-emerald-300 animate-pulse' : 'bg-emerald-500/20 border-emerald-400/40'
+                        }`}>
                         <div className="text-2xl mb-1">⬆️</div>
                         <div className="text-emerald-300 text-xs font-bold">Faire évoluer</div>
-                        <div className="text-emerald-300/60 text-[9px]">Quand à 100%</div>
+                        <div className="text-emerald-300/60 text-[9px]">
+                          {stadeSelectionne?.niveau >= 100 && !taillesSuffisantes
+                            ? `Taille encore (${taillesEffectuees}/${taillesRequises})`
+                            : '100% + tailles ok'}
+                        </div>
                         <div className="text-yellow-300/70 text-[9px]">Gratuit</div>
                       </button>
                       <button onClick={() => recolterFruits(selectedSlot)} disabled={!canRecolter}
