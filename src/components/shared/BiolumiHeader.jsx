@@ -71,12 +71,12 @@ export default function BiolumiHeader({ currentPage }) {
           </Link>
 
           {/* Navigation avec effet membrane */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-1 flex-wrap">
             <motion.button
               onClick={handleLogout}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative px-3 py-1.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 transition-all duration-300 mr-2"
+              className="relative px-2 py-1.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 transition-all duration-300"
             >
               <div className="relative flex items-center gap-1.5">
                 <LogOut className="w-3.5 h-3.5 text-red-400" />
@@ -94,7 +94,7 @@ export default function BiolumiHeader({ currentPage }) {
                     <motion.div
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="relative px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300"
+                      className="relative px-2 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300"
                     >
                       <div className="relative flex items-center gap-1.5">
                         <Icon className="w-3.5 h-3.5 text-emerald-400/70" />
@@ -111,7 +111,7 @@ export default function BiolumiHeader({ currentPage }) {
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     className={`
-                      relative px-3 py-1.5 rounded-xl
+                      relative px-2 py-1.5 rounded-xl
                       transition-all duration-300
                       ${isActive ?
                     'bg-gradient-to-r from-emerald-500/30 to-teal-500/30 shadow-lg shadow-emerald-500/20' :
@@ -130,7 +130,7 @@ export default function BiolumiHeader({ currentPage }) {
                     }
                     
                     <div className="relative flex items-center gap-1.5">
-                      <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-300' : 'text-emerald-400/70'}`} />
+                      <Icon className={`w-3 h-3 ${isActive ? 'text-emerald-300' : 'text-emerald-400/70'}`} />
                       <span className={`text-xs font-medium ${isActive ? 'text-emerald-200' : 'text-emerald-300/70'}`}>
                         {item.name}
                       </span>
