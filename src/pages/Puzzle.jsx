@@ -401,6 +401,9 @@ export default function PuzzlePage() {
                               handleDragStart(piece);
                             }
                           }}
+                          className={`relative aspect-square border-2 rounded overflow-hidden cursor-pointer touch-manipulation transition-all ${
+                            draggedPiece?.id === piece.id ? 'border-yellow-400 scale-110 shadow-lg shadow-yellow-400/50' : 'border-purple-400'
+                          }`}
                           whileHover={{ scale: 1.15, zIndex: 10 }}
                           whileTap={{ scale: 0.9 }}
                         >
