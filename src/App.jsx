@@ -13,6 +13,8 @@ import BiomeMountainsPage from './pages/BiomeMountains';
 import BiodiversitePage from './pages/Biodiversite';
 import AdminAudioPage from './pages/AdminAudio';
 import GuidePage from './pages/Guide';
+import EcospherePage from './pages/Ecosphere';
+import AdminEcospherePage from './pages/AdminEcosphere';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -70,6 +72,8 @@ const AuthenticatedApp = () => {
       <Route path="/Biodiversite" element={<LayoutWrapper currentPageName="Biodiversite"><BiodiversitePage /></LayoutWrapper>} />
       <Route path="/AdminAudio" element={<LayoutWrapper currentPageName="AdminAudio"><AdminAudioPage /></LayoutWrapper>} />
       <Route path="/Guide" element={<LayoutWrapper currentPageName="Guide"><GuidePage /></LayoutWrapper>} />
+      <Route path="/Ecosphere" element={<LayoutWrapper currentPageName="Ecosphere"><EcospherePage /></LayoutWrapper>} />
+      <Route path="/AdminEcosphere" element={<LayoutWrapper currentPageName="AdminEcosphere"><AdminEcospherePage /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
