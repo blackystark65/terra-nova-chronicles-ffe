@@ -343,8 +343,16 @@ export default function PuzzlePage() {
                           key={index}
                           onDragOver={(e) => e.preventDefault()}
                           onDrop={() => handleDrop(index)}
-                          onClick={() => piece && handleRemovePiece(index)}
+                          onClick={() => {
+                            if (draggedPiece) {
+                              handleDrop(index);
+                            } else if (piece) {
+                              handleRemovePiece(index);
+                            }
+                          }}
                           className={`relative border rounded overflow-hidden cursor-pointer transition-all ${
+                            draggedPiece ? 'ring-2 ring-yellow-400/60' : ''
+                          } ${
                             piece 
                               ? piece.correctPosition === index
                                 ? 'border-green-400 bg-green-500/20'
