@@ -19,7 +19,8 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Micro-ferme', icon: Leaf, path: 'MicroFerme' },
     { name: 'Missions', icon: Flame, path: 'Missions' },
     { name: 'Climat', icon: Leaf, path: 'Climate' },
-    { name: 'Biodiversité', icon: Leaf, path: 'Biodiversite' }];
+    { name: 'Biodiversité', icon: Leaf, path: 'Biodiversite' },
+    { name: 'Écosphère', icon: BookOpen, path: 'Ecosphere' }];
 
   const handleLogout = () => {
     base44.auth.redirectToLogin();
