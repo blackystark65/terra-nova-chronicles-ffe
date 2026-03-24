@@ -166,29 +166,25 @@ export default function BiolumiHeader({ currentPage }) {
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center gap-2">
             <Link to={createPageUrl('Profile')}>
-              <motion.div
-                whileTap={{ scale: 0.9 }}
-                className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg border-2 border-emerald-400/50"
-              >
-                <User className="w-4 h-4 text-white" />
-              </motion.div>
+              <div className="w-11 h-11 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg border-2 border-emerald-400/50 touch-manipulation active:scale-95 transition-transform">
+                <User className="w-5 h-5 text-white pointer-events-none" />
+              </div>
             </Link>
-            
-            <motion.button
-              whileTap={{ scale: 0.9 }}
+            <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/10 backdrop-blur-sm"
+              className="w-11 h-11 flex flex-col items-center justify-center gap-1.5 rounded-xl bg-white/10 backdrop-blur-sm touch-manipulation active:scale-95 transition-transform border border-white/20"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-emerald-300" />
+                <X className="w-6 h-6 text-emerald-300 pointer-events-none" />
               ) : (
                 <>
-                  <div className="w-6 h-0.5 bg-emerald-300 mb-1" />
-                  <div className="w-6 h-0.5 bg-emerald-300 mb-1" />
-                  <div className="w-6 h-0.5 bg-emerald-300" />
+                  <div className="w-5 h-0.5 bg-emerald-300 pointer-events-none" />
+                  <div className="w-5 h-0.5 bg-emerald-300 pointer-events-none" />
+                  <div className="w-5 h-0.5 bg-emerald-300 pointer-events-none" />
                 </>
               )}
-            </motion.button>
+            </button>
           </div>
         </div>
       </nav>
