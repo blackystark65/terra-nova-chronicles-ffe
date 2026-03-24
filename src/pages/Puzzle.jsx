@@ -42,6 +42,30 @@ const PUZZLES = [
     name: 'Recyclage',
     image: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&h=800&fit=crop',
     color: 'from-teal-500 to-cyan-500'
+  },
+  {
+    id: 'biodiversite',
+    name: 'Biodiversité',
+    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=800&fit=crop',
+    color: 'from-emerald-500 to-green-700'
+  },
+  {
+    id: 'permaculture',
+    name: 'Permaculture',
+    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=800&fit=crop',
+    color: 'from-lime-600 to-amber-600'
+  },
+  {
+    id: 'climat',
+    name: 'Climat',
+    image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=800&fit=crop',
+    color: 'from-sky-500 to-indigo-600'
+  },
+  {
+    id: 'eau',
+    name: 'Eau & Rivières',
+    image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=800&fit=crop',
+    color: 'from-cyan-500 to-blue-700'
   }
 ];
 
