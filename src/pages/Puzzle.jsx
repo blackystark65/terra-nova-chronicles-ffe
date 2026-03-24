@@ -394,7 +394,6 @@ export default function PuzzlePage() {
                           key={piece.id}
                           draggable
                           onDragStart={() => handleDragStart(piece)}
-                          onTouchStart={() => handleDragStart(piece)}
                           onClick={() => {
                             if (draggedPiece?.id === piece.id) {
                               setDraggedPiece(null);
@@ -402,11 +401,8 @@ export default function PuzzlePage() {
                               handleDragStart(piece);
                             }
                           }}
-                          className={`relative aspect-square border rounded overflow-hidden cursor-pointer touch-manipulation transition-all ${
-                            draggedPiece?.id === piece.id ? 'border-yellow-400 border-2' : 'border-purple-400'
-                          }`}
-                          whileHover={{ scale: 1.15, rotate: 5, zIndex: 10 }}
-                          whileTap={{ scale: 0.95 }}
+                          whileHover={{ scale: 1.15, zIndex: 10 }}
+                          whileTap={{ scale: 0.9 }}
                         >
                           <div
                             className="w-full h-full"
