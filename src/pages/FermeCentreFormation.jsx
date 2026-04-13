@@ -155,6 +155,16 @@ export default function FermeCentreFormation() {
                 <Users className="w-4 h-4 inline mr-2" />Mes Classes
               </button>
               <button
+                onClick={() => setTeacherTab('poste')}
+                className={`flex-1 py-3 px-4 rounded-xl font-semibold transition-all border ${
+                  teacherTab === 'poste'
+                    ? 'bg-green-500/30 border-green-400/60 text-green-200'
+                    : 'bg-white/5 border-white/10 text-white/50 hover:bg-white/10'
+                }`}
+              >
+                <Briefcase className="w-4 h-4 inline mr-2" />Mon Poste
+              </button>
+              <button
                 onClick={() => setTeacherTab('formation')}
                 className={`flex-1 py-3 px-4 rounded-xl font-semibold transition-all border ${
                   teacherTab === 'formation'
@@ -167,6 +177,109 @@ export default function FermeCentreFormation() {
             </div>
 
             {teacherTab === 'classes' && <TeacherClassManager user={user} />}
+
+            {/* Onglet Mon Poste — même flow que les élèves */}
+            {teacherTab === 'poste' && (
+              <AnimatePresence mode="wait">
+                {!isRegistered ? (
+                  <motion.div key="teacher-inscription" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                    className="p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-green-400/20">
+                    <div className="text-center mb-6">
+                      <div className="inline-flex p-4 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 mb-4">
+                        <Briefcase className="w-10 h-10 text-white" />
+                      </div>
+                      <h2 className="text-2xl font-black text-green-300 mb-1">Choisir mon poste</h2>
+                      <p className="text-green-200/60 text-sm">Participez à la micro-ferme en tant que membre actif, tout en gérant vos classes.</p>
+                    </div>
+                    <div className="space-y-6">
+                      {/* Choix de la classe */}
+                      <div className="bg-white/5 p-6 rounded-2xl border border-green-400/20">
+                        <label className="flex items-center gap-2 text-green-300 font-semibold mb-3">
+                          <Users className="w-5 h-5" /> Rejoindre une classe
+                        </label>
+                        {classes && classes.length > 0 ? (
+                          <div className="grid gap-3">
+                            {classes.map(classe => (
+                              <motion.div key={classe.id} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                                onClick={() => setSelectedClasse(classe)}
+                                className={`p-4 rounded-xl cursor-pointer transition-all ${
+                                  selectedClasse?.id === classe.id
+                                    ? 'bg-gradient-to-r from-green-500 to-emerald-600 border-2 border-green-300'
+                                    : 'bg-white/10 border border-green-400/20 hover:bg-white/20'
+                                }`}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <div>
+                                    <div className="text-white font-bold">{classe.nom_classe}</div>
+                                    <div className="text-green-200/70 text-sm">👨‍🏫 {classe.enseignant} • {classe.description}</div>
+                                  </div>
+                                  {selectedClasse?.id === classe.id && <CheckCircle className="w-5 h-5 text-white" />}
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="text-center py-6 text-green-300/40">Aucune classe disponible — créez d'abord une classe dans l'onglet "Mes Classes"</div>
+                        )}
+                      </div>
+                      {/* Choix du poste */}
+                      <div className="bg-white/5 p-6 rounded-2xl border border-green-400/20">
+                        <label className="flex items-center gap-2 text-green-300 font-semibold mb-3">
+                          <Briefcase className="w-5 h-5" /> Choisir mon poste
+                        </label>
+                        <div className="grid md:grid-cols-2 gap-3">
+                          {ROLES_FERME.map(role => (
+                            <motion.div key={role.id} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                              onClick={() => setSelectedRole(role.id)}
+                              className={`p-4 rounded-xl cursor-pointer transition-all ${
+                                selectedRole === role.id
+                                  ? 'bg-gradient-to-br from-green-500 to-emerald-600 border-2 border-green-300'
+                                  : 'bg-white/10 border border-green-400/20 hover:bg-white/20'
+                              }`}
+                            >
+                              <div className="flex items-center gap-3">
+                                <span className="text-3xl">{role.emoji}</span>
+                                <div>
+                                  <div className="text-white font-semibold">{role.name}</div>
+                                  <div className="text-xs text-green-200/70">{role.description}</div>
+                                </div>
+                              </div>
+                              {selectedRole === role.id && <CheckCircle className="w-5 h-5 text-white ml-auto mt-2" />}
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                      <Button onClick={handleRegister}
+                        disabled={!selectedRole || !selectedClasse || createRoleMutation.isPending}
+                        className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 py-5 text-lg">
+                        {createRoleMutation.isPending ? '⏳ Inscription...' : '✅ Rejoindre la ferme avec ce poste'}
+                      </Button>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div key="teacher-poste-actif" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                    className="p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-green-400/20 text-center">
+                    <div className="text-6xl mb-4">
+                      {ROLES_FERME.find(r => r.id === selectedRole)?.emoji || '🌱'}
+                    </div>
+                    <h2 className="text-2xl font-black text-green-300 mb-2">
+                      Poste actif : {ROLES_FERME.find(r => r.id === selectedRole)?.name}
+                    </h2>
+                    <p className="text-green-200/60 mb-6">Vous participez à la micro-ferme dans ce poste.</p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <Button onClick={handleContinueToFarm}
+                        className="bg-gradient-to-r from-green-500 to-emerald-600 py-4 px-8 text-lg">
+                        🚀 Aller à mon poste
+                      </Button>
+                      <Button onClick={handleUnregister} disabled={deleteRoleMutation.isPending}
+                        variant="outline" className="border-red-400 text-red-300 hover:bg-red-500/20 py-4 px-8">
+                        {deleteRoleMutation.isPending ? '⏳...' : '🔄 Changer de poste'}
+                      </Button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            )}
 
             {teacherTab === 'formation' && (
               <Tabs defaultValue="maraicher" className="w-full">
