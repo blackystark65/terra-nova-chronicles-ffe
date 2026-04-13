@@ -1,0 +1,31 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "user"
+      ],
+      "default": "user"
+    },
+    "profile_type": {
+      "type": "string",
+      "enum": [
+        "eleve",
+        "enseignant",
+        "public"
+      ],
+      "description": "Type de profil : \u00e9l\u00e8ve, enseignant ou public"
+    },
+    "matiere": {
+      "type": "string",
+      "description": "Mati\u00e8re enseign\u00e9e (pour les enseignants)"
+    },
+    "etablissement": {
+      "type": "string",
+      "description": "Nom de l'\u00e9tablissement scolaire"
+    }
+  }
+}

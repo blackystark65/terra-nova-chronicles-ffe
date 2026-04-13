@@ -5,7 +5,8 @@ import { createPageUrl } from '@/utils';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
-import { ArrowLeft, GraduationCap, Users, CheckCircle, Briefcase, BookOpen, Target } from 'lucide-react';
+import { ArrowLeft, GraduationCap, Users, CheckCircle, Briefcase, BookOpen, Target, School } from 'lucide-react';
+import TeacherClassManager from '@/components/microferme/TeacherClassManager';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ROLES_FERME } from '@/components/microferme/FermeData';
@@ -14,11 +15,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function FermeCentreFormation() {
   const queryClient = useQueryClient();
-  const [selectedCategory, setSelectedCategory] = useState(null); // Juniors, Cadets, Seniors
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedClasse, setSelectedClasse] = useState(null);
   const [selectedRole, setSelectedRole] = useState(null);
   const [isRegistered, setIsRegistered] = useState(false);
-  const [viewMode, setViewMode] = useState('inscription'); // 'inscription' ou 'formation'
+  const [viewMode, setViewMode] = useState('inscription');
+  const [teacherTab, setTeacherTab] = useState('classes'); // 'classes' ou 'formation'
 
   const categories = [
     { id: 'juniors', name: 'Juniors - Découverte', description: 'CM2', emoji: '🎒', color: 'from-blue-500 to-cyan-600' },
@@ -111,6 +113,123 @@ export default function FermeCentreFormation() {
     }
   };
 
+  // Vue ENSEIGNANT
+  if (user?.profile_type === 'enseignant') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-purple-950">
+        <BiolumiHeader currentPage="MicroFerme" />
+        <main className="pt-24 px-4 pb-12">
+          <div className="max-w-4xl mx-auto">
+            <Link to={createPageUrl('MicroFerme')}>
+              <Button variant="outline" className="mb-6 border-indigo-400 text-indigo-300">
+                <ArrowLeft className="w-5 h-5 mr-2" />
+                Retour au Plan
+              </Button>
+            </Link>
+
+            {/* Header enseignant */}
+            <div className="mb-8 p-6 rounded-3xl bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-400/30">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-2xl bg-indigo-500/30">
+                  <School className="w-8 h-8 text-indigo-300" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-black text-indigo-300">Espace Enseignant — Centre de Formation</h1>
+                  <p className="text-indigo-200/60 text-sm">
+                    {user?.full_name} {user?.matiere ? `· ${user.matiere}` : ''} {user?.etablissement ? `· ${user.etablissement}` : ''}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Onglets enseignant */}
+            <div className="flex gap-2 mb-6">
+              <button
+                onClick={() => setTeacherTab('classes')}
+                className={`flex-1 py-3 px-4 rounded-xl font-semibold transition-all border ${
+                  teacherTab === 'classes'
+                    ? 'bg-indigo-500/30 border-indigo-400/60 text-indigo-200'
+                    : 'bg-white/5 border-white/10 text-white/50 hover:bg-white/10'
+                }`}
+              >
+                <Users className="w-4 h-4 inline mr-2" />Mes Classes
+              </button>
+              <button
+                onClick={() => setTeacherTab('formation')}
+                className={`flex-1 py-3 px-4 rounded-xl font-semibold transition-all border ${
+                  teacherTab === 'formation'
+                    ? 'bg-emerald-500/30 border-emerald-400/60 text-emerald-200'
+                    : 'bg-white/5 border-white/10 text-white/50 hover:bg-white/10'
+                }`}
+              >
+                <BookOpen className="w-4 h-4 inline mr-2" />Fiches de Formation
+              </button>
+            </div>
+
+            {teacherTab === 'classes' && <TeacherClassManager user={user} />}
+
+            {teacherTab === 'formation' && (
+              <Tabs defaultValue="maraicher" className="w-full">
+                <TabsList className="grid grid-cols-2 lg:grid-cols-4 gap-2 bg-white/5 p-4 rounded-xl mb-16 flex-wrap">
+                  {ROLES_FERME.map((role) => (
+                    <TabsTrigger
+                      key={role.id}
+                      value={role.id}
+                      className="flex flex-col items-center gap-1 data-[state=active]:bg-gradient-to-br data-[state=active]:from-emerald-500 data-[state=active]:to-green-600 text-xs p-2 rounded-lg"
+                    >
+                      <span className="text-lg sm:text-2xl">{role.emoji}</span>
+                      <span className="text-xs font-semibold leading-tight text-center">{role.name}</span>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+                {ROLES_FERME.map((role) => {
+                  const roleDesc = ROLE_DESCRIPTIONS[role.id];
+                  return (
+                    <TabsContent key={role.id} value={role.id} className="space-y-6 pt-8">
+                      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                        className="p-6 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-green-600/20 border border-emerald-400/30 mt-8">
+                        <div className="flex items-start gap-4 mb-4">
+                          <div className="text-6xl">{roleDesc.emoji}</div>
+                          <div className="flex-1">
+                            <h2 className="text-3xl font-bold text-emerald-300 mb-2">{roleDesc.title}</h2>
+                            <p className="text-emerald-200/70 text-lg mb-3">{roleDesc.description}</p>
+                            <div className="flex flex-wrap gap-2">
+                              {roleDesc.zones.map((zone, i) => (
+                                <span key={i} className="px-3 py-1 rounded-full bg-emerald-500/30 text-emerald-200 text-sm">📍 {zone}</span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                      <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-emerald-400/20">
+                        <h3 className="text-2xl font-bold text-emerald-300 mb-4 flex items-center gap-2">
+                          <Target className="w-6 h-6" /> Missions du poste
+                        </h3>
+                        <div className="space-y-4">
+                          {roleDesc.tasks.map((task, i) => (
+                            <div key={i} className="p-4 rounded-xl bg-white/5 border border-emerald-400/20">
+                              <div className="flex items-start gap-3">
+                                <div className="text-3xl">{task.icon}</div>
+                                <div>
+                                  <h4 className="text-lg font-semibold text-emerald-200 mb-1">{task.title}</h4>
+                                  <p className="text-emerald-300/70">{task.details}</p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </TabsContent>
+                  );
+                })}
+              </Tabs>
+            )}
+          </div>
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-purple-950">
       <BiolumiHeader currentPage="MicroFerme" />
@@ -182,8 +301,9 @@ export default function FermeCentreFormation() {
                   <div className="bg-white/5 p-6 rounded-2xl border border-indigo-400/20">
                     <label className="flex items-center gap-2 text-indigo-300 font-semibold mb-4">
                       <Users className="w-5 h-5" />
-                      Choisis ta classe
+                      Rejoindre une classe
                     </label>
+                    <p className="text-indigo-300/50 text-xs mb-3">Demande le code de classe à ton enseignant, puis sélectionne ta classe ci-dessous.</p>
                     {classes && classes.length > 0 ? (
                       <div className="grid gap-3">
                         {classes

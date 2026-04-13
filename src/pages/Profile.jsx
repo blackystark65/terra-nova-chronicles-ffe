@@ -5,7 +5,9 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import XPBar from '@/components/shared/XPBar';
 import BadgeDisplay, { badgeIcons } from '@/components/shared/BadgeDisplay';
-import { User, Trophy, Map, Target, Camera, Edit2, Save, X, Recycle, Star } from 'lucide-react';
+import { User, Trophy, Map, Target, Camera, Edit2, Save, X, Recycle, Star, GraduationCap } from 'lucide-react';
+import ProfileTypeSelector from '@/components/shared/ProfileTypeSelector';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -14,6 +16,7 @@ export default function ProfilePage() {
   const [isEditingName, setIsEditingName] = useState(false);
   const [newName, setNewName] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [showProfileTypeDialog, setShowProfileTypeDialog] = useState(false);
   const syncedSessionRef = useRef(null);
 
   const { data: user } = useQuery({
@@ -224,58 +227,75 @@ export default function ProfilePage() {
               <div className="flex-1 w-full">
                 {/* Nom éditable */}
                 {isEditingName ? (
-                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mb-4">
-                    <Input
-                      value={newName}
-                      onChange={(e) => setNewName(e.target.value)}
-                      placeholder="Votre nom"
-                      className="bg-white/10 border-emerald-400/30 text-white flex-1 min-h-[44px] text-base"
-                      autoFocus
-                    />
-                    <div className="flex gap-2">
-                      <Button
-                        onClick={handleSaveName}
-                        disabled={updateUserMutation.isPending}
-                        className="bg-emerald-500 hover:bg-emerald-600 flex-1 sm:flex-none active:scale-95 min-h-[44px]"
-                        style={{ WebkitTapHighlightColor: 'transparent' }}
-                      >
-                        {updateUserMutation.isPending ? '💾' : <Save className="w-5 h-5" />}
-                      </Button>
-                      <Button
-                        onClick={() => setIsEditingName(false)}
-                        variant="outline"
-                        className="border-emerald-400/30 text-emerald-300 flex-1 sm:flex-none active:scale-95 min-h-[44px]"
-                        style={{ WebkitTapHighlightColor: 'transparent' }}
-                      >
-                        <X className="w-5 h-5" />
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
-                    <h1 className="text-2xl md:text-3xl font-bold text-emerald-300 text-center md:text-left">
-                      {user?.display_name || user?.full_name || 'Éco-Sentinelle'}
-                    </h1>
-                    <Button
-                      onClick={() => {
-                        setNewName(user?.display_name || user?.full_name || '');
-                        setIsEditingName(true);
-                      }}
-                      size="icon"
-                      variant="ghost"
-                      className="text-emerald-400 hover:text-emerald-300 hover:bg-emerald-400/10 active:scale-95"
-                      style={{ WebkitTapHighlightColor: 'transparent' }}
-                    >
-                      <Edit2 className="w-5 h-5" />
-                    </Button>
-                  </div>
-                )}
-                
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mb-4">
+                          <Input
+                            value={newName}
+                            onChange={(e) => setNewName(e.target.value)}
+                            placeholder="Votre nom"
+                            className="bg-white/10 border-emerald-400/30 text-white flex-1 min-h-[44px] text-base"
+                            autoFocus
+                          />
+                          <div className="flex gap-2">
+                            <Button
+                              onClick={handleSaveName}
+                              disabled={updateUserMutation.isPending}
+                              className="bg-emerald-500 hover:bg-emerald-600 flex-1 sm:flex-none active:scale-95 min-h-[44px]"
+                              style={{ WebkitTapHighlightColor: 'transparent' }}
+                            >
+                              {updateUserMutation.isPending ? '💾' : <Save className="w-5 h-5" />}
+                            </Button>
+                            <Button
+                              onClick={() => setIsEditingName(false)}
+                              variant="outline"
+                              className="border-emerald-400/30 text-emerald-300 flex-1 sm:flex-none active:scale-95 min-h-[44px]"
+                              style={{ WebkitTapHighlightColor: 'transparent' }}
+                            >
+                              <X className="w-5 h-5" />
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center md:items-start gap-2 mb-4">
+                          <div className="flex items-center justify-center md:justify-start gap-2">
+                            <h1 className="text-2xl md:text-3xl font-bold text-emerald-300 text-center md:text-left">
+                              {user?.display_name || user?.full_name || 'Éco-Sentinelle'}
+                            </h1>
+                            <Button
+                              onClick={() => {
+                                setNewName(user?.display_name || user?.full_name || '');
+                                setIsEditingName(true);
+                              }}
+                              size="icon"
+                              variant="ghost"
+                              className="text-emerald-400 hover:text-emerald-300 hover:bg-emerald-400/10 active:scale-95"
+                              style={{ WebkitTapHighlightColor: 'transparent' }}
+                            >
+                              <Edit2 className="w-5 h-5" />
+                            </Button>
+                          </div>
+                          {/* Badge de type de profil */}
+                          <button
+                            onClick={() => setShowProfileTypeDialog(true)}
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 hover:bg-emerald-500/20 transition-all"
+                          >
+                            <span className="text-sm">
+                              {user?.profile_type === 'enseignant' ? '👩‍🏫' : user?.profile_type === 'eleve' ? '🎒' : user?.profile_type === 'public' ? '🌍' : '👤'}
+                            </span>
+                            <span className="text-emerald-300 text-xs font-semibold">
+                              {user?.profile_type === 'enseignant' ? `Enseignant${user.matiere ? ' · ' + user.matiere : ''}` :
+                               user?.profile_type === 'eleve' ? 'Élève' :
+                               user?.profile_type === 'public' ? 'Grand public' :
+                               'Définir mon profil'}
+                            </span>
+                            <Edit2 className="w-3 h-3 text-emerald-400" />
+                          </button>
+                        </div>
+                      )}
                 <XPBar
-                  level={profile.eco_level}
-                  currentXP={profile.experience_points % nextLevelXP}
-                  nextLevelXP={nextLevelXP}
-                />
+                        level={profile.eco_level}
+                        currentXP={profile.experience_points % nextLevelXP}
+                        nextLevelXP={nextLevelXP}
+                      />
               </div>
             </div>
           </motion.div>
@@ -329,6 +349,16 @@ export default function ProfilePage() {
           </motion.div>
         </div>
       </main>
+
+      {/* Dialog sélection type de profil */}
+      <Dialog open={showProfileTypeDialog} onOpenChange={setShowProfileTypeDialog}>
+        <DialogContent className="bg-slate-900 border-emerald-400/30 text-white max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-white">Mon profil</DialogTitle>
+          </DialogHeader>
+          <ProfileTypeSelector user={user} onClose={() => setShowProfileTypeDialog(false)} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
