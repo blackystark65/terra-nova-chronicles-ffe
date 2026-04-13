@@ -5,7 +5,7 @@ import { createPageUrl } from '@/utils';
 import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
-import { ChevronLeft, ChevronRight, BookOpen, X, ArrowLeft } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, X, ArrowLeft, Maximize2, Minimize2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const CHAPTERS = [
@@ -25,6 +25,7 @@ const CHAPTERS = [
 export default function EcospherePage() {
   const [activeChapter, setActiveChapter] = useState(null);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [fullscreenSlide, setFullscreenSlide] = useState(null);
 
   const { data: allSlides = [] } = useQuery({
     queryKey: ['ecosphere-slides'],
@@ -154,6 +155,13 @@ export default function EcospherePage() {
                   <>
                     {/* Slide principale */}
                     <div className="relative bg-black/40 backdrop-blur-xl rounded-3xl border border-white/20 overflow-hidden shadow-2xl mb-4">
+                      <button
+                        onClick={() => setFullscreenSlide(chapterData[slideIndex])}
+                        className="absolute top-3 right-3 z-20 p-2 rounded-xl bg-black/50 hover:bg-black/70 text-white/80 hover:text-white border border-white/20 transition-all"
+                        title="Agrandir"
+                      >
+                        <Maximize2 className="w-5 h-5" />
+                      </button>
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={slideIndex}
@@ -165,7 +173,8 @@ export default function EcospherePage() {
                           <img
                             src={chapterData[slideIndex].image_url}
                             alt={chapterData[slideIndex].title || `Planche ${slideIndex + 1}`}
-                            className="w-full object-contain max-h-[65vh]"
+                            className="w-full object-contain max-h-[65vh] cursor-zoom-in"
+                            onClick={() => setFullscreenSlide(chapterData[slideIndex])}
                           />
                           {(chapterData[slideIndex].title || chapterData[slideIndex].description) && (
                             <div className="p-4 border-t border-white/10">
@@ -221,6 +230,81 @@ export default function EcospherePage() {
           </AnimatePresence>
         </div>
       </main>
+
+      {/* Modale plein écran */}
+      <AnimatePresence>
+        {fullscreenSlide && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4"
+            onClick={() => setFullscreenSlide(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="relative max-w-6xl w-full max-h-[95vh] flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Barre de contrôle */}
+              <div className="flex items-center justify-between mb-3 px-1">
+                <div>
+                  {fullscreenSlide.title && (
+                    <h3 className="text-white font-bold text-xl">{fullscreenSlide.title}</h3>
+                  )}
+                  {fullscreenSlide.description && (
+                    <p className="text-white/60 text-sm">{fullscreenSlide.description}</p>
+                  )}
+                </div>
+                <button
+                  onClick={() => setFullscreenSlide(null)}
+                  className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all flex items-center gap-2"
+                >
+                  <Minimize2 className="w-5 h-5" />
+                  <span className="text-sm">Réduire</span>
+                </button>
+              </div>
+              {/* Image plein écran */}
+              <div className="flex-1 overflow-auto rounded-2xl border border-white/20 bg-black/40">
+                <img
+                  src={fullscreenSlide.image_url}
+                  alt={fullscreenSlide.title || 'Planche'}
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+              {/* Navigation dans le fullscreen */}
+              <div className="flex items-center justify-between mt-3 gap-4">
+                <button
+                  onClick={() => {
+                    const newIdx = Math.max(0, slideIndex - 1);
+                    setSlideIndex(newIdx);
+                    setFullscreenSlide(chapterData[newIdx]);
+                  }}
+                  disabled={slideIndex === 0}
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed text-white border border-white/20 transition-all"
+                >
+                  <ChevronLeft className="w-5 h-5" /> Précédent
+                </button>
+                <span className="text-white/50 text-sm">{slideIndex + 1} / {chapterData.length}</span>
+                <button
+                  onClick={() => {
+                    const newIdx = Math.min(chapterData.length - 1, slideIndex + 1);
+                    setSlideIndex(newIdx);
+                    setFullscreenSlide(chapterData[newIdx]);
+                  }}
+                  disabled={slideIndex === chapterData.length - 1}
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed text-white border border-white/20 transition-all"
+                >
+                  Suivant <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
