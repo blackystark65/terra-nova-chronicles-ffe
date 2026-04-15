@@ -6,6 +6,14 @@ import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Globe, Compass, BookOpen, Flame, Leaf, Droplets, Wind, Mountain, LogOut } from 'lucide-react';
 
+const PARTICLES = [...Array(30)].map((_, i) => ({
+  left: `${(i * 37 + 13) % 100}%`,
+  top: `${(i * 53 + 7) % 100}%`,
+  xOffset: ((i * 17) % 20) - 10,
+  duration: 3 + (i % 3),
+  delay: (i * 0.15) % 2,
+}));
+
 export default function HomePage() {
   const handleLogout = () => {
     base44.auth.redirectToLogin();
@@ -24,26 +32,22 @@ export default function HomePage() {
       <div className="fixed inset-0 bg-gradient-to-br from-slate-950/60 via-emerald-950/50 to-teal-950/60" />
       {/* Particules flottantes biomimétiques */}
       <div className="fixed inset-0 pointer-events-none">
-        {[...Array(30)].map((_, i) =>
+        {PARTICLES.map((p, i) =>
         <motion.div
           key={i}
           className="absolute w-1 h-1 rounded-full bg-emerald-400/30"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`
-          }}
+          style={{ left: p.left, top: p.top }}
           animate={{
             y: [0, -30, 0],
-            x: [0, Math.random() * 20 - 10, 0],
+            x: [0, p.xOffset, 0],
             opacity: [0.2, 0.6, 0.2],
             scale: [1, 1.5, 1]
           }}
           transition={{
-            duration: 3 + Math.random() * 2,
+            duration: p.duration,
             repeat: Infinity,
-            delay: Math.random() * 2
+            delay: p.delay
           }} />
-
         )}
       </div>
 
