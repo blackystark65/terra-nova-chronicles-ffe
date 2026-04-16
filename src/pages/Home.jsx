@@ -249,12 +249,16 @@ export default function HomePage() {
               Explore les Biomes de la Terre
             </motion.h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
               { name: 'Forêts Primaires', icon: '🌳', color: 'from-green-600 to-emerald-700', path: 'BiomeRainforest' },
               { name: 'Océans & Récifs', icon: '🌊', color: 'from-blue-600 to-cyan-700', path: 'BiomeOcean' },
               { name: 'Savanes', icon: '🦁', color: 'from-amber-600 to-orange-700', path: 'BiomeSavanna' },
-              { name: 'Arctique', icon: '❄️', color: 'from-slate-600 to-blue-700', path: 'BiomeArctic' }].
+              { name: 'Arctique', icon: '❄️', color: 'from-slate-600 to-blue-700', path: 'BiomeArctic' },
+              { name: 'Forêt Tempérée', icon: '🍂', color: 'from-orange-700 to-amber-800', path: 'BiomeTemperateForest' },
+              { name: 'Zones Humides', icon: '🦢', color: 'from-teal-600 to-cyan-800', path: 'BiomeWetlands' },
+              { name: 'Montagnes', icon: '🏔️', color: 'from-slate-500 to-stone-700', path: 'BiomeMountains' },
+              { name: 'Désert', icon: '🌵', color: 'from-yellow-600 to-orange-800', path: 'BiomeDesert' }].
               map((biome, i) =>
               <Link key={i} to={createPageUrl(biome.path)}>
                   <motion.div
