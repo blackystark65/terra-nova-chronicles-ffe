@@ -227,6 +227,68 @@ const SLIDES = [
     ),
   },
 
+  // ── SLIDE 3c : Habitat & Biodiversité ──
+  {
+    id: 'habitat-biodiversite',
+    bg: 'from-lime-950 via-green-950 to-emerald-950',
+    content: (
+      <div className="px-6 py-10 max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-3 rounded-2xl bg-lime-500/20 border border-lime-400/30 text-3xl">🌿</div>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Habitat & Biodiversité</h2>
+            <p className="text-lime-400/60 text-sm">Pourquoi les habitats disparaissent — et comment les protéger</p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-5 mb-5">
+          {/* Menaces */}
+          <div className="space-y-3">
+            <h3 className="font-bold text-lime-300 text-base mb-2">⚠️ Les menaces sur les habitats</h3>
+            {[
+              { emoji: '🧪', title: 'Pesticides', desc: 'Les néonicotinoïdes peuvent anéantir les abeilles sauvages même à faibles doses. Les herbicides détruisent leurs plantes nourricières.' },
+              { emoji: '🌾', title: 'Prairies appauvrries', desc: 'La fertilisation excessive favorise les graminées au détriment des fleurs sauvages (pissenlit, marguerite, bouton d\'or). Résultat : des déserts verts monotones.' },
+              { emoji: '🏗️', title: 'Étalement urbain', desc: 'L\'intensification agricole et l\'urbanisation réduisent drastiquement les habitats riches en structures et en fleurs indigènes.' },
+            ].map((item, i) => (
+              <motion.div key={i} initial={{ opacity: 0, x: -15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
+                className="flex gap-3 p-3 rounded-xl bg-white/5 border border-lime-400/20">
+                <span className="text-xl flex-shrink-0">{item.emoji}</span>
+                <div>
+                  <h4 className="font-bold text-lime-300 text-sm mb-0.5">{item.title}</h4>
+                  <p className="text-lime-200/60 text-xs">{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Solutions + photos BeeHome */}
+          <div className="space-y-3">
+            <h3 className="font-bold text-emerald-300 text-base mb-2">✅ Créer des habitats adaptés</h3>
+            <p className="text-emerald-200/70 text-sm leading-relaxed mb-3">
+              L'idéal est de placer les nids <strong className="text-emerald-300">à proximité directe de fleurs indigènes</strong>, dans des endroits ensoleillés, secs, à sol maigre — idéalement une pente exposée au sud. Il n'y a pas de taille minimale : plusieurs petites surfaces à différents endroits sont aussi utiles qu'une grande.
+            </p>
+            {/* Photos BeeHome Classic & Expert */}
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <img src="https://media.base44.com/images/public/6959886137576a65dcfe1370/4a33655b7_BeeHome_Classic_mit_Schublade_Wildbienen-Nisthilfe_fur_Garten_Balkon.jpg"
+                  alt="BeeHome Classic" className="w-full h-36 object-contain rounded-xl bg-amber-50/5 border border-lime-400/20" />
+                <p className="text-lime-400/60 text-xs text-center mt-1">BeeHome Classic</p>
+              </div>
+              <div>
+                <img src="https://media.base44.com/images/public/6959886137576a65dcfe1370/f2f13ed3c_BeeHome_Expert_Vielfalt_Wildbienen-Nisthilfe_fur_Garten_Balkon.jpg"
+                  alt="BeeHome Expert" className="w-full h-36 object-contain rounded-xl bg-amber-50/5 border border-lime-400/20" />
+                <p className="text-lime-400/60 text-xs text-center mt-1">BeeHome Expert — 4 modules</p>
+              </div>
+            </div>
+            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-400/20 text-emerald-200 text-xs">
+              🌻 <strong>Conseil :</strong> Installez votre hôtel à abeilles face au soleil (sud/sud-est) à 1–2m de hauteur, entouré de fleurs sauvages indigènes !
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+
   // ── SLIDE 4 : Les papillons ──
   {
     id: 'papillons',
