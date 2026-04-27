@@ -109,46 +109,119 @@ const SLIDES = [
     ),
   },
 
-  // ── SLIDE 3 : Les abeilles sauvages ──
+  // ── SLIDE 3 : Comprendre les abeilles sauvages ──
   {
     id: 'abeilles-sauvages',
     bg: 'from-yellow-950 via-amber-950 to-orange-950',
     content: (
       <div className="px-6 py-10 max-w-4xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-3 mb-5">
           <div className="p-3 rounded-2xl bg-yellow-500/20 border border-yellow-400/30 text-3xl">🐝</div>
           <div>
-            <h2 className="text-3xl md:text-4xl font-black text-white">Les Abeilles Sauvages</h2>
-            <p className="text-yellow-400/60 text-sm">Les véritables championnes de la pollinisation</p>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Comprendre les Abeilles Sauvages</h2>
+            <p className="text-yellow-400/60 text-sm">Connaissances de base et importance écologique</p>
           </div>
         </div>
-        <p className="text-yellow-200/80 text-lg mb-6">
-          On parle souvent de <em>l'abeille domestique</em>, mais il existe <strong className="text-yellow-300">plus de 20 000 espèces</strong> d'abeilles sauvages dans le monde, bien plus efficaces pour polliniser les plantes sauvages.
-        </p>
-        <div className="grid md:grid-cols-2 gap-5 mb-6">
+
+        {/* Photo gallery + texte intro */}
+        <div className="grid md:grid-cols-2 gap-5 mb-5">
+          <div className="space-y-3">
+            <p className="text-yellow-200/80 text-sm leading-relaxed">
+              À quoi pensez-vous quand on parle d'abeilles ? Au miel, bien sûr ! Mais outre l'abeille domestique, il existe <strong className="text-yellow-300">plus de 20 000 espèces</strong> d'abeilles sauvages à travers le monde — soit plus que toutes les espèces de mammifères réunies (5 500 espèces).
+            </p>
+            <p className="text-yellow-200/70 text-sm leading-relaxed">
+              Les abeilles sauvages sont <strong className="text-amber-300">toutes les espèces vivant à l'état naturel</strong>, non élevées par l'homme. En Allemagne seule, on recense environ 600 espèces dont la célèbre abeille maçonne rouge (<em>Osmia bicornis</em>).
+            </p>
+            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-400/20 text-amber-200 text-xs">
+              🌟 <strong>Fait :</strong> Une seule abeille solitaire pollinise autant que 120 abeilles domestiques !
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <img src="https://media.base44.com/images/public/6959886137576a65dcfe1370/afce2a238_Bienenhotel_fur_Wildbienen_Wildbiene_Gehornte_Mauerbiene_bei_Paarung.jpg"
+              alt="Osmia bicornis sur marguerite" className="w-full h-28 object-cover rounded-xl border border-yellow-400/20" />
+            <img src="https://media.base44.com/images/public/6959886137576a65dcfe1370/ec051e089_Wildbiene_Anthemis_tinctoria_male_2_1445x.jpg"
+              alt="Abeille sauvage sur fleur jaune" className="w-full h-28 object-cover rounded-xl border border-yellow-400/20" />
+            <img src="https://media.base44.com/images/public/6959886137576a65dcfe1370/bfb9b4ec8_Wildbiene_Halictus_scabiosae_Cirsium_vulgare_4_1445x.jpg"
+              alt="Abeilles sur chardon" className="w-full h-28 object-cover rounded-xl border border-yellow-400/20" />
+            <img src="https://media.base44.com/images/public/6959886137576a65dcfe1370/51f9e19ca_Wildbiene_Lasioglossum_Campanula_1100x.jpg"
+              alt="Lasioglossum sur campanule" className="w-full h-28 object-cover rounded-xl border border-yellow-400/20" />
+          </div>
+        </div>
+
+        {/* Diversité & couleurs */}
+        <div className="grid md:grid-cols-3 gap-3">
           {[
-            { emoji: '🐝', name: 'Abeille domestique', desc: 'Apis mellifera — élevée pour le miel, pollinisatrice généraliste. Seule espèce "gérée" par l\'humain.', role: 'Généraliste' },
-            { emoji: '🪲', name: 'Bourdon', desc: 'Bombus sp. — pollinise par vibration (buzzpollinisation), essentielle pour les tomates et aubergines.', role: 'Spécialiste vibreur' },
-            { emoji: '🐛', name: 'Abeille solitaire', desc: 'Osmia, Andrena... — vit seule, niche dans le sol ou le bois. 70% des espèces sont solitaires !', role: 'Hyper-efficace' },
-            { emoji: '🟡', name: 'Abeille charpentière', desc: 'Xylocopa sp. — creuse le bois pour nicher. Pollinisatrice puissante des fleurs tubulaires.', role: 'Grande taille' },
-          ].map((b, i) => (
-            <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
-              className="p-4 rounded-2xl bg-white/5 border border-yellow-400/20">
-              <div className="flex gap-3">
-                <span className="text-3xl flex-shrink-0">{b.emoji}</span>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-yellow-300 text-sm">{b.name}</h3>
-                    <span className="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs">{b.role}</span>
-                  </div>
-                  <p className="text-yellow-200/60 text-xs">{b.desc}</p>
-                </div>
-              </div>
+            { emoji: '🎨', title: 'Diversité des couleurs', desc: 'Du brun profond au bleu métallique chatoyant, en passant par les motifs noirs et jaunes contrastés — leur palette est infinie.' },
+            { emoji: '📏', title: 'Toutes les tailles', desc: 'De l\'abeille masquée (quelques mm) à l\'abeille charpentière (plusieurs cm), la diversité morphologique est étonnante.' },
+            { emoji: '🏘️', title: 'Habitats variés', desc: '70% sont solitaires. Elles nichent dans le sol, le bois en décomposition, les tiges ou même des coquilles d\'escargots vides !' },
+          ].map((item, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
+              className="p-3 rounded-xl bg-white/5 border border-yellow-400/20">
+              <div className="text-2xl mb-1">{item.emoji}</div>
+              <h3 className="font-bold text-yellow-300 text-xs mb-1">{item.title}</h3>
+              <p className="text-yellow-200/60 text-xs">{item.desc}</p>
             </motion.div>
           ))}
         </div>
-        <div className="p-4 rounded-2xl bg-yellow-500/10 border border-yellow-400/20 text-yellow-200 text-sm">
-          🌟 <strong>Fait incroyable :</strong> Une seule abeille solitaire pollinise autant que 120 abeilles domestiques ! Leur efficacité individuelle est exceptionnelle.
+      </div>
+    ),
+  },
+
+  // ── SLIDE 3b : Vie sociale & nidification ──
+  {
+    id: 'nidification',
+    bg: 'from-orange-950 via-amber-950 to-yellow-950',
+    content: (
+      <div className="px-6 py-10 max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-3 rounded-2xl bg-orange-500/20 border border-orange-400/30 text-3xl">🏠</div>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Vie & Nidification</h2>
+            <p className="text-orange-400/60 text-sm">Comment vivent vraiment les abeilles sauvages ?</p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-5 mb-5">
+          {/* Texte */}
+          <div className="space-y-4">
+            <div className="p-4 rounded-2xl bg-white/5 border border-orange-400/20">
+              <h3 className="font-bold text-orange-300 mb-2">🐝 Solitaires vs Sociales</h3>
+              <p className="text-orange-200/70 text-sm leading-relaxed">
+                Contrairement aux abeilles domestiques (jusqu'à <strong className="text-orange-300">40 000 individus</strong> par colonie), la plupart des abeilles sauvages vivent <strong className="text-yellow-300">en solitaires</strong>. Chaque femelle pond ses œufs et s'occupe seule de son couvain — comme l'<em>Osmia bicornis</em>.
+              </p>
+            </div>
+            <div className="p-4 rounded-2xl bg-white/5 border border-orange-400/20">
+              <h3 className="font-bold text-orange-300 mb-2">🏘️ Nids ingénieux</h3>
+              <p className="text-orange-200/70 text-sm leading-relaxed">
+                Elles choisissent des emplacements variés : <strong className="text-amber-300">sol, bois en décomposition, tiges creuses, coquilles d'escargots</strong>. Les hôtels à insectes comme le <em>BeeHome</em> (photos ci-contre) reproduisent ces habitats naturels.
+              </p>
+            </div>
+            <div className="p-4 rounded-2xl bg-white/5 border border-orange-400/20">
+              <h3 className="font-bold text-orange-300 mb-2">👥 Les semi-sociales</h3>
+              <p className="text-orange-200/70 text-sm leading-relaxed">
+                Quelques espèces comme les <strong className="text-yellow-300">bourdons</strong> ou certaines abeilles de la sueur (<em>Lasioglossum</em>) présentent un comportement social marqué — une transition fascinante entre solitude et vie en communauté.
+              </p>
+            </div>
+          </div>
+
+          {/* Photos BeeHome */}
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2">
+              <img src="https://media.base44.com/images/public/6959886137576a65dcfe1370/1fd5b7f2d_20240520_142518.jpg"
+                alt="BeeHome dans serre" className="w-full h-36 object-cover rounded-xl border border-orange-400/20" />
+              <img src="https://media.base44.com/images/public/6959886137576a65dcfe1370/2ce41981a_20240520_142530.jpg"
+                alt="BeeHome Wildbiene+Partner" className="w-full h-36 object-cover rounded-xl border border-orange-400/20" />
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <img src="https://media.base44.com/images/public/6959886137576a65dcfe1370/38a192c73_Osmia_bicornis_kommt_aus_Nistrohr_1100x.jpg"
+                alt="Osmia bicornis sortant du tube" className="w-full h-36 object-cover rounded-xl border border-orange-400/20" />
+              <img src="https://media.base44.com/images/public/6959886137576a65dcfe1370/de2df8b3e_Wildbiene_BeeHome_Megachile_ericetorum_nest_2_1445x.jpg"
+                alt="Megachile dans son nid" className="w-full h-36 object-cover rounded-xl border border-orange-400/20" />
+            </div>
+            <p className="text-orange-300/60 text-xs text-center italic">
+              📸 Hôtels à abeilles sauvages (BeeHome) installés dans notre serre — Terra Nova
+            </p>
+          </div>
         </div>
       </div>
     ),
