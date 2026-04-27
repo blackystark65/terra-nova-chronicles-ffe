@@ -15,6 +15,7 @@ import AdminAudioPage from './pages/AdminAudio';
 import GuidePage from './pages/Guide';
 import EcospherePage from './pages/Ecosphere';
 import AdminEcospherePage from './pages/AdminEcosphere';
+import PollinisationPage from './pages/Pollinisation';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -74,6 +75,7 @@ const AuthenticatedApp = () => {
       <Route path="/Guide" element={<LayoutWrapper currentPageName="Guide"><GuidePage /></LayoutWrapper>} />
       <Route path="/Ecosphere" element={<LayoutWrapper currentPageName="Ecosphere"><EcospherePage /></LayoutWrapper>} />
       <Route path="/AdminEcosphere" element={<LayoutWrapper currentPageName="AdminEcosphere"><AdminEcospherePage /></LayoutWrapper>} />
+      <Route path="/Pollinisation" element={<LayoutWrapper currentPageName="Pollinisation"><PollinisationPage /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

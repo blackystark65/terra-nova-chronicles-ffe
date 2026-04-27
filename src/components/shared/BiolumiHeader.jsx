@@ -20,6 +20,7 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Missions', icon: Flame, path: 'Missions' },
     { name: 'Climat', icon: Leaf, path: 'Climate' },
     { name: 'Biodiversité', icon: Leaf, path: 'Biodiversite' },
+    { name: 'Pollinisation', icon: Leaf, path: 'Pollinisation' },
     { name: 'Écosphère', icon: BookOpen, path: 'Ecosphere' }];
 
   const handleLogout = () => {
