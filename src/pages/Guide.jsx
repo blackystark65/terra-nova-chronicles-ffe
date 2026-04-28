@@ -502,51 +502,69 @@ const SLIDES = [
     bg: 'from-cyan-950 via-teal-950 to-slate-950',
     content: (
       <div className="px-8 py-12 max-w-4xl mx-auto">
-        <h2 className="text-3xl font-black text-white mb-8">Autres modules</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-3xl bg-white/5 border border-cyan-400/20">
-            <div className="flex items-center gap-3 mb-4">
-              <BookOpen className="w-6 h-6 text-cyan-400" />
-              <h3 className="text-xl font-bold text-cyan-300">Encyclopédie</h3>
+        <h2 className="text-3xl font-black text-white mb-6">Autres modules</h2>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="p-5 rounded-2xl bg-white/5 border border-cyan-400/20">
+            <div className="flex items-center gap-3 mb-3">
+              <BookOpen className="w-5 h-5 text-cyan-400" />
+              <h3 className="text-lg font-bold text-cyan-300">Encyclopédie</h3>
             </div>
-            <p className="text-cyan-200/70 text-sm mb-4">
+            <p className="text-cyan-200/70 text-sm mb-3">
               Un agent IA conversationnel spécialisé en biodiversité et écologie. Pose tes questions librement et obtiens des réponses détaillées avec des sources fiables.
             </p>
-            <div className="space-y-2">
+            <div className="space-y-1">
               {['💬 Chat en langage naturel', '🌿 Spécialisé en écologie', '📚 Réponses sourcées', '🔍 Recherche web intégrée'].map(f => (
                 <div key={f} className="text-xs text-cyan-200/60">{f}</div>
               ))}
             </div>
           </div>
-          <div className="p-6 rounded-3xl bg-white/5 border border-blue-400/20">
-            <div className="flex items-center gap-3 mb-4">
-              <Droplets className="w-6 h-6 text-blue-400" />
-              <h3 className="text-xl font-bold text-blue-300">Tableau de bord Climat</h3>
+          <div className="p-5 rounded-2xl bg-white/5 border border-blue-400/20">
+            <div className="flex items-center gap-3 mb-3">
+              <Droplets className="w-5 h-5 text-blue-400" />
+              <h3 className="text-lg font-bold text-blue-300">Tableau de bord Climat</h3>
             </div>
-            <p className="text-blue-200/70 text-sm mb-4">
+            <p className="text-blue-200/70 text-sm mb-3">
               Données climatiques en temps réel de plusieurs villes mondiales. Température, qualité de l'air, humidité, et tendances historiques visualisées en graphiques.
             </p>
-            <div className="space-y-2">
+            <div className="space-y-1">
               {['🌡️ Météo en temps réel', '🏙️ Villes mondiales', '📊 Graphiques interactifs', '🌍 Données scientifiques'].map(f => (
                 <div key={f} className="text-xs text-blue-200/60">{f}</div>
               ))}
             </div>
           </div>
-          <div className="p-6 rounded-3xl bg-white/5 border border-violet-400/20">
-            <div className="flex items-center gap-3 mb-4">
-              <Puzzle className="w-6 h-6 text-violet-400" />
-              <h3 className="text-xl font-bold text-violet-300">Puzzle</h3>
+          <div className="p-5 rounded-2xl bg-white/5 border border-emerald-400/20">
+            <div className="flex items-center gap-3 mb-3">
+              <BookOpen className="w-5 h-5 text-emerald-400" />
+              <h3 className="text-lg font-bold text-emerald-300">L'Écosphère</h3>
             </div>
-            <p className="text-violet-200/70 text-sm mb-4">
+            <p className="text-emerald-200/70 text-sm">
+              Un livre illustré de planches dessinées sur l'agroécologie, la biodiversité et les techniques de vie durable. Organisé en 11 chapitres : climat, eau, permaculture, agroforesterie, semences, sol et bien plus.
+            </p>
+          </div>
+          <div className="p-5 rounded-2xl bg-white/5 border border-yellow-400/20">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-xl">🐝</span>
+              <h3 className="text-lg font-bold text-yellow-300">Pollinisation</h3>
+            </div>
+            <p className="text-yellow-200/70 text-sm">
+              Un module interactif en diapositives pour comprendre la pollinisation : son importance mondiale, les abeilles sauvages, les papillons, les menaces et comment agir. Inclut des photos et ressources de terrain de Terra Nova.
+            </p>
+          </div>
+          <div className="p-5 rounded-2xl bg-white/5 border border-violet-400/20">
+            <div className="flex items-center gap-3 mb-3">
+              <Puzzle className="w-5 h-5 text-violet-400" />
+              <h3 className="text-lg font-bold text-violet-300">Puzzle</h3>
+            </div>
+            <p className="text-violet-200/70 text-sm">
               Des puzzles interactifs sur des images de la nature et des écosystèmes. Un moment de détente éducatif pour consolider les apprentissages visuels.
             </p>
           </div>
-          <div className="p-6 rounded-3xl bg-white/5 border border-rose-400/20">
-            <div className="flex items-center gap-3 mb-4">
-              <Zap className="w-6 h-6 text-rose-400" />
-              <h3 className="text-xl font-bold text-rose-300">Jeux libres</h3>
+          <div className="p-5 rounded-2xl bg-white/5 border border-rose-400/20">
+            <div className="flex items-center gap-3 mb-3">
+              <Zap className="w-5 h-5 text-rose-400" />
+              <h3 className="text-lg font-bold text-rose-300">Jeux libres</h3>
             </div>
-            <p className="text-rose-200/70 text-sm mb-4">
+            <p className="text-rose-200/70 text-sm">
               Une sélection de mini-jeux éducatifs pour s'amuser tout en apprenant. Idéal en fin de cours ou comme récompense.
             </p>
           </div>
