@@ -207,7 +207,7 @@ export default function BiolumiHeader({ currentPage }) {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden overflow-hidden"
           >
-            <div className="px-4 py-4 space-y-2 bg-emerald-950/95 backdrop-blur-xl">
+            <div className="px-4 py-4 space-y-2 bg-emerald-950/95 backdrop-blur-xl overflow-y-auto max-h-[80vh]">
               <Link to={createPageUrl('Profile')} onClick={() => setMobileMenuOpen(false)}>
                 <motion.div
                   whileTap={{ scale: 0.95 }}
