@@ -511,6 +511,117 @@ const SLIDES = [
     ),
   },
 
+  // ── SLIDE 3f : Fiches espèces abeilles sauvages (3) ──
+  {
+    id: 'fiches-especes-3',
+    bg: 'from-sky-950 via-slate-900 to-blue-950',
+    content: (
+      <div className="px-6 py-8 max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-3 rounded-2xl bg-sky-500/20 border border-sky-400/30 text-3xl">🔬</div>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Fiches Espèces</h2>
+            <p className="text-sky-400/60 text-sm">Abeilles sauvages de nos régions — Wildbiene+Partner (3/3)</p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Fiche 9 — Hylaeus signatus */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/e64162415_Scan_20260501_111154.jpg"
+              alt="Hylée marquée"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Hylée marquée</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Hylaeus signatus</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '6-7 mm'], ['Vol', 'juin–août'],
+                  ['Générations/an', '1-2'], ['Abondance', 'moyenne'],
+                  ['Altitude', "jusqu'à 1000 m"], ['Galerie Ø', '3-4 mm'],
+                  ['Plantes', 'réséda (très spécialisée)'], ['Opercule', 'pellicule soyeuse des exsudats de fleurs'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Fiche 10 — Osmia bicornis */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/38876f03b_Scan_20260501_111206.jpg"
+              alt="Abeille maçonne rouge"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Abeille maçonne rouge</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Osmia bicornis</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '9-15 mm'], ['Vol', 'avril–juin'],
+                  ['Générations/an', '1'], ['Abondance', 'très répandue'],
+                  ['Altitude', "jusqu'à 1500 m"], ['Galerie Ø', '5-10 mm'],
+                  ['Plantes', 'pomme, cerise, érable, chêne, colza'], ['Opercule', 'argile'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Fiche 11 — Hoplitis adunca */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/39e0ca23c_Scan_20260501_111331.jpg"
+              alt="Osmie crochue"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Osmie crochue</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Hoplitis adunca</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '8-12 mm'], ['Vol', 'juin–juillet'],
+                  ['Générations/an', '1'], ['Abondance', 'moyenne'],
+                  ['Altitude', "jusqu'à 2100 m"], ['Galerie Ø', '5-7 mm'],
+                  ['Plantes', 'vipérine (très spécialisée)'], ['Opercule', 'argile avec fibres végétales digérées'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Fiche 12 — Osmia cornuta */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/1bd4f3d23_Scan_20260501_111801.jpg"
+              alt="Abeille maçonne cornue"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Abeille maçonne cornue</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Osmia cornuta</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '10-16 mm'], ['Vol', 'mars–mai'],
+                  ['Générations/an', '1'], ['Abondance', 'répandue'],
+                  ['Altitude', "jusqu'à 1000 m"], ['Galerie Ø', '7-13 mm'],
+                  ['Plantes', 'cerise, pomme, érable, colza, chou'], ['Opercule', 'argile'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+
   // ── SLIDE 4 : Les papillons ──
   {
     id: 'papillons',
