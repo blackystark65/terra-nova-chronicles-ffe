@@ -289,6 +289,37 @@ const SLIDES = [
     ),
   },
 
+  // ── SLIDE 3c-intro : Introduction aux fiches espèces ──
+  {
+    id: 'fiches-intro',
+    bg: 'from-sky-950 via-slate-900 to-blue-950',
+    content: (
+      <div className="flex flex-col justify-center h-full px-6 py-12 max-w-3xl mx-auto">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="p-3 rounded-2xl bg-sky-500/20 border border-sky-400/30 text-3xl">🏠</div>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Zoom sur 12 espèces</h2>
+            <p className="text-sky-400/60 text-sm">susceptibles de nicher dans votre BeeHome</p>
+          </div>
+        </div>
+        <div className="space-y-5 text-sky-100/80 text-base leading-relaxed">
+          <p>
+            En plus des abeilles maçonnes qui, au printemps, élisent domicile dans de nombreuses maisonnettes pour abeilles sauvages, on compte en Suisse plus de <strong className="text-yellow-300">600 autres espèces d'abeilles sauvages</strong>. Si elles ont toutes besoin d'un nichoir approprié, ainsi que de nourritures et de matériel de nidification, ce ne sont pas tous les pollens qui leur conviennent.
+          </p>
+          <p>
+            De nombreuses espèces d'abeilles sauvages sont des <strong className="text-amber-300">espèces spécialisées</strong> qui ne visitent que les fleurs de certaines plantes bien précises. D'autres, telle que l'osmie rousse, sont plus généralistes : elles peuvent produire du pollen à partir d'une grande variété de plantes.
+          </p>
+          <p>
+            Dans les pages qui suivent, nous vous présentons les <strong className="text-sky-300">occupants les plus fréquents</strong> de votre maisonnette BeeHome et du BeeSummer.
+          </p>
+          <div className="mt-6 p-5 rounded-2xl bg-amber-500/10 border border-amber-400/30 text-amber-200 text-base italic">
+            🌸 Nous vous souhaitons de faire, du printemps à l'été, le plein de découvertes passionnantes !
+          </div>
+        </div>
+      </div>
+    ),
+  },
+
   // ── SLIDE 3d : Fiches espèces abeilles sauvages ──
   {
     id: 'fiches-especes',
