@@ -400,6 +400,117 @@ const SLIDES = [
     ),
   },
 
+  // ── SLIDE 3e : Fiches espèces abeilles sauvages (2) ──
+  {
+    id: 'fiches-especes-2',
+    bg: 'from-sky-950 via-slate-900 to-blue-950',
+    content: (
+      <div className="px-6 py-8 max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-3 rounded-2xl bg-sky-500/20 border border-sky-400/30 text-3xl">🔬</div>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Fiches Espèces</h2>
+            <p className="text-sky-400/60 text-sm">Abeilles sauvages de nos régions — Wildbiene+Partner (2/2)</p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Fiche 5 — Osmia caerulescens */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/de5061238_Scan_20260501_110901.jpg"
+              alt="Osmie bleu acier"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Osmie bleu acier</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Osmia caerulescens</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '7-10 mm'], ['Vol', 'avril–septembre'],
+                  ['Générations/an', '2'], ['Abondance', 'répandue'],
+                  ['Altitude', "jusqu'à 2000 m"], ['Galerie Ø', '4-6 mm'],
+                  ['Plantes', 'lotier, sainfoin, épiaire, vipérine'], ['Opercule', 'ciment végétal de feuilles mâchées'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Fiche 6 — Osmia leaiana */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/91552418a_Scan_20260501_110918.jpg"
+              alt="Osmie à deux bosses"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Osmie « à deux bosses »</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Osmia leaiana</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '9-10 mm'], ['Vol', 'mai–septembre'],
+                  ['Générations/an', '1'], ['Abondance', 'rare'],
+                  ['Altitude', "jusqu'à 2100 m"], ['Galerie Ø', '5-6 mm'],
+                  ['Plantes', 'centaurée, chardon aux ânes, chicorée'], ['Opercule', 'ciment végétal de feuilles mâchées'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Fiche 7 — Anthidium manicatum */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/04bb1cb0b_Scan_20260501_110957.jpg"
+              alt="Anthidie à manchettes"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Anthidie à manchettes (abeille cotonnière)</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Anthidium manicatum</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '10-16 mm'], ['Vol', 'avril–octobre'],
+                  ['Générations/an', '1-2'], ['Abondance', 'fréquente'],
+                  ['Altitude', "jusqu'à 1500 m"], ['Galerie Ø', '10-15 mm'],
+                  ['Plantes', 'bugrane, épiaire, lotier'], ['Opercule', 'kapok'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Fiche 8 — Megachile ericetorum */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/5fcb4aa5a_Scan_20260501_111140.jpg"
+              alt="Abeille charpentière"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Abeille charpentière</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Megachile ericetorum</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '12-14 mm'], ['Vol', 'juin–août'],
+                  ['Générations/an', '1'], ['Abondance', 'moyenne'],
+                  ['Altitude', "jusqu'à 700 m"], ['Galerie Ø', '6-7 mm'],
+                  ['Plantes', 'lotier, gesse, bugrane (spécialisée)'], ['Opercule', 'argile'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+
   // ── SLIDE 4 : Les papillons ──
   {
     id: 'papillons',
