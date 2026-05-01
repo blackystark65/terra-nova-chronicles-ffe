@@ -340,7 +340,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/8951a615c_Scan_20260501_111247.jpg"
               alt="Abeille coupeuse de feuilles des jardins"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Abeille coupeuse de feuilles des jardins</h3>
@@ -363,7 +363,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/570eefe27_Scan_20260501_110810.jpg"
               alt="Chélostome des renoncules"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Chélostome des renoncules</h3>
@@ -386,7 +386,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/bd76a9d52_Scan_20260501_110834.jpg"
               alt="Chélostome des campanules"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Chélostome des campanules</h3>
@@ -409,7 +409,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/c26ca1b4d_Scan_20260501_110848.jpg"
               alt="Hériade des troncs"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Hériade des troncs</h3>
@@ -451,7 +451,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/de5061238_Scan_20260501_110901.jpg"
               alt="Osmie bleu acier"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Osmie bleu acier</h3>
@@ -474,7 +474,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/91552418a_Scan_20260501_110918.jpg"
               alt="Osmie à deux bosses"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Osmie « à deux bosses »</h3>
@@ -497,7 +497,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/04bb1cb0b_Scan_20260501_110957.jpg"
               alt="Anthidie à manchettes"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Anthidie à manchettes (abeille cotonnière)</h3>
@@ -520,7 +520,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/5fcb4aa5a_Scan_20260501_111140.jpg"
               alt="Abeille charpentière"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Abeille charpentière</h3>
@@ -562,7 +562,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/e64162415_Scan_20260501_111154.jpg"
               alt="Hylée marquée"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Hylée marquée</h3>
@@ -585,7 +585,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/38876f03b_Scan_20260501_111206.jpg"
               alt="Abeille maçonne rouge"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Abeille maçonne rouge</h3>
@@ -608,7 +608,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/39e0ca23c_Scan_20260501_111331.jpg"
               alt="Osmie crochue"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Osmie crochue</h3>
@@ -631,7 +631,7 @@ const SLIDES = [
             <img
               src="https://media.base44.com/images/public/6959886137576a65dcfe1370/1bd4f3d23_Scan_20260501_111801.jpg"
               alt="Abeille maçonne cornue"
-              className="w-full h-52 object-cover object-top"
+              className="w-full object-contain bg-slate-100/10"
             />
             <div className="p-4">
               <h3 className="font-black text-white text-base mb-0.5">Abeille maçonne cornue</h3>
