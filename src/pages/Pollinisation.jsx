@@ -289,6 +289,117 @@ const SLIDES = [
     ),
   },
 
+  // ── SLIDE 3d : Fiches espèces abeilles sauvages ──
+  {
+    id: 'fiches-especes',
+    bg: 'from-sky-950 via-slate-900 to-blue-950',
+    content: (
+      <div className="px-6 py-8 max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-3 rounded-2xl bg-sky-500/20 border border-sky-400/30 text-3xl">🔬</div>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Fiches Espèces</h2>
+            <p className="text-sky-400/60 text-sm">Abeilles sauvages de nos régions — Wildbiene+Partner</p>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Fiche 1 — Megachile willughbiella */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/8951a615c_Scan_20260501_111247.jpg"
+              alt="Abeille coupeuse de feuilles des jardins"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Abeille coupeuse de feuilles des jardins</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Megachile willughbiella</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '12-15 mm'], ['Vol', 'juin–septembre'],
+                  ['Générations/an', '1-2'], ['Abondance', 'répandue'],
+                  ['Altitude', 'jusqu\'à 2000 m'], ['Galerie Ø', '6-8 mm'],
+                  ['Plantes', 'campanules, lotiers, gesses'], ['Opercule', 'morceaux de feuilles'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Fiche 2 — Chelostoma florisomne */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/570eefe27_Scan_20260501_110810.jpg"
+              alt="Chélostome des renoncules"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Chélostome des renoncules</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Chelostoma florisomne</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '8-11 mm'], ['Vol', 'avril–juin'],
+                  ['Générations/an', '1'], ['Abondance', 'fréquente'],
+                  ['Altitude', 'jusqu\'à 2200 m'], ['Galerie Ø', '3-5 mm'],
+                  ['Plantes', 'renoncule (spécialisée)'], ['Opercule', 'argile, sable'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Fiche 3 — Chelostoma rapunculi */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/bd76a9d52_Scan_20260501_110834.jpg"
+              alt="Chélostome des campanules"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Chélostome des campanules</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Chelostoma rapunculi</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '7-9 mm'], ['Vol', 'juin–août'],
+                  ['Générations/an', '1'], ['Abondance', 'moyenne'],
+                  ['Altitude', 'jusqu\'à 2000 m'], ['Galerie Ø', '3-4 mm'],
+                  ['Plantes', 'campanules (spécialisée)'], ['Opercule', 'argile, sable'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Fiche 4 — Heriades truncorum */}
+          <div className="rounded-2xl overflow-hidden border border-sky-400/20 bg-white/5">
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/c26ca1b4d_Scan_20260501_110848.jpg"
+              alt="Hériade des troncs"
+              className="w-full h-52 object-cover object-top"
+            />
+            <div className="p-4">
+              <h3 className="font-black text-white text-base mb-0.5">Hériade des troncs</h3>
+              <p className="text-sky-300/70 text-xs italic mb-3">Heriades truncorum</p>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                {[
+                  ['Longueur', '5-7 mm'], ['Vol', 'avril–juin'],
+                  ['Générations/an', '1'], ['Abondance', 'répandue'],
+                  ['Altitude', 'jusqu\'à 1600 m'], ['Galerie Ø', '2-5 mm'],
+                  ['Plantes', 'camomille, œil-de-bœuf, chicorée'], ['Opercule', 'résine, petites pierres'],
+                ].map(([k, v]) => (
+                  <div key={k}><span className="text-sky-400 font-semibold">{k} : </span><span className="text-white/70">{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+
   // ── SLIDE 4 : Les papillons ──
   {
     id: 'papillons',
