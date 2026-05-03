@@ -573,6 +573,69 @@ const SLIDES = [
     ),
   },
 
+  // ── SLIDE 10b : Agenda Terrain & Rapports ──
+  {
+    id: 'agenda-rapports',
+    bg: 'from-orange-950 via-amber-950 to-yellow-950',
+    content: (
+      <div className="px-8 py-12 max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-3 rounded-2xl bg-orange-500/20 border border-orange-400/30 text-3xl">🗓️</div>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Agenda Terrain & Dossiers</h2>
+            <p className="text-orange-400/60 text-sm">Réservation de visites pédagogiques — Terrain de Permaculture</p>
+          </div>
+        </div>
+        <p className="text-orange-200/70 text-lg mb-6 leading-relaxed">
+          Un système intégré permettant aux enseignants de <strong className="text-orange-300">réserver des créneaux de visite</strong> sur le terrain de la permaculture et de gérer un <strong className="text-yellow-300">dossier numérique complet</strong> pour chaque session de terrain.
+        </p>
+        <div className="grid md:grid-cols-2 gap-5 mb-6">
+          <div className="space-y-4">
+            <div className="p-5 rounded-2xl bg-white/5 border border-orange-400/20">
+              <h3 className="font-bold text-orange-300 mb-3">🗓️ Prise de rendez-vous</h3>
+              <ul className="text-orange-200/70 space-y-2 text-sm list-disc list-inside">
+                <li>Calendrier avec créneaux disponibles</li>
+                <li>Réservation en quelques clics</li>
+                <li>Confirmation automatique par email</li>
+                <li>Vue d'ensemble des prochaines visites</li>
+              </ul>
+            </div>
+            <div className="p-5 rounded-2xl bg-white/5 border border-orange-400/20">
+              <h3 className="font-bold text-orange-300 mb-3">📂 Dossier automatique</h3>
+              <ul className="text-orange-200/70 space-y-2 text-sm list-disc list-inside">
+                <li>Dossier créé automatiquement à chaque rdv</li>
+                <li>Lié à la classe et à l'enseignant</li>
+                <li>Archivage et historique des sessions</li>
+              </ul>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div className="p-5 rounded-2xl bg-white/5 border border-yellow-400/20">
+              <h3 className="font-bold text-yellow-300 mb-3">📝 Compte-rendu intégré</h3>
+              <ul className="text-yellow-200/70 space-y-2 text-sm list-disc list-inside">
+                <li>Rapport détaillé de l'atelier ou visite</li>
+                <li>Description des activités réalisées</li>
+                <li>Compétences observées chez les élèves</li>
+                <li>Notes pédagogiques libres</li>
+              </ul>
+            </div>
+            <div className="p-5 rounded-2xl bg-white/5 border border-yellow-400/20">
+              <h3 className="font-bold text-yellow-300 mb-3">📸 Médias du terrain</h3>
+              <ul className="text-yellow-200/70 space-y-2 text-sm list-disc list-inside">
+                <li>Ajout de photos directement depuis le terrain</li>
+                <li>Import de vidéos des ateliers</li>
+                <li>Galerie organisée par dossier/rdv</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-400/30 text-sm text-amber-200/80">
+          🔧 <strong className="text-yellow-300">Prochainement :</strong> Cette fonctionnalité sera activée avec l'abonnement <strong className="text-yellow-300">Builder+</strong>. Elle est conçue spécifiquement pour la <strong className="text-orange-300">Permaculture de l'école Terra Nova</strong> — réservation de visites de classe, ateliers pratiques, et suivi des apprentissages sur le terrain.
+        </div>
+      </div>
+    ),
+  },
+
   // ── SLIDE 11 : Commencer ──
   {
     id: 'start',
