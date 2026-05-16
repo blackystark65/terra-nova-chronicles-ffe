@@ -16,15 +16,11 @@ function ScoreBadge({ label, value, color }) {
 export default function TeacherPanel({ sessions, user, onSessionCreated }) {
   const qc = useQueryClient();
   const [showCreate, setShowCreate] = useState(false);
-  const [selectedClasseId, setSelectedClasseId] = useState('');
+  const [nomClasse, setNomClasse] = useState('');
+  const [degre, setDegre] = useState('');
   const [dateSession, setDateSession] = useState('');
   const [distributing, setDistributing] = useState(null);
   const [distributed, setDistributed] = useState({});
-
-  const { data: classes = [] } = useQuery({
-    queryKey: ['classes-ferme'],
-    queryFn: () => base44.entities.ClasseFerme.filter({ is_active: true }),
-  });
 
   const createMutation = useMutation({
     mutationFn: (data) => base44.entities.BioFocusSession.create(data),
@@ -37,11 +33,11 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
   });
 
   const handleCreate = () => {
-    if (!selectedClasseId) return;
-    const classe = classes.find(c => c.id === selectedClasseId);
+    if (!nomClasse.trim()) return;
+    const label = degre.trim() ? `${nomClasse.trim()} — ${degre.trim()}` : nomClasse.trim();
     createMutation.mutate({
-      classe_id: selectedClasseId,
-      nom_classe: classe?.nom_classe || '',
+      classe_id: '',
+      nom_classe: label,
       enseignant_email: user.email,
       code_team1: generateCode(),
       code_team2: generateCode(),
@@ -242,15 +238,24 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
               </div>
               <div className="space-y-4">
                 <div>
-                  <label className="text-white/70 text-sm font-semibold mb-1 block">Classe</label>
-                  <select
-                    value={selectedClasseId}
-                    onChange={e => setSelectedClasseId(e.target.value)}
-                    className="w-full rounded-xl bg-white/10 border border-white/20 text-white px-3 py-2 text-sm"
-                  >
-                    <option value="">Choisir une classe…</option>
-                    {classes.map(c => <option key={c.id} value={c.id}>{c.nom_classe} — {c.enseignant}</option>)}
-                  </select>
+                  <label className="text-white/70 text-sm font-semibold mb-1 block">Nom de la classe</label>
+                  <input
+                    type="text"
+                    value={nomClasse}
+                    onChange={e => setNomClasse(e.target.value)}
+                    placeholder="Ex : 6B, CM2, 3ème, Year 5…"
+                    className="w-full rounded-xl bg-white/10 border border-white/20 text-white px-3 py-2 text-sm placeholder:text-white/30"
+                  />
+                </div>
+                <div>
+                  <label className="text-white/70 text-sm font-semibold mb-1 block">Degré / niveau <span className="font-normal text-white/40">(optionnel)</span></label>
+                  <input
+                    type="text"
+                    value={degre}
+                    onChange={e => setDegre(e.target.value)}
+                    placeholder="Ex : primaire, 6H, collège, lycée…"
+                    className="w-full rounded-xl bg-white/10 border border-white/20 text-white px-3 py-2 text-sm placeholder:text-white/30"
+                  />
                 </div>
                 <div>
                   <label className="text-white/70 text-sm font-semibold mb-1 block">Date de la session terrain</label>
@@ -266,7 +271,7 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
                 </div>
                 <button
                   onClick={handleCreate}
-                  disabled={!selectedClasseId || createMutation.isPending}
+                  disabled={!nomClasse.trim() || createMutation.isPending}
                   className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black text-sm hover:from-emerald-500 hover:to-teal-500 disabled:opacity-40 transition-all"
                 >
                   {createMutation.isPending ? '⏳ Création…' : '✅ Créer la session'}
