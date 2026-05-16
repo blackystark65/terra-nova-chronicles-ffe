@@ -568,6 +568,94 @@ const SLIDES = [
               Une sélection de mini-jeux éducatifs pour s'amuser tout en apprenant. Idéal en fin de cours ou comme récompense.
             </p>
           </div>
+          <div className="p-5 rounded-2xl bg-white/5 border border-amber-400/20 md:col-span-2">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-xl">🔬</span>
+              <h3 className="text-lg font-bold text-amber-300">Bio-Focus : Les Enquêteurs de l'Humus</h3>
+            </div>
+            <p className="text-amber-200/70 text-sm">
+              Un jeu de terrain ludo-éducatif en 2 équipes. Les joueurs photographient les acteurs de la décomposition (macrofaune, mésofaune, champignons) avec un appareil grossissant ×1000, puis completent leur tableau d'écosystème. Bonus chaîne trophique, défis Expert et bonus biodiversité !
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+
+  // ── SLIDE 10c : Bio-Focus détail ──
+  {
+    id: 'biofocus',
+    bg: 'from-slate-950 via-green-950 to-emerald-950',
+    content: (
+      <div className="px-8 py-10 max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-3 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 text-3xl">🔬</div>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Bio-Focus</h2>
+            <p className="text-emerald-400/60 text-sm">Les Enquêteurs de l'Humus — Jeu de terrain en 2 équipes</p>
+          </div>
+        </div>
+        <p className="text-emerald-200/70 text-base mb-6 leading-relaxed">
+          Un jeu ludo-éducatif combinant <strong className="text-emerald-300">exploration en plein air</strong>, science participative et photographie ×1000. Les joueurs incarnent des <em>"inspecteurs du sol"</em> partis à la recherche des héros invisibles de la décomposition.
+        </p>
+        <div className="grid md:grid-cols-3 gap-4 mb-5">
+          <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-400/30">
+            <div className="text-2xl mb-2">🪱</div>
+            <h3 className="font-black text-amber-300 text-sm mb-1">Transformateurs</h3>
+            <p className="text-amber-200/60 text-xs mb-2">Macrofaune — Broyeurs — 10 pts/espèce</p>
+            <ul className="text-xs text-amber-200/70 space-y-0.5">
+              <li>🪱 Lombric</li><li>🦗 Cloporte</li><li>🐛 Diplopode</li><li>🐌 Limace</li>
+            </ul>
+          </div>
+          <div className="p-4 rounded-2xl bg-red-500/10 border border-red-400/30">
+            <div className="text-2xl mb-2">🦂</div>
+            <h3 className="font-black text-red-300 text-sm mb-1">Prédateurs</h3>
+            <p className="text-red-200/60 text-xs mb-2">Mésofaune & Macrofaune — 20 pts/espèce</p>
+            <ul className="text-xs text-red-200/70 space-y-0.5">
+              <li>🪲 Carabe doré</li><li>🪲 Staphylin</li><li>🕷️ Araignée</li><li>🦂 Pseudoscorpion ⭐</li>
+            </ul>
+          </div>
+          <div className="p-4 rounded-2xl bg-teal-500/10 border border-teal-400/30">
+            <div className="text-2xl mb-2">🍄</div>
+            <h3 className="font-black text-teal-300 text-sm mb-1">Nettoyeurs</h3>
+            <p className="text-teal-200/60 text-xs mb-2">Microfaune & Champignons — 15 pts/espèce</p>
+            <ul className="text-xs text-teal-200/70 space-y-0.5">
+              <li>🍄 Champignon / Mycélium</li><li>🦟 Collembole ⭐ (×1000)</li>
+            </ul>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-3 gap-3 mb-5">
+          {[
+            { emoji: '⭐', title: 'Défi Expert', desc: 'Photographier un pseudoscorpion ou collembole : +30 pts !', color: 'purple' },
+            { emoji: '🔗', title: 'Chaîne trophique', desc: 'Capturer un prédateur ET sa proie dans le même milieu : +50 pts !', color: 'blue' },
+            { emoji: '🌿', title: 'Bonus biodiversité', desc: 'Couvrir les 3 groupes (Transformateurs, Prédateurs, Nettoyeurs) : +100 pts !', color: 'green' },
+          ].map((b, i) => (
+            <div key={i} className={`p-3 rounded-xl bg-${b.color}-500/10 border border-${b.color}-400/30`}>
+              <div className="text-xl mb-1">{b.emoji}</div>
+              <div className={`font-bold text-${b.color}-300 text-xs mb-1`}>{b.title}</div>
+              <div className={`text-${b.color}-200/60 text-xs`}>{b.desc}</div>
+            </div>
+          ))}
+        </div>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+            <h3 className="font-bold text-white text-sm mb-2">⚙️ Les 3 phases de jeu</h3>
+            <ol className="list-decimal list-inside space-y-1 text-white/60 text-xs">
+              <li><strong className="text-white/80">La Quête :</strong> Souches en décomposition, litières de feuilles, compost.</li>
+              <li><strong className="text-white/80">La Capture :</strong> Photo in situ. Appareil ×1000 disponible pour la microfaune.</li>
+              <li><strong className="text-white/80">L'Intégration :</strong> Upload des photos + association au rôle dans l'écosystème.</li>
+            </ol>
+          </div>
+          <div className="p-4 rounded-2xl bg-green-500/10 border border-green-400/20">
+            <h3 className="font-bold text-green-300 text-sm mb-2">🌿 Règle d'or — Éco-responsabilité</h3>
+            <p className="text-green-200/60 text-xs leading-relaxed">
+              <strong className="text-green-300">Zéro perturbation !</strong> Tous les animaux sont photographiés dans leur habitat naturel, sans être déplacés ni blessés. Le jeu enseigne le respect de la biodiversité du sol.
+            </p>
+            <div className="mt-2 flex items-center gap-2">
+              <span className="text-xs px-2 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/20">🦔 Équipe Les Fouisseurs</span>
+              <span className="text-xs px-2 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/20">🍄 Équipe Les Mycorhizes</span>
+            </div>
+          </div>
         </div>
       </div>
     ),

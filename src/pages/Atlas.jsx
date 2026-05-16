@@ -102,6 +102,18 @@ const biomes = [
     path: 'BiomeMountains',
     position: { x: 60, y: 35 },
   },
+  {
+    id: 'biofocus',
+    name: 'Bio-Focus : L\'Humus',
+    region: 'Terrain de Permaculture — Terra Nova',
+    emoji: '🔬',
+    color: 'from-amber-600 to-green-700',
+    description: 'Enquêteurs de l\'humus — Photographie ×1000',
+    threats: ['Perte de biodiversité', 'Pesticides'],
+    species: 12,
+    path: 'BioFocus',
+    position: { x: 48, y: 62 },
+  },
 ];
 
 export default function AtlasPage() {
