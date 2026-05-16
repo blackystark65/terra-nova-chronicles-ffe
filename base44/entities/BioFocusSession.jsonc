@@ -1,0 +1,114 @@
+{
+  "name": "BioFocusSession",
+  "type": "object",
+  "properties": {
+    "classe_id": {
+      "type": "string",
+      "description": "ID de la ClasseFerme associ\u00e9e"
+    },
+    "nom_classe": {
+      "type": "string",
+      "description": "Nom de la classe pour affichage"
+    },
+    "enseignant_email": {
+      "type": "string",
+      "description": "Email de l'enseignant qui a cr\u00e9\u00e9 la session"
+    },
+    "code_team1": {
+      "type": "string",
+      "description": "Code d'acc\u00e8s pour rejoindre l'\u00e9quipe 1 (Les Fouisseurs)"
+    },
+    "code_team2": {
+      "type": "string",
+      "description": "Code d'acc\u00e8s pour rejoindre l'\u00e9quipe 2 (Les Mycorhizes)"
+    },
+    "members_team1": {
+      "type": "array",
+      "description": "Membres de l'\u00e9quipe 1",
+      "items": {
+        "type": "object",
+        "properties": {
+          "user_email": {
+            "type": "string"
+          },
+          "user_name": {
+            "type": "string"
+          },
+          "eco_profile_id": {
+            "type": "string"
+          }
+        }
+      },
+      "default": []
+    },
+    "members_team2": {
+      "type": "array",
+      "description": "Membres de l'\u00e9quipe 2",
+      "items": {
+        "type": "object",
+        "properties": {
+          "user_email": {
+            "type": "string"
+          },
+          "user_name": {
+            "type": "string"
+          },
+          "eco_profile_id": {
+            "type": "string"
+          }
+        }
+      },
+      "default": []
+    },
+    "captures_team1": {
+      "type": "object",
+      "description": "Esp\u00e8ces captur\u00e9es par l'\u00e9quipe 1 {espece_id: {photo, timestamp}}",
+      "default": {}
+    },
+    "captures_team2": {
+      "type": "object",
+      "description": "Esp\u00e8ces captur\u00e9es par l'\u00e9quipe 2 {espece_id: {photo, timestamp}}",
+      "default": {}
+    },
+    "score_team1": {
+      "type": "number",
+      "default": 0
+    },
+    "score_team2": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "en_cours",
+        "termine",
+        "recompenses_distribuees"
+      ],
+      "default": "en_cours",
+      "description": "\u00c9tat de la session"
+    },
+    "winner_team": {
+      "type": "string",
+      "enum": [
+        "team1",
+        "team2",
+        "egalite"
+      ],
+      "description": "\u00c9quipe gagnante apr\u00e8s cl\u00f4ture"
+    },
+    "date_session": {
+      "type": "string",
+      "description": "Date de la session terrain"
+    },
+    "annee_scolaire": {
+      "type": "string",
+      "description": "Ann\u00e9e scolaire"
+    }
+  },
+  "required": [
+    "classe_id",
+    "code_team1",
+    "code_team2"
+  ]
+}
