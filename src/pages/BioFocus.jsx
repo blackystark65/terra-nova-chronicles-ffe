@@ -33,14 +33,51 @@ function ReglesModal({ onClose }) {
               <h3 className="font-bold text-amber-300 mb-2">🎯 Objectif</h3>
               <p>Compléter le tableau des acteurs de la décomposition le plus diversifié et équilibré. Le gagnant n'est pas celui qui photographie le plus, mais celui qui construit l'écosystème le plus riche.</p>
             </div>
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-              <h3 className="font-bold text-white mb-2">⚙️ Les 3 phases</h3>
-              <ol className="list-decimal list-inside space-y-1 text-white/70">
-                <li><strong className="text-white">La Quête :</strong> Souches en décomposition, litières de feuilles, tas de compost.</li>
-                <li><strong className="text-white">La Capture :</strong> Photo in situ avec smartphone ou appareil ×1000. Zéro perturbation !</li>
-                <li><strong className="text-white">L'Intégration :</strong> Upload des photos dans l'app + association à son rôle.</li>
+
+            {/* RÔLE DE L'ENSEIGNANT */}
+            <div className="p-4 rounded-2xl bg-sky-500/10 border border-sky-400/20">
+              <h3 className="font-bold text-sky-300 mb-3">👩‍🏫 Rôle de l'enseignant</h3>
+              <ol className="list-decimal list-inside space-y-2 text-white/70">
+                <li><strong className="text-sky-200">Créer la session :</strong> Dans l'onglet Jeu, l'enseignant saisit le nom de sa classe et son degré scolaire (selon le barème de son établissement — public ou privé, tout format accepté).</li>
+                <li><strong className="text-sky-200">Obtenir les codes :</strong> Deux codes uniques sont générés automatiquement — un par équipe (<span className="text-blue-300">🦔 Les Fouisseurs</span> et <span className="text-purple-300">🍄 Les Mycorhizes</span>).</li>
+                <li><strong className="text-sky-200">Distribuer les codes :</strong> L'enseignant choisit comment répartir ses élèves entre les deux équipes selon ses critères pédagogiques, puis distribue le code correspondant à chaque groupe.</li>
+                <li><strong className="text-sky-200">Clôturer la session :</strong> En fin de terrain, l'enseignant clôture la session — le score final est calculé et les récompenses distribuées aux élèves.</li>
               </ol>
             </div>
+
+            {/* RÔLE DES ÉLÈVES */}
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+              <h3 className="font-bold text-white mb-3">🎒 Rôle des élèves — Les 3 phases</h3>
+              <ol className="list-decimal list-inside space-y-2 text-white/70">
+                <li><strong className="text-white">Rejoindre :</strong> Chaque élève entre son code équipe dans l'app pour rejoindre sa team.</li>
+                <li><strong className="text-white">La Quête :</strong> Explorer souches en décomposition, litières de feuilles, tas de compost pour trouver les organismes.</li>
+                <li><strong className="text-white">La Capture :</strong> Photographier in situ avec un <span className="text-amber-300 font-semibold">appareil Kideo ×1000</span>, un <span className="text-emerald-300 font-semibold">smartphone</span> ou une <span className="text-emerald-300 font-semibold">tablette</span>. Zéro perturbation !</li>
+                <li><strong className="text-white">L'Intégration en temps réel :</strong> Chaque élève uploade sa photo directement dans l'app — le score de l'équipe se met à jour instantanément pour tout le monde.</li>
+              </ol>
+            </div>
+
+            {/* APPAREILS */}
+            <div className="p-4 rounded-2xl bg-teal-500/10 border border-teal-400/20">
+              <h3 className="font-bold text-teal-300 mb-3">📷 Appareils compatibles</h3>
+              <div className="grid grid-cols-3 gap-3">
+                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-400/20 text-center">
+                  <div className="text-2xl mb-1">🔬</div>
+                  <div className="font-bold text-amber-300 text-xs">Kideo ×1000</div>
+                  <div className="text-xs text-white/50 mt-0.5">Grossissement ×1000 — idéal pour microfaune</div>
+                </div>
+                <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-400/20 text-center">
+                  <div className="text-2xl mb-1">📱</div>
+                  <div className="font-bold text-emerald-300 text-xs">Smartphone</div>
+                  <div className="text-xs text-white/50 mt-0.5">Photo macro — macrofaune & champignons</div>
+                </div>
+                <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-400/20 text-center">
+                  <div className="text-2xl mb-1">📟</div>
+                  <div className="font-bold text-blue-300 text-xs">Tablette</div>
+                  <div className="text-xs text-white/50 mt-0.5">Grand écran — facilite l'identification</div>
+                </div>
+              </div>
+            </div>
+
             <div className="grid grid-cols-2 gap-3">
               {[
                 { color: 'amber', title: '🪱 Transformateurs', pts: '10 pts/espèce', items: ['Lombric', 'Cloporte', 'Diplopode', 'Limace'] },

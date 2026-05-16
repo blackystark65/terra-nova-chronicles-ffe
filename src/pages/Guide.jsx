@@ -724,7 +724,93 @@ const SLIDES = [
     ),
   },
 
-  // ── SLIDE 11 : Commencer ──
+  // ── SLIDE 11 : Bio-Focus ──
+  {
+    id: 'biofocus',
+    bg: 'from-slate-950 via-green-950 to-emerald-950',
+    content: (
+      <div className="px-6 py-8 max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-3 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 text-3xl">🔬</div>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Bio-Focus</h2>
+            <p className="text-emerald-400/60 text-sm">Les Enquêteurs de l'Humus — Jeu de terrain collaboratif</p>
+          </div>
+        </div>
+
+        {/* Présentation */}
+        <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-400/20 mb-4">
+          <p className="text-amber-200/80 text-sm leading-relaxed">
+            <strong className="text-amber-300">Bio-Focus</strong> est un jeu ludo-éducatif de terrain dans lequel deux équipes s'affrontent pour photographier et identifier les organismes décomposeurs du sol (macrofaune, mésofaune, champignons). L'équipe qui construit l'écosystème le plus riche et équilibré gagne !
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4 mb-4">
+          {/* Côté enseignant */}
+          <div className="p-4 rounded-2xl bg-sky-500/10 border border-sky-400/20">
+            <h3 className="font-bold text-sky-300 mb-3">👩‍🏫 Pour l'enseignant</h3>
+            <ol className="space-y-2 text-sky-200/70 text-sm">
+              <li className="flex gap-2"><span className="text-sky-400 font-bold flex-shrink-0">1.</span><span>Se rendre dans <strong className="text-white">🔬 Bio-Focus</strong> depuis la navigation.</span></li>
+              <li className="flex gap-2"><span className="text-sky-400 font-bold flex-shrink-0">2.</span><span>Créer une session : saisir le <strong className="text-white">nom de la classe</strong> et le <strong className="text-white">degré scolaire</strong> librement (tout barème accepté — public, privé, suisse, français, international…).</span></li>
+              <li className="flex gap-2"><span className="text-sky-400 font-bold flex-shrink-0">3.</span><span>Deux <strong className="text-white">codes uniques</strong> sont générés : un pour les <span className="text-blue-300">🦔 Fouisseurs</span>, un pour les <span className="text-purple-300">🍄 Mycorhizes</span>.</span></li>
+              <li className="flex gap-2"><span className="text-sky-400 font-bold flex-shrink-0">4.</span><span>Distribuer les codes selon sa propre répartition pédagogique des élèves.</span></li>
+              <li className="flex gap-2"><span className="text-sky-400 font-bold flex-shrink-0">5.</span><span>En fin de séance, <strong className="text-white">clôturer la session</strong> pour calculer les scores et distribuer les récompenses.</span></li>
+            </ol>
+          </div>
+
+          {/* Côté élèves */}
+          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-400/20">
+            <h3 className="font-bold text-emerald-300 mb-3">🎒 Pour les élèves</h3>
+            <ol className="space-y-2 text-emerald-200/70 text-sm">
+              <li className="flex gap-2"><span className="text-emerald-400 font-bold flex-shrink-0">1.</span><span>Entrer le code équipe reçu de l'enseignant pour <strong className="text-white">rejoindre sa team</strong>.</span></li>
+              <li className="flex gap-2"><span className="text-emerald-400 font-bold flex-shrink-0">2.</span><span>Sur le terrain : chercher les organismes dans litières, souches, compost.</span></li>
+              <li className="flex gap-2"><span className="text-emerald-400 font-bold flex-shrink-0">3.</span><span>Photographier avec l'appareil disponible (voir ci-dessous) <strong className="text-white">sans perturber</strong> le milieu.</span></li>
+              <li className="flex gap-2"><span className="text-emerald-400 font-bold flex-shrink-0">4.</span><span><strong className="text-white">Uploader la photo en temps réel</strong> directement dans l'app — le score de l'équipe se met à jour instantanément pour tous les membres.</span></li>
+            </ol>
+          </div>
+        </div>
+
+        {/* Appareils */}
+        <div className="p-4 rounded-2xl bg-teal-500/10 border border-teal-400/20 mb-4">
+          <h3 className="font-bold text-teal-300 mb-3">📷 Appareils compatibles pour la capture</h3>
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { emoji: '🔬', name: 'Kideo ×1000', desc: 'Grossissement ×1000 — idéal pour collemboles, pseudoscorpions et mycélium invisible à l\'œil nu.' },
+              { emoji: '📱', name: 'Smartphone', desc: 'Mode macro ou caméra standard — parfait pour lombrics, cloportes, carabes, champignons.' },
+              { emoji: '📟', name: 'Tablette', desc: 'Grand écran facilitant la prise de vue et l\'identification des espèces sur place.' },
+            ].map((a, i) => (
+              <div key={i} className="p-3 rounded-xl bg-white/5 border border-teal-400/20 text-center">
+                <div className="text-3xl mb-1">{a.emoji}</div>
+                <div className="font-bold text-teal-300 text-xs mb-1">{a.name}</div>
+                <p className="text-white/50 text-xs">{a.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bonus */}
+        <div className="grid grid-cols-3 gap-3 mb-3">
+          <div className="p-3 rounded-xl bg-purple-500/10 border border-purple-400/20 text-center">
+            <div className="font-bold text-purple-300 text-xs mb-1">⭐ Défi Expert</div>
+            <div className="text-xs text-white/50">Pseudoscorpion ou Collembole : +30 pts</div>
+          </div>
+          <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-400/20 text-center">
+            <div className="font-bold text-blue-300 text-xs mb-1">🔗 Chaîne trophique</div>
+            <div className="text-xs text-white/50">Prédateur + proie : +50 pts</div>
+          </div>
+          <div className="p-3 rounded-xl bg-green-500/10 border border-green-400/20 text-center">
+            <div className="font-bold text-green-300 text-xs mb-1">🌿 Biodiversité</div>
+            <div className="text-xs text-white/50">3 groupes couverts : +100 pts</div>
+          </div>
+        </div>
+        <div className="p-3 rounded-2xl bg-green-500/10 border border-green-400/20 text-green-200 text-center text-xs font-semibold">
+          🌿 Règle d'or : Zéro perturbation — photos in situ uniquement. Ne blessez ni ne déplacez aucun animal.
+        </div>
+      </div>
+    ),
+  },
+
+  // ── SLIDE 12 : Commencer ──
   {
     id: 'start',
     bg: 'from-emerald-950 via-teal-950 to-cyan-950',
