@@ -17,6 +17,8 @@ import EcospherePage from './pages/Ecosphere';
 import AdminEcospherePage from './pages/AdminEcosphere';
 import PollinisationPage from './pages/Pollinisation';
 import BioFocusPage from './pages/BioFocus';
+import PresentationPage from './pages/Presentation';
+import AbonnementPage from './pages/Abonnement';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -78,6 +80,8 @@ const AuthenticatedApp = () => {
       <Route path="/AdminEcosphere" element={<LayoutWrapper currentPageName="AdminEcosphere"><AdminEcospherePage /></LayoutWrapper>} />
       <Route path="/Pollinisation" element={<LayoutWrapper currentPageName="Pollinisation"><PollinisationPage /></LayoutWrapper>} />
       <Route path="/BioFocus" element={<LayoutWrapper currentPageName="BioFocus"><BioFocusPage /></LayoutWrapper>} />
+      <Route path="/Presentation" element={<LayoutWrapper currentPageName="Presentation"><PresentationPage /></LayoutWrapper>} />
+      <Route path="/Abonnement" element={<LayoutWrapper currentPageName="Abonnement"><AbonnementPage /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

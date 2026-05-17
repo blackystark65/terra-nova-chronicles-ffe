@@ -22,7 +22,9 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Biodiversité', icon: Leaf, path: 'Biodiversite' },
     { name: 'Pollinisation', icon: Leaf, path: 'Pollinisation' },
     { name: 'Écosphère', icon: BookOpen, path: 'Ecosphere' },
-    { name: '🔬 Bio-Focus', icon: Flame, path: 'BioFocus' }];
+    { name: '🔬 Bio-Focus', icon: Flame, path: 'BioFocus' },
+    { name: '📊 Présentation', icon: BookOpen, path: 'Presentation' },
+    { name: '🔑 Abonnement', icon: Globe, path: 'Abonnement' }];
 
   const handleLogout = () => {
     base44.auth.redirectToLogin();
