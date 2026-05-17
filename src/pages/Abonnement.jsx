@@ -13,8 +13,8 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 // Créez des produits dans votre dashboard Stripe → Products → Add product
 // puis copiez l'ID du prix (ex: price_1AbCdEfGhIjKlMnO)
 const STRIPE_PRICE_IDS = {
-  standard: 'price_STANDARD_ID_A_REMPLACER',  // CHF 390/an
-  premium:  'price_PREMIUM_ID_A_REMPLACER',   // CHF 690/an
+  standard: 'prod_UX79ERrwy97kzh',  // CHF 390/an
+  premium:  'prod_UX7AJGtB0Hh2U7',   // CHF 690/an
 };
 
 const PLANS = [
