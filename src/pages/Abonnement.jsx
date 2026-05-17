@@ -2,9 +2,20 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { CreditCard, CheckCircle2, Building2, Users, Shield, ChevronLeft, Zap, Star, Globe } from 'lucide-react';
+import { CreditCard, CheckCircle2, Building2, Shield, Globe, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
+// ⚠️ Remplacez ces valeurs par vos vrais Price IDs Stripe
+// Créez des produits dans votre dashboard Stripe → Products → Add product
+// puis copiez l'ID du prix (ex: price_1AbCdEfGhIjKlMnO)
+const STRIPE_PRICE_IDS = {
+  standard: 'price_STANDARD_ID_A_REMPLACER',  // CHF 390/an
+  premium:  'price_PREMIUM_ID_A_REMPLACER',   // CHF 690/an
+};
 
 const PLANS = [
   {
@@ -75,13 +86,28 @@ const FAQ = [
 export default function AbonnementPage() {
   const [selectedPlan, setSelectedPlan] = useState('premium');
   const [openFaq, setOpenFaq] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const plan = PLANS.find(p => p.id === selectedPlan);
 
-  const handleStripeCheckout = () => {
-    // TODO: Intégrer Stripe avec le prix correspondant au plan
-    // Pour l'instant, redirection vers une page de contact
-    alert("Fonctionnalité de paiement en cours d'intégration. Veuillez nous contacter à contact@terra-nova.edu pour souscrire.");
+  const handleStripeCheckout = async () => {
+    const priceId = STRIPE_PRICE_IDS[selectedPlan];
+    if (!priceId || priceId.includes('A_REMPLACER')) {
+      setError("⚠️ Pour activer le paiement : créez vos produits dans le dashboard Stripe (stripe.com/dashboard → Products), puis remplacez les Price IDs dans le code (STRIPE_PRICE_IDS).");
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    const stripe = await stripePromise;
+    const { error: stripeError } = await stripe.redirectToCheckout({
+      lineItems: [{ price: priceId, quantity: 1 }],
+      mode: 'payment',
+      successUrl: `${window.location.origin}/Abonnement?success=true`,
+      cancelUrl: `${window.location.origin}/Abonnement?cancelled=true`,
+    });
+    if (stripeError) setError(stripeError.message);
+    setLoading(false);
   };
 
   return (
@@ -169,15 +195,24 @@ export default function AbonnementPage() {
               {plan.currency} {plan.price} / an — Paiement unique sécurisé via Stripe
             </p>
           )}
+          {error && (
+            <div className="mb-4 p-4 rounded-xl bg-red-500/10 border border-red-400/20 text-red-300 text-sm text-left">
+              {error}
+            </div>
+          )}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             {selectedPlan !== 'reseau' ? (
               <Button
                 onClick={handleStripeCheckout}
+                disabled={loading}
                 size="lg"
-                className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white px-10 py-6 text-lg rounded-2xl shadow-2xl shadow-violet-500/30"
+                className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white px-10 py-6 text-lg rounded-2xl shadow-2xl shadow-violet-500/30 disabled:opacity-60"
               >
-                <CreditCard className="w-5 h-5 mr-2" />
-                Payer maintenant — {plan?.currency} {plan?.price} / an
+                {loading ? (
+                  <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Redirection Stripe…</>
+                ) : (
+                  <><CreditCard className="w-5 h-5 mr-2" /> Payer maintenant — {plan?.currency} {plan?.price} / an</>
+                )}
               </Button>
             ) : (
               <Button
