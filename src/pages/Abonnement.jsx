@@ -7,8 +7,6 @@ import { Button } from '@/components/ui/button';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
-
 // ⚠️ Remplacez ces valeurs par vos vrais Price IDs Stripe
 // Créez des produits dans votre dashboard Stripe → Products → Add product
 // puis copiez l'ID du prix (ex: price_1AbCdEfGhIjKlMnO)
@@ -99,7 +97,13 @@ export default function AbonnementPage() {
     }
     setLoading(true);
     setError(null);
-    const stripe = await stripePromise;
+    const key = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
+    if (!key) {
+      setError("⚠️ Clé publique Stripe manquante. Vérifiez que VITE_STRIPE_PUBLIC_KEY est bien défini dans les secrets.");
+      setLoading(false);
+      return;
+    }
+    const stripe = await loadStripe(key);
     const { error: stripeError } = await stripe.redirectToCheckout({
       lineItems: [{ price: priceId, quantity: 1 }],
       mode: 'payment',
