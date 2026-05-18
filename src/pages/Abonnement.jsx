@@ -93,8 +93,8 @@ export default function AbonnementPage() {
 
   const handleStripeCheckout = async () => {
     const priceId = STRIPE_PRICE_IDS[selectedPlan];
-    if (!priceId || priceId.includes('A_REMPLACER')) {
-      setError("⚠️ Pour activer le paiement : créez vos produits dans le dashboard Stripe (stripe.com/dashboard → Products), puis remplacez les Price IDs dans le code (STRIPE_PRICE_IDS).");
+    if (!priceId || priceId.includes('A_REMPLACER') || priceId.startsWith('prod_')) {
+      setError("⚠️ Les IDs configurés sont des Product IDs (prod_...) mais Stripe Checkout nécessite des Price IDs (price_...). Dans votre dashboard Stripe → Products → cliquez sur le produit → copiez l'ID dans la section « Pricing » qui commence par price_");
       return;
     }
     setLoading(true);
