@@ -97,13 +97,7 @@ export default function AbonnementPage() {
     }
     setLoading(true);
     setError(null);
-    const key = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
-    if (!key) {
-      setError("⚠️ Clé publique Stripe manquante. Vérifiez que VITE_STRIPE_PUBLIC_KEY est bien défini dans les secrets.");
-      setLoading(false);
-      return;
-    }
-    const stripe = await loadStripe(key);
+    const stripe = await loadStripe('pk_live_0L6eLpK72xVAD7QJQ1Yi1hvm');
     const { error: stripeError } = await stripe.redirectToCheckout({
       lineItems: [{ price: priceId, quantity: 1 }],
       mode: 'payment',
