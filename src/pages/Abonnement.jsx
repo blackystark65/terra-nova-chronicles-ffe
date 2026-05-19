@@ -97,7 +97,7 @@ export default function AbonnementPage() {
     }
     setLoading(true);
     setError(null);
-    const stripe = await loadStripe('pk_live_0L6eLpK72xVAD7QJQ1Yi1hvm');
+    const stripe = await loadStripe('pk_live_51TYXXMFeAjEQAsj9gy1ie3xhKVxdj2KYSU3NmS52JmaKOCx5mc8Izf2GD0f5YCAQC2Lq3u65KEwDdeJXL2Atzf9L00F3XLZV1v');
     const { error: stripeError } = await stripe.redirectToCheckout({
       lineItems: [{ price: priceId, quantity: 1 }],
       mode: 'payment',
