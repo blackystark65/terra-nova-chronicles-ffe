@@ -89,23 +89,20 @@ export default function AbonnementPage() {
 
   const plan = PLANS.find(p => p.id === selectedPlan);
 
-  const handleStripeCheckout = async () => {
-    const priceId = STRIPE_PRICE_IDS[selectedPlan];
-    if (!priceId || priceId.includes('A_REMPLACER') || priceId.startsWith('prod_')) {
-      setError("⚠️ Les IDs configurés sont des Product IDs (prod_...) mais Stripe Checkout nécessite des Price IDs (price_...). Dans votre dashboard Stripe → Products → cliquez sur le produit → copiez l'ID dans la section « Pricing » qui commence par price_");
+  const handleStripeCheckout = () => {
+    // Payment Links créés depuis le dashboard Stripe
+    // Dashboard Stripe → Payment Links → Créer un lien → copier l'URL
+    const STRIPE_PAYMENT_LINKS = {
+      standard: 'https://buy.stripe.com/REMPLACER_STANDARD',
+      premium:  'https://buy.stripe.com/REMPLACER_PREMIUM',
+    };
+
+    const link = STRIPE_PAYMENT_LINKS[selectedPlan];
+    if (!link || link.includes('REMPLACER')) {
+      setError("⚠️ Payment Links non configurés. Allez dans votre dashboard Stripe → Payment Links → créez un lien pour chaque plan et communiquez les URLs.");
       return;
     }
-    setLoading(true);
-    setError(null);
-    const stripe = await loadStripe('pk_live_51TYXXMFeAjEQAsj9gy1ie3xhKVxdj2KYSU3NmS52JmaKOCx5mc8Izf2GD0f5YCAQC2Lq3u65KEwDdeJXL2Atzf9L00F3XLZV1v');
-    const { error: stripeError } = await stripe.redirectToCheckout({
-      lineItems: [{ price: priceId, quantity: 1 }],
-      mode: 'payment',
-      successUrl: `${window.location.origin}/Abonnement?success=true`,
-      cancelUrl: `${window.location.origin}/Abonnement?cancelled=true`,
-    });
-    if (stripeError) setError(stripeError.message);
-    setLoading(false);
+    window.open(link, '_blank');
   };
 
   return (
