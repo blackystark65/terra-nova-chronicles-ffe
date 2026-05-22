@@ -303,8 +303,8 @@ export default function AbonnementPage() {
           <p className="text-emerald-300 font-bold mb-2">Besoin d'aide ou d'une démo ?</p>
           <p className="text-emerald-200/60 text-sm mb-4">Notre équipe est disponible pour vous présenter la plateforme et répondre à vos questions.</p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <a href="mailto:contact@terra-nova.edu" className="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 text-sm font-semibold border border-emerald-400/20 hover:bg-emerald-500/30 transition-all">
-              📧 contact@terra-nova.edu
+            <a href="mailto:brunolivier@yahoo.com" className="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 text-sm font-semibold border border-emerald-400/20 hover:bg-emerald-500/30 transition-all">
+              📧 brunolivier@yahoo.com
             </a>
             <Link to={createPageUrl('Presentation')}>
               <button className="px-4 py-2 rounded-xl bg-white/10 text-white/60 text-sm font-semibold border border-white/10 hover:bg-white/20 transition-all">
