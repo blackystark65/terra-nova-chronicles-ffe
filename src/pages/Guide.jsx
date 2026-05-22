@@ -725,8 +725,58 @@ const SLIDES = [
             </div>
           ))}
         </div>
-        <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 text-sm text-emerald-200/80">
-          🌿 <strong className="text-emerald-300">Disponible maintenant :</strong> Ces outils sont accessibles depuis la navigation principale (<strong>📅 RDV</strong> et <strong>📋 Bilan</strong>). Conçus spécifiquement pour le terrain de permaculture <strong>Terra Nova</strong>.
+        {/* Système code bilan */}
+        <div className="p-4 rounded-2xl bg-teal-500/10 border border-teal-400/30 mb-4">
+          <h3 className="text-teal-300 font-bold text-sm mb-3">🔑 Comment accéder à votre dossier de bilan ?</h3>
+          <div className="grid md:grid-cols-3 gap-3">
+            <div className="p-3 rounded-xl bg-white/5 border border-teal-400/20 text-center">
+              <div className="text-2xl mb-2">📅</div>
+              <div className="text-teal-300 font-bold text-xs mb-1">1. Faites votre demande de RDV</div>
+              <div className="text-white/50 text-xs">Remplissez le formulaire dans <strong className="text-white">📅 RDV</strong> depuis la navigation.</div>
+            </div>
+            <div className="p-3 rounded-xl bg-white/5 border border-teal-400/20 text-center">
+              <div className="text-2xl mb-2">📧</div>
+              <div className="text-teal-300 font-bold text-xs mb-1">2. Recevez votre code personnel</div>
+              <div className="text-white/50 text-xs">Un email de confirmation vous envoie un code confidentiel unique, ex : <span className="font-mono text-yellow-300">TN-A3F7-K9QP</span></div>
+            </div>
+            <div className="p-3 rounded-xl bg-white/5 border border-teal-400/20 text-center">
+              <div className="text-2xl mb-2">📋</div>
+              <div className="text-teal-300 font-bold text-xs mb-1">3. Ouvrez votre dossier</div>
+              <div className="text-white/50 text-xs">Rendez-vous dans <strong className="text-white">📋 Bilan</strong>, saisissez votre code pour accéder à votre dossier privé.</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mockup code gate */}
+        <div className="p-4 rounded-2xl bg-slate-900/60 border border-white/10 mb-4">
+          <div className="text-center mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-300 text-xs font-semibold">🔒 Page Bilan — Accès sécurisé</div>
+          </div>
+          <div className="max-w-xs mx-auto p-4 rounded-2xl bg-white/5 border border-teal-400/20 text-center">
+            <div className="text-3xl mb-2">🔒</div>
+            <div className="text-white font-bold text-sm mb-1">Saisissez votre code</div>
+            <div className="text-white/40 text-xs mb-3">Reçu dans votre email de confirmation</div>
+            <div className="px-4 py-2 rounded-xl bg-white/10 border border-white/20 font-mono text-yellow-300 text-center text-sm tracking-widest mb-3">TN-A3F7-K9QP</div>
+            <div className="py-2 rounded-xl bg-teal-500/30 border border-teal-400/30 text-teal-200 text-xs font-bold">🔑 Accéder au dossier →</div>
+          </div>
+          <p className="text-white/40 text-xs text-center mt-3">Le dossier est strictement privé — seul vous possédez ce code.</p>
+        </div>
+
+        {/* Rouvrir son dossier */}
+        <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-400/20 mb-4">
+          <h3 className="text-amber-300 font-bold text-sm mb-2">🔄 Rouvrir votre dossier plus tard</h3>
+          <div className="flex items-start gap-3 text-sm text-amber-200/70">
+            <div className="text-amber-400 font-bold flex-shrink-0 mt-0.5">→</div>
+            <div>Votre code est <strong className="text-white">permanent</strong> : conservez l'email de confirmation. À tout moment, retournez sur <strong className="text-white">📋 Bilan</strong> et ressaisissez votre code pour retrouver, modifier ou compléter votre dossier.</div>
+          </div>
+          <div className="flex items-start gap-3 text-sm text-amber-200/70 mt-2">
+            <div className="text-amber-400 font-bold flex-shrink-0 mt-0.5">→</div>
+            <div>Vous pouvez <strong className="text-white">sauvegarder en brouillon</strong> et revenir plus tard pour finaliser avant de soumettre.</div>
+          </div>
+        </div>
+
+        <div className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 text-emerald-200/80 text-xs text-center font-semibold">
+          🌿 Votre dossier est privé et lié à votre RDV — non visible par les élèves ni le public.
         </div>
       </div>
     ),
