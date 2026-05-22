@@ -8,7 +8,7 @@ import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { loadStripe } from '@stripe/stripe-js';
 
 const STRIPE_PAYMENT_LINKS = {
-  individuel: 'https://buy.stripe.com/test_individuel', // À remplacer par votre Payment Link
+  individuel: 'https://buy.stripe.com/test_individuel', // https://buy.stripe.com/4gMfZhb4GbEA61M3BOgbm00$0
   famille:    'https://buy.stripe.com/test_famille',    // À remplacer par votre Payment Link
   standard:   'https://buy.stripe.com/test_standard',   // À remplacer par votre Payment Link
   premium:    'https://buy.stripe.com/test_premium',    // À remplacer par votre Payment Link
