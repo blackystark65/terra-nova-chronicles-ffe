@@ -22,6 +22,7 @@ import AbonnementPage from './pages/Abonnement';
 import AgendaPage from './pages/Agenda';
 import BilanPedagogiquePage from './pages/BilanPedagogiquePage';
 import BiomeSolPage from './pages/BiomeSol';
+import GestionElevesPage from './pages/GestionEleves';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -88,6 +89,7 @@ const AuthenticatedApp = () => {
       <Route path="/Agenda" element={<LayoutWrapper currentPageName="Agenda"><AgendaPage /></LayoutWrapper>} />
       <Route path="/BilanPedagogique" element={<LayoutWrapper currentPageName="BilanPedagogique"><BilanPedagogiquePage /></LayoutWrapper>} />
       <Route path="/BiomeSol" element={<LayoutWrapper currentPageName="BiomeSol"><BiomeSolPage /></LayoutWrapper>} />
+      <Route path="/GestionEleves" element={<LayoutWrapper currentPageName="GestionEleves"><GestionElevesPage /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
