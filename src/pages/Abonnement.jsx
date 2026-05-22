@@ -7,27 +7,60 @@ import { Button } from '@/components/ui/button';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { loadStripe } from '@stripe/stripe-js';
 
-// ⚠️ Remplacez ces valeurs par vos vrais Price IDs Stripe
-// Créez des produits dans votre dashboard Stripe → Products → Add product
-// puis copiez l'ID du prix (ex: price_1AbCdEfGhIjKlMnO)
-const STRIPE_PRICE_IDS = {
-  standard: 'price_1TYYQIFeAjEQAsj9KAZKz24t',  // CHF 390/an
-  premium:  'price_1TYYSEFeAjEQAsj9O7xjXlJn',   // CHF 690/an
+const STRIPE_PAYMENT_LINKS = {
+  individuel: 'https://buy.stripe.com/test_individuel', // À remplacer par votre Payment Link
+  famille:    'https://buy.stripe.com/test_famille',    // À remplacer par votre Payment Link
+  standard:   'https://buy.stripe.com/test_standard',   // À remplacer par votre Payment Link
+  premium:    'https://buy.stripe.com/test_premium',    // À remplacer par votre Payment Link
 };
 
 const PLANS = [
+  {
+    id: 'individuel',
+    name: 'Individuel',
+    price: 240,
+    currency: 'CHF',
+    period: 'an',
+    color: 'teal',
+    description: 'Pour un enseignant ou un particulier',
+    features: [
+      '1 compte utilisateur',
+      'Tous les 12 modules inclus',
+      'Accès Bio-Focus terrain',
+      'Mises à jour incluses',
+      'Support par email',
+    ],
+    not_included: ['Comptes élèves', 'Tableau de bord classe'],
+  },
+  {
+    id: 'famille',
+    name: 'Famille',
+    price: 290,
+    currency: 'CHF',
+    period: 'an',
+    color: 'emerald',
+    description: 'Pour une famille avec plusieurs enfants',
+    features: [
+      "Jusqu'à 5 comptes",
+      'Tous les 12 modules inclus',
+      'Accès Bio-Focus terrain',
+      'Mises à jour incluses',
+      'Support par email',
+    ],
+    not_included: ['Tableau de bord enseignant', 'Support prioritaire'],
+  },
   {
     id: 'standard',
     name: 'Établissement Standard',
     price: 390,
     currency: 'CHF',
     period: 'an',
-    color: 'emerald',
+    color: 'violet',
     description: 'Idéal pour les petites et moyennes écoles',
     features: [
       "Jusqu'à 150 élèves",
       'Tous les 12 modules inclus',
-      "3 comptes enseignant admin",
+      "Comptes enseignants admin",
       'Support par email',
       'Accès Bio-Focus terrain',
       'Mises à jour incluses',
@@ -82,7 +115,7 @@ const FAQ = [
 ];
 
 export default function AbonnementPage() {
-  const [selectedPlan, setSelectedPlan] = useState('premium');
+  const [selectedPlan, setSelectedPlan] = useState('standard');
   const [openFaq, setOpenFaq] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -90,16 +123,9 @@ export default function AbonnementPage() {
   const plan = PLANS.find(p => p.id === selectedPlan);
 
   const handleStripeCheckout = () => {
-    // Payment Links créés depuis le dashboard Stripe
-    // Dashboard Stripe → Payment Links → Créer un lien → copier l'URL
-    const STRIPE_PAYMENT_LINKS = {
-      standard: 'https://buy.stripe.com/REMPLACER_STANDARD',
-      premium:  'https://buy.stripe.com/REMPLACER_PREMIUM',
-    };
-
     const link = STRIPE_PAYMENT_LINKS[selectedPlan];
-    if (!link || link.includes('REMPLACER')) {
-      setError("⚠️ Payment Links non configurés. Allez dans votre dashboard Stripe → Payment Links → créez un lien pour chaque plan et communiquez les URLs.");
+    if (!link || link.includes('test_')) {
+      setError("⚠️ Payment Link non configuré pour ce plan. Contactez l'administrateur.");
       return;
     }
     window.open(link, '_blank');
@@ -125,7 +151,7 @@ export default function AbonnementPage() {
         </motion.div>
 
         {/* Plans */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-5 gap-4 mb-12">
           {PLANS.map((p, i) => (
             <motion.div
               key={p.id}

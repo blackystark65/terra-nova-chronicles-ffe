@@ -1,0 +1,68 @@
+{
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "stripe_session_id": {
+      "type": "string",
+      "description": "ID de la session Stripe checkout"
+    },
+    "stripe_customer_email": {
+      "type": "string",
+      "description": "Email du client Stripe"
+    },
+    "plan_id": {
+      "type": "string",
+      "enum": [
+        "individuel",
+        "famille",
+        "standard",
+        "premium"
+      ],
+      "description": "Plan souscrit"
+    },
+    "plan_name": {
+      "type": "string",
+      "description": "Nom du plan"
+    },
+    "amount_paid": {
+      "type": "number",
+      "description": "Montant pay\u00e9 en CHF"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "expired",
+        "cancelled"
+      ],
+      "default": "active",
+      "description": "Statut de l'abonnement"
+    },
+    "expires_at": {
+      "type": "string",
+      "description": "Date d'expiration (ISO 8601)"
+    },
+    "invitations_quota": {
+      "type": "number",
+      "description": "Nombre d'invitations autoris\u00e9es (-1 = illimit\u00e9)"
+    },
+    "invitations_used": {
+      "type": "number",
+      "default": 0,
+      "description": "Nombre d'invitations utilis\u00e9es"
+    },
+    "school_name": {
+      "type": "string",
+      "description": "Nom de l'\u00e9tablissement"
+    },
+    "admin_email": {
+      "type": "string",
+      "description": "Email de l'administrateur principal"
+    }
+  },
+  "required": [
+    "stripe_session_id",
+    "stripe_customer_email",
+    "plan_id"
+  ]
+}
