@@ -56,6 +56,10 @@
       "default": "en_attente",
       "description": "Statut de la demande"
     },
+    "code_bilan": {
+      "type": "string",
+      "description": "Code unique pour acc\u00e9der au formulaire de bilan (ex: TN-2026-A3F7)"
+    },
     "date_confirmee": {
       "type": "string",
       "description": "Date confirm\u00e9e par l'admin"

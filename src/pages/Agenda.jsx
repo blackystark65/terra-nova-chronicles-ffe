@@ -22,15 +22,24 @@ export default function AgendaPage() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
+  const generateCodeBilan = () => {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    const part1 = Array.from({ length: 4 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+    const part2 = Array.from({ length: 4 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+    return `TN-${part1}-${part2}`;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     try {
+      const code_bilan = generateCodeBilan();
       const rdv = await base44.entities.RendezVous.create({
         ...form,
         nombre_eleves: form.nombre_eleves ? Number(form.nombre_eleves) : undefined,
         statut: 'en_attente',
+        code_bilan,
       });
       await base44.functions.invoke('sendRdvNotification', { rdv });
       setSuccess(true);

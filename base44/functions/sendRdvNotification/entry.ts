@@ -14,7 +14,8 @@ Deno.serve(async (req) => {
       autre: 'Autre',
     };
 
-    const emailBody = `
+    // Email à l'admin (brunolivier@yahoo.com)
+    const adminEmailBody = `
 Nouvelle demande de RDV sur Terra Nova 🌿
 
 📚 École : ${rdv.nom_ecole}
@@ -26,6 +27,9 @@ ${rdv.date_alternative ? `📅 Date alternative : ${rdv.date_alternative}` : ''}
 🌲 Type d'atelier : ${typeLabels[rdv.type_atelier] || rdv.type_atelier}
 ${rdv.message ? `💬 Message : ${rdv.message}` : ''}
 
+🔑 CODE BILAN ENSEIGNANT : ${rdv.code_bilan}
+(Ce code permettra à l'enseignant d'accéder au formulaire de bilan post-atelier)
+
 ---
 Connectez-vous à l'interface admin pour confirmer ou refuser cette demande.
     `.trim();
@@ -33,21 +37,32 @@ Connectez-vous à l'interface admin pour confirmer ou refuser cette demande.
     await base44.asServiceRole.integrations.Core.SendEmail({
       to: 'brunolivier@yahoo.com',
       subject: `🌿 Nouvelle demande de RDV - ${rdv.nom_ecole} (${rdv.date_souhaitee})`,
-      body: emailBody,
+      body: adminEmailBody,
     });
 
-    // Envoyer confirmation à l'enseignant
-    await base44.asServiceRole.integrations.Core.SendEmail({
-      to: rdv.email_enseignant,
-      subject: `✅ Demande de RDV Terra Nova reçue`,
-      body: `Bonjour ${rdv.nom_enseignant},
+    // Email de confirmation à l'enseignant avec le code bilan
+    const enseignantEmailBody = `Bonjour ${rdv.nom_enseignant},
 
 Nous avons bien reçu votre demande de RDV pour le ${rdv.date_souhaitee}.
 
 Notre équipe vous contactera dans les plus brefs délais pour confirmer votre créneau.
 
+---
+🔑 VOTRE CODE BILAN PERSONNEL : ${rdv.code_bilan}
+
+Ce code est strictement personnel et confidentiel.
+Après votre atelier, rendez-vous sur la page "Bilan Pédagogique" de la plateforme Terra Nova et saisissez ce code pour accéder à votre dossier d'évaluation.
+
+Conservez précieusement ce code — il est le seul moyen d'accéder à votre dossier de bilan.
+
+---
 À bientôt,
-L'équipe Terra Nova 🌿`,
+L'équipe Terra Nova 🌿`;
+
+    await base44.asServiceRole.integrations.Core.SendEmail({
+      to: rdv.email_enseignant,
+      subject: `✅ Demande de RDV Terra Nova reçue — Code bilan : ${rdv.code_bilan}`,
+      body: enseignantEmailBody,
     });
 
     return Response.json({ success: true });
