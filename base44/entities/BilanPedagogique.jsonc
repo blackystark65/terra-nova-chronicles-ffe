@@ -1,0 +1,115 @@
+{
+  "name": "BilanPedagogique",
+  "type": "object",
+  "properties": {
+    "rdv_id": {
+      "type": "string",
+      "description": "ID du rendez-vous associ\u00e9"
+    },
+    "nom_ecole": {
+      "type": "string"
+    },
+    "nom_enseignant": {
+      "type": "string"
+    },
+    "classe_niveau": {
+      "type": "string"
+    },
+    "date_atelier": {
+      "type": "string"
+    },
+    "lieu_activite": {
+      "type": "string"
+    },
+    "structure_partenaire": {
+      "type": "string"
+    },
+    "objectifs_apprentissage": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Objectifs d'apprentissage vis\u00e9s"
+    },
+    "activites_observation": {
+      "type": "string",
+      "description": "Activit\u00e9s d'observation r\u00e9alis\u00e9es"
+    },
+    "activites_experimentation": {
+      "type": "string",
+      "description": "Activit\u00e9s d'exp\u00e9rimentation"
+    },
+    "activites_debat": {
+      "type": "string",
+      "description": "D\u00e9bats et r\u00e9flexions men\u00e9s"
+    },
+    "competences_acquises": {
+      "type": "string"
+    },
+    "notions_comprises": {
+      "type": "string"
+    },
+    "points_a_approfondir": {
+      "type": "string"
+    },
+    "changements_attitude": {
+      "type": "string",
+      "description": "Changements d'attitude observ\u00e9s chez les \u00e9l\u00e8ves"
+    },
+    "prolongements_classe": {
+      "type": "string",
+      "description": "Prolongements pr\u00e9vus en classe"
+    },
+    "duree_atelier": {
+      "type": "string",
+      "enum": [
+        "adaptee",
+        "trop_courte",
+        "trop_longue"
+      ],
+      "description": "Dur\u00e9e de l'atelier"
+    },
+    "securite_deplacements": {
+      "type": "string"
+    },
+    "qualite_animation": {
+      "type": "string"
+    },
+    "difficultes_rencontrees": {
+      "type": "string"
+    },
+    "impressions_globales": {
+      "type": "string"
+    },
+    "recommandation_annee_suivante": {
+      "type": "boolean",
+      "default": true
+    },
+    "note_globale": {
+      "type": "number",
+      "description": "Note globale sur 5"
+    },
+    "photos_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URLs des photos de l'atelier",
+      "default": []
+    },
+    "statut": {
+      "type": "string",
+      "enum": [
+        "brouillon",
+        "soumis"
+      ],
+      "default": "brouillon"
+    }
+  },
+  "required": [
+    "nom_ecole",
+    "nom_enseignant",
+    "classe_niveau",
+    "date_atelier"
+  ]
+}

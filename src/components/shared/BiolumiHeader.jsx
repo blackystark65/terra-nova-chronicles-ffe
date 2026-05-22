@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { base44 } from '@/api/base44Client';
-import { Globe, Leaf, BookOpen, Trophy, User, Flame, X, LogOut } from 'lucide-react';
+import { Globe, Leaf, BookOpen, Trophy, User, Flame, X, LogOut, Calendar } from 'lucide-react';
 
 export default function BiolumiHeader({ currentPage }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,7 +24,9 @@ export default function BiolumiHeader({ currentPage }) {
     { name: 'Écosphère', icon: BookOpen, path: 'Ecosphere' },
     { name: '🔬 Bio-Focus', icon: Flame, path: 'BioFocus' },
     { name: '📊 Présentation', icon: BookOpen, path: 'Presentation' },
-    { name: '🔑 Abonnement', icon: Globe, path: 'Abonnement' }];
+    { name: '🔑 Abonnement', icon: Globe, path: 'Abonnement' },
+    { name: '📅 RDV', icon: Calendar, path: 'Agenda' },
+    { name: '📋 Bilan', icon: BookOpen, path: 'BilanPedagogique' }];
 
   const handleLogout = () => {
     base44.auth.redirectToLogin();

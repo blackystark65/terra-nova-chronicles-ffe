@@ -1,0 +1,80 @@
+{
+  "name": "RendezVous",
+  "type": "object",
+  "properties": {
+    "nom_ecole": {
+      "type": "string",
+      "description": "Nom de l'\u00e9tablissement"
+    },
+    "nom_enseignant": {
+      "type": "string",
+      "description": "Nom et pr\u00e9nom de l'enseignant"
+    },
+    "email_enseignant": {
+      "type": "string",
+      "description": "Email de l'enseignant"
+    },
+    "classe_niveau": {
+      "type": "string",
+      "description": "Classe et niveau (ex: CM2 / Harmo 7e)"
+    },
+    "nombre_eleves": {
+      "type": "number",
+      "description": "Nombre d'\u00e9l\u00e8ves"
+    },
+    "date_souhaitee": {
+      "type": "string",
+      "description": "Date souhait\u00e9e pour l'atelier"
+    },
+    "date_alternative": {
+      "type": "string",
+      "description": "Date alternative"
+    },
+    "type_atelier": {
+      "type": "string",
+      "enum": [
+        "decouverte_biodiversite",
+        "bio_focus_terrain",
+        "permaculture",
+        "recyclage",
+        "autre"
+      ],
+      "description": "Type d'atelier souhait\u00e9"
+    },
+    "message": {
+      "type": "string",
+      "description": "Message ou pr\u00e9cisions de l'enseignant"
+    },
+    "statut": {
+      "type": "string",
+      "enum": [
+        "en_attente",
+        "confirme",
+        "refuse",
+        "annule"
+      ],
+      "default": "en_attente",
+      "description": "Statut de la demande"
+    },
+    "date_confirmee": {
+      "type": "string",
+      "description": "Date confirm\u00e9e par l'admin"
+    },
+    "lieu": {
+      "type": "string",
+      "description": "Lieu de l'activit\u00e9"
+    },
+    "notes_admin": {
+      "type": "string",
+      "description": "Notes internes de l'administrateur"
+    }
+  },
+  "required": [
+    "nom_ecole",
+    "nom_enseignant",
+    "email_enseignant",
+    "classe_niveau",
+    "date_souhaitee",
+    "type_atelier"
+  ]
+}
