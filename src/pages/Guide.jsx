@@ -145,7 +145,7 @@ const SLIDES = [
         </p>
         <div className="grid md:grid-cols-2 gap-5">
           {[
-            { emoji: '🌍', title: 'Explore 8 biomes', desc: 'Forêts tropicales, océans, savanes, arctique, zones humides, déserts, montagnes et forêts tempérées.' },
+            { emoji: '🌍', title: 'Explore 9 biomes', desc: 'Forêts tropicales, océans, savanes, arctique, zones humides, déserts, montagnes, forêts tempérées et Sol & Humus.' },
             { emoji: '🦅', title: 'Découvre des espèces', desc: '80+ espèces à identifier grâce à leurs photos et leurs chants (mode son pour les oiseaux !).' },
             { emoji: '♻️', title: 'Trie des déchets', desc: 'Dans le jeu de recyclage, tu tris les déchets de l\'hôtel Terra Nova dans les bonnes poubelles.' },
             { emoji: '🌱', title: 'Cultive ta ferme', desc: 'Plante, arrose, récolte et transforme des produits dans la micro-ferme communautaire.' },
@@ -182,9 +182,9 @@ const SLIDES = [
           </div>
         </div>
         <p className="text-emerald-200/70 mb-6">
-          L'Atlas est le point de départ de la plateforme. Il présente une carte interactive du monde avec <strong className="text-emerald-300">8 grands biomes</strong>. Chaque biome dispose d'une page détaillée avec des espèces emblématiques, des faits scientifiques et les menaces qui pèsent sur lui.
+          L'Atlas est le point de départ de la plateforme. Il présente une carte interactive du monde avec <strong className="text-emerald-300">9 grands biomes</strong>. Chaque biome dispose d'une page détaillée avec des espèces emblématiques, des faits scientifiques et les menaces qui pèsent sur lui.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
           {[
             { emoji: '🌴', name: 'Forêts tropicales', color: 'from-green-600 to-emerald-700' },
             { emoji: '🌊', name: 'Océans & Récifs', color: 'from-blue-600 to-cyan-700' },
@@ -194,6 +194,7 @@ const SLIDES = [
             { emoji: '🌿', name: 'Zones humides', color: 'from-teal-600 to-cyan-700' },
             { emoji: '🏔️', name: 'Montagnes', color: 'from-slate-600 to-stone-700' },
             { emoji: '🌲', name: 'Forêts tempérées', color: 'from-lime-600 to-green-700' },
+            { emoji: '🪱', name: 'Sol & Humus', color: 'from-amber-800 to-yellow-900' },
           ].map((b, i) => (
             <div key={i} className={`p-4 rounded-2xl bg-gradient-to-br ${b.color} text-center border border-white/10`}>
               <div className="text-3xl mb-2">{b.emoji}</div>
@@ -582,7 +583,79 @@ const SLIDES = [
     ),
   },
 
-  // ── SLIDE 10b : Agenda Terrain & Rapports ──
+  // ── SLIDE Bio-Focus ──
+  {
+    id: 'biofocus',
+    bg: 'from-amber-950 via-yellow-950 to-lime-950',
+    content: (
+      <div className="px-8 py-12 max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-3 rounded-2xl bg-amber-500/20 border border-amber-400/30">
+            <span className="text-3xl">🔬</span>
+          </div>
+          <div>
+            <h2 className="text-3xl font-black text-white">Bio-Focus : Les Enquêteurs de l'Humus</h2>
+            <p className="text-amber-400/60 text-sm">Activité de terrain — Biome Sol & Humus</p>
+          </div>
+        </div>
+        <p className="text-amber-200/70 mb-6 text-base leading-relaxed">
+          Un jeu de terrain <strong className="text-amber-300">ludo-éducatif en 2 équipes</strong> qui transforme l'exploration du sol en aventure scientifique. Les élèves photographient les acteurs de la décomposition avec un appareil grossissant ×1000 et completent leur tableau d'écosystème.
+        </p>
+        <div className="grid md:grid-cols-3 gap-5 mb-6">
+          {[
+            { emoji: '🪱', title: 'Macrofaune', desc: 'Vers de terre, cloportes, mille-pattes, larves… les organismes visibles à l\'œil nu.' },
+            { emoji: '🦠', title: 'Mésofaune', desc: 'Acariens, collemboles, enchytréides… les micro-décomposeurs du sol.' },
+            { emoji: '🍄', title: 'Champignons & mycorhizes', desc: 'Réseaux souterrains, filaments, spores. Le "bois d\'internet" du sol !' },
+          ].map((item, i) => (
+            <div key={i} className="p-5 rounded-2xl bg-white/5 border border-amber-400/20 text-center">
+              <div className="text-4xl mb-3">{item.emoji}</div>
+              <h3 className="font-bold text-amber-300 mb-2">{item.title}</h3>
+              <p className="text-amber-200/60 text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="grid md:grid-cols-2 gap-5 mb-5">
+          <div className="p-5 rounded-2xl bg-white/5 border border-lime-400/20">
+            <h3 className="font-bold text-lime-300 mb-3">🏆 Système de points</h3>
+            <div className="space-y-2 text-sm">
+              {[
+                { label: 'Espèce commune identifiée', pts: '+10 pts' },
+                { label: 'Espèce rare capturée', pts: '+25 pts' },
+                { label: 'Espèce endémique', pts: '+50 pts' },
+                { label: 'Défi Expert réussi', pts: '+30 pts' },
+                { label: 'Chaîne trophique complète', pts: '+100 pts bonus' },
+              ].map((row, i) => (
+                <div key={i} className="flex justify-between items-center py-1 border-b border-white/5">
+                  <span className="text-lime-200/70">{row.label}</span>
+                  <span className="text-lime-300 font-bold font-mono">{row.pts}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="p-5 rounded-2xl bg-white/5 border border-orange-400/20">
+            <h3 className="font-bold text-orange-300 mb-3">👩‍🏫 Rôle de l'enseignant</h3>
+            <ul className="space-y-2 text-sm text-orange-200/70 list-disc list-inside">
+              <li>Crée la session et génère 2 codes équipe</li>
+              <li>Distribue les codes aux 2 groupes d'élèves</li>
+              <li>Suit les scores en temps réel depuis son tableau de bord</li>
+              <li>Clôture la session et distribue les récompenses</li>
+              <li>Préinscrit les élèves via leur numéro TN (sans email)</li>
+            </ul>
+            <Link to={createPageUrl('BioFocus')}>
+              <button className="mt-4 w-full py-2 rounded-xl bg-orange-500/20 border border-orange-400/30 text-orange-300 text-sm font-bold hover:bg-orange-500/30 transition-all">
+                🔬 Accéder à Bio-Focus →
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-400/20 text-sm text-amber-200/80">
+          🎓 <strong>Usage pédagogique :</strong> Sciences naturelles, EDD, observation terrain. Idéal en lien avec une visite du site de permaculture de Terra Nova. Les élèves rejoignent la session avec leur <strong className="text-white">numéro TN</strong> — aucun compte requis !
+        </div>
+      </div>
+    ),
+  },
+
+  // ── SLIDE Agenda Terrain & Rapports ──
   {
     id: 'agenda-rapports',
     bg: 'from-orange-950 via-amber-950 to-yellow-950',
