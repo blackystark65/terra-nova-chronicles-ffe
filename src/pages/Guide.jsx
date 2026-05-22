@@ -666,59 +666,67 @@ const SLIDES = [
     id: 'agenda-rapports',
     bg: 'from-orange-950 via-amber-950 to-yellow-950',
     content: (
-      <div className="px-8 py-12 max-w-4xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
+      <div className="px-8 py-10 max-w-4xl mx-auto">
+        <div className="flex items-center gap-3 mb-5">
           <div className="p-3 rounded-2xl bg-orange-500/20 border border-orange-400/30 text-3xl">🗓️</div>
           <div>
-            <h2 className="text-3xl md:text-4xl font-black text-white">Agenda Terrain & Dossiers</h2>
-            <p className="text-orange-400/60 text-sm">Réservation de visites pédagogiques — Terrain de Permaculture</p>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Agenda & Bilans Pédagogiques</h2>
+            <p className="text-orange-400/60 text-sm">Réservation d'ateliers — Dossier d'évaluation post-terrain</p>
           </div>
         </div>
-        <p className="text-orange-200/70 text-lg mb-6 leading-relaxed">
-          Un système intégré permettant aux enseignants de <strong className="text-orange-300">réserver des créneaux de visite</strong> sur le terrain de la permaculture et de gérer un <strong className="text-yellow-300">dossier numérique complet</strong> pour chaque session de terrain.
+        <p className="text-orange-200/70 text-base mb-6 leading-relaxed">
+          Un système intégré permettant aux enseignants de <strong className="text-orange-300">réserver des ateliers pédagogiques</strong> sur le terrain de permaculture et de remplir un <strong className="text-yellow-300">bilan d'évaluation complet</strong> après chaque sortie.
         </p>
-        <div className="grid md:grid-cols-2 gap-5 mb-6">
-          <div className="space-y-4">
-            <div className="p-5 rounded-2xl bg-white/5 border border-orange-400/20">
-              <h3 className="font-bold text-orange-300 mb-3">🗓️ Prise de rendez-vous</h3>
-              <ul className="text-orange-200/70 space-y-2 text-sm list-disc list-inside">
-                <li>Calendrier avec créneaux disponibles</li>
-                <li>Réservation en quelques clics</li>
-                <li>Confirmation automatique par email</li>
-                <li>Vue d'ensemble des prochaines visites</li>
-              </ul>
-            </div>
-            <div className="p-5 rounded-2xl bg-white/5 border border-orange-400/20">
-              <h3 className="font-bold text-orange-300 mb-3">📂 Dossier automatique</h3>
-              <ul className="text-orange-200/70 space-y-2 text-sm list-disc list-inside">
-                <li>Dossier créé automatiquement à chaque rdv</li>
-                <li>Lié à la classe et à l'enseignant</li>
-                <li>Archivage et historique des sessions</li>
-              </ul>
-            </div>
+        <div className="grid md:grid-cols-2 gap-5 mb-5">
+          {/* Agenda */}
+          <div className="p-5 rounded-2xl bg-white/5 border border-orange-400/20 space-y-3">
+            <h3 className="font-bold text-orange-300 text-base">📅 Prise de rendez-vous en ligne</h3>
+            <ul className="text-orange-200/70 space-y-1.5 text-sm list-disc list-inside">
+              <li>Formulaire simplifié pour l'enseignant</li>
+              <li>Choix du type d'atelier : Biodiversité, Bio-Focus, Permaculture, Recyclage</li>
+              <li>Date souhaitée + date alternative</li>
+              <li>Confirmation automatique par email (enseignant + organisateur)</li>
+              <li>Notification immédiate à l'équipe Terra Nova</li>
+            </ul>
+            <Link to={createPageUrl('Agenda')}>
+              <button className="mt-2 w-full py-2 rounded-xl bg-orange-500/20 border border-orange-400/30 text-orange-300 text-sm font-bold hover:bg-orange-500/30 transition-all">
+                📅 Accéder à l'Agenda →
+              </button>
+            </Link>
           </div>
-          <div className="space-y-4">
-            <div className="p-5 rounded-2xl bg-white/5 border border-yellow-400/20">
-              <h3 className="font-bold text-yellow-300 mb-3">📝 Compte-rendu intégré</h3>
-              <ul className="text-yellow-200/70 space-y-2 text-sm list-disc list-inside">
-                <li>Rapport détaillé de l'atelier ou visite</li>
-                <li>Description des activités réalisées</li>
-                <li>Compétences observées chez les élèves</li>
-                <li>Notes pédagogiques libres</li>
-              </ul>
-            </div>
-            <div className="p-5 rounded-2xl bg-white/5 border border-yellow-400/20">
-              <h3 className="font-bold text-yellow-300 mb-3">📸 Médias du terrain</h3>
-              <ul className="text-yellow-200/70 space-y-2 text-sm list-disc list-inside">
-                <li>Ajout de photos directement depuis le terrain</li>
-                <li>Import de vidéos des ateliers</li>
-                <li>Galerie organisée par dossier/rdv</li>
-              </ul>
-            </div>
+          {/* Bilan */}
+          <div className="p-5 rounded-2xl bg-white/5 border border-yellow-400/20 space-y-3">
+            <h3 className="font-bold text-yellow-300 text-base">📋 Bilan pédagogique post-atelier</h3>
+            <ul className="text-yellow-200/70 space-y-1.5 text-sm list-disc list-inside">
+              <li>Identification de la classe et de la sortie</li>
+              <li>Objectifs d'apprentissage cochés</li>
+              <li>Activités réalisées : observation, expérimentation, débat</li>
+              <li>Évaluation des acquis et compétences</li>
+              <li>Volet EDD : changements d'attitude et prolongements</li>
+              <li>Aspects logistiques, note globale ⭐ et recommandation</li>
+            </ul>
+            <Link to={createPageUrl('BilanPedagogique')}>
+              <button className="mt-2 w-full py-2 rounded-xl bg-yellow-500/20 border border-yellow-400/30 text-yellow-300 text-sm font-bold hover:bg-yellow-500/30 transition-all">
+                📋 Accéder au Bilan →
+              </button>
+            </Link>
           </div>
         </div>
-        <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-400/30 text-sm text-amber-200/80">
-          🔧 <strong className="text-yellow-300">Prochainement :</strong> Cette fonctionnalité sera activée avec l'abonnement <strong className="text-yellow-300">Builder+</strong>. Elle est conçue spécifiquement pour la <strong className="text-orange-300">Permaculture de l'école Terra Nova</strong> — réservation de visites de classe, ateliers pratiques, et suivi des apprentissages sur le terrain.
+        <div className="grid md:grid-cols-3 gap-3 mb-4">
+          {[
+            { emoji: '🏫', label: 'Nom de l\'école', sub: 'Enseignant, classe, niveau' },
+            { emoji: '🎯', label: 'Objectifs EDD', sub: 'Cochez les objectifs visés' },
+            { emoji: '⭐', label: 'Note & Recommandation', sub: 'Évaluation sur 5 étoiles' },
+          ].map((item, i) => (
+            <div key={i} className="p-3 rounded-xl bg-amber-500/10 border border-amber-400/20 text-center">
+              <div className="text-xl mb-1">{item.emoji}</div>
+              <div className="text-amber-300 text-xs font-bold mb-0.5">{item.label}</div>
+              <div className="text-amber-200/50 text-xs">{item.sub}</div>
+            </div>
+          ))}
+        </div>
+        <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 text-sm text-emerald-200/80">
+          🌿 <strong className="text-emerald-300">Disponible maintenant :</strong> Ces outils sont accessibles depuis la navigation principale (<strong>📅 RDV</strong> et <strong>📋 Bilan</strong>). Conçus spécifiquement pour le terrain de permaculture <strong>Terra Nova</strong>.
         </div>
       </div>
     ),
