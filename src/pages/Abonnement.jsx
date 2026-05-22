@@ -10,7 +10,7 @@ import { loadStripe } from '@stripe/stripe-js';
 const STRIPE_PAYMENT_LINKS = {
   individuel: 'https://buy.stripe.com/test_individuel', // https://buy.stripe.com/4gMfZhb4GbEA61M3BOgbm00$0
   famille:    'https://buy.stripe.com/test_famille',    // https://buy.stripe.com/aFa14n2ya3849dYgoAgbm01$0
-  standard:   'https://buy.stripe.com/test_standard',   // À remplacer par votre Payment Link
+  standard:   'https://buy.stripe.com/test_standard',   // https://buy.stripe.com/7sY28r6Oq5gcdue3BOgbm02$0
   premium:    'https://buy.stripe.com/test_premium',    // À remplacer par votre Payment Link
 };
 
