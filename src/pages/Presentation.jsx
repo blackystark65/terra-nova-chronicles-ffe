@@ -431,14 +431,14 @@ const SLIDES = [
           {[
             {
               label: 'Individuel',
-              price: 'CHF 49',
+              price: 'CHF 240',
               period: '/an',
               color: 'cyan',
               features: ['1 utilisateur', 'Tous les modules', 'Profil Éco-Sentinelle', 'Support email'],
             },
             {
               label: 'Famille',
-              price: 'CHF 99',
+              price: 'CHF 290',
               period: '/an',
               color: 'teal',
               features: ['Jusqu\'à 5 membres', 'Tous les modules', 'Profils individuels', 'Support email'],
