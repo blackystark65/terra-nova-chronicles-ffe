@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import {
   ChevronLeft, ChevronRight, Maximize2, Minimize2, Download,
   Globe, BookOpen, Leaf, Trophy, Flame, Recycle, Bug, Droplets,
-  GraduationCap, Star, Zap, Users, CreditCard, Home
+  GraduationCap, Star, Zap, Users, CreditCard, Home, Calendar, ClipboardList
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -108,12 +108,12 @@ const SLIDES = [
     bg: 'from-teal-950 via-cyan-950 to-slate-950',
     title: 'Les Modules',
     content: (
-      <div className="px-8 py-10 max-w-5xl mx-auto">
-        <h2 className="text-4xl font-black text-white mb-2 text-center">12 Modules Éducatifs</h2>
-        <p className="text-cyan-300/60 text-center mb-8">Tous accessibles depuis une seule plateforme</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="px-8 py-8 max-w-5xl mx-auto">
+        <h2 className="text-4xl font-black text-white mb-1 text-center">14 Modules Éducatifs</h2>
+        <p className="text-cyan-300/60 text-center mb-6">Tous accessibles depuis une seule plateforme</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
-            { emoji: '🗺️', name: 'Atlas des Biomes', color: 'emerald', desc: '8 biomes détaillés' },
+            { emoji: '🗺️', name: 'Atlas des Biomes', color: 'emerald', desc: '9 biomes détaillés' },
             { emoji: '🦅', name: 'Biodiversité', color: 'teal', desc: '80+ espèces à identifier' },
             { emoji: '♻️', name: 'Recyclage', color: 'green', desc: '10 zones, 10 rôles' },
             { emoji: '🌾', name: 'Micro-ferme', color: 'lime', desc: '7 rôles agricoles' },
@@ -125,10 +125,12 @@ const SLIDES = [
             { emoji: '🐝', name: 'Pollinisation', color: 'yellow', desc: 'Module interactif' },
             { emoji: '🔬', name: 'Bio-Focus', color: 'amber', desc: 'Jeu de terrain ×1000' },
             { emoji: '🧩', name: 'Puzzle & Jeux', color: 'rose', desc: 'Mini-jeux éducatifs' },
+            { emoji: '📅', name: 'Agenda Terrain', color: 'orange', desc: 'Réservation d\'ateliers' },
+            { emoji: '📋', name: 'Bilan Pédagogique', color: 'yellow', desc: 'Rapport post-atelier' },
           ].map((m, i) => (
-            <div key={i} className={`p-4 rounded-2xl bg-${m.color}-500/10 border border-${m.color}-400/20 text-center`}>
-              <div className="text-3xl mb-2">{m.emoji}</div>
-              <div className={`font-bold text-${m.color}-300 text-xs mb-1`}>{m.name}</div>
+            <div key={i} className={`p-3 rounded-2xl bg-${m.color}-500/10 border border-${m.color}-400/20 text-center`}>
+              <div className="text-2xl mb-1">{m.emoji}</div>
+              <div className={`font-bold text-${m.color}-300 text-xs mb-0.5`}>{m.name}</div>
               <div className={`text-${m.color}-200/50 text-xs`}>{m.desc}</div>
             </div>
           ))}
@@ -143,37 +145,110 @@ const SLIDES = [
     bg: 'from-blue-950 via-indigo-950 to-slate-950',
     title: 'Pour les Enseignants',
     content: (
-      <div className="px-8 py-12 max-w-5xl mx-auto">
-        <div className="flex items-center gap-3 mb-8">
+      <div className="px-8 py-10 max-w-5xl mx-auto">
+        <div className="flex items-center gap-3 mb-6">
           <div className="p-3 rounded-2xl bg-blue-500/20 border border-blue-400/30">
             <GraduationCap className="w-8 h-8 text-blue-400" />
           </div>
           <h2 className="text-4xl font-black text-white">Pour les <span className="text-blue-300">Enseignants</span></h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-5 mb-6">
+        <div className="grid md:grid-cols-3 gap-4 mb-5">
           {[
             { emoji: '📚', title: 'Intégration au programme', desc: 'Compatible SVT, géographie, éducation citoyenne — primaire au lycée.' },
             { emoji: '👥', title: 'Gestion des classes', desc: 'Créez vos classes, assignez des rôles et suivez la progression de chaque élève.' },
-            { emoji: '🔬', title: 'Bio-Focus Terrain', desc: 'Organisez des sessions de terrain avec codes d\'accès par équipe et suivi en temps réel.' },
-            { emoji: '📊', title: 'Suivi en temps réel', desc: 'Profil EcoSentinelle de chaque élève : XP, badges, missions complétées.' },
-            { emoji: '🎯', title: 'Missions personnalisées', desc: 'Créez et assignez vos propres missions et quiz depuis l\'interface admin.' },
-            { emoji: '🌱', title: 'Ferme collaborative', desc: 'Chaque élève joue un rôle unique dans la micro-ferme communautaire.' },
+            { emoji: '🔢', title: 'Inscription des élèves', desc: 'Import CSV ou saisie manuelle. Chaque élève reçoit un numéro unique TN-F001 / TN-G001 selon son genre.' },
+            { emoji: '🔬', title: 'Bio-Focus Terrain', desc: 'Organisez des sessions de terrain avec codes d\'accès par équipe et suivi des scores en temps réel.' },
+            { emoji: '📅', title: 'Agenda & Ateliers', desc: 'Réservez en ligne des ateliers pédagogiques sur le terrain de permaculture. Confirmation automatique par email.' },
+            { emoji: '📋', title: 'Bilan pédagogique', desc: 'Remplissez un dossier d\'évaluation complet après chaque sortie terrain, accessible via un code sécurisé.' },
           ].map((item, i) => (
-            <div key={i} className="p-5 rounded-2xl bg-white/5 border border-blue-400/20">
-              <div className="text-3xl mb-3">{item.emoji}</div>
-              <h3 className="text-base font-bold text-blue-300 mb-2">{item.title}</h3>
-              <p className="text-blue-200/60 text-sm">{item.desc}</p>
+            <div key={i} className="p-4 rounded-2xl bg-white/5 border border-blue-400/20">
+              <div className="text-3xl mb-2">{item.emoji}</div>
+              <h3 className="text-sm font-bold text-blue-300 mb-1">{item.title}</h3>
+              <p className="text-blue-200/60 text-xs">{item.desc}</p>
             </div>
           ))}
         </div>
         <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-400/20 text-blue-200 text-sm text-center">
-          💡 <strong>Interface administrateur dédiée</strong> — tableau de bord, gestion des contenus, statistiques de classe
+          💡 <strong>Interface administrateur dédiée</strong> — tableau de bord, gestion des contenus, statistiques de classe, export CSV
         </div>
       </div>
     ),
   },
 
-  // 5 — Pour les élèves
+  // 5 — Inscription élèves
+  {
+    id: 'inscription',
+    bg: 'from-indigo-950 via-violet-950 to-slate-950',
+    title: "Inscription des Élèves",
+    content: (
+      <div className="px-8 py-10 max-w-5xl mx-auto">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-3 rounded-2xl bg-indigo-500/20 border border-indigo-400/30">
+            <Users className="w-8 h-8 text-indigo-400" />
+          </div>
+          <div>
+            <h2 className="text-4xl font-black text-white">Système d'inscription</h2>
+            <p className="text-indigo-400/60 text-sm">Gestion des élèves — Aucun email requis</p>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          <div className="p-5 rounded-2xl bg-white/5 border border-indigo-400/20">
+            <h3 className="font-bold text-indigo-300 mb-4">👨‍🏫 Côté enseignant</h3>
+            <div className="space-y-3 text-sm">
+              {[
+                { icon: '📋', text: 'Saisie manuelle ou import CSV d\'une liste de classe' },
+                { icon: '⚡', text: 'Génération automatique des numéros TN-F001 (fille) / TN-G001 (garçon)' },
+                { icon: '🔢', text: 'Chaque élève a un identifiant unique et permanent' },
+                { icon: '📥', text: 'Export CSV de la liste avec tous les numéros attribués' },
+                { icon: '🔍', text: 'Recherche par nom, prénom, classe ou numéro' },
+              ].map((item, i) => (
+                <div key={i} className="flex gap-3 items-start">
+                  <span className="text-lg flex-shrink-0">{item.icon}</span>
+                  <span className="text-indigo-200/70">{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="p-5 rounded-2xl bg-white/5 border border-violet-400/20">
+            <h3 className="font-bold text-violet-300 mb-4">🎒 Côté élève</h3>
+            <div className="space-y-3 text-sm">
+              {[
+                { icon: '🔑', text: 'Connexion avec le numéro TN attribué par l\'enseignant' },
+                { icon: '👤', text: 'Ou connexion par prénom + nom de famille' },
+                { icon: '📱', text: 'Aucun compte, aucun mot de passe, aucun email requis' },
+                { icon: '⚡', text: 'Accès immédiat aux sessions Bio-Focus et activités' },
+                { icon: '💾', text: 'Identité sauvegardée localement pour une reconnexion rapide' },
+              ].map((item, i) => (
+                <div key={i} className="flex gap-3 items-start">
+                  <span className="text-lg flex-shrink-0">{item.icon}</span>
+                  <span className="text-violet-200/70">{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="p-4 rounded-2xl bg-indigo-500/10 border border-indigo-400/20">
+          <h3 className="text-indigo-300 font-bold text-sm mb-3">🔢 Format des numéros d'élève</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { num: 'TN-F001', label: 'Fille n°1', color: 'pink' },
+              { num: 'TN-F017', label: 'Fille n°17', color: 'pink' },
+              { num: 'TN-G001', label: 'Garçon n°1', color: 'blue' },
+              { num: 'TN-G042', label: 'Garçon n°42', color: 'blue' },
+            ].map((item, i) => (
+              <div key={i} className="p-3 rounded-xl bg-white/5 border border-white/10 text-center">
+                <div className="font-mono text-lg font-black text-yellow-300 mb-1">{item.num}</div>
+                <div className="text-white/50 text-xs">{item.label}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-indigo-200/60 text-xs mt-3 text-center">Les numéros sont séquentiels et distincts par genre — ils persistent d'une session à l'autre.</p>
+        </div>
+      </div>
+    ),
+  },
+
+  // 6 — Pour les élèves
   {
     id: 'eleves',
     bg: 'from-orange-950 via-amber-950 to-slate-950',
@@ -191,10 +266,10 @@ const SLIDES = [
         </div>
         <div className="grid md:grid-cols-3 gap-5">
           {[
-            { emoji: '🌍', title: 'Explorer les biomes', desc: 'Forêts tropicales, océans, savanes, arctique… 8 univers à découvrir.' },
+            { emoji: '🌍', title: 'Explorer 9 biomes', desc: 'Forêts tropicales, océans, savanes, arctique, zones humides, déserts, montagnes, forêts tempérées et Sol & Humus.' },
             { emoji: '🦅', title: 'Identifier les espèces', desc: '80+ espèces — reconnaître à la photo ET au chant pour les oiseaux.' },
             { emoji: '♻️', title: 'Trier des déchets', desc: 'Jeu de rôle dans un hôtel : trie les déchets dans les bonnes poubelles.' },
-            { emoji: '🌾', title: 'Gérer la micro-ferme', desc: 'Plante, récolte, transforme et vend dans l\'épicerie coopérative.' },
+            { emoji: '🌾', title: 'Gérer la micro-ferme', desc: 'Plante, récolte, transforme et vends dans l\'épicerie coopérative.' },
             { emoji: '🔬', title: 'Enquêter le sol', desc: 'Bio-Focus : photographie les organismes du sol avec un appareil ×1000.' },
             { emoji: '🏅', title: 'Progresser & Gagner', desc: 'XP, crédits, badges, niveaux Éco-Sentinelle — chaque action compte.' },
           ].map((item, i) => (
@@ -211,7 +286,7 @@ const SLIDES = [
     ),
   },
 
-  // 6 — Bio-Focus focus
+  // 7 — Bio-Focus focus
   {
     id: 'biofocus',
     bg: 'from-slate-950 via-green-950 to-emerald-950',
@@ -241,7 +316,7 @@ const SLIDES = [
           <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-400/20">
             <h3 className="font-bold text-emerald-300 mb-3">🎒 Les élèves</h3>
             <ul className="space-y-2 text-emerald-200/70 text-sm">
-              <li>• Rejoignent leur équipe avec le code</li>
+              <li>• Rejoignent leur équipe avec le code ou leur numéro TN</li>
               <li>• Photographient les espèces in situ</li>
               <li>• Uploadent en temps réel depuis smartphone/tablette/<strong className="text-amber-300">Kideo ×1000</strong></li>
               <li>• Score mis à jour instantanément pour toute l'équipe</li>
@@ -269,82 +344,165 @@ const SLIDES = [
     ),
   },
 
-  // 7 — Tarifs & Abonnement
+  // 8 — Agenda & Bilans
   {
-    id: 'tarifs',
-    bg: 'from-violet-950 via-purple-950 to-slate-950',
-    title: 'Tarifs & Abonnement',
+    id: 'agenda-bilan',
+    bg: 'from-orange-950 via-amber-950 to-yellow-950',
+    title: 'Agenda & Bilans',
     content: (
-      <div className="px-8 py-10 max-w-5xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 rounded-2xl bg-violet-500/20 border border-violet-400/30">
-            <CreditCard className="w-8 h-8 text-violet-400" />
-          </div>
+      <div className="px-8 py-8 max-w-5xl mx-auto">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-3 rounded-2xl bg-orange-500/20 border border-orange-400/30 text-3xl">🗓️</div>
           <div>
-            <h2 className="text-4xl font-black text-white">Accès par Établissement</h2>
-            <p className="text-violet-400/60">Abonnement annuel — tous les élèves inclus</p>
+            <h2 className="text-3xl md:text-4xl font-black text-white">Agenda & Bilans Pédagogiques</h2>
+            <p className="text-orange-400/60 text-sm">Réservation d'ateliers — Dossier d'évaluation post-terrain</p>
           </div>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 mb-6">
-          {[
-            {
-              label: 'Établissement Standard',
-              price: 'CHF 390',
-              period: '/an',
-              color: 'emerald',
-              features: ['Jusqu\'à 150 élèves', 'Tous les modules inclus', '3 enseignants admin', 'Support email'],
-              cta: 'Choisir ce plan',
-            },
-            {
-              label: 'Établissement Premium',
-              price: 'CHF 690',
-              period: '/an',
-              color: 'amber',
-              badge: '⭐ Recommandé',
-              features: ['Élèves illimités', 'Tous les modules inclus', 'Enseignants illimités', 'Bio-Focus terrain inclus', 'Support prioritaire', 'Personnalisation logo'],
-              cta: 'Choisir ce plan',
-            },
-            {
-              label: 'Réseau d\'écoles',
-              price: 'Sur devis',
-              period: '',
-              color: 'blue',
-              features: ['Plusieurs établissements', 'Dashboard centralisé', 'Formation enseignants', 'Accompagnement pédagogique', 'Intégration ENT'],
-              cta: 'Nous contacter',
-            },
-          ].map((plan, i) => (
-            <div key={i} className={`p-6 rounded-3xl bg-${plan.color}-500/10 border-2 border-${plan.color}-400/30 flex flex-col`}>
-              {plan.badge && (
-                <div className="text-xs font-bold text-amber-300 mb-2">{plan.badge}</div>
-              )}
-              <h3 className={`font-black text-${plan.color}-300 text-lg mb-1`}>{plan.label}</h3>
-              <div className="flex items-end gap-1 mb-4">
-                <span className={`text-4xl font-black text-${plan.color}-200`}>{plan.price}</span>
-                <span className={`text-${plan.color}-400/60 mb-1`}>{plan.period}</span>
-              </div>
-              <ul className="space-y-2 flex-1 mb-4">
-                {plan.features.map((f, j) => (
-                  <li key={j} className={`text-sm text-${plan.color}-200/70 flex gap-2`}>
-                    <span className={`text-${plan.color}-400 flex-shrink-0`}>✓</span> {f}
-                  </li>
-                ))}
-              </ul>
-              <Link to={createPageUrl('Abonnement')}>
-                <button className={`w-full py-2 rounded-xl font-bold text-sm bg-${plan.color}-500/20 hover:bg-${plan.color}-500/30 text-${plan.color}-300 border border-${plan.color}-400/30 transition-all`}>
-                  {plan.cta} →
-                </button>
-              </Link>
-            </div>
-          ))}
+        <div className="grid md:grid-cols-2 gap-5 mb-5">
+          <div className="p-5 rounded-2xl bg-white/5 border border-orange-400/20 space-y-3">
+            <h3 className="font-bold text-orange-300 text-base">📅 Prise de rendez-vous en ligne</h3>
+            <ul className="text-orange-200/70 space-y-1.5 text-sm list-disc list-inside">
+              <li>Formulaire simplifié pour l'enseignant</li>
+              <li>Choix du type d'atelier : Biodiversité, Bio-Focus, Permaculture, Recyclage</li>
+              <li>Date souhaitée + date alternative</li>
+              <li>Confirmation automatique par email (enseignant + organisateur)</li>
+              <li>Notification immédiate à l'équipe Terra Nova</li>
+            </ul>
+            <Link to={createPageUrl('Agenda')}>
+              <button className="mt-2 w-full py-2 rounded-xl bg-orange-500/20 border border-orange-400/30 text-orange-300 text-sm font-bold hover:bg-orange-500/30 transition-all">
+                📅 Accéder à l'Agenda →
+              </button>
+            </Link>
+          </div>
+          <div className="p-5 rounded-2xl bg-white/5 border border-yellow-400/20 space-y-3">
+            <h3 className="font-bold text-yellow-300 text-base">📋 Bilan pédagogique post-atelier</h3>
+            <ul className="text-yellow-200/70 space-y-1.5 text-sm list-disc list-inside">
+              <li>Identification de la classe et de la sortie</li>
+              <li>Objectifs d'apprentissage cochés</li>
+              <li>Activités réalisées : observation, expérimentation, débat</li>
+              <li>Évaluation des acquis et compétences</li>
+              <li>Volet EDD : changements d'attitude et prolongements</li>
+              <li>Aspects logistiques, note globale ⭐ et recommandation</li>
+            </ul>
+            <Link to={createPageUrl('BilanPedagogique')}>
+              <button className="mt-2 w-full py-2 rounded-xl bg-yellow-500/20 border border-yellow-400/30 text-yellow-300 text-sm font-bold hover:bg-yellow-500/30 transition-all">
+                📋 Accéder au Bilan →
+              </button>
+            </Link>
+          </div>
         </div>
-        <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-center text-white/50 text-sm">
-          🔒 Paiement sécurisé via Stripe — Facture disponible — Résiliable chaque année
+        <div className="p-4 rounded-2xl bg-teal-500/10 border border-teal-400/30">
+          <h3 className="text-teal-300 font-bold text-sm mb-3">🔑 Accès sécurisé au bilan en 3 étapes</h3>
+          <div className="grid md:grid-cols-3 gap-3">
+            {[
+              { icon: '📅', step: '1. Demande de RDV', desc: 'L\'enseignant remplit le formulaire de réservation en ligne.' },
+              { icon: '📧', step: '2. Code par email', desc: 'Un code unique ex: TN-A3F7-K9QP est envoyé automatiquement.' },
+              { icon: '📋', step: '3. Dossier privé', desc: 'Le code ouvre un dossier personnel, modifiable et sauvegardable.' },
+            ].map((item, i) => (
+              <div key={i} className="p-3 rounded-xl bg-white/5 border border-teal-400/20 text-center">
+                <div className="text-2xl mb-1">{item.icon}</div>
+                <div className="text-teal-300 font-bold text-xs mb-1">{item.step}</div>
+                <div className="text-white/50 text-xs">{item.desc}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     ),
   },
 
-  // 8 — Contact / Démarrage
+  // 9 — Tarifs & Abonnement
+  {
+    id: 'tarifs',
+    bg: 'from-violet-950 via-purple-950 to-slate-950',
+    title: 'Tarifs & Abonnement',
+    content: (
+      <div className="px-8 py-8 max-w-5xl mx-auto">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="p-3 rounded-2xl bg-violet-500/20 border border-violet-400/30">
+            <CreditCard className="w-8 h-8 text-violet-400" />
+          </div>
+          <div>
+            <h2 className="text-3xl font-black text-white">Tarifs & Abonnements</h2>
+            <p className="text-violet-400/60 text-sm">Abonnements annuels — accès complet à tous les modules</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+          {[
+            {
+              label: 'Individuel',
+              price: 'CHF 49',
+              period: '/an',
+              color: 'cyan',
+              features: ['1 utilisateur', 'Tous les modules', 'Profil Éco-Sentinelle', 'Support email'],
+            },
+            {
+              label: 'Famille',
+              price: 'CHF 99',
+              period: '/an',
+              color: 'teal',
+              features: ['Jusqu\'à 5 membres', 'Tous les modules', 'Profils individuels', 'Support email'],
+            },
+            {
+              label: 'Établissement',
+              price: 'CHF 390',
+              period: '/an',
+              color: 'emerald',
+              features: ['Jusqu\'à 150 élèves', 'Tous les modules', '3 enseignants admin', 'Support email'],
+            },
+            {
+              label: 'Premium',
+              price: 'CHF 690',
+              period: '/an',
+              color: 'amber',
+              badge: '⭐ Recommandé',
+              features: ['Élèves illimités', 'Enseignants illimités', 'Bio-Focus inclus', 'Support prioritaire', 'Logo personnalisé'],
+            },
+          ].map((plan, i) => (
+            <div key={i} className={`p-4 rounded-2xl bg-${plan.color}-500/10 border-2 border-${plan.color}-400/30 flex flex-col`}>
+              {plan.badge && <div className="text-xs font-bold text-amber-300 mb-1">{plan.badge}</div>}
+              <h3 className={`font-black text-${plan.color}-300 text-sm mb-1`}>{plan.label}</h3>
+              <div className="flex items-end gap-1 mb-3">
+                <span className={`text-2xl font-black text-${plan.color}-200`}>{plan.price}</span>
+                <span className={`text-${plan.color}-400/60 text-xs mb-1`}>{plan.period}</span>
+              </div>
+              <ul className="space-y-1 flex-1 mb-3">
+                {plan.features.map((f, j) => (
+                  <li key={j} className={`text-xs text-${plan.color}-200/70 flex gap-1.5`}>
+                    <span className={`text-${plan.color}-400 flex-shrink-0`}>✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+              <Link to={createPageUrl('Abonnement')}>
+                <button className={`w-full py-1.5 rounded-xl font-bold text-xs bg-${plan.color}-500/20 hover:bg-${plan.color}-500/30 text-${plan.color}-300 border border-${plan.color}-400/30 transition-all`}>
+                  Choisir →
+                </button>
+              </Link>
+            </div>
+          ))}
+        </div>
+        <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <h3 className="text-white/70 font-bold text-sm mb-2">🏫 Réseau d'écoles — Sur devis</h3>
+              <ul className="text-white/50 text-xs space-y-1">
+                {['Plusieurs établissements', 'Dashboard centralisé', 'Formation enseignants', 'Accompagnement pédagogique', 'Intégration ENT possible'].map(f => (
+                  <li key={f}>✓ {f}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex flex-col justify-center gap-2">
+              <div className="text-center text-white/40 text-xs">🔒 Paiement sécurisé via Stripe</div>
+              <div className="text-center text-white/40 text-xs">📄 Facture disponible pour les établissements</div>
+              <div className="text-center text-white/40 text-xs">🔄 Résiliable chaque année</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+
+  // 10 — Contact / Démarrage
   {
     id: 'contact',
     bg: 'from-emerald-950 via-teal-950 to-cyan-950',
@@ -359,7 +517,7 @@ const SLIDES = [
         <div className="grid md:grid-cols-3 gap-6 mb-10 w-full max-w-3xl">
           {[
             { emoji: '1️⃣', title: 'Souscrire', desc: 'Choisissez votre plan et réglez en ligne via Stripe sécurisé.' },
-            { emoji: '2️⃣', title: 'Configurer', desc: 'Créez vos classes, invitez vos élèves, personnalisez vos modules.' },
+            { emoji: '2️⃣', title: 'Inscrire vos élèves', desc: 'Importez votre liste de classe ou saisissez manuellement. Numéros TN générés automatiquement.' },
             { emoji: '3️⃣', title: 'Explorer', desc: 'Vos élèves accèdent à tous les modules dès le premier jour !' },
           ].map((step, i) => (
             <div key={i} className="p-6 rounded-2xl bg-white/5 border border-emerald-400/20">
@@ -412,7 +570,6 @@ export default function PresentationPage() {
     window.print();
   };
 
-  // Keyboard nav
   React.useEffect(() => {
     const handler = (e) => {
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
@@ -476,7 +633,7 @@ export default function PresentationPage() {
           <span className="hidden sm:inline text-sm">Précédent</span>
         </button>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 flex-wrap justify-center max-w-xs">
           {SLIDES.map((s, i) => (
             <button key={s.id} onClick={() => setCurrent(i)}
               className={`h-2 rounded-full transition-all duration-300 ${i === current ? 'w-8 bg-emerald-400' : 'w-2 bg-white/30 hover:bg-white/50'}`}
@@ -491,7 +648,6 @@ export default function PresentationPage() {
         </button>
       </div>
 
-      {/* Styles impression */}
       <style>{`
         @media print {
           body { background: white !important; }
