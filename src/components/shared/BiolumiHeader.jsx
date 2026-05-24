@@ -159,7 +159,22 @@ export default function BiolumiHeader({ currentPage }) {
 
             })}
             
-            {/* Photo de profil */}
+            {/* Logo Institut du Rosey */}
+            <a href="https://www.rosey.ch" target="_blank" rel="noopener noreferrer">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="ml-1 flex items-center"
+                title="Institut du Rosey"
+              >
+                <img
+                  src="https://media.base44.com/images/public/6959886137576a65dcfe1370/386bb9e92_Institut_Le_Rosey_logo.png"
+                  alt="Institut du Rosey"
+                  className="h-8 w-auto drop-shadow-lg"
+                />
+              </motion.div>
+            </a>
+
+          {/* Photo de profil */}
             <Link to={createPageUrl('Profile')}>
               <motion.div
                 whileHover={{ scale: 1.1 }}
