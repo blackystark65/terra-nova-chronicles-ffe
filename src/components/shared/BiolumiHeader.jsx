@@ -75,16 +75,17 @@ export default function BiolumiHeader({ currentPage }) {
           <div className="flex items-center justify-between">
             {/* Logo Institut du Rosey + Terra Nova */}
             <div className="flex items-center gap-3">
-              <a href="https://www.rosey.ch" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.rosey.ch" target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
                 <motion.img
                   whileHover={{ scale: 1.08 }}
                   src="https://media.base44.com/images/public/6959886137576a65dcfe1370/386bb9e92_Institut_Le_Rosey_logo.png"
                   alt="Institut du Rosey"
-                  className="h-9 w-auto drop-shadow-lg"
+                  className="h-9 w-auto drop-shadow-lg block"
                   title="Institut du Rosey"
+                  style={{ minWidth: '80px' }}
                 />
               </a>
-              <div className="h-6 w-px bg-white/20" />
+              <div className="h-6 w-px bg-white/20 flex-shrink-0" />
               <Link to={createPageUrl('Home')}>
                 <motion.div
                   className="flex items-center gap-2 group cursor-pointer"
@@ -131,11 +132,11 @@ export default function BiolumiHeader({ currentPage }) {
                       <motion.div
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="relative px-2 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300"
+                        className="group relative px-2 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 hover:shadow-md hover:shadow-emerald-500/20 border border-transparent hover:border-emerald-400/30 transition-all duration-300"
                       >
                         <div className="relative flex items-center gap-1.5">
-                          <Icon className="w-3.5 h-3.5 text-emerald-400/70" />
-                          <span className="text-xs font-medium text-emerald-300/70">{item.name}</span>
+                          <Icon className="w-3.5 h-3.5 text-emerald-400/70 group-hover:text-emerald-300 group-hover:drop-shadow-[0_0_4px_rgba(52,211,153,0.8)] transition-all" />
+                          <span className="text-xs font-medium text-emerald-300/70 group-hover:text-emerald-200 transition-all">{item.name}</span>
                         </div>
                       </motion.div>
                     </a>
@@ -151,8 +152,8 @@ export default function BiolumiHeader({ currentPage }) {
                         relative px-2 py-1.5 rounded-xl
                         transition-all duration-300
                         ${isActive ?
-                          'bg-gradient-to-r from-emerald-500/30 to-teal-500/30 shadow-lg shadow-emerald-500/20' :
-                          'bg-white/5 hover:bg-white/10'}
+                          'bg-gradient-to-r from-emerald-500/30 to-teal-500/30 shadow-lg shadow-emerald-500/20 border border-emerald-400/40' :
+                          'bg-white/5 hover:bg-white/10 hover:shadow-md hover:shadow-emerald-500/20 hover:border hover:border-emerald-400/30 border border-transparent'}
                       `}>
                       {isActive && (
                         <motion.div
@@ -162,8 +163,11 @@ export default function BiolumiHeader({ currentPage }) {
                           transition={{ duration: 2, repeat: Infinity }} />
                       )}
                       <div className="relative flex items-center gap-1.5">
-                        <Icon className={`w-3 h-3 ${isActive ? 'text-emerald-300' : 'text-emerald-400/70'}`} />
-                        <span className={`text-xs font-medium ${isActive ? 'text-emerald-200' : 'text-emerald-300/70'}`}>
+                        <Icon className={`w-3 h-3 ${isActive ? 'text-emerald-300 drop-shadow-[0_0_4px_rgba(52,211,153,0.9)]' : 'text-emerald-400/70'}`} />
+                        <span
+                          className={`text-xs font-medium ${isActive ? 'text-emerald-200' : 'text-emerald-300/70'}`}
+                          style={isActive ? { textShadow: '0 0 8px rgba(52,211,153,0.8), 0 0 16px rgba(52,211,153,0.4)' } : {}}
+                        >
                           {item.name}
                         </span>
                       </div>
