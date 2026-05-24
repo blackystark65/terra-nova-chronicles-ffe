@@ -71,17 +71,17 @@ export default function BiolumiHeader({ currentPage }) {
         {/* Reflet doré subtil */}
         <div className="absolute inset-0 bg-gradient-to-r from-yellow-600/5 via-transparent to-yellow-600/5" />
         
-        <nav className="relative max-w-7xl mx-auto px-4 py-2">
-          <div className="flex items-center justify-between">
+        <nav className="relative w-full px-2 py-2">
+          <div className="flex items-center justify-between gap-2">
             {/* Logo Institut du Rosey + Terra Nova */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 flex-shrink-0">
               <a href="https://www.rosey.ch" target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
                 <motion.img
                   whileHover={{ scale: 1.08 }}
                   src="https://media.base44.com/images/public/6959886137576a65dcfe1370/386bb9e92_Institut_Le_Rosey_logo.png"
                   alt="Institut du Rosey"
                   title="Institut du Rosey"
-                  style={{ height: '36px', width: 'auto', display: 'block', objectFit: 'contain', minWidth: '60px', maxWidth: '120px' }}
+                  style={{ height: '48px', width: 'auto', display: 'block', objectFit: 'contain' }}
                 />
               </a>
               <div className="h-6 w-px bg-white/20 flex-shrink-0" />
