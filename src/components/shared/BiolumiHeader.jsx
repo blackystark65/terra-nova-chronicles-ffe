@@ -36,16 +36,27 @@ export default function BiolumiHeader({ currentPage }) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Effet de verre dépoli biomimétique */}
-      <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/80 via-teal-950/70 to-transparent backdrop-blur-xl" />
+      {/* Fond bleu Institut du Rosey */}
+      <div className="absolute inset-0 backdrop-blur-xl" style={{ backgroundColor: 'rgba(10, 30, 80, 0.95)' }} />
       
-      {/* Bioluminescence subtile */}
-      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-emerald-500/10 to-teal-500/10 animate-pulse" />
+      {/* Reflet doré subtil */}
+      <div className="absolute inset-0 bg-gradient-to-r from-yellow-600/5 via-transparent to-yellow-600/5" />
       
       <nav className="relative max-w-7xl mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
-          {/* Logo Terra Nova avec planète tournante */}
-          <Link to={createPageUrl('Home')}>
+          {/* Logo Institut du Rosey + Terra Nova */}
+          <div className="flex items-center gap-3">
+            <a href="https://www.rosey.ch" target="_blank" rel="noopener noreferrer">
+              <motion.img
+                whileHover={{ scale: 1.08 }}
+                src="https://media.base44.com/images/public/6959886137576a65dcfe1370/386bb9e92_Institut_Le_Rosey_logo.png"
+                alt="Institut du Rosey"
+                className="h-9 w-auto drop-shadow-lg"
+                title="Institut du Rosey"
+              />
+            </a>
+            <div className="h-6 w-px bg-white/20" />
+            <Link to={createPageUrl('Home')}>
             <motion.div
               className="flex items-center gap-2 group cursor-pointer"
               whileHover={{ scale: 1.05 }}>
@@ -75,7 +86,8 @@ export default function BiolumiHeader({ currentPage }) {
 
               </motion.div>
             </motion.div>
-          </Link>
+            </Link>
+          </div>
 
           {/* Navigation avec effet membrane */}
           <div className="hidden md:flex items-center gap-1 flex-wrap">
@@ -159,21 +171,6 @@ export default function BiolumiHeader({ currentPage }) {
 
             })}
             
-            {/* Logo Institut du Rosey */}
-            <a href="https://www.rosey.ch" target="_blank" rel="noopener noreferrer">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="ml-1 flex items-center"
-                title="Institut du Rosey"
-              >
-                <img
-                  src="https://media.base44.com/images/public/6959886137576a65dcfe1370/386bb9e92_Institut_Le_Rosey_logo.png"
-                  alt="Institut du Rosey"
-                  className="h-8 w-auto drop-shadow-lg"
-                />
-              </motion.div>
-            </a>
-
           {/* Photo de profil */}
             <Link to={createPageUrl('Profile')}>
               <motion.div
@@ -213,11 +210,7 @@ export default function BiolumiHeader({ currentPage }) {
       </nav>
 
       {/* Ligne de séparation organique */}
-      <motion.div
-        className="h-px bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent"
-        animate={{ opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 3, repeat: Infinity }}
-      />
+      <div className="h-px bg-gradient-to-r from-transparent via-yellow-500/40 to-transparent" />
 
       {/* Mobile menu dropdown */}
       <AnimatePresence>
@@ -228,7 +221,7 @@ export default function BiolumiHeader({ currentPage }) {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden overflow-hidden"
           >
-            <div className="px-4 py-4 space-y-2 bg-emerald-950/95 backdrop-blur-xl overflow-y-auto max-h-[80vh]">
+            <div className="px-4 py-4 space-y-2 backdrop-blur-xl overflow-y-auto max-h-[80vh]" style={{ backgroundColor: 'rgba(10, 30, 80, 0.98)' }}>
               <Link to={createPageUrl('Profile')} onClick={() => setMobileMenuOpen(false)}>
                 <motion.div
                   whileTap={{ scale: 0.95 }}
