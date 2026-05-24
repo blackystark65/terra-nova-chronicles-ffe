@@ -16,24 +16,50 @@ const SLIDES = [
     bg: 'from-emerald-950 via-teal-950 to-slate-950',
     title: 'Couverture',
     content: (
-      <div className="flex flex-col items-center justify-center h-full text-center px-8 py-16 min-h-[70vh]">
-        <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-          className="w-28 h-28 rounded-full overflow-hidden shadow-2xl shadow-emerald-500/50 mb-8">
-          <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/af6a6b206_green-earth-globe-with-continents-oceans.png"
-            alt="Terre" className="w-full h-full object-cover" />
-        </motion.div>
-        <h1 className="text-5xl md:text-7xl font-black bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent mb-4">
-          Chroniques de<br />Terra Nova
-        </h1>
-        <p className="text-2xl text-emerald-300/80 mb-8 max-w-2xl">
-          La plateforme éducative pour explorer, comprendre et protéger notre planète
-        </p>
-        <div className="flex flex-wrap justify-center gap-3 mb-6">
-          {['Enseignants', 'Élèves', 'Familles', 'Établissements scolaires'].map(p => (
-            <span key={p} className="px-5 py-2 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-base font-semibold">{p}</span>
-          ))}
+      <div className="relative flex flex-col items-center justify-center h-full text-center px-8 py-16 min-h-[70vh] overflow-hidden">
+        {/* Fond bleu Institut Le Rosey */}
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10, 30, 80, 0.92)' }} />
+        {/* Reflet doré subtil comme le header */}
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-600/5 via-transparent to-yellow-600/5" />
+        {/* Particules bioluminescentes */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-teal-500/10" />
+
+        {/* Contenu */}
+        <div className="relative z-10 flex flex-col items-center">
+          {/* Logo Institut Le Rosey */}
+          <motion.a
+            href="https://www.rosey.ch" target="_blank" rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            className="mb-6"
+          >
+            <img
+              src="https://media.base44.com/images/public/6959886137576a65dcfe1370/386bb9e92_Institut_Le_Rosey_logo.png"
+              alt="Institut Le Rosey"
+              style={{ height: '64px', width: 'auto', objectFit: 'contain' }}
+            />
+          </motion.a>
+
+          {/* Séparateur doré */}
+          <div className="w-32 h-px mb-6" style={{ background: 'linear-gradient(to right, transparent, rgba(234,179,8,0.5), transparent)' }} />
+
+          <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+            className="w-28 h-28 rounded-full overflow-hidden shadow-2xl shadow-emerald-500/50 mb-8">
+            <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6959886137576a65dcfe1370/af6a6b206_green-earth-globe-with-continents-oceans.png"
+              alt="Terre" className="w-full h-full object-cover" />
+          </motion.div>
+          <h1 className="text-5xl md:text-7xl font-black bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent mb-4">
+            Chroniques de<br />Terra Nova
+          </h1>
+          <p className="text-2xl text-emerald-300/80 mb-8 max-w-2xl">
+            La plateforme éducative pour explorer, comprendre et protéger notre planète
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 mb-6">
+            {['Enseignants', 'Élèves', 'Familles', 'Établissements scolaires'].map(p => (
+              <span key={p} className="px-5 py-2 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-base font-semibold">{p}</span>
+            ))}
+          </div>
+          <p className="text-emerald-400/40 text-sm italic">© 2025 Terra Nova — Plateforme ludo-éducative</p>
         </div>
-        <p className="text-emerald-400/40 text-sm italic">© 2025 Terra Nova — Plateforme ludo-éducative</p>
       </div>
     ),
   },
