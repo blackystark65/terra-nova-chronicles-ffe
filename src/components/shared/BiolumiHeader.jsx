@@ -80,9 +80,8 @@ export default function BiolumiHeader({ currentPage }) {
                   whileHover={{ scale: 1.08 }}
                   src="https://media.base44.com/images/public/6959886137576a65dcfe1370/386bb9e92_Institut_Le_Rosey_logo.png"
                   alt="Institut du Rosey"
-                  className="h-9 w-auto drop-shadow-lg block"
                   title="Institut du Rosey"
-                  style={{ minWidth: '80px' }}
+                  style={{ height: '36px', width: 'auto', display: 'block', objectFit: 'contain', minWidth: '60px', maxWidth: '120px' }}
                 />
               </a>
               <div className="h-6 w-px bg-white/20 flex-shrink-0" />
