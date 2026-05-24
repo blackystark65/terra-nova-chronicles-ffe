@@ -502,7 +502,67 @@ const SLIDES = [
     ),
   },
 
-  // 10 — Contact / Démarrage
+  // 11 — Déploiement pour d'autres établissements
+  {
+    id: 'deploiement',
+    bg: 'from-slate-950 via-indigo-950 to-violet-950',
+    title: 'Déploiement pour votre établissement',
+    content: (
+      <div className="flex flex-col items-center justify-center h-full px-8 py-16 min-h-[70vh]">
+        <div className="text-7xl mb-4">🏫</div>
+        <h2 className="text-4xl font-black text-white mb-3 text-center">Une plateforme, chaque école unique</h2>
+        <p className="text-indigo-200/70 text-lg mb-10 max-w-2xl text-center">
+          Terra Nova peut être déployée pour n'importe quel établissement scolaire ou commune avec sa propre identité.
+        </p>
+        <div className="grid md:grid-cols-2 gap-6 w-full max-w-4xl mb-10">
+          {[
+            {
+              emoji: '📋',
+              title: 'Copie dédiée de la plateforme',
+              desc: 'Chaque école reçoit sa propre instance indépendante. Les données de chaque établissement sont entièrement séparées et sécurisées.',
+              color: 'border-indigo-400/30 bg-indigo-500/10',
+              textColor: 'text-indigo-300',
+            },
+            {
+              emoji: '✏️',
+              title: 'Contenu personnalisé',
+              desc: "L'onglet Permaculture et les autres modules sont adaptés aux espaces et cours propres à l'établissement (jardin, forêt, terrain maraîcher…).",
+              color: 'border-violet-400/30 bg-violet-500/10',
+              textColor: 'text-violet-300',
+            },
+            {
+              emoji: '🔒',
+              title: 'Base de données autonome',
+              desc: 'Les élèves, sessions, bilans pédagogiques et abonnements sont gérés de manière totalement indépendante pour chaque école.',
+              color: 'border-cyan-400/30 bg-cyan-500/10',
+              textColor: 'text-cyan-300',
+            },
+            {
+              emoji: '🎨',
+              title: 'Identité visuelle & nom de domaine',
+              desc: "Logo, couleurs, nom de l'établissement et nom de domaine personnalisé. Chaque école dispose de sa propre plateforme branded.",
+              color: 'border-emerald-400/30 bg-emerald-500/10',
+              textColor: 'text-emerald-300',
+            },
+          ].map((item, i) => (
+            <div key={i} className={`p-6 rounded-2xl border ${item.color}`}>
+              <div className="text-3xl mb-3">{item.emoji}</div>
+              <h3 className={`font-bold mb-2 ${item.textColor}`}>{item.title}</h3>
+              <p className="text-white/60 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="p-5 rounded-2xl bg-white/5 border border-white/10 max-w-2xl text-center">
+          <p className="text-white/70 text-sm leading-relaxed">
+            💡 <span className="text-white font-semibold">Comment ça se passe concrètement ?</span><br />
+            Nous configurons ensemble votre instance, importons votre contenu pédagogique, et votre plateforme est opérationnelle en quelques jours — avec votre nom de domaine et votre identité.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+
+  // 12 — Contact / Démarrage
   {
     id: 'contact',
     bg: 'from-emerald-950 via-teal-950 to-cyan-950',
