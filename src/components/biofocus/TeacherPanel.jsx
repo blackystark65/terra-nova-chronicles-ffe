@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Trophy, Users, Copy, CheckCircle, X, Star, Coins, Award } from 'lucide-react';
+import { Trophy, Users, Copy, CheckCircle, X, Star, Coins, Award, UserPlus, Search, Trash2 } from 'lucide-react';
 import { TEAMS_CONFIG, calcScore, generateCode, WINNER_REWARDS, PARTICIPANT_REWARDS } from './BioFocusData';
 
 function ScoreBadge({ label, value, color }) {
@@ -98,6 +98,60 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
     setTimeout(() => setCopied(null), 2000);
   };
 
+  // --- Gestion formation d'équipes par l'enseignant ---
+  const [managingSession, setManagingSession] = useState(null); // session en cours de gestion
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [searchError, setSearchError] = useState('');
+
+  const handleSearchEleve = async () => {
+    if (!searchQuery.trim()) return;
+    setSearchLoading(true);
+    setSearchError('');
+    setSearchResults([]);
+    const q = searchQuery.trim().toUpperCase();
+    // Cherche par numéro TN ou par prénom/nom
+    const all = await base44.entities.Eleve.list('-created_date', 500);
+    const found = all.filter(e =>
+      e.numero?.toUpperCase() === q ||
+      `${e.prenom} ${e.nom}`.toLowerCase().includes(searchQuery.trim().toLowerCase()) ||
+      `${e.nom} ${e.prenom}`.toLowerCase().includes(searchQuery.trim().toLowerCase())
+    );
+    if (found.length === 0) setSearchError('Aucun élève trouvé.');
+    setSearchResults(found);
+    setSearchLoading(false);
+  };
+
+  const handleAddToTeam = async (session, eleve, teamId) => {
+    const allMembers = [...(session.members_team1 || []), ...(session.members_team2 || [])];
+    if (allMembers.some(m => m.eleve_numero === eleve.numero)) {
+      setSearchError(`${eleve.prenom} ${eleve.nom} est déjà dans une équipe.`);
+      return;
+    }
+    const newMember = {
+      eleve_id: eleve.id,
+      eleve_numero: eleve.numero,
+      user_name: `${eleve.prenom} ${eleve.nom}`,
+      user_email: eleve.numero,
+      eco_profile_id: '',
+    };
+    const key = `members_${teamId}`;
+    const updated = [...(session[key] || []), newMember];
+    await base44.entities.BioFocusSession.update(session.id, { [key]: updated });
+    qc.invalidateQueries(['biofocus-sessions']);
+    setSearchResults([]);
+    setSearchQuery('');
+    setSearchError('');
+  };
+
+  const handleRemoveFromTeam = async (session, teamId, eleveNumero) => {
+    const key = `members_${teamId}`;
+    const updated = (session[key] || []).filter(m => m.eleve_numero !== eleveNumero);
+    await base44.entities.BioFocusSession.update(session.id, { [key]: updated });
+    qc.invalidateQueries(['biofocus-sessions']);
+  };
+
   const mySessions = sessions.filter(s => s.enseignant_email === user.email);
 
   return (
@@ -187,6 +241,117 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
                     </div>
                   </div>
                 ))}
+              </div>
+            )}
+
+            {/* Formation d'équipes par l'enseignant */}
+            {session.status === 'en_cours' && (
+              <div className="p-4 border-b border-white/10">
+                <button
+                  onClick={() => { setManagingSession(managingSession === session.id ? null : session.id); setSearchQuery(''); setSearchResults([]); setSearchError(''); }}
+                  className="w-full flex items-center justify-center gap-2 py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-400/20 text-emerald-300 text-sm font-bold transition-all"
+                >
+                  <UserPlus className="w-4 h-4" />
+                  {managingSession === session.id ? 'Fermer la gestion des équipes' : '👥 Former les équipes (ajouter des élèves)'}
+                </button>
+
+                <AnimatePresence>
+                  {managingSession === session.id && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-4 space-y-4">
+                        {/* Recherche d'élève */}
+                        <div>
+                          <label className="text-white/60 text-xs mb-1.5 block">Chercher un élève par numéro TN, prénom ou nom</label>
+                          <div className="flex gap-2">
+                            <input
+                              type="text"
+                              value={searchQuery}
+                              onChange={e => { setSearchQuery(e.target.value); setSearchError(''); }}
+                              onKeyDown={e => e.key === 'Enter' && handleSearchEleve()}
+                              placeholder="TN-G042 ou Martin Dupont…"
+                              className="flex-1 rounded-xl bg-black/30 border border-white/20 text-white px-3 py-2 text-sm placeholder:text-white/30 focus:outline-none focus:border-emerald-400/50"
+                            />
+                            <button
+                              onClick={handleSearchEleve}
+                              disabled={searchLoading || !searchQuery.trim()}
+                              className="px-3 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 transition-all disabled:opacity-40"
+                            >
+                              {searchLoading ? '⏳' : <Search className="w-4 h-4" />}
+                            </button>
+                          </div>
+                          {searchError && <p className="text-red-300 text-xs mt-1.5">⚠️ {searchError}</p>}
+                        </div>
+
+                        {/* Résultats de recherche */}
+                        {searchResults.length > 0 && (
+                          <div className="space-y-2">
+                            {searchResults.map(eleve => {
+                              const alreadyIn = [...(session.members_team1 || []), ...(session.members_team2 || [])].some(m => m.eleve_numero === eleve.numero);
+                              return (
+                                <div key={eleve.id} className={`p-3 rounded-xl border flex items-center justify-between gap-3 ${alreadyIn ? 'border-white/10 bg-white/5 opacity-50' : 'border-white/10 bg-white/5'}`}>
+                                  <div>
+                                    <div className="text-white text-sm font-bold">{eleve.prenom} {eleve.nom}</div>
+                                    <div className="text-white/40 text-xs font-mono">{eleve.numero}</div>
+                                    {alreadyIn && <div className="text-amber-400 text-xs">Déjà dans une équipe</div>}
+                                  </div>
+                                  {!alreadyIn && (
+                                    <div className="flex gap-2">
+                                      {TEAMS_CONFIG.map(team => (
+                                        <button
+                                          key={team.id}
+                                          onClick={() => handleAddToTeam(session, eleve, team.id)}
+                                          className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${team.btn} ${team.border}`}
+                                        >
+                                          {team.emoji} {team.name}
+                                        </button>
+                                      ))}
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+
+                        {/* Liste actuelle des équipes avec suppression */}
+                        <div className="grid grid-cols-2 gap-3 pt-2">
+                          {TEAMS_CONFIG.map(team => {
+                            const members = team.id === 'team1' ? (session.members_team1 || []) : (session.members_team2 || []);
+                            return (
+                              <div key={team.id} className={`p-3 rounded-xl border ${team.border} ${team.bg}`}>
+                                <div className="flex items-center gap-1.5 mb-2">
+                                  <span>{team.emoji}</span>
+                                  <span className="text-white/80 text-xs font-bold">{team.name}</span>
+                                  <span className="text-white/40 text-xs">({members.length})</span>
+                                </div>
+                                {members.length === 0 ? (
+                                  <p className="text-white/30 text-xs italic">Aucun élève</p>
+                                ) : (
+                                  <div className="space-y-1">
+                                    {members.map((m, i) => (
+                                      <div key={i} className="flex items-center justify-between gap-1">
+                                        <span className="text-xs text-white/70 truncate">{m.user_name}</span>
+                                        <button
+                                          onClick={() => handleRemoveFromTeam(session, team.id, m.eleve_numero)}
+                                          className="flex-shrink-0 p-0.5 rounded hover:bg-red-500/20 text-white/30 hover:text-red-400 transition-all"
+                                        >
+                                          <X className="w-3 h-3" />
+                                        </button>
+                                      </div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             )}
 
