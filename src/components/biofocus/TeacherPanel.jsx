@@ -32,6 +32,16 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
     onSuccess: () => qc.invalidateQueries(['biofocus-sessions']),
   });
 
+  const deleteMutation = useMutation({
+    mutationFn: (id) => base44.entities.BioFocusSession.delete(id),
+    onSuccess: () => qc.invalidateQueries(['biofocus-sessions']),
+  });
+
+  const handleDelete = (session) => {
+    if (!window.confirm(`Supprimer la session "${session.nom_classe}" du ${session.date_session} ? Les récompenses déjà distribuées aux élèves ne seront pas affectées.`)) return;
+    deleteMutation.mutate(session.id);
+  };
+
   const handleCreate = () => {
     if (!nomClasse.trim()) return;
     const label = degre.trim() ? `${nomClasse.trim()} — ${degre.trim()}` : nomClasse.trim();
@@ -215,6 +225,13 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
                     ✅ Récompenses distribuées
                   </span>
                 )}
+                <button
+                  onClick={() => handleDelete(session)}
+                  title="Supprimer cette session"
+                  className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/25 text-red-400/50 hover:text-red-400 border border-red-400/20 transition-all"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
 
