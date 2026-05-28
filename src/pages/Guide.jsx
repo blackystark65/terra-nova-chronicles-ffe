@@ -636,10 +636,10 @@ const SLIDES = [
             <h3 className="font-bold text-orange-300 mb-3">👩‍🏫 Rôle de l'enseignant</h3>
             <ul className="space-y-2 text-sm text-orange-200/70 list-disc list-inside">
               <li>Crée la session et génère 2 codes équipe</li>
-              <li>Distribue les codes aux 2 groupes d'élèves</li>
+              <li><strong className="text-white">Forme les équipes lui-même</strong> : recherche les élèves par numéro TN ou nom et les affecte directement à chaque équipe</li>
+              <li>Les élèves n'ont <strong className="text-yellow-300">pas besoin de saisir de code</strong> — idéal en classe sans téléphone</li>
               <li>Suit les scores en temps réel depuis son tableau de bord</li>
               <li>Clôture la session et distribue les récompenses</li>
-              <li>Préinscrit les élèves via leur numéro TN (sans email)</li>
             </ul>
             <Link to={createPageUrl('BioFocus')}>
               <button className="mt-4 w-full py-2 rounded-xl bg-orange-500/20 border border-orange-400/30 text-orange-300 text-sm font-bold hover:bg-orange-500/30 transition-all">
@@ -649,7 +649,7 @@ const SLIDES = [
           </div>
         </div>
         <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-400/20 text-sm text-amber-200/80">
-          🎓 <strong>Usage pédagogique :</strong> Sciences naturelles, EDD, observation terrain. Idéal en lien avec une visite du site de permaculture de Terra Nova. Les élèves rejoignent la session avec leur <strong className="text-white">numéro TN</strong> — aucun compte requis !
+          🎓 <strong>Usage pédagogique :</strong> Sciences naturelles, EDD, observation terrain. L'enseignant forme les équipes directement depuis son tableau de bord en cherchant chaque élève par numéro TN ou nom. <strong className="text-white">Aucun téléphone requis côté élèves</strong> — idéal pour les classes sans accès aux appareils pendant les cours.
         </div>
       </div>
     ),

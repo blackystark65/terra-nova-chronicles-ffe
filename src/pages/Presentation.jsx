@@ -334,7 +334,7 @@ const SLIDES = [
             <h3 className="font-bold text-sky-300 mb-3">👩‍🏫 L'enseignant</h3>
             <ul className="space-y-2 text-sky-200/70 text-sm">
               <li>• Crée la session (nom de classe + degré scolaire libre)</li>
-              <li>• Reçoit <strong className="text-white">2 codes uniques</strong> d'équipe</li>
+              <li>• <strong className="text-white">Forme les équipes lui-même</strong> : recherche les élèves par numéro TN ou nom et les affecte à chaque équipe — sans que les élèves aient besoin d'un téléphone</li>
               <li>• Répartit ses élèves selon ses critères pédagogiques</li>
               <li>• Clôture la session → récompenses automatiques</li>
             </ul>
@@ -342,7 +342,7 @@ const SLIDES = [
           <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-400/20">
             <h3 className="font-bold text-emerald-300 mb-3">🎒 Les élèves</h3>
             <ul className="space-y-2 text-emerald-200/70 text-sm">
-              <li>• Rejoignent leur équipe avec le code ou leur numéro TN</li>
+              <li>• <strong className="text-white">Pas besoin de saisir de code</strong> — l'enseignant les affecte directement à leur équipe</li>
               <li>• Photographient les espèces in situ</li>
               <li>• Uploadent en temps réel depuis smartphone/tablette/<strong className="text-amber-300">Kideo ×1000</strong></li>
               <li>• Score mis à jour instantanément pour toute l'équipe</li>
