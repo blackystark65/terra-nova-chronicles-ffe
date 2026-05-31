@@ -65,12 +65,11 @@ export default function BiolumiHeader({ currentPage }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Fond vert Ferme du Fond de l'Étang */}
-        <div className="absolute inset-0 backdrop-blur-xl" style={{ backgroundColor: 'rgba(10, 50, 20, 0.95)' }} />
+        {/* Fond blanc Ferme du Fond de l'Étang */}
+        <div className="absolute inset-0 backdrop-blur-xl" style={{ backgroundColor: 'rgba(255, 255, 255, 0.97)' }} />
         
-        {/* Néon vert lumineux */}
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 via-green-400/15 to-emerald-600/10" />
-        <div className="absolute inset-0" style={{ boxShadow: 'inset 0 0 60px rgba(34,197,94,0.15), inset 0 0 120px rgba(16,185,129,0.08)' }} />
+        {/* Néon gris subtil */}
+        <div className="absolute inset-0" style={{ boxShadow: 'inset 0 0 80px rgba(150,150,150,0.12), inset 0 -4px 30px rgba(100,100,100,0.08)' }} />
         
         <nav className="relative w-full px-2 py-2">
           <div className="flex items-center justify-between gap-2">
@@ -220,8 +219,8 @@ export default function BiolumiHeader({ currentPage }) {
           </div>
         </nav>
 
-        {/* Ligne de séparation verte néon */}
-        <div className="h-px bg-gradient-to-r from-transparent via-green-400/60 to-transparent" style={{ boxShadow: '0 0 8px rgba(74,222,128,0.6)' }} />
+        {/* Ligne de séparation grise néon */}
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-400/50 to-transparent" style={{ boxShadow: '0 0 6px rgba(150,150,150,0.4)' }} />
 
         {/* Mobile menu dropdown */}
         <AnimatePresence>
@@ -232,7 +231,7 @@ export default function BiolumiHeader({ currentPage }) {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="px-4 py-4 space-y-2 backdrop-blur-xl overflow-y-auto max-h-[80vh]" style={{ backgroundColor: 'rgba(10, 50, 20, 0.98)' }}>
+              <div className="px-4 py-4 space-y-2 backdrop-blur-xl overflow-y-auto max-h-[80vh]" style={{ backgroundColor: 'rgba(255, 255, 255, 0.98)' }}>
                 <Link to={createPageUrl('Profile')} onClick={() => setMobileMenuOpen(false)}>
                   <motion.div
                     whileTap={{ scale: 0.95 }}
@@ -306,7 +305,7 @@ export default function BiolumiHeader({ currentPage }) {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
             className="hidden md:flex fixed top-0 left-1/2 -translate-x-1/2 z-[55] items-center gap-2 px-4 py-1 rounded-b-xl cursor-pointer"
-            style={{ backgroundColor: 'rgba(10, 50, 20, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(74,222,128,0.2)', borderTop: 'none' }}
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.92)', backdropFilter: 'blur(12px)', border: '1px solid rgba(150,150,150,0.2)', borderTop: 'none' }}
             onMouseEnter={handleMouseEnter}
           >
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
