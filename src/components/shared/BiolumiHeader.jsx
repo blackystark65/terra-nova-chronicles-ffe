@@ -65,25 +65,26 @@ export default function BiolumiHeader({ currentPage }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Fond bleu Institut du Rosey */}
-        <div className="absolute inset-0 backdrop-blur-xl" style={{ backgroundColor: 'rgba(10, 30, 80, 0.95)' }} />
+        {/* Fond vert Ferme du Fond de l'Étang */}
+        <div className="absolute inset-0 backdrop-blur-xl" style={{ backgroundColor: 'rgba(10, 50, 20, 0.95)' }} />
         
-        {/* Reflet doré subtil */}
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-600/5 via-transparent to-yellow-600/5" />
+        {/* Néon vert lumineux */}
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 via-green-400/15 to-emerald-600/10" />
+        <div className="absolute inset-0" style={{ boxShadow: 'inset 0 0 60px rgba(34,197,94,0.15), inset 0 0 120px rgba(16,185,129,0.08)' }} />
         
         <nav className="relative w-full px-2 py-2">
           <div className="flex items-center justify-between gap-2">
-            {/* Logo Institut du Rosey + Terra Nova */}
+            {/* Logo Ferme du Fond de l'Étang */}
             <div className="flex items-center gap-2 flex-shrink-0">
-              <a href="https://www.rosey.ch" target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
+              <Link to="/" className="flex-shrink-0">
                 <motion.img
                   whileHover={{ scale: 1.08 }}
-                  src="https://media.base44.com/images/public/6959886137576a65dcfe1370/386bb9e92_Institut_Le_Rosey_logo.png"
-                  alt="Institut du Rosey"
-                  title="Institut du Rosey"
-                  style={{ height: '48px', width: 'auto', display: 'block', objectFit: 'contain' }}
+                  src="https://media.base44.com/images/public/6a1c304c98479205133679a6/78196659c_fermeFondEtangLogo31.png"
+                  alt="La Ferme du Fond de l'Étang"
+                  title="La Ferme du Fond de l'Étang"
+                  style={{ height: '52px', width: 'auto', display: 'block', objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(134,239,172,0.5))' }}
                 />
-              </a>
+              </Link>
               <div className="h-6 w-px bg-white/20 flex-shrink-0" />
               <Link to={createPageUrl('Home')}>
                 <motion.div
@@ -219,8 +220,8 @@ export default function BiolumiHeader({ currentPage }) {
           </div>
         </nav>
 
-        {/* Ligne de séparation dorée */}
-        <div className="h-px bg-gradient-to-r from-transparent via-yellow-500/40 to-transparent" />
+        {/* Ligne de séparation verte néon */}
+        <div className="h-px bg-gradient-to-r from-transparent via-green-400/60 to-transparent" style={{ boxShadow: '0 0 8px rgba(74,222,128,0.6)' }} />
 
         {/* Mobile menu dropdown */}
         <AnimatePresence>
@@ -231,7 +232,7 @@ export default function BiolumiHeader({ currentPage }) {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="px-4 py-4 space-y-2 backdrop-blur-xl overflow-y-auto max-h-[80vh]" style={{ backgroundColor: 'rgba(10, 30, 80, 0.98)' }}>
+              <div className="px-4 py-4 space-y-2 backdrop-blur-xl overflow-y-auto max-h-[80vh]" style={{ backgroundColor: 'rgba(10, 50, 20, 0.98)' }}>
                 <Link to={createPageUrl('Profile')} onClick={() => setMobileMenuOpen(false)}>
                   <motion.div
                     whileTap={{ scale: 0.95 }}
@@ -305,7 +306,7 @@ export default function BiolumiHeader({ currentPage }) {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
             className="hidden md:flex fixed top-0 left-1/2 -translate-x-1/2 z-[55] items-center gap-2 px-4 py-1 rounded-b-xl cursor-pointer"
-            style={{ backgroundColor: 'rgba(10, 30, 80, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.1)', borderTop: 'none' }}
+            style={{ backgroundColor: 'rgba(10, 50, 20, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(74,222,128,0.2)', borderTop: 'none' }}
             onMouseEnter={handleMouseEnter}
           >
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
