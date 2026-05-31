@@ -120,21 +120,12 @@ export default function BioFocusPage() {
   const [isTeacher, setIsTeacher] = useState(false);
   const [activeTab, setActiveTab] = useState('jeu');
   const [showRules, setShowRules] = useState(false);
-  const [mySession, setMySession] = useState(null); // session où l'élève est inscrit
-  const [myTeam, setMyTeam] = useState(null); // 'team1' ou 'team2'
-
-  // Restaurer la session depuis localStorage au chargement
-  useEffect(() => {
-    const stored = localStorage.getItem('tn_biofocus_session');
-    if (stored) {
-      try {
-        const { sessionId, team } = JSON.parse(stored);
-        setMyTeam(team);
-        // mySession sera résolu depuis sessions une fois chargées
-        setMySession({ id: sessionId });
-      } catch { localStorage.removeItem('tn_biofocus_session'); }
-    }
-  }, []);
+  const [mySessionId, setMySessionId] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('tn_biofocus_session') || 'null')?.sessionId || null; } catch { return null; }
+  });
+  const [myTeam, setMyTeam] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('tn_biofocus_session') || 'null')?.team || null; } catch { return null; }
+  });
 
   useEffect(() => {
     base44.auth.me().then(u => {
@@ -147,31 +138,8 @@ export default function BioFocusPage() {
     queryKey: ['biofocus-sessions'],
     queryFn: () => base44.entities.BioFocusSession.list('-created_date', 100),
     enabled: !!user,
+    refetchInterval: 10000, // rafraîchir toutes les 10s pour les captures en temps réel
   });
-
-  // Synchroniser mySession avec les sessions fraîches (après refetch)
-  useEffect(() => {
-    if (!user || isTeacher || sessions.length === 0) return;
-    // Si on a déjà une session stockée, la mettre à jour avec les données fraîches
-    const stored = localStorage.getItem('tn_biofocus_session');
-    if (stored) {
-      try {
-        const { sessionId, team } = JSON.parse(stored);
-        const fresh = sessions.find(s => s.id === sessionId);
-        if (fresh && fresh.status === 'en_cours') {
-          setMySession(fresh);
-          setMyTeam(team);
-          return;
-        } else {
-          // Session terminée ou introuvable, nettoyer
-          localStorage.removeItem('tn_biofocus_session');
-          setMySession(null);
-          setMyTeam(null);
-          return;
-        }
-      } catch { localStorage.removeItem('tn_biofocus_session'); }
-    }
-  }, [sessions, user, isTeacher]);
 
   if (!user) return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-green-950 to-emerald-950 flex items-center justify-center">
@@ -179,8 +147,12 @@ export default function BioFocusPage() {
     </div>
   );
 
-  // Récupérer la session à jour depuis le tableau
-  const currentSession = mySession ? sessions.find(s => s.id === mySession.id) || mySession : null;
+  // Session courante : priorité aux données fraîches, sinon null
+  const currentSession = mySessionId ? (sessions.find(s => s.id === mySessionId) || null) : null;
+  // Si la session est terminée, on efface le localStorage
+  if (currentSession && currentSession.status !== 'en_cours' && currentSession.status !== undefined) {
+    // on laisse voir le GamePanel en lecture seule (canCapture=false gère ça)
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-green-950 to-emerald-950">
@@ -227,15 +199,17 @@ export default function BioFocusPage() {
             {/* VUE ÉLÈVE */}
             {!isTeacher && (
               <>
-                {currentSession && myTeam ? (
-                  <GamePanel session={currentSession} userTeam={myTeam} user={user} />
+                {mySessionId && myTeam ? (
+                  currentSession
+                    ? <GamePanel session={currentSession} userTeam={myTeam} user={user} />
+                    : <div className="text-center text-white/50 py-10">⏳ Chargement de la session…</div>
                 ) : (
                   <StudentJoin
                     sessions={sessions}
                     user={user}
                     onJoined={({ session, team }) => {
                       localStorage.setItem('tn_biofocus_session', JSON.stringify({ sessionId: session.id, team }));
-                      setMySession(session);
+                      setMySessionId(session.id);
                       setMyTeam(team);
                       refetch();
                     }}
