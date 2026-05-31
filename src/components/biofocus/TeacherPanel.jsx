@@ -386,12 +386,11 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
                       <span className="text-white/80 text-xs font-bold">{team.name}</span>
                     </div>
                     <div className="text-2xl font-black text-white mb-1">{score} pts</div>
-                    <div className="text-white/50 text-xs">{members.length} élèves</div>
-                    <div className="mt-1 space-y-0.5">
-                      {members.slice(0, 3).map((m, i) => (
-                        <div key={i} className="text-xs text-white/40 truncate">{m.user_name}</div>
+                    <div className="text-white/50 text-xs mb-1">{members.length} élève{members.length !== 1 ? 's' : ''}</div>
+                    <div className="space-y-0.5">
+                      {members.map((m, i) => (
+                        <div key={i} className="text-xs text-white/60">{m.user_name}</div>
                       ))}
-                      {members.length > 3 && <div className="text-xs text-white/30">+{members.length - 3} autres</div>}
                     </div>
                   </div>
                 );
