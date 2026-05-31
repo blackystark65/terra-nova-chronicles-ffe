@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import BiolumiHeader from '@/components/shared/BiolumiHeader';
 import { Microscope, Trophy, Users, BookOpen, X } from 'lucide-react';
 import TeacherPanel from '@/components/biofocus/TeacherPanel';
-import StudentJoin from '@/components/biofocus/StudentJoin';
+import StudentJoin, { getEleveIdentity } from '@/components/biofocus/StudentJoin';
 import GamePanel from '@/components/biofocus/GamePanel';
 import Classement from '@/components/biofocus/Classement';
 import { calcScore, TEAMS_CONFIG } from '@/components/biofocus/BioFocusData';
@@ -123,6 +123,19 @@ export default function BioFocusPage() {
   const [mySession, setMySession] = useState(null); // session où l'élève est inscrit
   const [myTeam, setMyTeam] = useState(null); // 'team1' ou 'team2'
 
+  // Restaurer la session depuis localStorage au chargement
+  useEffect(() => {
+    const stored = localStorage.getItem('tn_biofocus_session');
+    if (stored) {
+      try {
+        const { sessionId, team } = JSON.parse(stored);
+        setMyTeam(team);
+        // mySession sera résolu depuis sessions une fois chargées
+        setMySession({ id: sessionId });
+      } catch { localStorage.removeItem('tn_biofocus_session'); }
+    }
+  }, []);
+
   useEffect(() => {
     base44.auth.me().then(u => {
       setUser(u);
@@ -136,21 +149,28 @@ export default function BioFocusPage() {
     enabled: !!user,
   });
 
-  // Détecter si l'élève est déjà dans une session
+  // Synchroniser mySession avec les sessions fraîches (après refetch)
   useEffect(() => {
-    if (!user || isTeacher) return;
-    for (const session of sessions) {
-      for (const team of TEAMS_CONFIG) {
-        const members = session[team.membersKey] || [];
-        if (members.some(m => m.user_email === user.email)) {
-          setMySession(session);
-          setMyTeam(team.id);
+    if (!user || isTeacher || sessions.length === 0) return;
+    // Si on a déjà une session stockée, la mettre à jour avec les données fraîches
+    const stored = localStorage.getItem('tn_biofocus_session');
+    if (stored) {
+      try {
+        const { sessionId, team } = JSON.parse(stored);
+        const fresh = sessions.find(s => s.id === sessionId);
+        if (fresh && fresh.status === 'en_cours') {
+          setMySession(fresh);
+          setMyTeam(team);
+          return;
+        } else {
+          // Session terminée ou introuvable, nettoyer
+          localStorage.removeItem('tn_biofocus_session');
+          setMySession(null);
+          setMyTeam(null);
           return;
         }
-      }
+      } catch { localStorage.removeItem('tn_biofocus_session'); }
     }
-    setMySession(null);
-    setMyTeam(null);
   }, [sessions, user, isTeacher]);
 
   if (!user) return (
@@ -213,7 +233,12 @@ export default function BioFocusPage() {
                   <StudentJoin
                     sessions={sessions}
                     user={user}
-                    onJoined={({ session, team }) => { setMySession(session); setMyTeam(team); refetch(); }}
+                    onJoined={({ session, team }) => {
+                      localStorage.setItem('tn_biofocus_session', JSON.stringify({ sessionId: session.id, team }));
+                      setMySession(session);
+                      setMyTeam(team);
+                      refetch();
+                    }}
                   />
                 )}
               </>
