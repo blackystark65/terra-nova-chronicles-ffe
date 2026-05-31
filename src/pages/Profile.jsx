@@ -168,7 +168,7 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-emerald-950 to-teal-950">
       <BiolumiHeader currentPage="Profile" />
 
-      <main className="pt-24 px-4 pb-12">
+      <main className="pt-24 px-4 pb-32">
         <div className="max-w-5xl mx-auto">
           {/* Carte profil */}
           <motion.div
