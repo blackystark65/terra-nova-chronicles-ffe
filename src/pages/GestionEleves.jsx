@@ -39,15 +39,18 @@ export default function GestionElevesPage() {
     onSuccess: () => { qc.invalidateQueries(['eleves']); setSingleForm({ prenom: '', nom: '', genre: 'garcon', classe: '' }); },
   });
 
-  // Calcule le prochain numéro disponible
+  // Calcule le prochain numéro disponible (réutilise les trous dans la séquence)
   const getNextNumero = (genre) => {
     const prefix = genre === 'fille' ? 'F' : 'G';
-    const existing = eleves
-      .filter(e => e.numero?.startsWith(`TN-${prefix}`))
-      .map(e => parseInt(e.numero?.replace(`TN-${prefix}`, '') || '0'))
-      .filter(n => !isNaN(n));
-    const max = existing.length > 0 ? Math.max(...existing) : 0;
-    return `TN-${prefix}${String(max + 1).padStart(3, '0')}`;
+    const existing = new Set(
+      eleves
+        .filter(e => e.numero?.startsWith(`TN-${prefix}`))
+        .map(e => parseInt(e.numero?.replace(`TN-${prefix}`, '') || '0'))
+        .filter(n => !isNaN(n) && n > 0)
+    );
+    let next = 1;
+    while (existing.has(next)) next++;
+    return `TN-${prefix}${String(next).padStart(3, '0')}`;
   };
 
   const handleSingleAdd = () => {
@@ -63,13 +66,16 @@ export default function GestionElevesPage() {
     setBulkResult(null);
 
     const toCreate = [];
-    // Calcule les numéros de départ pour ce genre
+    // Calcule les numéros disponibles en partant du premier trou
     const prefix = bulkGenre === 'fille' ? 'F' : 'G';
-    const existing = eleves
-      .filter(e => e.numero?.startsWith(`TN-${prefix}`))
-      .map(e => parseInt(e.numero?.replace(`TN-${prefix}`, '') || '0'))
-      .filter(n => !isNaN(n));
-    let counter = existing.length > 0 ? Math.max(...existing) + 1 : 1;
+    const existingSet = new Set(
+      eleves
+        .filter(e => e.numero?.startsWith(`TN-${prefix}`))
+        .map(e => parseInt(e.numero?.replace(`TN-${prefix}`, '') || '0'))
+        .filter(n => !isNaN(n) && n > 0)
+    );
+    let counter = 1;
+    while (existingSet.has(counter)) counter++;
 
     for (const line of lines) {
       const parts = line.trim().split(/[\s,;]+/);
@@ -85,7 +91,9 @@ export default function GestionElevesPage() {
         annee_scolaire: annee,
         is_active: true,
       });
+      existingSet.add(counter);
       counter++;
+      while (existingSet.has(counter)) counter++;
     }
 
     let created = 0;
