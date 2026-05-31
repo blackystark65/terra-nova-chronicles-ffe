@@ -75,7 +75,7 @@ export default function BiolumiHeader({ currentPage }) {
           <div className="flex items-center justify-between gap-2">
             {/* Logo Ferme du Fond de l'Étang */}
             <div className="flex items-center gap-2 flex-shrink-0">
-              <Link to="/" className="flex-shrink-0">
+              <a href="https://lafermedufonddeletang.ch/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
                 <motion.img
                   whileHover={{ scale: 1.08 }}
                   src="https://media.base44.com/images/public/6a1c304c98479205133679a6/78196659c_fermeFondEtangLogo31.png"
@@ -83,7 +83,7 @@ export default function BiolumiHeader({ currentPage }) {
                   title="La Ferme du Fond de l'Étang"
                   style={{ height: '52px', width: 'auto', display: 'block', objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(134,239,172,0.5))' }}
                 />
-              </Link>
+              </a>
               <div className="h-6 w-px bg-white/20 flex-shrink-0" />
               <Link to={createPageUrl('Home')}>
                 <motion.div
