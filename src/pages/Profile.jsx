@@ -352,11 +352,11 @@ export default function ProfilePage() {
 
       {/* Dialog sélection type de profil */}
       <Dialog open={showProfileTypeDialog} onOpenChange={setShowProfileTypeDialog}>
-        <DialogContent className="bg-slate-900 border-emerald-400/30 text-white max-w-md max-h-[90vh] flex flex-col">
-          <DialogHeader className="flex-shrink-0">
+        <DialogContent className="bg-slate-900 border-emerald-400/30 text-white max-w-md h-[90vh] flex flex-col p-0 gap-0">
+          <DialogHeader className="flex-shrink-0 px-6 pt-6 pb-3">
             <DialogTitle className="text-white">Mon profil</DialogTitle>
           </DialogHeader>
-          <div className="overflow-y-auto flex-1 pr-1">
+          <div className="overflow-y-auto flex-1 px-6 pb-6">
             <ProfileTypeSelector user={user} onClose={() => setShowProfileTypeDialog(false)} />
           </div>
         </DialogContent>
