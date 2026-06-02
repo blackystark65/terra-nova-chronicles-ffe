@@ -1,6 +1,6 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 
-const REPO = 'OWNER/terra-nova-chronicles-Base'; // ← Remplacez OWNER par votre nom d'utilisateur/organisation GitHub
+const REPO = 'blackystark65/terra-nova-chronicles-Base';
 
 Deno.serve(async (req) => {
   try {
