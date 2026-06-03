@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Trophy, Users, Copy, CheckCircle, X, Star, Coins, Award, UserPlus, Search, Trash2 } from 'lucide-react';
+import { Trophy, Users, Copy, CheckCircle, X, Star, Coins, Award, UserPlus, Search, Trash2, Pencil } from 'lucide-react';
 import { TEAMS_CONFIG, calcScore, generateCode, WINNER_REWARDS, PARTICIPANT_REWARDS } from './BioFocusData';
 
 function ScoreBadge({ label, value, color }) {
@@ -196,6 +196,24 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
     return count;
   };
 
+  const [renamingSession, setRenamingSession] = useState(null); // session.id en cours de renommage
+  const [renameValue, setRenameValue] = useState('');
+
+  const handleRenameStart = (session) => {
+    setRenamingSession(session.id);
+    setRenameValue(session.nom_classe);
+  };
+
+  const handleRenameConfirm = async (session) => {
+    if (!renameValue.trim() || renameValue.trim() === session.nom_classe) {
+      setRenamingSession(null);
+      return;
+    }
+    await base44.entities.BioFocusSession.update(session.id, { nom_classe: renameValue.trim() });
+    qc.invalidateQueries(['biofocus-sessions']);
+    setRenamingSession(null);
+  };
+
   const mySessions = sessions.filter(s => s.enseignant_email === user.email);
 
   return (
@@ -227,9 +245,32 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
           <div key={session.id} className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
             <div className="p-4 border-b border-white/10">
               <div className="flex items-start justify-between gap-3">
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-black text-white">{session.nom_classe}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    {renamingSession === session.id ? (
+                      <div className="flex items-center gap-2">
+                        <input
+                          autoFocus
+                          value={renameValue}
+                          onChange={e => setRenameValue(e.target.value)}
+                          onKeyDown={e => { if (e.key === 'Enter') handleRenameConfirm(session); if (e.key === 'Escape') setRenamingSession(null); }}
+                          className="rounded-lg bg-black/40 border border-emerald-400/50 text-white font-black px-2 py-0.5 text-sm focus:outline-none w-48"
+                        />
+                        <button onClick={() => handleRenameConfirm(session)} className="text-emerald-400 hover:text-emerald-300 transition-colors">
+                          <CheckCircle className="w-4 h-4" />
+                        </button>
+                        <button onClick={() => setRenamingSession(null)} className="text-white/40 hover:text-white/60 transition-colors">
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-black text-white">{session.nom_classe}</span>
+                        <button onClick={() => handleRenameStart(session)} className="text-white/20 hover:text-white/60 transition-colors" title="Renommer la session">
+                          <Pencil className="w-3 h-3" />
+                        </button>
+                      </div>
+                    )}
                     <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
                       session.status === 'en_cours' ? 'bg-green-500/20 text-green-300' :
                       session.status === 'termine' ? 'bg-amber-500/20 text-amber-300' :
