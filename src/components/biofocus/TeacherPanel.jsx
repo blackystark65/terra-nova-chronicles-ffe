@@ -162,6 +162,40 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
     qc.invalidateQueries(['biofocus-sessions']);
   };
 
+  const handleDeduplicateTeam = async (session, teamId) => {
+    const key = `members_${teamId}`;
+    const members = session[key] || [];
+    const seen = new Set();
+    const deduped = members.filter(m => {
+      const identifier = m.eleve_numero || m.user_name;
+      if (seen.has(identifier)) return false;
+      seen.add(identifier);
+      return true;
+    });
+    if (deduped.length === members.length) return; // pas de doublon
+    await base44.entities.BioFocusSession.update(session.id, { [key]: deduped });
+    qc.invalidateQueries(['biofocus-sessions']);
+  };
+
+  const handleDeduplicateSession = async (session) => {
+    await handleDeduplicateTeam(session, 'team1');
+    await handleDeduplicateTeam(session, 'team2');
+  };
+
+  const countDuplicates = (session) => {
+    let count = 0;
+    for (const teamId of ['team1', 'team2']) {
+      const members = session[`members_${teamId}`] || [];
+      const seen = new Set();
+      for (const m of members) {
+        const id = m.eleve_numero || m.user_name;
+        if (seen.has(id)) count++;
+        else seen.add(id);
+      }
+    }
+    return count;
+  };
+
   const mySessions = sessions.filter(s => s.enseignant_email === user.email);
 
   return (
@@ -206,6 +240,15 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
                   </div>
                   <p className="text-white/50 text-xs">{session.date_session}</p>
                 </div>
+                {session.status === 'en_cours' && countDuplicates(session) > 0 && (
+                  <button
+                    onClick={() => handleDeduplicateSession(session)}
+                    className="text-xs px-3 py-1.5 rounded-lg bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-400/30 font-bold transition-all"
+                    title="Supprimer les noms en double dans les équipes"
+                  >
+                    🧹 {countDuplicates(session)} doublon{countDuplicates(session) > 1 ? 's' : ''}
+                  </button>
+                )}
                 {session.status === 'en_cours' && (
                   <button onClick={() => handleCloture(session)} className="text-xs px-3 py-1.5 rounded-lg bg-red-500/20 hover:bg-red-500/30 text-red-300 border border-red-400/30 font-bold transition-all">
                     🏁 Clôturer
