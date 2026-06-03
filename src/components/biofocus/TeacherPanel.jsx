@@ -155,9 +155,9 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
     setSearchError('');
   };
 
-  const handleRemoveFromTeam = async (session, teamId, eleveNumero) => {
+  const handleRemoveFromTeam = async (session, teamId, indexToRemove) => {
     const key = `members_${teamId}`;
-    const updated = (session[key] || []).filter(m => m.eleve_numero !== eleveNumero);
+    const updated = (session[key] || []).filter((_, i) => i !== indexToRemove);
     await base44.entities.BioFocusSession.update(session.id, { [key]: updated });
     qc.invalidateQueries(['biofocus-sessions']);
   };
@@ -391,17 +391,17 @@ export default function TeacherPanel({ sessions, user, onSessionCreated }) {
                                   <p className="text-white/30 text-xs italic">Aucun élève</p>
                                 ) : (
                                   <div className="space-y-1">
-                                    {members.map((m, i) => (
-                                      <div key={i} className="flex items-center justify-between gap-1">
-                                        <span className="text-xs text-white/70 truncate">{m.user_name}</span>
-                                        <button
-                                          onClick={() => handleRemoveFromTeam(session, team.id, m.eleve_numero)}
-                                          className="flex-shrink-0 p-0.5 rounded hover:bg-red-500/20 text-white/30 hover:text-red-400 transition-all"
-                                        >
-                                          <X className="w-3 h-3" />
-                                        </button>
-                                      </div>
-                                    ))}
+                                   {members.map((m, i) => (
+                                     <div key={i} className="flex items-center justify-between gap-1">
+                                       <span className="text-xs text-white/70 truncate">{m.user_name}</span>
+                                       <button
+                                         onClick={() => handleRemoveFromTeam(session, team.id, i)}
+                                         className="flex-shrink-0 p-0.5 rounded hover:bg-red-500/20 text-white/30 hover:text-red-400 transition-all"
+                                       >
+                                         <X className="w-3 h-3" />
+                                       </button>
+                                     </div>
+                                   ))}
                                   </div>
                                 )}
                               </div>
