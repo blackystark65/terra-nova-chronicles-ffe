@@ -24,6 +24,8 @@ import BilanPedagogiquePage from './pages/BilanPedagogiquePage';
 import BiomeSolPage from './pages/BiomeSol';
 import GestionElevesPage from './pages/GestionEleves';
 import GithubIssuesPage from './pages/GithubIssues';
+import MahjongEcoPage from './pages/MahjongEco';
+import AdminEcoPairsPage from './pages/AdminEcoPairs';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -92,6 +94,8 @@ const AuthenticatedApp = () => {
       <Route path="/BiomeSol" element={<LayoutWrapper currentPageName="BiomeSol"><BiomeSolPage /></LayoutWrapper>} />
       <Route path="/GestionEleves" element={<LayoutWrapper currentPageName="GestionEleves"><GestionElevesPage /></LayoutWrapper>} />
       <Route path="/GithubIssues" element={<LayoutWrapper currentPageName="GithubIssues"><GithubIssuesPage /></LayoutWrapper>} />
+      <Route path="/MahjongEco" element={<LayoutWrapper currentPageName="MahjongEco"><MahjongEcoPage /></LayoutWrapper>} />
+      <Route path="/AdminEcoPairs" element={<LayoutWrapper currentPageName="AdminEcoPairs"><AdminEcoPairsPage /></LayoutWrapper>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
