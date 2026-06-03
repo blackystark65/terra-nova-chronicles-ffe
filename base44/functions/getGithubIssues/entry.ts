@@ -1,6 +1,6 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 
-const REPO = 'blackystark65/terra-nova-chronicles-Base';
+const REPO = 'blackystark65/terra-nova-chronicles-ffe';
 
 Deno.serve(async (req) => {
   try {
